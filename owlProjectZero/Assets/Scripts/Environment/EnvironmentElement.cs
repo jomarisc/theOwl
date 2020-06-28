@@ -14,7 +14,7 @@ public class EnvironmentElement : MonoBehaviour
                 return;
             else
             {
-                col.gameObject.GetComponent<playerControl>().numJumps = 2;
+                col.gameObject.GetComponent<playerControl>().numJumps = playerControl.MAX_JUMPS;
             }
             // Debug.DrawRay(contact.point, Vector2.up, Color.cyan, 10f);
         }

@@ -7,13 +7,14 @@ public class playerControl : MonoBehaviour
     Rigidbody rb;
     SphereCollider sphereCollider;
 
-    public int numJumps = 2;
+    private Vector3 movement;
+    public const int MAX_JUMPS = 3;
+    public int numJumps;
     public float groundSpeed;
     public float airSpeed;
     public float jumpDistance;
     public float dragAmount;
 
-    private Vector3 movement;
 
     // Start is called before the first frame update
     private void Start()
