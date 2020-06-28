@@ -28,7 +28,8 @@ public class playerControl : MonoBehaviour
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         if (Input.GetButtonDown("Jump") && numJumps > 0)
         {
-            rb.AddForce(new Vector3(0, jumpDistance, 0), ForceMode.Impulse);
+            // rb.AddForce(new Vector3(0, jumpDistance, 0), ForceMode.Impulse);
+            jump();
             numJumps--;
         }
 
@@ -44,5 +45,10 @@ public class playerControl : MonoBehaviour
     private void moveCharacter(Vector3 direction)
     {
         rb.MovePosition(transform.position + (direction * groundSpeed * Time.deltaTime));
+    }
+
+    private void jump()
+    {
+        rb.velocity = Vector3.up * jumpDistance;
     }
 }
