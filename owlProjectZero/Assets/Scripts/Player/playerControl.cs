@@ -7,8 +7,7 @@ public class playerControl : MonoBehaviour
     Rigidbody rb;
     SphereCollider sphereCollider;
 
-    private int numJumps = 2;
-    
+    public int numJumps = 2;
     public float groundSpeed;
     public float airSpeed;
     public float jumpDistance;
@@ -45,20 +44,5 @@ public class playerControl : MonoBehaviour
     private void moveCharacter(Vector3 direction)
     {
         rb.MovePosition(transform.position + (direction * groundSpeed * Time.deltaTime));
-    }
-
-    private void OnCollisionEnter(Collision col)
-    {
-        foreach(ContactPoint contact in col.contacts)
-        {
-            if(contact.point.y > rb.position.y - sphereCollider.bounds.extents.y + 0.1f)
-                return;
-            else
-            {
-                numJumps = 2;
-            }
-            // Debug.DrawRay(contact.point, Vector2.up, Color.cyan, 10f);
-        }
-        // Debug.Log("Collided with " + col.gameObject.name);
     }
 }

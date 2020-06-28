@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class EnvironmentElement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+       private void OnCollisionEnter(Collision col)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
+        Collider sphereCollider = col.gameObject.GetComponent<SphereCollider>();
+        foreach(ContactPoint contact in col.contacts)
+        {
+            if(contact.point.y > rb.position.y - sphereCollider.bounds.extents.y + 0.1f)
+                return;
+            else
+            {
+                col.gameObject.GetComponent<playerControl>().numJumps = 2;
+            }
+            // Debug.DrawRay(contact.point, Vector2.up, Color.cyan, 10f);
+        }
+        // Debug.Log("Collided with " + col.gameObject.name);
     }
 }
