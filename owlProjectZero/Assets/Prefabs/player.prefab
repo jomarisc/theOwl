@@ -124,7 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numJumps: 3
-  groundSpeed: 5
-  airSpeed: 0
-  jumpDistance: 10
+  groundSpeed: 3
+  airSpeed: 10
+  movementSpeed: 0
+  jumpDistance: 6
   dragAmount: 0
