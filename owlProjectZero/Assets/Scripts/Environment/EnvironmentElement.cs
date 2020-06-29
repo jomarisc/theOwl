@@ -4,20 +4,41 @@ using UnityEngine;
 
 public class EnvironmentElement : MonoBehaviour
 {
-       private void OnCollisionEnter(Collision col)
+    // private void OnCollisionEnter(Collision col)
+    // {
+    //     Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
+    //     Collider sphereCollider = col.gameObject.GetComponent<SphereCollider>();
+    //     foreach(ContactPoint contact in col.contacts)
+    //     {
+    //         if(contact.point.y > rb.position.y - sphereCollider.bounds.extents.y / 3)
+    //             return;
+    //         else
+    //         {
+    //             col.gameObject.GetComponent<playerControl>().numJumps = playerControl.MAX_JUMPS;
+    //         }
+    //     }
+    // }
+
+    private void OnCollisionStay(Collision col)
     {
         Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
         Collider sphereCollider = col.gameObject.GetComponent<SphereCollider>();
-        foreach(ContactPoint contact in col.contacts)
+        if(rb != null && sphereCollider != null)
         {
-            if(contact.point.y > rb.position.y - sphereCollider.bounds.extents.y + 0.1f)
-                return;
-            else
+            foreach(ContactPoint contact in col.contacts)
             {
-                col.gameObject.GetComponent<playerControl>().numJumps = playerControl.MAX_JUMPS;
+                if(contact.point.y > rb.position.y - sphereCollider.bounds.extents.y + 0.1f)
+                    return;
+                else
+                {
+                    // Check if the player managed to land on an environment piece
+                    // but the jump refresh didn't work
+                    if(col.gameObject.GetComponent<playerControl>().numJumps < playerControl.MAX_JUMPS)
+                    {
+                        col.gameObject.GetComponent<playerControl>().numJumps = playerControl.MAX_JUMPS;
+                    }
+                }
             }
-            // Debug.DrawRay(contact.point, Vector2.up, Color.cyan, 10f);
         }
-        // Debug.Log("Collided with " + col.gameObject.name);
     }
 }
