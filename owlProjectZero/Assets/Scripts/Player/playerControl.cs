@@ -33,36 +33,23 @@ public class playerControl : MonoBehaviour
         acceleration = Input.GetAxis("Horizontal");
         if (Input.GetButtonDown("Jump") && numJumps > 0)
         {
-            // rb.AddForce(new Vector3(0, jumpDistance, 0), ForceMode.Impulse);
             Jump();
             numJumps--;
         }
-        // Debug.DrawRay(rb.position, Vector2.down * (sphereCollider.bounds.extents.y), Color.green, 0.1f);
     }
 
     private void FixedUpdate()
     {
         xSpeed = rb.velocity.x;
-        moveCharacter(acceleration);
+        MoveCharacter(acceleration);
     }
 
     // Moves the player left/right based off of the value of its acceleration
-    private void moveCharacter(float direction)
+    private void MoveCharacter(float direction)
     {
-        // if(direction != 0f || rb.velocity.magnitude < maxSpeed)
-        // {
-        //     xSpeed += direction;
-        //     Vector3 newVelocity = rb.velocity;
-        //     newVelocity[0] = xSpeed * Time.deltaTime;
-        //     rb.velocity = newVelocity;
-        // }
-
         Vector3 newVelocity = rb.velocity;
         newVelocity[0] = direction * maxSpeed;
         rb.velocity = newVelocity;
-        
-        // Vector3 newPos = transform.position + new Vector3(direction * xSpeed * Time.deltaTime, 0, 0);
-        // rb.MovePosition(newPos);
     }
 
     private void Jump()
@@ -90,15 +77,11 @@ public class playerControl : MonoBehaviour
     private void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.GetComponent<EnvironmentElement>() != null)
-        {
             maxSpeed = groundSpeed;
-        }
     }
     private void OnCollisionExit(Collision col)
     {
         if(col.gameObject.GetComponent<EnvironmentElement>() != null)
-        {
             maxSpeed = airSpeed;
-        }
     }
 }

@@ -4,21 +4,6 @@ using UnityEngine;
 
 public class EnvironmentElement : MonoBehaviour
 {
-    // private void OnCollisionEnter(Collision col)
-    // {
-    //     Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
-    //     Collider sphereCollider = col.gameObject.GetComponent<SphereCollider>();
-    //     foreach(ContactPoint contact in col.contacts)
-    //     {
-    //         if(contact.point.y > rb.position.y - sphereCollider.bounds.extents.y / 3)
-    //             return;
-    //         else
-    //         {
-    //             col.gameObject.GetComponent<playerControl>().numJumps = playerControl.MAX_JUMPS;
-    //         }
-    //     }
-    // }
-
     private void OnCollisionStay(Collision col)
     {
         Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
