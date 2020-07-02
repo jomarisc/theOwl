@@ -6,10 +6,10 @@ public class EnvironmentElement : MonoBehaviour
 {
     private void OnCollisionStay(Collision col)
     {
-        Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
-        Collider sphereCollider = col.gameObject.GetComponent<SphereCollider>();
-        if(rb != null && sphereCollider != null)
+        if(col.gameObject.GetComponent<Character>() != null)
         {
+            Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
+            Collider sphereCollider = col.gameObject.GetComponent<Collider>();
             foreach(ContactPoint contact in col.contacts)
             {
                 if(contact.point.y > rb.position.y - sphereCollider.bounds.extents.y + 0.1f)
