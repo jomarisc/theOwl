@@ -9,14 +9,15 @@ public class Collectable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        heightOffset = transform.position.y;
+        Transform prnt = transform.parent;
+        heightOffset = prnt.localScale.y / 2 + prnt.position.y;
         Debug.Log(heightOffset);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Float(0.5f);
+        Float(heightOffset);
         if(!gameObject.activeSelf && Input.GetKeyDown(KeyCode.Space))
         {
             gameObject.SetActive(true);
@@ -26,7 +27,8 @@ public class Collectable : MonoBehaviour
     protected void Float(float height)
     {
         Vector3 newPos = transform.position;
-        newPos[1] = (Mathf.Sin(Time.time) + heightOffset * 4) * (heightOffset / 4);
+        float amplitude = 0.25f;
+        newPos[1] = (Mathf.Sin(Time.time * 2f) + 1.25f) * amplitude + height + (1 - amplitude);
         transform.position = newPos;
     }
 
