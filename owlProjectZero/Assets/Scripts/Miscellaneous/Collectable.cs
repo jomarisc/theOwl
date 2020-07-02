@@ -10,7 +10,7 @@ public class Collectable : MonoBehaviour
     void Start()
     {
         Transform prnt = transform.parent;
-        heightOffset = prnt.localScale.y / 2 + prnt.position.y;
+        heightOffset = transform.position.y;
         Debug.Log(heightOffset);
     }
 
@@ -28,7 +28,7 @@ public class Collectable : MonoBehaviour
     {
         Vector3 newPos = transform.position;
         float amplitude = 0.25f;
-        newPos[1] = (Mathf.Sin(Time.time * 2f) + 1.25f) * amplitude + height + (1 - amplitude);
+        newPos[1] = Mathf.Sin(Time.time * 2f) * amplitude + height + amplitude;
         transform.position = newPos;
     }
 
