@@ -11,7 +11,6 @@ public class Collectable : MonoBehaviour
     {
         Transform prnt = transform.parent;
         heightOffset = transform.position.y;
-        Debug.Log(heightOffset);
     }
 
     // Update is called once per frame
@@ -37,7 +36,6 @@ public class Collectable : MonoBehaviour
         if(col.gameObject.GetComponent<playerControl>() != null)
         {
             numCollectables++;
-            Debug.Log("Collected " + numCollectables + " collectables");
             gameObject.SetActive(false);
         }
     }
