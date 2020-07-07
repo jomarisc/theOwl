@@ -27,6 +27,11 @@ public class playerControl : Character
             Jump();
             numJumps--;
         }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Attack();
+        }
     }
 
     private void FixedUpdate()
