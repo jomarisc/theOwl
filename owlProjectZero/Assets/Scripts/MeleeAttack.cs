@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class MeleeAttack : MonoBehaviour
 {
-    public float activeFrames = 10f;
     public float knockback = 5f;
-    public int damage = 1;
+    public float knockbackAngle = 45f;
+    public float damage = 1;
+    public int activeFrames = 10;
 
     void OnEnable()
     {
-        activeFrames = 10f;
+        activeFrames = 10;
     }
 
     void Update()

@@ -7,6 +7,8 @@ public class playerControl : Character
 {
     SphereCollider sphereCollider;
 
+    [SerializeField]
+    private GameObject projectile = null;
     private float acceleration;
     private float xSpeed;
     public const int MAX_JUMPS = 3;
@@ -22,6 +24,11 @@ public class playerControl : Character
     private void Update()
     {
         acceleration = Input.GetAxis("Horizontal");
+        if(Mathf.Abs(acceleration) > 0)
+        {
+            isFacingRight = (acceleration < 0) ? false : true;
+        }
+        
         if (Input.GetButtonDown("Jump") && numJumps > 0)
         {
             Jump();
@@ -30,7 +37,12 @@ public class playerControl : Character
 
         if (Input.GetButtonDown("Fire1"))
         {
-            Attack();
+            meleeAttack.gameObject.SetActive(true);
+        }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            SpawnProjectile();
         }
     }
 
@@ -38,6 +50,19 @@ public class playerControl : Character
     {
         xSpeed = rb.velocity.x;
         MoveCharacter(acceleration);
+        if(meleeAttack.activeSelf)
+        {
+            Attack();
+        }
     }
 
+    public void SpawnProjectile()
+    {
+        projectile.gameObject.SetActive(true);
+        ProjectileAttack projAtk = projectile.GetComponent<ProjectileAttack>();
+        Rigidbody projBody = projectile.GetComponent<Rigidbody>();
+        Vector3 spawnOffset = (isFacingRight) ? new Vector3(0.5f, 0f, 0f) : new Vector3(-0.5f, 0f, 0f);
+        projBody.position = transform.position + spawnOffset;
+        projAtk.speed = (isFacingRight) ? ProjectileAttack.INITIAL_SPEED : -ProjectileAttack.INITIAL_SPEED;
+    }
 }
