@@ -44,6 +44,17 @@ public class playerControl : Character
         {
             SpawnProjectile();
         }
+
+        if (Input.GetButtonDown("Fire3"))
+        {
+            Dodge();
+        }
+
+        if (Input.GetButtonUp("Fire3"))
+        {
+            Physics.IgnoreLayerCollision(9, 10, false); // Player x Enemies
+            Physics.IgnoreLayerCollision(9, 12, false); // Player x Enemies' Attacks
+        }
     }
 
     private void FixedUpdate()

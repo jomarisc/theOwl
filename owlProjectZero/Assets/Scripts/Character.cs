@@ -48,9 +48,22 @@ public abstract class Character : MonoBehaviour, ICharacter
         meleeAttack.transform.localPosition = atkPos;
     }
 
+    // Currently Only toggles player collisions with Enemy-related rigidbodies/colliders
     public void Dodge()
     {
-        // Yet to be implemented
+        // Stop checking collisions with player hurtbox and enemy-related physics layers
+        Physics.IgnoreLayerCollision(9, 10, true); // Player x Enemies
+        Physics.IgnoreLayerCollision(9, 12, true); // Player x Enemies' Attacks
+        // If character is grounded, do a roll in whichever facing direction
+        if(maxSpeed == groundSpeed)
+        {
+
+        }
+        // Else do an 8-directional spin in whichever direction the player is holding
+        else
+        {
+
+        }
     }
 
     protected void ChangeSkill()
