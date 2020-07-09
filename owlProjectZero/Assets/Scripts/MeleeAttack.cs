@@ -25,6 +25,7 @@ public class MeleeAttack : MonoBehaviour
     
     void OnTriggerEnter(Collider col)
     {
-        col.gameObject.SetActive(false);
+        if(col.GetComponent<EnvironmentElement>() == null)
+            col.gameObject.SetActive(false);
     }
 }
