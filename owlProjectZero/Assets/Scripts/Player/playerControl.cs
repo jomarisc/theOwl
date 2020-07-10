@@ -66,7 +66,6 @@ public class playerControl : Character
         if(dodgeDuration >= 0f)
         {
             dodgeDuration -= Time.deltaTime;
-            Debug.Log("dodge duration: " + dodgeDuration);
         }
     }
 
