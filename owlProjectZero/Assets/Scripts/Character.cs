@@ -12,7 +12,6 @@ public abstract class Character : MonoBehaviour, ICharacter
     [SerializeField]
     protected GameObject meleeAttack = null;
     protected Rigidbody rb;
-    protected float dodgeDuration = 0.4f;
 
     // public attributes
     public int numJumps;
@@ -22,6 +21,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     public bool isFacingRight; // Determines whether the character is
                                //facing in the right-hand direction
                                // *So far, must be initialized in sub classes*
+    public float dodgeDuration = 0.4f;
 
     // Moves the player left/right based off of the value of its acceleration
     public void MoveCharacter(float direction)
