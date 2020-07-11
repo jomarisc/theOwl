@@ -8,7 +8,7 @@ public class PlayerIdle : IState
     private readonly playerControl player;
     private float waitTime = 30f; // Time until the "no input" animation kicks in 
 
-    PlayerIdle(playerControl p)
+    public PlayerIdle(playerControl p)
     {
         player = p;
     }
