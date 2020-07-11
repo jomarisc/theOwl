@@ -21,13 +21,16 @@ public class PlayerDodge : IState
         playerRenderer.material.SetColor("_Color", Color.black);
         player.dodgeDuration = playerControl.DODGE_DURATION;
 
+        playerBody.velocity = Vector3.zero;
+        playerBody.drag = 1.0f;
         float direction = (player.isFacingRight) ? 1f : -1f;
-        playerBody.AddForce(new Vector3(direction * 5f, 0f, 0f), ForceMode.Impulse);
+        playerBody.AddForce(new Vector3(direction * 10f, 0f, 0f), ForceMode.VelocityChange);
     }
 
     public void Exit()
     {
         playerRenderer.material.SetColor("_Color", Color.red);
+        playerBody.drag = 0.0f;
         player.dodgeDuration = -1f;
     }
 
