@@ -11,12 +11,18 @@ public class playerControl : Character
     private GameObject projectile = null;
     private float acceleration;
     private float xSpeed;
+    private IState myState;
     public const int MAX_JUMPS = 3;
-    public const float DODGE_DURATION = 1.5f;
+    public const float DODGE_DURATION = 1.0f;
 
     // Start is called before the first frame update
     private void Start()
     {
+        if(myState == null)
+        {
+            myState = new PlayerIdle(this);
+            Debug.Log(myState);
+        }
         rb = GetComponent<Rigidbody>();
         sphereCollider = GetComponent<SphereCollider>();
         dodgeDuration = -1f;
@@ -25,35 +31,35 @@ public class playerControl : Character
     // Update is called once per frame
     private void Update()
     {
-        acceleration = Input.GetAxis("Horizontal");
-        if(Mathf.Abs(acceleration) > 0)
-        {
-            isFacingRight = (acceleration < 0) ? false : true;
-        }
+        // acceleration = Input.GetAxis("Horizontal");
+        // if(Mathf.Abs(acceleration) > 0)
+        // {
+        //     isFacingRight = (acceleration < 0) ? false : true;
+        // }
         
-        if (Input.GetButtonDown("Jump") && numJumps > 0)
-        {
-            Jump();
-            numJumps--;
-        }
+        // if (Input.GetButtonDown("Jump") && numJumps > 0)
+        // {
+        //     Jump();
+        //     numJumps--;
+        // }
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            meleeAttack.gameObject.SetActive(true);
-        }
+        // if (Input.GetButtonDown("Fire1"))
+        // {
+        //     meleeAttack.gameObject.SetActive(true);
+        // }
 
-        if (Input.GetButtonDown("Fire2"))
-        {
-            SpawnProjectile();
-        }
+        // if (Input.GetButtonDown("Fire2"))
+        // {
+        //     SpawnProjectile();
+        // }
 
-        if (Input.GetButtonDown("Fire3") && dodgeDuration < 0f)
-        {
-            // Dodge();
-            var myRenderer = GetComponent<Renderer>();
-            myRenderer.material.SetColor("_Color", Color.black);
-            dodgeDuration = DODGE_DURATION;
-        }
+        // if (Input.GetButtonDown("Fire3") && dodgeDuration < 0f)
+        // {
+        //     // Dodge();
+        //     var myRenderer = GetComponent<Renderer>();
+        //     myRenderer.material.SetColor("_Color", Color.black);
+        //     dodgeDuration = DODGE_DURATION;
+        // }
 
         // if (Input.GetButtonUp("Fire3"))
         // {
@@ -63,25 +69,35 @@ public class playerControl : Character
 
         // -1 <= dodgeDuration <= DODGE_DURATION
         // Decrement dodgeDuration until it reaches below 0
-        if(dodgeDuration >= 0f)
+        // if(dodgeDuration >= 0f)
+        // {
+        //     dodgeDuration -= Time.deltaTime;
+        // }
+
+        IState currentState = myState.Update();
+        if(currentState != null)
         {
-            dodgeDuration -= Time.deltaTime;
+            myState.Exit();
+            myState = currentState;
+            Debug.Log(myState);
+            myState.Enter();
         }
     }
 
     private void FixedUpdate()
     {
-        xSpeed = rb.velocity.x;
-        MoveCharacter(acceleration);
-        if(meleeAttack.activeSelf)
-        {
-            Attack();
-        }
-        // Only dodge if the dodge duration is >= -1
-        if(dodgeDuration >= -1f)
-        {
-            Dodge();
-        }
+        myState.FixedUpdate();
+        // xSpeed = rb.velocity.x;
+        // MoveCharacter(acceleration);
+        // if(meleeAttack.activeSelf)
+        // {
+        //     Attack();
+        // }
+        // // Only dodge if the dodge duration is >= -1
+        // if(dodgeDuration >= -1f)
+        // {
+        //     Dodge();
+        // }
     }
 
     public void SpawnProjectile()
