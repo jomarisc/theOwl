@@ -42,4 +42,9 @@ public class ProjectileAttack : MonoBehaviour
             col.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
     }
+
+    void OnBecameInvisible()
+    {
+        this.gameObject.SetActive(false);
+    }
 }
