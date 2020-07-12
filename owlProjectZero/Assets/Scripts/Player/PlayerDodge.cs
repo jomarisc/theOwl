@@ -21,6 +21,7 @@ public class PlayerDodge : IState
         playerRenderer.material.SetColor("_Color", Color.black);
         player.dodgeDuration = playerControl.DODGE_DURATION;
 
+        playerBody.useGravity = false;
         playerBody.velocity = Vector3.zero;
         playerBody.drag = 1.0f;
         float direction = (player.isFacingRight) ? 1f : -1f;
@@ -30,6 +31,7 @@ public class PlayerDodge : IState
     public void Exit()
     {
         playerRenderer.material.SetColor("_Color", Color.red);
+        playerBody.useGravity = true;
         playerBody.drag = 0.0f;
         player.dodgeDuration = -1f;
     }
@@ -47,6 +49,14 @@ public class PlayerDodge : IState
         {
             player.dodgeDuration -= Time.deltaTime;
             return null;
+        }
+
+        // If the player has jumped and is still airborne
+        // Should be changed to a glide state instead
+        // to avoid burning another jump automatically
+        if(player.numJumps < playerControl.MAX_JUMPS)
+        {
+            return new PlayerJump(player);
         }
         return new PlayerIdle(player);
     }
