@@ -8,11 +8,10 @@ public abstract class Character : MonoBehaviour, ICharacter
     // private attributes
 
     // protected attributes
-    [SerializeField]
-    protected GameObject meleeAttack = null;
     protected Rigidbody rb;
 
     // public attributes
+    public GameObject meleeAttack;
     public int numJumps;
     public float maxSpeed;
     public float groundSpeed;
