@@ -54,7 +54,8 @@ public class PlayerDodge : IState
         // If the player has jumped and is still airborne
         // Should be changed to a glide state instead
         // to avoid burning another jump automatically
-        if(player.numJumps < playerControl.MAX_JUMPS)
+        if(player.maxSpeed == player.airSpeed &&
+           player.numJumps < playerControl.MAX_JUMPS)
         {
             return new PlayerJump(player);
         }
