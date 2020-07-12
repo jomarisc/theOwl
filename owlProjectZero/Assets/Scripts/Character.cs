@@ -6,7 +6,6 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour, ICharacter
 {
     // private attributes
-    private float maxSpeed;
 
     // protected attributes
     [SerializeField]
@@ -15,6 +14,7 @@ public abstract class Character : MonoBehaviour, ICharacter
 
     // public attributes
     public int numJumps;
+    public float maxSpeed;
     public float groundSpeed;
     public float airSpeed;
     public float jumpDistance;
