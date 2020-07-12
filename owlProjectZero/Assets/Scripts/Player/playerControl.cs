@@ -7,11 +7,10 @@ public class playerControl : Character
 {
     SphereCollider sphereCollider;
 
-    [SerializeField]
-    private GameObject projectile = null;
     private float acceleration;
     private float xSpeed;
     private IState myState;
+    public GameObject projectile;
     public const int MAX_JUMPS = 3;
     public const float DODGE_DURATION = 1.0f;
 
@@ -31,49 +30,6 @@ public class playerControl : Character
     // Update is called once per frame
     private void Update()
     {
-        // acceleration = Input.GetAxis("Horizontal");
-        // if(Mathf.Abs(acceleration) > 0)
-        // {
-        //     isFacingRight = (acceleration < 0) ? false : true;
-        // }
-        
-        // if (Input.GetButtonDown("Jump") && numJumps > 0)
-        // {
-        //     Jump();
-        //     numJumps--;
-        // }
-
-        // if (Input.GetButtonDown("Fire1"))
-        // {
-        //     meleeAttack.gameObject.SetActive(true);
-        // }
-
-        // if (Input.GetButtonDown("Fire2"))
-        // {
-        //     SpawnProjectile();
-        // }
-
-        // if (Input.GetButtonDown("Fire3") && dodgeDuration < 0f)
-        // {
-        //     // Dodge();
-        //     var myRenderer = GetComponent<Renderer>();
-        //     myRenderer.material.SetColor("_Color", Color.black);
-        //     dodgeDuration = DODGE_DURATION;
-        // }
-
-        // if (Input.GetButtonUp("Fire3"))
-        // {
-        //     Physics.IgnoreLayerCollision(9, 10, false); // Player x Enemies
-        //     Physics.IgnoreLayerCollision(9, 12, false); // Player x Enemies' Attacks
-        // }
-
-        // -1 <= dodgeDuration <= DODGE_DURATION
-        // Decrement dodgeDuration until it reaches below 0
-        // if(dodgeDuration >= 0f)
-        // {
-        //     dodgeDuration -= Time.deltaTime;
-        // }
-
         IState currentState = myState.Update();
         if(currentState != null)
         {
@@ -87,17 +43,6 @@ public class playerControl : Character
     private void FixedUpdate()
     {
         myState.FixedUpdate();
-        // xSpeed = rb.velocity.x;
-        // MoveCharacter(acceleration);
-        // if(meleeAttack.activeSelf)
-        // {
-        //     Attack();
-        // }
-        // // Only dodge if the dodge duration is >= -1
-        // if(dodgeDuration >= -1f)
-        // {
-        //     Dodge();
-        // }
     }
 
     public void SpawnProjectile()
