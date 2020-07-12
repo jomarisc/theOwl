@@ -51,7 +51,6 @@ public class PlayerIdle : IState
         // Check input for jumping
         if(Input.GetButtonDown("Jump"))
         {
-            player.numJumps--;
             return new PlayerJump(player);
         }
 

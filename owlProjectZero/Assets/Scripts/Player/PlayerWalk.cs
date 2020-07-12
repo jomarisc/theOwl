@@ -42,7 +42,6 @@ public class PlayerWalk : IState
         // Check input for jumping
         if(Input.GetButtonDown("Jump"))
         {
-            player.numJumps--;
             return new PlayerJump(player);
         }
 
