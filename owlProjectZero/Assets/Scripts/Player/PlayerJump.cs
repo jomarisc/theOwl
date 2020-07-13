@@ -59,6 +59,12 @@ public class PlayerJump : IState
             return new PlayerShoot(player);
         }
 
+        // Check if descending
+        if(playerBody.velocity[1] < 0)
+        {
+            return new PlayerGlide(player);
+        }
+
         // If jumps get refreshed, i.e. landing on a platform
         if(player.maxSpeed == player.groundSpeed &&
            player.numJumps == playerControl.MAX_JUMPS)
