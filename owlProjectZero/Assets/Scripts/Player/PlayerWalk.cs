@@ -34,7 +34,7 @@ public class PlayerWalk : IState
 
 
         // Check input for dodging
-        if(Input.GetButtonDown("Fire3"))
+        if(Input.GetButtonDown("Fire3") && player.numDodges > 0)
         {
             return new PlayerDodge(player);
         }

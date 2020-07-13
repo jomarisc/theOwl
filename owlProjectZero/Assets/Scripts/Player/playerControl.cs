@@ -12,6 +12,7 @@ public class playerControl : Character
     private IState myState;
     public GameObject projectile;
     public const int MAX_JUMPS = 3;
+    public const int MAX_DODGES = 1;
     public const float DODGE_DURATION = 1.0f;
 
     // Start is called before the first frame update

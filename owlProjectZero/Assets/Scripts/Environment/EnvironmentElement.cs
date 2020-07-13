@@ -22,6 +22,12 @@ public class EnvironmentElement : MonoBehaviour
                     {
                         col.gameObject.GetComponent<playerControl>().numJumps = playerControl.MAX_JUMPS;
                     }
+
+                    // Same thing for refreshing number of dodges
+                    if(col.gameObject.GetComponent<playerControl>().numDodges < playerControl.MAX_DODGES)
+                    {
+                        col.gameObject.GetComponent<playerControl>().numDodges = playerControl.MAX_DODGES;
+                    }
                 }
             }
         }

@@ -20,6 +20,7 @@ public class PlayerDodge : IState
 
         playerRenderer.material.SetColor("_Color", Color.black);
         player.dodgeDuration = playerControl.DODGE_DURATION;
+        player.numDodges--;
 
         playerBody.useGravity = false;
         playerBody.velocity = Vector3.zero;

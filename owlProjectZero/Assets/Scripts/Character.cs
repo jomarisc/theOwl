@@ -13,6 +13,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     // public attributes
     public GameObject meleeAttack;
     public int numJumps;
+    public int numDodges;
     public float maxSpeed;
     public float groundSpeed;
     public float airSpeed;
