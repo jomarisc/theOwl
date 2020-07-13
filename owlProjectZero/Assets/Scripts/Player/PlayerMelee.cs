@@ -38,10 +38,9 @@ public class PlayerMelee : IState
         // When the hitbox deactivates
         if(!meleeAttack.activeInHierarchy)
         {
-            if(player.maxSpeed == player.airSpeed &&
-               player.numJumps < playerControl.MAX_JUMPS)
+            if(player.maxSpeed == player.airSpeed)
             {
-                return new PlayerJump(player);
+                return new PlayerGlide(player);
             }
             else
             {
