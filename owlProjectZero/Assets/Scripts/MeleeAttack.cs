@@ -2,30 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeAttack : MonoBehaviour
+public class MeleeAttack : Attack
 {
-    public float knockback = 5f;
-    public float knockbackAngle = 45f;
-    public float damage = 1;
-    public int activeFrames = 10;
-
-    void OnEnable()
-    {
-        activeFrames = 10;
-    }
-
-    void Update()
-    {
-        activeFrames--;
-        if(activeFrames < 0f)
-        {
-            gameObject.SetActive(false);
-        }
-    }
-    
-    void OnTriggerEnter(Collider col)
-    {
-        if(col.GetComponent<EnvironmentElement>() == null)
-            col.gameObject.SetActive(false);
-    }
+    MeleeAttack(float dmg, int start, int active, int lag, float kb, float angle) : base(dmg, start, active, lag, kb, angle)
+    {}
 }
