@@ -16,6 +16,7 @@ public class PlayerMelee : IState
     {
         // use melee attack animation here
 
+        player.Attack();
         meleeAttack.SetActive(true);
     }
 
@@ -30,7 +31,7 @@ public class PlayerMelee : IState
 
     public void FixedUpdate()
     {
-        player.Attack();
+        
     }
 
     public IState Update()
