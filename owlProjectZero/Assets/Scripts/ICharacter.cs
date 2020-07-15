@@ -8,4 +8,5 @@ public interface ICharacter
     void Jump();
     void Attack();
     void Dodge();
+    void GetRekt();
 }

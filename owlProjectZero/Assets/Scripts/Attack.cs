@@ -94,6 +94,13 @@ public abstract class Attack : MonoBehaviour
             // Use the hitbox's transform rotation as the knockback angle
             Vector3 knockback = KnockbackForce(hitboxes[0].knockback, transform.eulerAngles[2]);
             col.attachedRigidbody.AddForce(knockback, ForceMode.VelocityChange);
+
+            // This should eventually get refactored into a damaged state for the
+            // character class
+            if(col.gameObject.TryGetComponent(out Character character))
+            {
+                col.gameObject.GetComponent<Character>().health -= hitboxes[0].damage;
+            }
         }
     }
 

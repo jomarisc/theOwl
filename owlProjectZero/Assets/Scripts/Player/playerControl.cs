@@ -29,8 +29,10 @@ public class playerControl : Character
     }
 
     // Update is called once per frame
-    private void Update()
+    new private void Update() // The new keyword was just tacked on to get rid
+                              // of a warning for calling base.Update()
     {
+        base.Update();
         IState currentState = myState.Update();
         if(currentState != null)
         {

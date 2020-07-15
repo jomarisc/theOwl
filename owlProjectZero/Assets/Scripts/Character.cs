@@ -14,6 +14,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     public GameObject meleeAttack;
     public int numJumps;
     public int numDodges;
+    public float health;
     public float maxSpeed;
     public float groundSpeed;
     public float airSpeed;
@@ -22,6 +23,15 @@ public abstract class Character : MonoBehaviour, ICharacter
                                //facing in the right-hand direction
                                // *So far, must be initialized in sub classes*
     public float dodgeDuration = 0.4f;
+
+    public void Update()
+    {
+        if(health <= 0f)
+        {
+            Debug.Log("Got rekt");
+            Destroy(this.gameObject);
+        }
+    }
 
     // Moves the player left/right based off of the value of its acceleration
     public void MoveCharacter(float direction)
@@ -76,6 +86,11 @@ public abstract class Character : MonoBehaviour, ICharacter
             var myRenderer = GetComponent<Renderer>();
             myRenderer.material.SetColor("_Color", Color.red);
         }
+    }
+
+    public void GetRekt()
+    {
+        
     }
 
     protected void ChangeSkill()
