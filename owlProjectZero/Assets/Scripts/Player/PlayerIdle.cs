@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerIdle : IState
 {
     private readonly playerControl player;
-    private float waitTime = 30f; // Time until the "no input" animation kicks in 
+    private float waitTime = 30f; // Time until the "no input" animation kicks in
 
     public PlayerIdle(playerControl p)
     {
@@ -58,7 +58,7 @@ public class PlayerIdle : IState
         if(Input.GetButtonDown("Fire1"))
         {
             // meleeAttack.gameObject.SetActive(true);
-            return new PlayerMelee(player);
+            return new PlayerMelee(player, 0f);
         }
 
         // Check input for shooting with a projectile

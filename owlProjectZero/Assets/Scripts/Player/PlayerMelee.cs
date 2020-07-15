@@ -6,11 +6,13 @@ public class PlayerMelee : IState
 {
     private readonly playerControl player;
     private GameObject meleeAttack;
+    private float horizontalMovement;
 
-    public PlayerMelee(playerControl p)
+    public PlayerMelee(playerControl p, float hm)
     {
         player = p;
         meleeAttack = p.meleeAttack.gameObject;
+        horizontalMovement = hm;
     }
     public void Enter()
     {
@@ -31,7 +33,7 @@ public class PlayerMelee : IState
 
     public void FixedUpdate()
     {
-        
+        player.MoveCharacter(horizontalMovement);
     }
 
     public IState Update()

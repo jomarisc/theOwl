@@ -50,7 +50,7 @@ public class PlayerJump : IState
         if(Input.GetButtonDown("Fire1"))
         {
             // meleeAttack.gameObject.SetActive(true);
-            return new PlayerMelee(player);
+            return new PlayerMelee(player, horizontalMovement);
         }
 
         // Check input for shooting with a projectile
