@@ -75,8 +75,13 @@ public abstract class Attack : MonoBehaviour
             recoveryDuration -= Time.fixedDeltaTime;
         }
 
+        if(startupDuration <= 0f)
+        {
+            hitboxes[0].shape.enabled = true;
+        }
         if(recoveryDuration <= 0f)
         {
+            hitboxes[0].shape.enabled = false;
             gameObject.SetActive(false);
         }
     }
