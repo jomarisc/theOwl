@@ -6,21 +6,23 @@ using UnityEngine;
 public class PlayerTether : IState
 {
     private readonly playerControl player;
-    private Vector3 tether;
+    private Vector3 tetherDirection;
+    private float tetherLength;
     private float angle;
 
     public PlayerTether(playerControl p)
     {
         player = p;
-        tether = p.activeTetherPoint.transform.position - p.GetComponent<Rigidbody>().position;
-        angle = Vector3.Angle(-tether, Vector3.down) * Mathf.Deg2Rad;
+        tetherDirection = p.activeTetherPoint.transform.position - p.GetComponent<Rigidbody>().position;
+        tetherLength = tetherDirection.magnitude;
+        angle = Vector3.Angle(-tetherDirection, Vector3.down) * Mathf.Deg2Rad;
     }
     public void Enter()
     {
-        // Enter tether animation code here:
+        // Enter tetherDirection animation code here:
         // player.GetComponent<Rigidbody>().useGravity = false;
+        player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         player.GetComponent<Rigidbody>().drag = 0f;
-        Debug.Log(angle);
     }
 
     public void Exit()
@@ -33,9 +35,10 @@ public class PlayerTether : IState
     {
         if(player.activeTetherPoint != null)
         {
-            tether = player.activeTetherPoint.transform.position - player.GetComponent<Rigidbody>().position;
-            angle = Vector3.Angle(Physics.gravity, tether) * Mathf.Deg2Rad;
-            player.TetherSwing(tether, angle);
+            tetherDirection = player.activeTetherPoint.transform.position - player.GetComponent<Rigidbody>().position;
+            angle = Vector3.Angle(-tetherDirection, Vector3.down) * Mathf.Deg2Rad;
+            Debug.Log(angle);
+            player.TetherSwing(tetherLength, tetherDirection, angle);
         }
     }
 

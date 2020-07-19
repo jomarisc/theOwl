@@ -59,29 +59,23 @@ public class playerControl : Character
         projAtk.speed = (isFacingRight) ? ProjectileAttack.INITIAL_SPEED : -ProjectileAttack.INITIAL_SPEED;
     }
 
-    public void TetherSwing(Vector3 tetherLength, float theta)
+    public void TetherSwing(float tetherLength, Vector3 tetherDirection, float theta)
     {
         float playerWeight = rb.mass * Physics.gravity.magnitude;
-        Vector3 tension = playerWeight * tetherLength;
-        rb.AddForce(tension, ForceMode.Acceleration); // Tension
+        Vector3 tension = Mathf.Cos(theta) * playerWeight * tetherLength * tetherDirection.normalized;
+        rb.AddForce(tension, ForceMode.Force); // Tension
         Debug.DrawLine(rb.position, rb.position + tension, Color.red);
 
-        Vector3 forceAgainstTension = playerWeight * -tetherLength.normalized;
-        rb.AddForce(forceAgainstTension, ForceMode.Acceleration);
-        Debug.DrawLine(rb.position, rb.position + forceAgainstTension, Color.green);
+        // Vector3 forceAgainstTension = playerWeight * -tetherDirection.normalized;
+        // rb.AddForce(forceAgainstTension, ForceMode.Force);
+        // Debug.DrawLine(rb.position, rb.position + forceAgainstTension, Color.green);
 
-        Vector3 tempTether = tetherLength;
+        Vector3 tempTether = tetherDirection;
         Vector3 pendulumForce = Vector3.down;
         Vector3.OrthoNormalize(ref tempTether, ref pendulumForce);
-        pendulumForce *= playerWeight;
-        rb.AddForce(pendulumForce, ForceMode.Acceleration); // Tangential Force
+        pendulumForce *= (Mathf.Cos(theta) * playerWeight);
+        rb.AddForce(pendulumForce, ForceMode.Force); // Tangential Force
         Debug.DrawLine(rb.position, rb.position + pendulumForce, Color.blue);
-
-        // Vector3 tempTether = tetherLength;
-        // Vector3.OrthoNormalize(ref tempTether, ref pendulumForce);
-        // pendulumForce *= rb.mass * Physics.gravity.magnitude;
-        // rb.AddForce(pendulumForce, ForceMode.Force);
-        // Debug.DrawLine(rb.position, rb.position + pendulumForce, Color.green);
 
         Debug.DrawLine(rb.position, rb.position + rb.velocity);
     }
