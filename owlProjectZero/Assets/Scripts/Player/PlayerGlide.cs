@@ -28,6 +28,13 @@ public class PlayerGlide : IState
 
     public IState Update()
     {
+        // Check input for tether
+        if(player.activeTetherPoint != null &&
+           Input.GetKeyDown(KeyCode.T))
+        {
+            return new PlayerTether(player);
+        }
+        
         // Check input for changing skills
 
 

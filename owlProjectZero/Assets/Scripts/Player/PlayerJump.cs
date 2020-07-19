@@ -33,6 +33,15 @@ public class PlayerJump : IState
 
     public IState Update()
     {
+        // Check input for tether
+        if(player.activeTetherPoint != null &&
+           Input.GetKeyDown(KeyCode.T))
+        {
+            return new PlayerTether(player);
+        }
+
+        // Check input for changing skills
+
         // Check input for double jump
         if(Input.GetButtonDown("Jump"))
         {
@@ -62,14 +71,13 @@ public class PlayerJump : IState
         // Check if descending
         if(playerBody.velocity[1] < 0)
         {
+            // If jumps get refreshed, i.e. landing on a platform
+            if(player.maxSpeed == player.groundSpeed &&
+            player.numJumps == playerControl.MAX_JUMPS)
+            {
+                return new PlayerIdle(player);
+            }
             return new PlayerGlide(player);
-        }
-
-        // If jumps get refreshed, i.e. landing on a platform
-        if(player.maxSpeed == player.groundSpeed &&
-           player.numJumps == playerControl.MAX_JUMPS)
-        {
-            return new PlayerIdle(player);
         }
 
         /////////////////////////////////////////////////////////////////////

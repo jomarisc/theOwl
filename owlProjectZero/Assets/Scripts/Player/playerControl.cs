@@ -11,6 +11,7 @@ public class playerControl : Character
     private float xSpeed;
     private IState myState;
     public GameObject projectile;
+    public TetherPoint activeTetherPoint = null;
     public const int MAX_JUMPS = 3;
     public const int MAX_DODGES = 1;
     public const float DODGE_DURATION = 1.0f;
@@ -56,5 +57,32 @@ public class playerControl : Character
         Vector3 spawnOffset = (isFacingRight) ? new Vector3(0.5f, 0f, 0f) : new Vector3(-0.5f, 0f, 0f);
         projBody.position = transform.position + spawnOffset;
         projAtk.speed = (isFacingRight) ? ProjectileAttack.INITIAL_SPEED : -ProjectileAttack.INITIAL_SPEED;
+    }
+
+    public void TetherSwing(Vector3 tetherLength, float theta)
+    {
+        float playerWeight = rb.mass * Physics.gravity.magnitude;
+        Vector3 tension = playerWeight * tetherLength;
+        rb.AddForce(tension, ForceMode.Acceleration); // Tension
+        Debug.DrawLine(rb.position, rb.position + tension, Color.red);
+
+        Vector3 forceAgainstTension = playerWeight * -tetherLength.normalized;
+        rb.AddForce(forceAgainstTension, ForceMode.Acceleration);
+        Debug.DrawLine(rb.position, rb.position + forceAgainstTension, Color.green);
+
+        Vector3 tempTether = tetherLength;
+        Vector3 pendulumForce = Vector3.down;
+        Vector3.OrthoNormalize(ref tempTether, ref pendulumForce);
+        pendulumForce *= playerWeight;
+        rb.AddForce(pendulumForce, ForceMode.Acceleration); // Tangential Force
+        Debug.DrawLine(rb.position, rb.position + pendulumForce, Color.blue);
+
+        // Vector3 tempTether = tetherLength;
+        // Vector3.OrthoNormalize(ref tempTether, ref pendulumForce);
+        // pendulumForce *= rb.mass * Physics.gravity.magnitude;
+        // rb.AddForce(pendulumForce, ForceMode.Force);
+        // Debug.DrawLine(rb.position, rb.position + pendulumForce, Color.green);
+
+        Debug.DrawLine(rb.position, rb.position + rb.velocity);
     }
 }
