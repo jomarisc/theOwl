@@ -63,18 +63,18 @@ public class playerControl : Character
     {
         float playerWeight = rb.mass * Physics.gravity.magnitude;
         Vector3 tension = Mathf.Cos(theta) * playerWeight * tetherLength * tetherDirection.normalized;
-        rb.AddForce(tension, ForceMode.Force); // Tension
+        rb.AddForce(tension, ForceMode.Acceleration); // Tension
         Debug.DrawLine(rb.position, rb.position + tension, Color.red);
 
         // Vector3 forceAgainstTension = playerWeight * -tetherDirection.normalized;
-        // rb.AddForce(forceAgainstTension, ForceMode.Force);
+        // rb.AddForce(forceAgainstTension, ForceMode.Acceleration);
         // Debug.DrawLine(rb.position, rb.position + forceAgainstTension, Color.green);
 
         Vector3 tempTether = tetherDirection;
         Vector3 pendulumForce = Vector3.down;
         Vector3.OrthoNormalize(ref tempTether, ref pendulumForce);
         pendulumForce *= (Mathf.Cos(theta) * playerWeight);
-        rb.AddForce(pendulumForce, ForceMode.Force); // Tangential Force
+        rb.AddForce(pendulumForce, ForceMode.Acceleration); // Tangential Force
         Debug.DrawLine(rb.position, rb.position + pendulumForce, Color.blue);
 
         Debug.DrawLine(rb.position, rb.position + rb.velocity);

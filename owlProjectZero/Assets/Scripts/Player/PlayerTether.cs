@@ -37,7 +37,7 @@ public class PlayerTether : IState
         {
             tetherDirection = player.activeTetherPoint.transform.position - player.GetComponent<Rigidbody>().position;
             angle = Vector3.Angle(-tetherDirection, Vector3.down) * Mathf.Deg2Rad;
-            Debug.Log(angle);
+            // Debug.Log(angle);
             player.TetherSwing(tetherLength, tetherDirection, angle);
         }
     }
@@ -69,7 +69,9 @@ public class PlayerTether : IState
             return new PlayerShoot(player);
         }
 
-        if(player.activeTetherPoint == null || Input.GetKeyDown(KeyCode.T))
+        if(player.activeTetherPoint == null ||
+           Input.GetKeyDown(KeyCode.T) ||
+           player.transform.position.y > player.activeTetherPoint.transform.position.y)
         {
             return new PlayerGlide(player);
         }
