@@ -11,6 +11,7 @@ public class playerControl : Character
     private float xSpeed;
     private IState myState;
     public GameObject projectile;
+    public GameObject tether;
     public TetherPoint activeTetherPoint = null;
     public const int MAX_JUMPS = 3;
     public const int MAX_DODGES = 1;
