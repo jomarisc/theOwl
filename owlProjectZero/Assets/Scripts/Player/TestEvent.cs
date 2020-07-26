@@ -3,25 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Publisher class. This is an added component to Player folder and does 
+// not require a subscriber class to exist.
 public class TestEvent : MonoBehaviour
 {
+    // Responsible for firing off the event
     public event EventHandler OnSpacePressed;
 
     // Start is called before the first frame update
     private void Start()
     {
-        OnSpacePressed += Testing_OnSpacePressed;
-    }
-
-    // In order to subscribe to event, we need a function that will
-    // receive that event. Function signature needs to be same as event.
-    private void Testing_OnSpacePressed(object sender, EventArgs e)
-    {
-
-        Debug.Log("Space pressed!");
 
     }
-
+ 
     // Update is called once per frame
     private void Update()
     {
