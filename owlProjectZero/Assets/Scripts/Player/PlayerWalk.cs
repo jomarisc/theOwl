@@ -57,6 +57,12 @@ public class PlayerWalk : IState
         {
             return new PlayerShoot(player);
         }
+
+        if(player.maxSpeed == player.airSpeed)
+        {
+            return new PlayerGlide(player);
+        }
+
         horizontalMovement = Input.GetAxis("Horizontal");
         if(Mathf.Abs(horizontalMovement) > 0)
         {
