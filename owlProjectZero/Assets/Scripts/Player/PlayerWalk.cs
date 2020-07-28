@@ -5,7 +5,10 @@ using UnityEngine;
 public class PlayerWalk : IState
 {
     private readonly playerControl player;
+    private Rigidbody playerBody;
+    private const float fastFallSpeed = -10f;
     private float horizontalMovement = 0f;
+    private float verticalMovement = 0f;
 
     // Maybe add another argument in constructor that determines
     // whether the player is grounded or not bc I'm considering having this
@@ -13,16 +16,17 @@ public class PlayerWalk : IState
     public PlayerWalk(playerControl p)
     {
         player = p;
+        playerBody = p.gameObject.GetComponent<Rigidbody>();
     }
     public void Enter()
     {
-        if(player.maxSpeed == player.airSpeed)
+        if(player.maxSpeed == player.groundSpeed)
         {
-            // Use descending animation here
+            // Use walking animation here
         }
         else
         {
-            // use walking animation here:
+            // use descending animation here:
         }
     }
 
@@ -33,7 +37,7 @@ public class PlayerWalk : IState
 
     public void FixedUpdate()
     {
-        player.MoveCharacter(horizontalMovement);
+        player.MoveCharacter(horizontalMovement, verticalMovement);
     }
 
     public IState Update()
@@ -72,6 +76,20 @@ public class PlayerWalk : IState
         if(Mathf.Abs(horizontalMovement) > 0)
         {
             player.isFacingRight = (horizontalMovement < 0) ? false : true;
+        }
+        
+        if(Input.GetAxis("Vertical") < 0 &&
+           player.maxSpeed == player.airSpeed &&
+           playerBody.velocity.y < 0 &&
+           playerBody.velocity.y > -2f &&
+           playerBody.velocity.y != fastFallSpeed)
+        {
+            Debug.Log("Fastfalling?");
+            verticalMovement = fastFallSpeed;
+        }
+        else
+        {
+            verticalMovement = playerBody.velocity.y;
         }
         return null;
     }

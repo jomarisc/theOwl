@@ -99,10 +99,20 @@ public class PlayerJump : IState
                 return new PlayerGlide(player, PlayerGlide.glideType.Jump);
         }
 
-        // Check if cancelling into glide
-        if(Input.GetAxis("Vertical") < 0)
+        if(Input.GetKey(KeyCode.DownArrow) ||
+           Input.GetKey(KeyCode.S))
         {
-            return new PlayerGlide(player, PlayerGlide.glideType.Down);
+            // Check for fastfall input during fastfall window
+            if(playerBody.velocity.y < 0f &&
+               playerBody.velocity.y > -1f)
+            {
+                return new PlayerWalk(player);
+            }
+            // Check if cancelling into glide
+            else
+            {
+                return new PlayerGlide(player, PlayerGlide.glideType.Down);
+            }
         }   
 
         /////////////////////////////////////////////////////////////////////
