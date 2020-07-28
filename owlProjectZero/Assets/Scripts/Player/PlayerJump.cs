@@ -70,7 +70,7 @@ public class PlayerJump : IState
         }
 
         // Check if descending
-        if(playerBody.velocity[1] < 0)
+        if(playerBody.velocity[1] <= 0)
         {
             // If jumps get refreshed, i.e. landing on a platform
             if(player.maxSpeed == player.groundSpeed &&
@@ -78,7 +78,8 @@ public class PlayerJump : IState
             {
                 return new PlayerIdle(player);
             }
-            return new PlayerGlide(player);
+            else if(Input.GetButton("Jump"))
+                return new PlayerGlide(player);
         }
 
         /////////////////////////////////////////////////////////////////////

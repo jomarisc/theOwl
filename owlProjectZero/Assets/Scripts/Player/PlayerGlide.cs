@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerGlide : IState
 {
     private readonly playerControl player;
+    private const float newGravity = -2.0f;
     private float horizontalMovement = 0f;
 
     public PlayerGlide(playerControl p)
@@ -14,15 +15,19 @@ public class PlayerGlide : IState
     public void Enter()
     {
         // use glide animation here:
+
+        player.GetComponent<Rigidbody>().useGravity = false;
     }
 
     public void Exit()
     {
-        // Nothing so far
+        // Reset gravity
+        player.GetComponent<Rigidbody>().useGravity = true;
     }
 
     public void FixedUpdate()
     {
+        player.GetComponent<Rigidbody>().AddForce(new Vector3(0f, newGravity, 0f));
         player.MoveCharacter(horizontalMovement);
     }
 
