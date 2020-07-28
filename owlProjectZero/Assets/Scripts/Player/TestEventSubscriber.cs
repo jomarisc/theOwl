@@ -10,16 +10,39 @@ public class TestEventSubscriber : MonoBehaviour
     {
         TestEvent testingEvent = GetComponent<TestEvent>();
         testingEvent.OnSpacePressed += TestEvent_OnSpacePressed; // Subscribes to publisher
+        testingEvent.OnFloatEvent += TestEvent_OnFloatEvent;
+        testingEvent.OnActionEvent += TestEvent_OnActionEvent;
+    }
+
+    private void TestEvent_OnActionEvent(bool arg1, int arg2)
+    {
+
+        Debug.Log(arg1 + " " + arg2);
+
+    }
+
+    private void TestEvent_OnFloatEvent(float f)
+    {
+
+        Debug.Log("Float: " + f);
+
     }
 
     // In order to subscribe to event, we need a function that will
     // receive that event. Function signature needs to be same as event.
-    private void TestEvent_OnSpacePressed(object sender, EventArgs e)
+    private void TestEvent_OnSpacePressed(object sender, TestEvent.OnSpacePressedEventArgs e)
     {
 
-        Debug.Log("Space is pressed!");
-        TestEvent testingEvent = GetComponent<TestEvent>();
-        testingEvent.OnSpacePressed -= TestEvent_OnSpacePressed; // Unsubscribes to publisher
+        Debug.Log("Space is pressed! " + e.spaceCount);
+        //TestEvent testingEvent = GetComponent<TestEvent>();
+        //testingEvent.OnSpacePressed -= TestEvent_OnSpacePressed; // Unsubscribes to publisher
+
+    }
+
+    public void TestingUnityEvent()
+    {
+
+        Debug.Log("TestingUnityEvent");
 
     }
 
