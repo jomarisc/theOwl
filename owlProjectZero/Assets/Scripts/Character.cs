@@ -41,6 +41,14 @@ public abstract class Character : MonoBehaviour, ICharacter
         rb.velocity = newVelocity;
     }
 
+    public void MoveCharacter(float xDirection, float yVelocity)
+    {
+        Vector3 newVelocity = rb.velocity;
+        newVelocity[0] = xDirection * maxSpeed;
+        newVelocity[1] = yVelocity;
+        rb.velocity = newVelocity;
+    }
+
     public void Jump()
     {
         if(numJumps > 0)
