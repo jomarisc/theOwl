@@ -40,9 +40,15 @@ public class PlayerShoot : IState
             return null;
         }
 
+        // Check for glide input
+        if(Input.GetAxis("Vertical") < 0)
+        {
+            return new PlayerGlide(player, PlayerGlide.glideType.Down);
+        }
+
         if(player.maxSpeed == player.airSpeed)
         {
-            return new PlayerGlide(player);
+            return new PlayerWalk(player); // Change this to specify the airborne version later
         }
         else
         {

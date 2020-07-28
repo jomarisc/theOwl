@@ -7,16 +7,23 @@ public class PlayerGlide : IState
     private readonly playerControl player;
     private const float newGravity = -2.0f;
     private float horizontalMovement = 0f;
+    private glideType method = 0;
+    public enum glideType {Jump, Down}
 
-    public PlayerGlide(playerControl p)
+    public PlayerGlide(playerControl p, glideType glideMethod)
     {
         player = p;
+        method = glideMethod;
     }
     public void Enter()
     {
         // use glide animation here:
 
         player.GetComponent<Rigidbody>().useGravity = false;
+
+        // Halt vertical movement
+        float xMovement = Input.GetAxis("Horizontal");
+        player.GetComponent<Rigidbody>().velocity = new Vector3(xMovement, 0f, 0f);
     }
 
     public void Exit()
@@ -69,6 +76,23 @@ public class PlayerGlide : IState
         if(Input.GetButtonDown("Fire2"))
         {
             return new PlayerShoot(player);
+        }
+
+        // Check input for exiting glide state while airborne
+        if(method == glideType.Jump)
+        {
+            if(Input.GetButtonUp("Jump"))
+            {
+                return new PlayerWalk(player);
+            }
+        }
+        else
+        {
+            if(Input.GetKeyUp(KeyCode.DownArrow) ||
+               Input.GetKeyUp(KeyCode.S))
+            {
+                return new PlayerWalk(player);
+            }
         }
 
         // If jumps get refreshed, i.e. landing on a platform

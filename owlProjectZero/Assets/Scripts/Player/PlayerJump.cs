@@ -67,7 +67,7 @@ public class PlayerJump : IState
         if(Input.GetButtonDown("Fire2"))
         {
             return new PlayerShoot(player);
-        }
+        }                 
 
         // Check if descending
         if(playerBody.velocity[1] <= 0)
@@ -79,8 +79,14 @@ public class PlayerJump : IState
                 return new PlayerIdle(player);
             }
             else if(Input.GetButton("Jump"))
-                return new PlayerGlide(player);
+                return new PlayerGlide(player, PlayerGlide.glideType.Jump);
         }
+
+        // Check if cancelling into glide
+        if(Input.GetAxis("Vertical") < 0)
+        {
+            return new PlayerGlide(player, PlayerGlide.glideType.Down);
+        }   
 
         /////////////////////////////////////////////////////////////////////
         //                                                                 //

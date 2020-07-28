@@ -41,9 +41,15 @@ public class PlayerMelee : IState
         // When the hitbox deactivates
         if(!meleeAttack.activeInHierarchy)
         {
+            // Check input for glide
+            if(Input.GetAxis("Vertical") < 0)
+            {
+                return new PlayerGlide(player, PlayerGlide.glideType.Down);
+            }
+            
             if(player.maxSpeed == player.airSpeed)
             {
-                return new PlayerGlide(player);
+                return new PlayerWalk(player); // Specify this to be the airborne version later
             }
             else
             {

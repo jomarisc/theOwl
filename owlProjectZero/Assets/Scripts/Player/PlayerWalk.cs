@@ -7,13 +7,23 @@ public class PlayerWalk : IState
     private readonly playerControl player;
     private float horizontalMovement = 0f;
 
+    // Maybe add another argument in constructor that determines
+    // whether the player is grounded or not bc I'm considering having this
+    // state govern strictly horizontal movement; grounded or otherwise
     public PlayerWalk(playerControl p)
     {
         player = p;
     }
     public void Enter()
     {
-        // use walking animation here:
+        if(player.maxSpeed == player.airSpeed)
+        {
+            // Use descending animation here
+        }
+        else
+        {
+            // use walking animation here:
+        }
     }
 
     public void Exit()
@@ -56,11 +66,6 @@ public class PlayerWalk : IState
         if(Input.GetButtonDown("Fire2"))
         {
             return new PlayerShoot(player);
-        }
-
-        if(player.maxSpeed == player.airSpeed)
-        {
-            return new PlayerGlide(player);
         }
 
         horizontalMovement = Input.GetAxis("Horizontal");

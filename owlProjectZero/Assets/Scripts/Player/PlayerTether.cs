@@ -74,11 +74,17 @@ public class PlayerTether : IState
             return new PlayerShoot(player);
         }
 
+        // Check for glide input
+        if(Input.GetAxis("Vertical") < 0)
+        {
+            return new PlayerGlide(player, PlayerGlide.glideType.Down);
+        }
+
         if(player.activeTetherPoint == null ||
            Input.GetKeyDown(KeyCode.T) ||
            player.transform.position.y > player.activeTetherPoint.transform.position.y)
         {
-            return new PlayerGlide(player);
+            return new PlayerWalk(player); // Specify the airborne version later
         }
 
         // Update tether position, size, and rotation

@@ -52,12 +52,18 @@ public class PlayerDodge : IState
             return null;
         }
 
+        // Check for glide input
+        if(Input.GetAxis("Vertical") < 0)
+        {
+            return new PlayerGlide(player, PlayerGlide.glideType.Down);
+        }
+
         // If the player has jumped and is still airborne
-        // Should be changed to a glide state instead
+        // Should be changed to a airborne walk state instead
         // to avoid burning another jump automatically
         if(player.maxSpeed == player.airSpeed)
         {
-            return new PlayerGlide(player);
+            return new PlayerWalk(player);
         }
         return new PlayerIdle(player);
     }
