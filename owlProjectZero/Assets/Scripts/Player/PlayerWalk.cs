@@ -42,6 +42,14 @@ public class PlayerWalk : IState
 
     public IState Update()
     {
+        if(player.maxSpeed == player.airSpeed &&
+           player.activeTetherPoint != null &&
+           Input.GetKeyDown(KeyCode.T) &&
+           player.transform.position.y <= player.activeTetherPoint.transform.position.y)
+        {
+            return new PlayerTether(player);
+        }
+
         // Check input for changing skills
 
 
