@@ -1,4 +1,21 @@
-﻿using System.Collections;
+﻿
+
+///////////////////////////////////
+//                               //
+// ADD GLIDE TIMER               //
+// - a.k.a. the time it takes to //
+//   enter the glide state       //
+//                               //
+///////////////////////////////////
+
+
+
+
+
+
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
