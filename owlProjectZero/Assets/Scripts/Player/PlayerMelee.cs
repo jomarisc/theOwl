@@ -49,7 +49,7 @@ public class PlayerMelee : IState
             
             if(player.maxSpeed == player.airSpeed)
             {
-                return new PlayerWalk(player); // Specify this to be the airborne version later
+                return new PlayerWalk(player, true); // Specify this to be the airborne version later
             }
             else
             {

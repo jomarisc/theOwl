@@ -34,7 +34,7 @@ public class PlayerIdle : IState
         // Check input for horizontal movement
         if(Input.GetAxis("Horizontal") != 0)
         {
-            return new PlayerWalk(player);
+            return new PlayerWalk(player, false);
         }
 
         // Check input for changing skills

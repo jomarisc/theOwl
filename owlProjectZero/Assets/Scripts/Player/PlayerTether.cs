@@ -84,7 +84,7 @@ public class PlayerTether : IState
            Input.GetKeyDown(KeyCode.T) ||
            player.transform.position.y > player.activeTetherPoint.transform.position.y)
         {
-            return new PlayerWalk(player); // Specify the airborne version later
+            return new PlayerWalk(player, true); // Specify the airborne version later
         }
 
         // Update tether position, size, and rotation

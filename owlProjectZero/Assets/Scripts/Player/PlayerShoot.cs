@@ -48,7 +48,7 @@ public class PlayerShoot : IState
 
         if(player.maxSpeed == player.airSpeed)
         {
-            return new PlayerWalk(player); // Change this to specify the airborne version later
+            return new PlayerWalk(player, true); // Change this to specify the airborne version later
         }
         else
         {

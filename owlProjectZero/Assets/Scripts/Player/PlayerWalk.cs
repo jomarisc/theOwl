@@ -9,26 +9,28 @@ public class PlayerWalk : IState
     private const float fastFallSpeed = -10f;
     private float horizontalMovement = 0f;
     private float verticalMovement = 0f;
+    private bool isFlying = false;
     private bool isFastFalling = false;
 
     // Maybe add another argument in constructor that determines
     // whether the player is grounded or not bc I'm considering having this
     // state govern strictly horizontal movement; grounded or otherwise
-    public PlayerWalk(playerControl p)
+    public PlayerWalk(playerControl p, bool isAirborne)
     {
         player = p;
         playerBody = p.gameObject.GetComponent<Rigidbody>();
-        verticalMovement = playerBody.velocity.y;
+        isFlying = isAirborne;
+        verticalMovement = (isAirborne) ? playerBody.velocity.y : 0f;
     }
     public void Enter()
     {
-        if(player.maxSpeed == player.groundSpeed)
+        if(isFlying)
         {
-            // Use walking animation here
+            // use descending animation here:
         }
         else
         {
-            // use descending animation here:
+            // Use walking animation here
         }
     }
 
@@ -39,7 +41,8 @@ public class PlayerWalk : IState
 
     public void FixedUpdate()
     {
-        verticalMovement = (isFastFalling) ? fastFallSpeed : playerBody.velocity.y;
+
+        verticalMovement = (isFlying && isFastFalling) ? fastFallSpeed : playerBody.velocity.y;
         player.MoveCharacter(horizontalMovement, verticalMovement);
     }
 
@@ -83,23 +86,41 @@ public class PlayerWalk : IState
             return new PlayerShoot(player);
         }
         
-        if(player.maxSpeed == player.airSpeed &&
+        // When player is airborne and down key is pressed
+        if(isFlying &&
            (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)))
         {
-            if(playerBody.velocity.y < 0 &&
-               playerBody.velocity.y > -2f &&
+            // If pressed during the fastfall window
+            if(Mathf.Abs(playerBody.velocity.y) < 5f &&
                !isFastFalling)
             {
                 Debug.Log("Fastfalling?");
                 isFastFalling = true;
             }
+            // if down was pressed on this frame
             else if(Input.GetKeyDown(KeyCode.DownArrow) ||
                     Input.GetKeyDown(KeyCode.S))
             {
                 return new PlayerGlide(player, PlayerGlide.glideType.Down);
             }
         }
-        
+
+        // If landing on a platform
+        if(isFlying &&
+           player.maxSpeed == player.groundSpeed)
+        {
+            Debug.Log("Landing");
+            return new PlayerWalk(player, false);
+        }
+
+        // If leaving a platform
+        if(!isFlying &&
+           player.maxSpeed == player.airSpeed)
+        {
+            Debug.Log("Left platform");
+            return new PlayerWalk(player, true);
+        }
+
         horizontalMovement = Input.GetAxis("Horizontal");
         if(Mathf.Abs(horizontalMovement) > 0)
         {

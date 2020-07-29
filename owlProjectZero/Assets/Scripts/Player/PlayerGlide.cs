@@ -83,7 +83,7 @@ public class PlayerGlide : IState
         {
             if(Input.GetButtonUp("Jump"))
             {
-                return new PlayerWalk(player);
+                return new PlayerWalk(player, true);
             }
         }
         else
@@ -91,7 +91,7 @@ public class PlayerGlide : IState
             if(Input.GetKeyUp(KeyCode.DownArrow) ||
                Input.GetKeyUp(KeyCode.S))
             {
-                return new PlayerWalk(player);
+                return new PlayerWalk(player, true);
             }
         }
 

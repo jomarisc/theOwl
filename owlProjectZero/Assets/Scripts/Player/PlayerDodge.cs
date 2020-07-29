@@ -63,7 +63,7 @@ public class PlayerDodge : IState
         // to avoid burning another jump automatically
         if(player.maxSpeed == player.airSpeed)
         {
-            return new PlayerWalk(player);
+            return new PlayerWalk(player, true);
         }
         return new PlayerIdle(player);
     }

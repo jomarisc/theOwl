@@ -106,7 +106,7 @@ public class PlayerJump : IState
             if(playerBody.velocity.y < 0f &&
                playerBody.velocity.y > -2f)
             {
-                return new PlayerWalk(player);
+                return new PlayerWalk(player, true);
             }
             // Check if cancelling into glide
             else
