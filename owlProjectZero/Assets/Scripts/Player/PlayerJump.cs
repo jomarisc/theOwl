@@ -87,11 +87,11 @@ public class PlayerJump : IState
         }                 
 
         // Check if descending
-        if(playerBody.velocity[1] <= 0)
+        if(playerBody.velocity.y <= 0)
         {
             // If jumps get refreshed, i.e. landing on a platform
             if(player.maxSpeed == player.groundSpeed &&
-            player.numJumps == playerControl.MAX_JUMPS)
+               player.numJumps == playerControl.MAX_JUMPS)
             {
                 return new PlayerIdle(player);
             }
@@ -104,7 +104,7 @@ public class PlayerJump : IState
         {
             // Check for fastfall input during fastfall window
             if(playerBody.velocity.y < 0f &&
-               playerBody.velocity.y > -1f)
+               playerBody.velocity.y > -2f)
             {
                 return new PlayerWalk(player);
             }
