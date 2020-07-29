@@ -1324,7 +1324,7 @@ PrefabInstance:
     - target: {fileID: 2529497728352103115, guid: 8b768704a9719d3408f4b19946d302e4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8548501586489388540, guid: 8b768704a9719d3408f4b19946d302e4,
         type: 3}
@@ -2624,11 +2624,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2940613904014915468, guid: 12bdc8a6e2f0d2d4b93055e32bcce84e,
-        type: 3}
-      propertyPath: m_Radius
-      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2940613904014915469, guid: 12bdc8a6e2f0d2d4b93055e32bcce84e,
         type: 3}
