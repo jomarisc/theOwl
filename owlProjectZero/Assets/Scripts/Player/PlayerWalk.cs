@@ -9,6 +9,7 @@ public class PlayerWalk : IState
     private const float fastFallSpeed = -10f;
     private float horizontalMovement = 0f;
     private float verticalMovement = 0f;
+    private bool isFastFalling = false;
 
     // Maybe add another argument in constructor that determines
     // whether the player is grounded or not bc I'm considering having this
@@ -17,6 +18,7 @@ public class PlayerWalk : IState
     {
         player = p;
         playerBody = p.gameObject.GetComponent<Rigidbody>();
+        verticalMovement = playerBody.velocity.y;
     }
     public void Enter()
     {
@@ -37,6 +39,7 @@ public class PlayerWalk : IState
 
     public void FixedUpdate()
     {
+        verticalMovement = (isFastFalling) ? fastFallSpeed : playerBody.velocity.y;
         player.MoveCharacter(horizontalMovement, verticalMovement);
     }
 
@@ -79,26 +82,30 @@ public class PlayerWalk : IState
         {
             return new PlayerShoot(player);
         }
-
+        
+        if(player.maxSpeed == player.airSpeed &&
+           (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)))
+        {
+            if(playerBody.velocity.y < 0 &&
+               playerBody.velocity.y > -2f &&
+               !isFastFalling)
+            {
+                Debug.Log("Fastfalling?");
+                isFastFalling = true;
+            }
+            else if(Input.GetKeyDown(KeyCode.DownArrow) ||
+                    Input.GetKeyDown(KeyCode.S))
+            {
+                return new PlayerGlide(player, PlayerGlide.glideType.Down);
+            }
+        }
+        
         horizontalMovement = Input.GetAxis("Horizontal");
         if(Mathf.Abs(horizontalMovement) > 0)
         {
             player.isFacingRight = (horizontalMovement < 0) ? false : true;
         }
-        
-        if(Input.GetAxis("Vertical") < 0 &&
-           player.maxSpeed == player.airSpeed &&
-           playerBody.velocity.y < 0 &&
-           playerBody.velocity.y > -2f &&
-           playerBody.velocity.y != fastFallSpeed)
-        {
-            Debug.Log("Fastfalling?");
-            verticalMovement = fastFallSpeed;
-        }
-        else
-        {
-            verticalMovement = playerBody.velocity.y;
-        }
+
         return null;
     }
 }
