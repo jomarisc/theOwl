@@ -598,6 +598,162 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Dodging"",
+            ""id"": ""9c13feb3-f5ad-4560-953a-908f28e2a779"",
+            ""actions"": [
+                {
+                    ""name"": ""Glide"",
+                    ""type"": ""Button"",
+                    ""id"": ""d6707958-558a-440a-a407-81fa28b468e6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Walk"",
+                    ""type"": ""Button"",
+                    ""id"": ""dfc185ba-42da-4937-93c1-3ac0c7ade521"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3c6efdfa-cb83-4593-8b04-7616f1b30801"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""808468b8-2bf0-45ff-af6f-80d57455b081"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5af07ed-30ce-4d0d-bf9e-e30f938d5e47"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrow Keys"",
+                    ""id"": ""2bfc4bd9-56a5-4b56-9ad3-70ec41b64003"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""05556c75-0ca5-4eeb-b880-5d85fe4b06b0"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""b99b10f7-4bdd-4dc0-b95a-3038203d7bfa"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""e4cb827d-707f-40a1-9399-a332c2686213"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""7a85c372-c0e6-4eea-b705-604f3f5ce87f"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""2a7e913c-6426-4a00-96bf-15252a7bd7eb"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""0864957a-08dc-4b52-b4a0-85dbb7d68666"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""0c16b9c3-2188-429a-b08d-5dc5bc4d7d1d"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""10726353-6a8d-4a44-943e-be9fb51ccb5e"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -618,6 +774,10 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_Moving_ShootProjectile = m_Moving.FindAction("ShootProjectile", throwIfNotFound: true);
         m_Moving_Glide = m_Moving.FindAction("Glide", throwIfNotFound: true);
         m_Moving_Walk = m_Moving.FindAction("Walk", throwIfNotFound: true);
+        // Dodging
+        m_Dodging = asset.FindActionMap("Dodging", throwIfNotFound: true);
+        m_Dodging_Glide = m_Dodging.FindAction("Glide", throwIfNotFound: true);
+        m_Dodging_Walk = m_Dodging.FindAction("Walk", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -809,6 +969,47 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         }
     }
     public MovingActions @Moving => new MovingActions(this);
+
+    // Dodging
+    private readonly InputActionMap m_Dodging;
+    private IDodgingActions m_DodgingActionsCallbackInterface;
+    private readonly InputAction m_Dodging_Glide;
+    private readonly InputAction m_Dodging_Walk;
+    public struct DodgingActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public DodgingActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Glide => m_Wrapper.m_Dodging_Glide;
+        public InputAction @Walk => m_Wrapper.m_Dodging_Walk;
+        public InputActionMap Get() { return m_Wrapper.m_Dodging; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DodgingActions set) { return set.Get(); }
+        public void SetCallbacks(IDodgingActions instance)
+        {
+            if (m_Wrapper.m_DodgingActionsCallbackInterface != null)
+            {
+                @Glide.started -= m_Wrapper.m_DodgingActionsCallbackInterface.OnGlide;
+                @Glide.performed -= m_Wrapper.m_DodgingActionsCallbackInterface.OnGlide;
+                @Glide.canceled -= m_Wrapper.m_DodgingActionsCallbackInterface.OnGlide;
+                @Walk.started -= m_Wrapper.m_DodgingActionsCallbackInterface.OnWalk;
+                @Walk.performed -= m_Wrapper.m_DodgingActionsCallbackInterface.OnWalk;
+                @Walk.canceled -= m_Wrapper.m_DodgingActionsCallbackInterface.OnWalk;
+            }
+            m_Wrapper.m_DodgingActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Glide.started += instance.OnGlide;
+                @Glide.performed += instance.OnGlide;
+                @Glide.canceled += instance.OnGlide;
+                @Walk.started += instance.OnWalk;
+                @Walk.performed += instance.OnWalk;
+                @Walk.canceled += instance.OnWalk;
+            }
+        }
+    }
+    public DodgingActions @Dodging => new DodgingActions(this);
     public interface IIdleActions
     {
         void OnWalk(InputAction.CallbackContext context);
@@ -824,6 +1025,11 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMelee(InputAction.CallbackContext context);
         void OnShootProjectile(InputAction.CallbackContext context);
+        void OnGlide(InputAction.CallbackContext context);
+        void OnWalk(InputAction.CallbackContext context);
+    }
+    public interface IDodgingActions
+    {
         void OnGlide(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
     }

@@ -25,7 +25,7 @@ public class PlayerIdle : IState
 
     public void Exit()
     {
-        idleInput.Disable();
+        // idleInput.Disable();
     }
 
     public void FixedUpdate()
@@ -36,6 +36,7 @@ public class PlayerIdle : IState
 
     public IState Update()
     {
+        // Debug.Log(idleInput.Walk.ReadValue<float>());
         
         // Check input for horizontal movement
         if(idleInput.Walk.ReadValue<float>() != 0f)

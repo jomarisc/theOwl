@@ -37,12 +37,15 @@ public class PlayerWalk : IState
         }
 
         movingInput.Enable();
-        Debug.Log(player.input.Idle.enabled);
+        horizontalMovement = movingInput.Walk.ReadValue<float>();
+        // Debug.Log("Enter: " + horizontalMovement);
+        // Debug.Break();
+        // Debug.Log(player.input.Idle.enabled);
     }
 
     public void Exit()
     {
-        movingInput.Disable();
+        // movingInput.Disable();
     }
 
     public void FixedUpdate()
@@ -131,15 +134,15 @@ public class PlayerWalk : IState
 
         // horizontalMovement = Input.GetAxis("Horizontal");
         horizontalMovement = movingInput.Walk.ReadValue<float>();
+        // Debug.Log(horizontalMovement);
         if(Mathf.Abs(horizontalMovement) > 0)
         {
             player.isFacingRight = (horizontalMovement < 0) ? false : true;
+            return null;
         }
         else
         {
             return new PlayerIdle(player);
         }
-
-        return null;
     }
 }
