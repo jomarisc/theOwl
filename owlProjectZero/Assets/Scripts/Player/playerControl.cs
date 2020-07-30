@@ -16,6 +16,22 @@ public class playerControl : Character
     public const int MAX_JUMPS = 3;
     public const int MAX_DODGES = 1;
     public const float DODGE_DURATION = 1.0f;
+    public PlayerInputs input { get; private set; }
+
+    private void Awake()
+    {
+        input = new PlayerInputs();
+    }
+
+    private void OnEnable()
+    {
+        input.Enable();
+    }
+
+    private void OnDisable()
+    {
+        input.Disable();
+    }
 
     // Start is called before the first frame update
     private void Start()

@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerWalk : IState
 {
     private readonly playerControl player;
     private Rigidbody playerBody;
+    private PlayerInputs.MovingActions movingInput;
     private const float fastFallSpeed = -10f;
     private float horizontalMovement = 0f;
     private float verticalMovement = 0f;
@@ -19,6 +21,7 @@ public class PlayerWalk : IState
     {
         player = p;
         playerBody = p.gameObject.GetComponent<Rigidbody>();
+        movingInput = p.input.Moving;
         isFlying = isAirborne;
         verticalMovement = (isAirborne) ? playerBody.velocity.y : 0f;
     }
@@ -32,11 +35,14 @@ public class PlayerWalk : IState
         {
             // Use walking animation here
         }
+
+        movingInput.Enable();
+        Debug.Log(player.input.Idle.enabled);
     }
 
     public void Exit()
     {
-        // Nothing so far
+        movingInput.Disable();
     }
 
     public void FixedUpdate()
@@ -50,7 +56,8 @@ public class PlayerWalk : IState
     {
         if(player.maxSpeed == player.airSpeed &&
            player.activeTetherPoint != null &&
-           Input.GetKeyDown(KeyCode.T) &&
+        //    Input.GetKeyDown(KeyCode.T) &&
+           movingInput.Tether.triggered &&
            player.transform.position.y <= player.activeTetherPoint.transform.position.y)
         {
             return new PlayerTether(player);
@@ -62,33 +69,38 @@ public class PlayerWalk : IState
 
 
         // Check input for dodging
-        if(Input.GetButtonDown("Fire3") && player.numDodges > 0)
+        // if(Input.GetButtonDown("Fire3") && player.numDodges > 0)
+        if(movingInput.Dodge.triggered)
         {
             return new PlayerDodge(player);
         }
 
         // Check input for jumping
-        if(Input.GetButtonDown("Jump"))
+        // if(Input.GetButtonDown("Jump"))
+        if(movingInput.Jump.triggered)
         {
             return new PlayerJump(player);
         }
 
         // Check input for melee attacking
-        if(Input.GetButtonDown("Fire1"))
+        // if(Input.GetButtonDown("Fire1"))
+        if(movingInput.Melee.triggered)
         {
             // meleeAttack.gameObject.SetActive(true);
             return new PlayerMelee(player, horizontalMovement);
         }
 
         // Check input for shooting with a projectile
-        if(Input.GetButtonDown("Fire2"))
+        // if(Input.GetButtonDown("Fire2"))
+        if(movingInput.ShootProjectile.triggered)
         {
             return new PlayerShoot(player);
         }
         
         // When player is airborne and down key is pressed
         if(isFlying &&
-           (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)))
+        //    (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)))
+           movingInput.Glide.triggered)
         {
             // If pressed during the fastfall window
             if(Mathf.Abs(playerBody.velocity.y) < 5f &&
@@ -98,11 +110,7 @@ public class PlayerWalk : IState
                 isFastFalling = true;
             }
             // if down was pressed on this frame
-            else if(Input.GetKeyDown(KeyCode.DownArrow) ||
-                    Input.GetKeyDown(KeyCode.S))
-            {
-                return new PlayerGlide(player, PlayerGlide.glideType.Down);
-            }
+            return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }
 
         // If landing on a platform
@@ -121,10 +129,15 @@ public class PlayerWalk : IState
             return new PlayerWalk(player, true);
         }
 
-        horizontalMovement = Input.GetAxis("Horizontal");
+        // horizontalMovement = Input.GetAxis("Horizontal");
+        horizontalMovement = movingInput.Walk.ReadValue<float>();
         if(Mathf.Abs(horizontalMovement) > 0)
         {
             player.isFacingRight = (horizontalMovement < 0) ? false : true;
+        }
+        else
+        {
+            return new PlayerIdle(player);
         }
 
         return null;
