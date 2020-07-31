@@ -19,7 +19,7 @@ public class PlayerIdle : IState
     {
         // Enter idle animation code here:
 
-        idleInput.Enable();
+        // idleInput.Enable();
         Debug.Log(player.input.Moving.enabled);
     }
 

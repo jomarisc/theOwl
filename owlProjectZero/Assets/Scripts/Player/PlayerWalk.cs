@@ -36,7 +36,7 @@ public class PlayerWalk : IState
             // Use walking animation here
         }
 
-        movingInput.Enable();
+        // movingInput.Enable();
         horizontalMovement = movingInput.Walk.ReadValue<float>();
         // Debug.Log("Enter: " + horizontalMovement);
         // Debug.Break();

@@ -18,11 +18,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerJump : IState
 {
     private readonly playerControl player;
     private Rigidbody playerBody;
+    private PlayerInputs.JumpingActions jumpInput;
     private float horizontalMovement = 0f;
     // private float jumpCooldown = 0.06f;
 
@@ -30,17 +32,23 @@ public class PlayerJump : IState
     {
         player = p;
         playerBody = p.gameObject.GetComponent<Rigidbody>();
+        jumpInput = p.input.Jumping;
+        jumpInput.DoubleJump.started += DoubleJump;
+        jumpInput.DoubleJump.performed += GlideByJump;
     }
     public void Enter()
     {
         // use jump animation here
 
         player.Jump();
+
+        jumpInput.FastFall.Disable();
     }
 
     public void Exit()
     {
-
+        jumpInput.DoubleJump.started -= DoubleJump;
+        jumpInput.DoubleJump.performed -= GlideByJump;
     }
 
     public void FixedUpdate()
@@ -52,7 +60,8 @@ public class PlayerJump : IState
     {
         // Check input for tether
         if(player.activeTetherPoint != null &&
-           Input.GetKeyDown(KeyCode.T) &&
+        //    Input.GetKeyDown(KeyCode.T) &&
+           jumpInput.Tether.triggered &&
            player.transform.position.y <= player.activeTetherPoint.transform.position.y)
         {
             return new PlayerTether(player);
@@ -60,28 +69,25 @@ public class PlayerJump : IState
 
         // Check input for changing skills
 
-        // Check input for double jump
-        if(Input.GetButtonDown("Jump"))
-        {
-            // player.numJumps--;
-            return new PlayerJump(player);
-        }
 
         // Check input for dodging
-        if(Input.GetButtonDown("Fire3") && player.numDodges > 0)
+        // if(Input.GetButtonDown("Fire3") && player.numDodges > 0)
+        if(jumpInput.Dodge.triggered && player.numDodges > 0)
         {
             return new PlayerDodge(player);
         }
 
         // Check input for melee attacking
-        if(Input.GetButtonDown("Fire1"))
+        // if(Input.GetButtonDown("Fire1"))
+        if(jumpInput.Melee.triggered)
         {
             // meleeAttack.gameObject.SetActive(true);
             return new PlayerMelee(player, horizontalMovement);
         }
 
         // Check input for shooting with a projectile
-        if(Input.GetButtonDown("Fire2"))
+        // if(Input.GetButtonDown("Fire2"))
+        if(jumpInput.ShootProjectile.triggered)
         {
             return new PlayerShoot(player);
         }                 
@@ -95,36 +101,67 @@ public class PlayerJump : IState
             {
                 return new PlayerIdle(player);
             }
-            else if(Input.GetButton("Jump"))
-                return new PlayerGlide(player, PlayerGlide.glideType.Jump);
+            // else if(Input.GetButton("Jump"))
+            // else if(jumpInput.DoubleJump.ReadValue<float>() > 0)
+            //     return new PlayerGlide(player, PlayerGlide.glideType.Jump);
         }
 
-        if(Input.GetKey(KeyCode.DownArrow) ||
-           Input.GetKey(KeyCode.S))
+        // if(Input.GetKey(KeyCode.DownArrow) ||
+        //    Input.GetKey(KeyCode.S))
+        // {
+        //     // Check for fastfall input during fastfall window
+        //     if(playerBody.velocity.y < 0f &&
+        //        playerBody.velocity.y > -2f)
+        //     {
+        //         return new PlayerWalk(player, true);
+        //     }
+        //     // Check if cancelling into glide
+        //     else
+        //     {
+        //         return new PlayerGlide(player, PlayerGlide.glideType.Down);
+        //     }
+        // }
+
+        // Check for fastfall input during fastfall window
+        if(playerBody.velocity.y < 0f &&
+            playerBody.velocity.y > -2f)
         {
-            // Check for fastfall input during fastfall window
-            if(playerBody.velocity.y < 0f &&
-               playerBody.velocity.y > -2f)
-            {
+            jumpInput.FastFall.Enable();
+            if(jumpInput.FastFall.triggered)
                 return new PlayerWalk(player, true);
-            }
-            // Check if cancelling into glide
-            else
-            {
-                return new PlayerGlide(player, PlayerGlide.glideType.Down);
-            }
-        }   
+        }
+
+        if(jumpInput.Glide.ReadValue<float>() > 0.8f)
+        {
+            return new PlayerGlide(player, PlayerGlide.glideType.Down);
+        }
 
         /////////////////////////////////////////////////////////////////////
         //                                                                 //
         //  This Chunk of code is also in PlayerWalk                       //
         //                                                                 //
         /////////////////////////////////////////////////////////////////////
-        horizontalMovement = Input.GetAxis("Horizontal");
+        horizontalMovement = jumpInput.Fly.ReadValue<float>();
         if(Mathf.Abs(horizontalMovement) > 0)
         {
             player.isFacingRight = (horizontalMovement < 0) ? false : true;
         }
         return null;
+    }
+
+    private void DoubleJump(InputAction.CallbackContext context)
+    {
+        // if(context.startTime == context.duration)
+        Debug.Log("Double Jump is called");
+        player.Jump();
+    }
+
+    private void GlideByJump(InputAction.CallbackContext context)
+    {
+        if(context.time == context.duration)
+            Debug.Log("Should glide now");
+        Debug.Log("Value: " + context.ReadValue<float>());
+        Debug.Log("Time: " + context.time);
+        Debug.Log("Duration: " + context.duration);
     }
 }
