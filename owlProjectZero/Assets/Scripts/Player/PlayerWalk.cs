@@ -103,7 +103,7 @@ public class PlayerWalk : IState
         // When player is airborne and down key is pressed
         if(isFlying &&
         //    (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)))
-           movingInput.Glide.triggered)
+           movingInput.Glide.phase == InputActionPhase.Started)
         {
             // If pressed during the fastfall window
             if(Mathf.Abs(playerBody.velocity.y) < 5f &&
@@ -113,7 +113,8 @@ public class PlayerWalk : IState
                 isFastFalling = true;
             }
             // if down was pressed on this frame
-            return new PlayerGlide(player, PlayerGlide.glideType.Down);
+            else
+                return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }
 
         // If landing on a platform

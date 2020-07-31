@@ -160,6 +160,39 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Dpad"",
+                    ""id"": ""185f3752-1fa0-4ee6-bc4f-9bf9a9e35864"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""ce0d970b-0fa7-4a05-a38a-67b4d591b0ab"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""8efd95e2-4350-420e-a0ff-30c7492015b4"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""06baccb1-7439-4abf-8f14-b4298e8e6459"",
                     ""path"": ""<Keyboard>/shift"",
@@ -304,7 +337,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Walk"",
                     ""type"": ""Value"",
-                    ""id"": ""2d513d15-c7f2-4458-8996-d7489d6b4634"",
+                    ""id"": ""b25b7f2d-f4ce-4fd6-88ca-64f654069701"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -434,6 +467,17 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""893154de-9875-44a1-ae41-628f6c76b3d9"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f9707cfb-0d82-4351-92e8-29d39f8b8ad7"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -456,7 +500,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Arrow Keys"",
-                    ""id"": ""d3fec23e-6f21-4051-ad4a-744546949cd2"",
+                    ""id"": ""5cf09c0d-96b6-4420-b110-00341988da97"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -467,7 +511,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""5e23db0f-2946-45ad-8523-03a4c1b19bbb"",
+                    ""id"": ""e29f25fa-7c87-4bae-b1c9-ce227194c7cf"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -478,7 +522,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""5303e32f-1676-42a1-bfe4-8e5cb63a0a30"",
+                    ""id"": ""86cf78b7-c9de-410c-822a-7729e6981ff3"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -489,7 +533,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""WASD"",
-                    ""id"": ""12c5ada5-8fbe-4efc-a072-4183720cb359"",
+                    ""id"": ""2355c9ea-30eb-4b2c-813a-d5fa87cdfaee"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -500,7 +544,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""0471aae9-e402-4972-8e40-7a386056c700"",
+                    ""id"": ""d295d43a-719d-4517-9c89-fb9ba635b2d4"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -511,7 +555,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""fb94260b-17f3-45ea-bb4d-5a26dd048ecf"",
+                    ""id"": ""0bb1b159-46de-44b5-b521-c76ab7bae2f0"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -522,7 +566,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Gamepad"",
-                    ""id"": ""93340dbf-0b2c-4018-be73-0ee9aec267c9"",
+                    ""id"": ""a2ba6584-f927-4ecf-90dd-4c118023d86b"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -533,7 +577,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""22335dad-0387-484a-84b0-4b5a1de9afc8"",
+                    ""id"": ""ada0cec5-1bc8-4ed8-8e6c-60bf2022644c"",
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -544,8 +588,41 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""d5aedb95-e2b1-4e9e-a2b5-414e56bcd0ce"",
+                    ""id"": ""2fa39056-34c1-4549-a8b4-b6a9c38f6ce3"",
                     ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Dpad"",
+                    ""id"": ""279b2c67-dd16-448e-9d5a-7bbd1fcbb69a"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""b6681836-6f3f-4212-b917-9c4437bc92d4"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""98f2b688-ec0d-42fa-a14c-653d51f2bd56"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -562,57 +639,24 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Glide"",
                     ""type"": ""Button"",
-                    ""id"": ""d6707958-558a-440a-a407-81fa28b468e6"",
+                    ""id"": ""1a01135b-b1be-40d9-a92d-34a3bba642fd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
                     ""name"": ""Walk"",
-                    ""type"": ""Button"",
-                    ""id"": ""dfc185ba-42da-4937-93c1-3ac0c7ade521"",
-                    ""expectedControlType"": ""Button"",
+                    ""type"": ""Value"",
+                    ""id"": ""c1418538-a35c-47c1-a185-c03ef41d3e7d"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""3c6efdfa-cb83-4593-8b04-7616f1b30801"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Glide"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""808468b8-2bf0-45ff-af6f-80d57455b081"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Glide"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e5af07ed-30ce-4d0d-bf9e-e30f938d5e47"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Glide"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""Arrow Keys"",
-                    ""id"": ""2bfc4bd9-56a5-4b56-9ad3-70ec41b64003"",
+                    ""id"": ""1681448d-5253-4aea-9513-7888d5715f57"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -623,7 +667,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""05556c75-0ca5-4eeb-b880-5d85fe4b06b0"",
+                    ""id"": ""f222bb8b-4331-40d8-b314-876ceabb7681"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -634,7 +678,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""b99b10f7-4bdd-4dc0-b95a-3038203d7bfa"",
+                    ""id"": ""218ca7c0-cece-41bb-9b5a-db69b4d40419"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -645,7 +689,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""WASD"",
-                    ""id"": ""e4cb827d-707f-40a1-9399-a332c2686213"",
+                    ""id"": ""4a833bb0-c7bb-48b3-901b-887d1953d128"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -656,7 +700,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""7a85c372-c0e6-4eea-b705-604f3f5ce87f"",
+                    ""id"": ""ba6398f1-477f-4c56-a6f7-a1d357477730"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -667,7 +711,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""2a7e913c-6426-4a00-96bf-15252a7bd7eb"",
+                    ""id"": ""c7412194-7b04-4404-92b5-4f050fb55878"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -678,7 +722,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Gamepad"",
-                    ""id"": ""0864957a-08dc-4b52-b4a0-85dbb7d68666"",
+                    ""id"": ""8bdb2673-58b2-4d5a-938e-5d9742f3f511"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -689,7 +733,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""0c16b9c3-2188-429a-b08d-5dc5bc4d7d1d"",
+                    ""id"": ""75484f8f-526e-4cba-b279-e427f673b058"",
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -700,7 +744,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""10726353-6a8d-4a44-943e-be9fb51ccb5e"",
+                    ""id"": ""400056a3-8501-474e-bd51-1b7ea8aead7f"",
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -708,6 +752,83 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Dpad"",
+                    ""id"": ""12614cfa-3b7e-4f80-8163-adc221a65822"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""0157219d-1aaa-48d3-b7e9-6605291d2d25"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""b9945d1e-1803-42f6-a61f-5b78f6014379"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dab2b633-223c-4816-9eeb-5871a1defc2a"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e5c2da6-7c34-4cb7-bf00-5f354ad3a73e"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e332b6fd-4bb7-4c89-bc40-a317f0583e01"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""437989d1-0a2f-4a70-8e84-c186151f116e"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -758,9 +879,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Glide"",
                     ""type"": ""Button"",
-                    ""id"": ""1a2c671c-c01e-4830-b620-02e1d7625f7f"",
+                    ""id"": ""415ee4c5-df04-4ead-9dd7-f6000b51e143"",
                     ""expectedControlType"": ""Button"",
-                    ""processors"": ""AxisDeadzone(min=0.8)"",
+                    ""processors"": """",
                     ""interactions"": """"
                 },
                 {
@@ -774,7 +895,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Fly"",
                     ""type"": ""Value"",
-                    ""id"": ""61655e5e-641d-43dd-8c8a-eb342e060cf9"",
+                    ""id"": ""a6092aac-d5cd-4735-b7c6-a750b2960e1c"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -893,39 +1014,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4e8bef77-8aea-4c60-846c-37f3f96e03de"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Glide"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c21bed27-403f-40c3-a7fa-2350cf748c2f"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Glide"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2f256f85-90f6-42f1-b21b-d1bbd445290d"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Glide"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""685d29ac-a689-4e64-afa0-150149a9ff4f"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
@@ -959,7 +1047,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Arrow Keys"",
-                    ""id"": ""01cb2a64-216b-49f2-921f-58f4587a06fb"",
+                    ""id"": ""520972c2-62aa-4737-9139-be78416f54f0"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -970,7 +1058,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""d6e6c871-799f-45fe-9b30-c23745ba8626"",
+                    ""id"": ""850e52dd-0eaa-4469-865f-b0d86b0c5b91"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -981,7 +1069,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""c863e659-a81e-42bd-9dab-278625133591"",
+                    ""id"": ""8859bdcb-b62d-493b-8bfb-7126b729bc59"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -992,7 +1080,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""WASD"",
-                    ""id"": ""6f3affee-a0fe-49fa-822a-84403d72ebb6"",
+                    ""id"": ""ac46e643-bb51-4cca-8fd4-b355e7c5e163"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1003,7 +1091,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""e672dbf4-0837-400c-b683-d24444715816"",
+                    ""id"": ""4262ef49-6b50-404d-b938-5127c410ef50"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1014,7 +1102,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""f96b3bbe-c5b0-4e29-9ed5-b04619fd28e3"",
+                    ""id"": ""2b3886c3-93aa-4f51-9da0-c07ededa9380"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1025,7 +1113,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Gamepad"",
-                    ""id"": ""7c0a9c92-5624-4f28-a2dd-36762c374ae7"",
+                    ""id"": ""3bb86089-d0b5-437f-974d-24b4146956c7"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1036,7 +1124,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""08dc16fa-7f2d-453b-b698-0a9aae85fc7d"",
+                    ""id"": ""b99fb9c8-0c1b-4805-9682-c51204e7b4d3"",
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1047,7 +1135,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""f8cc43fa-7457-4154-8960-8a15b27a0144"",
+                    ""id"": ""1fbfc762-5a61-4383-bbfc-2455c48ec5af"",
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1055,26 +1143,43 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""Fly"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                }
-            ]
-        },
-        {
-            ""name"": ""Melee"",
-            ""id"": ""1937122c-d389-4f84-b5b7-346cbc777f47"",
-            ""actions"": [
+                },
                 {
-                    ""name"": ""Glide"",
-                    ""type"": ""Button"",
-                    ""id"": ""fd5db2b1-7dfa-4603-b124-12c3e7ca6c7c"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""Dpad"",
+                    ""id"": ""dd87d8c8-e775-4bd6-8bf9-989f6fa62e4d"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
                     ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""7a22b7d8-fbdd-48ec-ac04-fdfd78cba82e"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""bf75505b-0c88-4158-9d9b-7ae6d7417a33"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
                 {
                     ""name"": """",
-                    ""id"": ""65a54232-abee-4156-b473-dcca8bcf5faa"",
+                    ""id"": ""c7e5924d-151d-4d24-9d73-4ec86793d31d"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1085,7 +1190,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5cb40ff2-b31b-4a4d-be64-6e2602c549a3"",
+                    ""id"": ""3f387163-a5e4-48cc-8db9-275ef0bcb270"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1096,8 +1201,79 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5d247578-3684-40d3-be37-750456a0386a"",
+                    ""id"": ""2fb98982-2527-4859-8dc4-c2e58431cf2b"",
                     ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df006563-abec-4741-9bd0-17a3ae595c41"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Melee"",
+            ""id"": ""1937122c-d389-4f84-b5b7-346cbc777f47"",
+            ""actions"": [
+                {
+                    ""name"": ""Glide"",
+                    ""type"": ""Button"",
+                    ""id"": ""eab055ee-e769-48ad-a793-66bf0d9fb70b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""de524571-1a93-4a6f-a1e3-6e227a413950"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""103e978a-5476-4c9f-92ce-d0f5e2eff7af"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f826c6db-41c6-4fa2-ad48-d6724b1113b7"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""59fdbfd4-d4a5-47ca-87fe-84e64d6dbdbf"",
+                    ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1114,7 +1290,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Glide"",
                     ""type"": ""Button"",
-                    ""id"": ""7ffec2db-1cd3-455b-b4a7-125ce8ac52af"",
+                    ""id"": ""625014ab-4be3-4877-9568-f743489a8d29"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1123,7 +1299,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""6501cf28-72cd-49e8-a994-6c8215e34705"",
+                    ""id"": ""f7a0448f-ae2e-4a52-a5c7-7758e4b07fcf"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1134,7 +1310,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""45d060a0-4dce-4bfe-b06a-39391f097afb"",
+                    ""id"": ""7da3b400-1c3a-4f48-b287-1cc3d50bef93"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1145,8 +1321,19 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""63eca9df-28e6-4c61-a558-cf61f5b8bd20"",
+                    ""id"": ""5f6e9140-5f49-48cb-aa8a-15ef541b3000"",
                     ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a99557f8-04f7-445d-a47f-52603a570ef2"",
+                    ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1203,15 +1390,15 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Glide"",
                     ""type"": ""Button"",
-                    ""id"": ""6ef3b096-9393-433a-a6a9-662018d3d48b"",
+                    ""id"": ""c17829ff-6179-4f79-bd74-807f87149212"",
                     ""expectedControlType"": ""Button"",
-                    ""processors"": ""AxisDeadzone(min=0.8)"",
+                    ""processors"": """",
                     ""interactions"": """"
                 },
                 {
                     ""name"": ""Fly"",
                     ""type"": ""Value"",
-                    ""id"": ""73f1c9c5-42d3-4647-8178-7624caeae43e"",
+                    ""id"": ""9de49030-571b-4dbf-806f-b920a2d21663"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1330,7 +1517,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Arrow Keys"",
-                    ""id"": ""50d4df10-7ef4-4260-9eb4-6f3fbccfb608"",
+                    ""id"": ""8b46c391-32b9-4d98-818a-59f197b4e295"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1341,7 +1528,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""50695aaa-bd69-4138-9d71-3d589c943933"",
+                    ""id"": ""1c92b49b-f795-4023-ae11-2b66ffa46a32"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1352,7 +1539,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""b98afbed-f17f-4b89-9ddb-689904bce2f6"",
+                    ""id"": ""59f79061-24eb-4421-a8ff-853e6a0ac135"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1363,7 +1550,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""WASD"",
-                    ""id"": ""1dff278e-1663-4ae1-941b-60e483b61423"",
+                    ""id"": ""80f41d97-28e5-4ae3-a3c4-4ebd30b3d8a7"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1374,7 +1561,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""0758b0ec-e516-45e5-8957-e8b212a2530a"",
+                    ""id"": ""c9999fa8-fe08-4f78-a0d1-993cbde5f4e7"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1385,7 +1572,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""815f53ff-2136-4b30-bc56-17297290bc18"",
+                    ""id"": ""db636890-7980-4a4f-9fe7-3d2840428d33"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1396,7 +1583,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Gamepad"",
-                    ""id"": ""893153a6-116b-4228-aaef-43c11597396b"",
+                    ""id"": ""17c83c5b-fabd-49f8-a10a-c25624b3309d"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1407,7 +1594,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""3b4854ca-5422-4f16-a3df-668f926652bd"",
+                    ""id"": ""4c5e5f7b-bc6b-4fda-963b-ae7383a8c86b"",
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1418,7 +1605,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""63ea287f-22ce-461a-a666-3b6717dfab83"",
+                    ""id"": ""2cf6086b-3b66-4f60-9554-fe16bc4598aa"",
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1428,8 +1615,41 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Dpad"",
+                    ""id"": ""0e18ebc2-9112-412f-8e41-5317d6d6a566"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""a7e99d95-40d5-4be6-9a24-cba42b441eea"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""21b8b764-4bc2-4a67-9e9e-6edf49c210f3"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
-                    ""id"": ""a875b8fc-c881-4939-91d0-83b77963d161"",
+                    ""id"": ""86d56669-25e0-4373-8959-545981a82ee4"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1440,7 +1660,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f048bf51-7344-48cc-ae36-e53ccb1c8eaa"",
+                    ""id"": ""876fef93-d1ec-4090-a1d4-533e58862223"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1451,8 +1671,19 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a5906c8d-9f46-4ef0-8761-d62cd098658c"",
+                    ""id"": ""443539ef-65fd-45cb-ae4e-4fcad414fc81"",
                     ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27b13bdf-1332-4e8b-88aa-2e3754780381"",
+                    ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1501,7 +1732,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Glide"",
                     ""type"": ""Button"",
-                    ""id"": ""0aaedb5d-2f2f-4f76-9cd4-7bc72a44534c"",
+                    ""id"": ""ae56e942-0c95-474b-b35e-434973db83df"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1509,7 +1740,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Fly"",
                     ""type"": ""Value"",
-                    ""id"": ""cbcecf0a-9c44-4617-9e6a-232fa1642d98"",
+                    ""id"": ""918b6f37-4b3a-4d6a-852c-122c7d6aff81"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1614,138 +1845,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cc0cf3a6-3b73-48fd-97a6-439e5551a767"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Glide"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d47a9699-3706-4457-b8d3-f5dcf05b20e6"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Glide"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""641f4f56-0b00-43b9-8fc5-3379f6934378"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Glide"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Arrow Keys"",
-                    ""id"": ""1988e364-3fc4-4301-966f-380ae2445cd9"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fly"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""ea777f17-68d9-49b0-98a0-a131e5bdcde1"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fly"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""f33b55fc-864b-4415-b56e-cfcbdc01ccc4"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fly"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""WASD"",
-                    ""id"": ""32e85dbc-7398-469a-b776-222b91fd3a25"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fly"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""43e42dbe-6e50-4f3e-8893-f91d78f6aa1c"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fly"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""50c4d290-fad2-422d-b8a2-e9f6591f9d0e"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fly"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Gamepad"",
-                    ""id"": ""3540270a-f8a3-4ffa-bdc9-d10edc74aeb0"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fly"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""279f083b-6a90-4b37-b49b-791a5c8a99fe"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fly"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""cdf6e28c-8201-4550-847a-d05b1bf60300"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fly"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
                     ""id"": ""56a6b675-ce5e-4252-a7f6-e7f04be5eb04"",
                     ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
@@ -1763,6 +1862,182 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Untether"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrow Keys"",
+                    ""id"": ""d660c9dd-6a11-493c-8f29-f2f3bfd70af4"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""cb179aa4-8065-4610-b5e7-e54c57c29e13"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""a061ca2d-9900-442f-ac16-14288968f035"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""f0c710d4-b347-4df6-a700-e0e6b86fc80d"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""43817e6b-02b8-4ae1-8764-0dffa14bd2b4"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""9e97f193-1693-4577-b6d2-100e6cdfd566"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""cb7bb505-395a-4cf4-9e23-08750ec16d83"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""1e4feb58-8255-4db2-b812-85e394f2ed59"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""aea899b9-5d0e-4e91-9b8e-db554fa2096a"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Dpad"",
+                    ""id"": ""f810ec9b-1d46-4b72-9572-b017f848b929"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""a2739992-6ece-44b6-93a2-c15adf52185d"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""ebd3066c-773d-44ec-838a-f835150b8b3a"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca1a59e8-f558-489e-97c6-57678c22d0be"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d18856a-178f-4b37-ad92-c94646886c6c"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""240cb756-8065-4bd5-bf46-6a0df981c238"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae72819d-5afa-4919-9c8c-154aa9b298bf"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }

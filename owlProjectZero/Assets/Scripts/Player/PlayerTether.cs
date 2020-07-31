@@ -83,7 +83,8 @@ public class PlayerTether : IState
 
         // Check for glide input
         // if(Input.GetAxis("Vertical") < 0)
-        if(tetherInput.Glide.ReadValue<float>() > 0.8f)
+        if(tetherInput.Glide.ReadValue<float>() > 0.8f &&
+           tetherInput.Glide.phase == InputActionPhase.Started)
         {
             return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }

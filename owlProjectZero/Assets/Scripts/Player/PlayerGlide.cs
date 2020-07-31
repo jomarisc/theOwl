@@ -99,7 +99,7 @@ public class PlayerGlide : IState
         {
             // if(Input.GetKeyUp(KeyCode.DownArrow) ||
             //    Input.GetKeyUp(KeyCode.S))
-            if(glideInput.Glide.phase == InputActionPhase.Canceled)
+            if(glideInput.Glide.ReadValue<float>() <= 0.5f)
             {
                 return new PlayerWalk(player, true);
             }

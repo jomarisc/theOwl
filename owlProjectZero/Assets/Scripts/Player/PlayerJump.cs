@@ -127,7 +127,7 @@ public class PlayerJump : IState
             playerBody.velocity.y > -2f)
         {
             jumpInput.FastFall.Enable();
-            if(jumpInput.FastFall.triggered)
+            if(jumpInput.FastFall.phase == InputActionPhase.Started)
                 return new PlayerWalk(player, true);
         }
 
