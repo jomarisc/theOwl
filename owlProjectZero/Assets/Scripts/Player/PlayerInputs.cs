@@ -1461,6 +1461,312 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Tethering"",
+            ""id"": ""3b2f34b8-5df5-4aaf-96c6-dc402eaa84eb"",
+            ""actions"": [
+                {
+                    ""name"": ""Dodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""0803ff80-3d32-4032-b0f6-b7e5fe4e584f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""031b06b1-4447-4f77-9eb0-6f9465aad499"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Melee"",
+                    ""type"": ""Button"",
+                    ""id"": ""65a8b3d3-44ec-4fc3-b768-dec95be24558"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ShootProjectile"",
+                    ""type"": ""Button"",
+                    ""id"": ""277a094f-1142-45a1-8b59-8ce5d09b1b54"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Glide"",
+                    ""type"": ""Button"",
+                    ""id"": ""0aaedb5d-2f2f-4f76-9cd4-7bc72a44534c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Fly"",
+                    ""type"": ""Value"",
+                    ""id"": ""cbcecf0a-9c44-4617-9e6a-232fa1642d98"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Untether"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f5d97ed-fb7b-4eb2-a948-25e9b8781988"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""debc0740-b64d-4cc7-8a1c-f4326ea22c45"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a80fc0b-37db-4bc7-9498-8eca0fd39637"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e961590-3ae5-438d-8dd8-371e08bccc34"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f884871e-2d67-40ec-9ef2-fbf9c458efec"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f3868d2-46ed-4d1a-916f-1c6be43829bb"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba82def5-6a71-47e2-a4ae-eb645336ba9a"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78aea51c-3ad3-4e79-a130-46144212d37f"",
+                    ""path"": ""<Keyboard>/leftAlt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootProjectile"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c2e4aae4-bacf-4c63-b8f7-7e7e33859fc5"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootProjectile"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc0cf3a6-3b73-48fd-97a6-439e5551a767"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d47a9699-3706-4457-b8d3-f5dcf05b20e6"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""641f4f56-0b00-43b9-8fc5-3379f6934378"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrow Keys"",
+                    ""id"": ""1988e364-3fc4-4301-966f-380ae2445cd9"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""ea777f17-68d9-49b0-98a0-a131e5bdcde1"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""f33b55fc-864b-4415-b56e-cfcbdc01ccc4"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""32e85dbc-7398-469a-b776-222b91fd3a25"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""43e42dbe-6e50-4f3e-8893-f91d78f6aa1c"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""50c4d290-fad2-422d-b8a2-e9f6591f9d0e"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""3540270a-f8a3-4ffa-bdc9-d10edc74aeb0"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""279f083b-6a90-4b37-b49b-791a5c8a99fe"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""cdf6e28c-8201-4550-847a-d05b1bf60300"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56a6b675-ce5e-4252-a7f6-e7f04be5eb04"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Untether"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9bfd9fc-87d9-475b-a9bc-1d78c43cfcc3"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Untether"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -1510,6 +1816,15 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_Gliding_ShootProjectile = m_Gliding.FindAction("ShootProjectile", throwIfNotFound: true);
         m_Gliding_Glide = m_Gliding.FindAction("Glide", throwIfNotFound: true);
         m_Gliding_Fly = m_Gliding.FindAction("Fly", throwIfNotFound: true);
+        // Tethering
+        m_Tethering = asset.FindActionMap("Tethering", throwIfNotFound: true);
+        m_Tethering_Dodge = m_Tethering.FindAction("Dodge", throwIfNotFound: true);
+        m_Tethering_Jump = m_Tethering.FindAction("Jump", throwIfNotFound: true);
+        m_Tethering_Melee = m_Tethering.FindAction("Melee", throwIfNotFound: true);
+        m_Tethering_ShootProjectile = m_Tethering.FindAction("ShootProjectile", throwIfNotFound: true);
+        m_Tethering_Glide = m_Tethering.FindAction("Glide", throwIfNotFound: true);
+        m_Tethering_Fly = m_Tethering.FindAction("Fly", throwIfNotFound: true);
+        m_Tethering_Untether = m_Tethering.FindAction("Untether", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1978,6 +2293,87 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         }
     }
     public GlidingActions @Gliding => new GlidingActions(this);
+
+    // Tethering
+    private readonly InputActionMap m_Tethering;
+    private ITetheringActions m_TetheringActionsCallbackInterface;
+    private readonly InputAction m_Tethering_Dodge;
+    private readonly InputAction m_Tethering_Jump;
+    private readonly InputAction m_Tethering_Melee;
+    private readonly InputAction m_Tethering_ShootProjectile;
+    private readonly InputAction m_Tethering_Glide;
+    private readonly InputAction m_Tethering_Fly;
+    private readonly InputAction m_Tethering_Untether;
+    public struct TetheringActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public TetheringActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Dodge => m_Wrapper.m_Tethering_Dodge;
+        public InputAction @Jump => m_Wrapper.m_Tethering_Jump;
+        public InputAction @Melee => m_Wrapper.m_Tethering_Melee;
+        public InputAction @ShootProjectile => m_Wrapper.m_Tethering_ShootProjectile;
+        public InputAction @Glide => m_Wrapper.m_Tethering_Glide;
+        public InputAction @Fly => m_Wrapper.m_Tethering_Fly;
+        public InputAction @Untether => m_Wrapper.m_Tethering_Untether;
+        public InputActionMap Get() { return m_Wrapper.m_Tethering; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TetheringActions set) { return set.Get(); }
+        public void SetCallbacks(ITetheringActions instance)
+        {
+            if (m_Wrapper.m_TetheringActionsCallbackInterface != null)
+            {
+                @Dodge.started -= m_Wrapper.m_TetheringActionsCallbackInterface.OnDodge;
+                @Dodge.performed -= m_Wrapper.m_TetheringActionsCallbackInterface.OnDodge;
+                @Dodge.canceled -= m_Wrapper.m_TetheringActionsCallbackInterface.OnDodge;
+                @Jump.started -= m_Wrapper.m_TetheringActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_TetheringActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_TetheringActionsCallbackInterface.OnJump;
+                @Melee.started -= m_Wrapper.m_TetheringActionsCallbackInterface.OnMelee;
+                @Melee.performed -= m_Wrapper.m_TetheringActionsCallbackInterface.OnMelee;
+                @Melee.canceled -= m_Wrapper.m_TetheringActionsCallbackInterface.OnMelee;
+                @ShootProjectile.started -= m_Wrapper.m_TetheringActionsCallbackInterface.OnShootProjectile;
+                @ShootProjectile.performed -= m_Wrapper.m_TetheringActionsCallbackInterface.OnShootProjectile;
+                @ShootProjectile.canceled -= m_Wrapper.m_TetheringActionsCallbackInterface.OnShootProjectile;
+                @Glide.started -= m_Wrapper.m_TetheringActionsCallbackInterface.OnGlide;
+                @Glide.performed -= m_Wrapper.m_TetheringActionsCallbackInterface.OnGlide;
+                @Glide.canceled -= m_Wrapper.m_TetheringActionsCallbackInterface.OnGlide;
+                @Fly.started -= m_Wrapper.m_TetheringActionsCallbackInterface.OnFly;
+                @Fly.performed -= m_Wrapper.m_TetheringActionsCallbackInterface.OnFly;
+                @Fly.canceled -= m_Wrapper.m_TetheringActionsCallbackInterface.OnFly;
+                @Untether.started -= m_Wrapper.m_TetheringActionsCallbackInterface.OnUntether;
+                @Untether.performed -= m_Wrapper.m_TetheringActionsCallbackInterface.OnUntether;
+                @Untether.canceled -= m_Wrapper.m_TetheringActionsCallbackInterface.OnUntether;
+            }
+            m_Wrapper.m_TetheringActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Dodge.started += instance.OnDodge;
+                @Dodge.performed += instance.OnDodge;
+                @Dodge.canceled += instance.OnDodge;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Melee.started += instance.OnMelee;
+                @Melee.performed += instance.OnMelee;
+                @Melee.canceled += instance.OnMelee;
+                @ShootProjectile.started += instance.OnShootProjectile;
+                @ShootProjectile.performed += instance.OnShootProjectile;
+                @ShootProjectile.canceled += instance.OnShootProjectile;
+                @Glide.started += instance.OnGlide;
+                @Glide.performed += instance.OnGlide;
+                @Glide.canceled += instance.OnGlide;
+                @Fly.started += instance.OnFly;
+                @Fly.performed += instance.OnFly;
+                @Fly.canceled += instance.OnFly;
+                @Untether.started += instance.OnUntether;
+                @Untether.performed += instance.OnUntether;
+                @Untether.canceled += instance.OnUntether;
+            }
+        }
+    }
+    public TetheringActions @Tethering => new TetheringActions(this);
     public interface IIdleActions
     {
         void OnWalk(InputAction.CallbackContext context);
@@ -2029,5 +2425,15 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnShootProjectile(InputAction.CallbackContext context);
         void OnGlide(InputAction.CallbackContext context);
         void OnFly(InputAction.CallbackContext context);
+    }
+    public interface ITetheringActions
+    {
+        void OnDodge(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnMelee(InputAction.CallbackContext context);
+        void OnShootProjectile(InputAction.CallbackContext context);
+        void OnGlide(InputAction.CallbackContext context);
+        void OnFly(InputAction.CallbackContext context);
+        void OnUntether(InputAction.CallbackContext context);
     }
 }

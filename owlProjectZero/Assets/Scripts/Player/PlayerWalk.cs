@@ -60,7 +60,7 @@ public class PlayerWalk : IState
         if(player.maxSpeed == player.airSpeed &&
            player.activeTetherPoint != null &&
         //    Input.GetKeyDown(KeyCode.T) &&
-           movingInput.Tether.triggered &&
+           movingInput.Tether.phase == InputActionPhase.Started &&
            player.transform.position.y <= player.activeTetherPoint.transform.position.y)
         {
             return new PlayerTether(player);

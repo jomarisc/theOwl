@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 // Player Tether State
 public class PlayerTether : IState
 {
     private readonly playerControl player;
     private Rigidbody playerRB;
+    private PlayerInputs.TetheringActions tetherInput;
     private Vector3 tetherDirection;
     private float tetherLength;
     private float angle;
@@ -18,6 +20,7 @@ public class PlayerTether : IState
         tetherDirection = p.activeTetherPoint.transform.position - playerRB.position;
         tetherLength = tetherDirection.magnitude;
         angle = Vector3.SignedAngle(tetherDirection, Vector3.up, Vector3.forward) * Mathf.Deg2Rad;
+        tetherInput = p.input.Tethering;
     }
     public void Enter()
     {
@@ -50,38 +53,44 @@ public class PlayerTether : IState
     public IState Update()
     {
         // Check input for dodging
-        if(Input.GetButtonDown("Fire3") && player.numDodges > 0)
+        // if(Input.GetButtonDown("Fire3") && player.numDodges > 0)
+        if(tetherInput.Dodge.triggered)
         {
             return new PlayerDodge(player);
         }
 
         // Check input for jumping
-        if(Input.GetButtonDown("Jump"))
+        // if(Input.GetButtonDown("Jump"))
+        if(tetherInput.Jump.triggered)
         {
             return new PlayerJump(player);
         }
 
         // Check input for melee attacking
-        if(Input.GetButtonDown("Fire1"))
+        // if(Input.GetButtonDown("Fire1"))
+        if(tetherInput.Melee.triggered)
         {
             // meleeAttack.gameObject.SetActive(true);
             return new PlayerMelee(player, 0f);
         }
 
         // Check input for shooting with a projectile
-        if(Input.GetButtonDown("Fire2"))
+        // if(Input.GetButtonDown("Fire2"))
+        if(tetherInput.ShootProjectile.triggered)
         {
             return new PlayerShoot(player);
         }
 
         // Check for glide input
-        if(Input.GetAxis("Vertical") < 0)
+        // if(Input.GetAxis("Vertical") < 0)
+        if(tetherInput.Glide.ReadValue<float>() > 0.8f)
         {
             return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }
 
         if(player.activeTetherPoint == null ||
-           Input.GetKeyDown(KeyCode.T) ||
+        //    Input.GetKeyDown(KeyCode.T) ||
+           tetherInput.Untether.phase == InputActionPhase.Started ||
            player.transform.position.y > player.activeTetherPoint.transform.position.y)
         {
             return new PlayerWalk(player, true); // Specify the airborne version later

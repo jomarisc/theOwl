@@ -46,7 +46,7 @@ public class PlayerGlide : IState
         // Check input for tether
         if(player.activeTetherPoint != null &&
         //    Input.GetKeyDown(KeyCode.T) &&
-           glideInput.Tether.triggered &&
+           glideInput.Tether.phase == InputActionPhase.Started &&
            player.transform.position.y <= player.activeTetherPoint.transform.position.y)
         {
             return new PlayerTether(player);
