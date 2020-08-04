@@ -104,7 +104,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""id"": ""97bfaa79-a11e-4d51-a29c-eea52178b0ff"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press(pressPoint=0.925)""
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
