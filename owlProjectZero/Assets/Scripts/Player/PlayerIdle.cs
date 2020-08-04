@@ -7,25 +7,22 @@ using UnityEngine.InputSystem;
 public class PlayerIdle : IState
 {
     private readonly playerControl player;
-    private PlayerInputs.IdleActions idleInput;
+    private PlayerInputs input;
     private float waitTime = 30f; // Time until the "no input" animation kicks in
 
     public PlayerIdle(playerControl p)
     {
         player = p;
-        idleInput = p.input.Idle;
+        input = p.input;
     }
     public void Enter()
     {
         // Enter idle animation code here:
-
-        // idleInput.Enable();
-        Debug.Log(player.input.Moving.enabled);
     }
 
     public void Exit()
     {
-        // idleInput.Disable();
+        // Nothing so far
     }
 
     public void FixedUpdate()
@@ -36,10 +33,8 @@ public class PlayerIdle : IState
 
     public IState Update()
     {
-        // Debug.Log(idleInput.Walk.ReadValue<float>());
-        
         // Check input for horizontal movement
-        if(idleInput.Walk.ReadValue<float>() != 0f)
+        if(input.Gameplay.MoveX.ReadValue<float>() != 0f)
         {
             return new PlayerWalk(player, false);
         }
@@ -50,30 +45,25 @@ public class PlayerIdle : IState
 
 
         // Check input for dodging
-        // if(Input.GetButtonDown("Fire3") && player.numDodges > 0)
-        if(idleInput.Dodge.triggered && player.numDodges > 0)
+        if(input.Gameplay.Dodge.triggered && player.numDodges > 0)
         {
             return new PlayerDodge(player);
         }
 
         // Check input for jumping
-        // if(Input.GetButtonDown("Jump"))
-        if(idleInput.Jump.triggered)
+        if(input.Gameplay.Jump.triggered)
         {
             return new PlayerJump(player);
         }
 
         // Check input for melee attacking
-        // if(Input.GetButtonDown("Fire1"))
-        if(idleInput.Melee.triggered)
+        if(input.Gameplay.Melee.triggered)
         {
-            // meleeAttack.gameObject.SetActive(true);
             return new PlayerMelee(player, 0f);
         }
 
         // Check input for shooting with a projectile
-        // if(Input.GetButtonDown("Fire2"))
-        if(idleInput.ShootProjectile.triggered)
+        if(input.Gameplay.ShootProjectile.triggered)
         {
             return new PlayerShoot(player);
         }

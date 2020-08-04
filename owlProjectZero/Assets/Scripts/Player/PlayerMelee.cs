@@ -7,14 +7,14 @@ public class PlayerMelee : IState
 {
     private readonly playerControl player;
     private GameObject meleeAttack;
-    private PlayerInputs.MeleeActions meleeInput;
+    private PlayerInputs input;
     private float horizontalMovement;
 
     public PlayerMelee(playerControl p, float hm)
     {
         player = p;
         meleeAttack = p.meleeAttack.gameObject;
-        meleeInput = p.input.Melee;
+        input = p.input;
         horizontalMovement = hm;
     }
     public void Enter()
@@ -45,8 +45,7 @@ public class PlayerMelee : IState
         if(!meleeAttack.activeInHierarchy)
         {
             // Check input for glide
-            // if(Input.GetAxis("Vertical") < 0)
-            if(meleeInput.Glide.triggered)
+            if(input.Gameplay.Glide.triggered)
             {
                 return new PlayerGlide(player, PlayerGlide.glideType.Down);
             }

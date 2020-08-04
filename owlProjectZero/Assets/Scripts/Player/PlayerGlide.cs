@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerGlide : IState
 {
     private readonly playerControl player;
-    private PlayerInputs.GlidingActions glideInput;
+    private PlayerInputs input;
     private const float newGravity = -2.0f;
     private float horizontalMovement = 0f;
     private glideType method = 0;
@@ -15,7 +15,7 @@ public class PlayerGlide : IState
     public PlayerGlide(playerControl p, glideType glideMethod)
     {
         player = p;
-        glideInput = p.input.Gliding;
+        input = p.input;
         method = glideMethod;
     }
     public void Enter()
@@ -25,7 +25,7 @@ public class PlayerGlide : IState
         player.GetComponent<Rigidbody>().useGravity = false;
 
         // Halt vertical movement
-        float xMovement = glideInput.Fly.ReadValue<float>();
+        float xMovement = input.Gameplay.MoveX.ReadValue<float>();
         player.GetComponent<Rigidbody>().velocity = new Vector3(xMovement, 0f, 0f);
     }
 
@@ -43,66 +43,49 @@ public class PlayerGlide : IState
 
     public IState Update()
     {
-        // Check input for tether
-        if(player.activeTetherPoint != null &&
-        //    Input.GetKeyDown(KeyCode.T) &&
-           glideInput.Tether.phase == InputActionPhase.Started &&
-           player.transform.position.y <= player.activeTetherPoint.transform.position.y)
-        {
-            return new PlayerTether(player);
-        }
-
         // Check input for changing skills
 
 
-
-
-        // Check input for dodging
-        // if(Input.GetButtonDown("Fire3") && player.numDodges > 0)
-        if(glideInput.Dodge.triggered && player.numDodges > 0)
-        {
-            return new PlayerDodge(player);
-        }
-
-        // Check input for jumping
-        // if(Input.GetButtonDown("Jump"))
-        if(glideInput.Jump.triggered)
-        {
-            return new PlayerJump(player);
-        }
-
-        // Check input for melee attacking
-        // if(Input.GetButtonDown("Fire1"))
-        if(glideInput.Melee.triggered)
-        {
-            // meleeAttack.gameObject.SetActive(true);
-            return new PlayerMelee(player, horizontalMovement);
-        }
-
-        // Check input for shooting with a projectile
-        // if(Input.GetButtonDown("Fire2"))
-        if(glideInput.ShootProjectile.triggered)
-        {
-            return new PlayerShoot(player);
-        }
 
         // Check input for exiting glide state while airborne
         if(method == glideType.Jump)
         {
             // if(Input.GetButtonUp("Jump"))
-            if(glideInput.Jump.phase == InputActionPhase.Canceled)
+            if(input.Gameplay.Jump.ReadValue<float>() == 0f)
             {
                 return new PlayerWalk(player, true);
             }
         }
         else
         {
-            // if(Input.GetKeyUp(KeyCode.DownArrow) ||
-            //    Input.GetKeyUp(KeyCode.S))
-            if(glideInput.Glide.ReadValue<float>() <= 0.5f)
+            if(input.Gameplay.Glide.ReadValue<float>() == 0f)
             {
                 return new PlayerWalk(player, true);
             }
+        }
+
+        // Check input for dodging
+        if(input.Gameplay.Dodge.triggered && player.numDodges > 0)
+        {
+            return new PlayerDodge(player);
+        }
+
+        // Check input for jumping
+        if(input.Gameplay.Jump.triggered)
+        {
+            return new PlayerJump(player);
+        }
+
+        // Check input for melee attacking
+        if(input.Gameplay.Melee.triggered)
+        {
+            return new PlayerMelee(player, horizontalMovement);
+        }
+
+        // Check input for shooting with a projectile
+        if(input.Gameplay.ShootProjectile.triggered)
+        {
+            return new PlayerShoot(player);
         }
 
         // If jumps get refreshed, i.e. landing on a platform
@@ -118,7 +101,7 @@ public class PlayerGlide : IState
         //                                                                 //
         /////////////////////////////////////////////////////////////////////
         // horizontalMovement = Input.GetAxis("Horizontal");
-        horizontalMovement = glideInput.Fly.ReadValue<float>();
+        horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();
         if(Mathf.Abs(horizontalMovement) > 0)
         {
             player.isFacingRight = (horizontalMovement < 0) ? false : true;

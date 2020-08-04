@@ -8,14 +8,14 @@ public class PlayerDodge : IState
     private readonly playerControl player;
     private Renderer playerRenderer;
     private Rigidbody playerBody;
-    private PlayerInputs.DodgingActions dodgeInput;
+    private PlayerInputs input;
 
     public PlayerDodge(playerControl p)
     {
         player = p;
         playerRenderer = p.gameObject.GetComponent<Renderer>();
         playerBody = p.gameObject.GetComponent<Rigidbody>();
-        dodgeInput = p.input.Dodging;
+        input = p.input;
     }
     public void Enter()
     {
@@ -31,8 +31,7 @@ public class PlayerDodge : IState
         float direction = (player.isFacingRight) ? 1f : -1f;
         playerBody.AddForce(new Vector3(direction * 10f, 0f, 0f), ForceMode.VelocityChange);
 
-        dodgeInput.Enable();
-        Debug.Log(player.input.Moving.enabled);
+        player.Dodge();
     }
 
     public void Exit()
@@ -42,12 +41,12 @@ public class PlayerDodge : IState
         playerBody.drag = 0.0f;
         player.dodgeDuration = -1f;
 
-        dodgeInput.Disable();
+        player.Dodge();
     }
 
     public void FixedUpdate()
     {
-        player.Dodge();
+        // player.Dodge();
     }
 
     public IState Update()
@@ -61,20 +60,16 @@ public class PlayerDodge : IState
         }
 
         // Check for glide input
-        // if(Input.GetAxis("Vertical") < 0)
-        if(dodgeInput.Glide.triggered)
+        if(input.Gameplay.Glide.triggered)
         {
             return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }
 
-        
-        // Debug.Log("Dodge: " + dodgeInput.Walk.ReadValue<float>());
-        // Debug.Break();
         // If the player has jumped and is still airborne
         // Should be changed to a airborne walk state instead
         // to avoid burning another jump automatically
         if(player.maxSpeed == player.airSpeed &&
-           dodgeInput.Walk.triggered)
+           input.Gameplay.MoveX.triggered)
         {
             return new PlayerWalk(player, true);
         }

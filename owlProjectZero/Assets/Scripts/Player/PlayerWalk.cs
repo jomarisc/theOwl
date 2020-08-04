@@ -7,12 +7,11 @@ public class PlayerWalk : IState
 {
     private readonly playerControl player;
     private Rigidbody playerBody;
-    private PlayerInputs.MovingActions movingInput;
-    private const float fastFallSpeed = -10f;
+    private PlayerInputs input;
     private float horizontalMovement = 0f;
-    private float verticalMovement = 0f;
     private bool isFlying = false;
-    private bool isFastFalling = false;
+    private bool isGliding = false;
+    public static float verticalMovement = 0f;
 
     // Maybe add another argument in constructor that determines
     // whether the player is grounded or not bc I'm considering having this
@@ -21,100 +20,81 @@ public class PlayerWalk : IState
     {
         player = p;
         playerBody = p.gameObject.GetComponent<Rigidbody>();
-        movingInput = p.input.Moving;
+        input = p.input;
         isFlying = isAirborne;
-        verticalMovement = (isAirborne) ? playerBody.velocity.y : 0f;
+        // verticalMovement = (isAirborne) ? playerBody.velocity.y : 0f;
     }
     public void Enter()
     {
         if(isFlying)
         {
             // use descending animation here:
+
+            input.Gameplay.Tether.started += player.ActivateTether;
+            input.Gameplay.Glide.started += player.FastFall;
+            input.Gameplay.Glide.started += Glide;
         }
         else
         {
             // Use walking animation here
         }
-
-        // movingInput.Enable();
-        horizontalMovement = movingInput.Walk.ReadValue<float>();
-        // Debug.Log("Enter: " + horizontalMovement);
-        // Debug.Break();
-        // Debug.Log(player.input.Idle.enabled);
     }
 
     public void Exit()
     {
-        // movingInput.Disable();
+        input.Gameplay.Tether.started -= player.ActivateTether;
+        input.Gameplay.Glide.started -= player.FastFall;
+        input.Gameplay.Glide.started -= Glide;
+
+        verticalMovement = 0f;
     }
 
     public void FixedUpdate()
     {
-
-        verticalMovement = (isFlying && isFastFalling) ? fastFallSpeed : playerBody.velocity.y;
+        if(isFlying)
+        {
+            if(verticalMovement != playerControl.FAST_FALL_SPEED)
+                verticalMovement = playerBody.velocity.y;
+        }
+        else
+            verticalMovement = playerBody.velocity.y;
         player.MoveCharacter(horizontalMovement, verticalMovement);
     }
 
     public IState Update()
     {
-        if(player.maxSpeed == player.airSpeed &&
-           player.activeTetherPoint != null &&
-        //    Input.GetKeyDown(KeyCode.T) &&
-           movingInput.Tether.phase == InputActionPhase.Started &&
-           player.transform.position.y <= player.activeTetherPoint.transform.position.y)
-        {
-            return new PlayerTether(player);
-        }
-
         // Check input for changing skills
 
 
 
 
         // Check input for dodging
-        // if(Input.GetButtonDown("Fire3") && player.numDodges > 0)
-        if(movingInput.Dodge.triggered)
+        if(input.Gameplay.Dodge.triggered && player.numDodges > 0)
         {
             return new PlayerDodge(player);
         }
 
         // Check input for jumping
-        // if(Input.GetButtonDown("Jump"))
-        if(movingInput.Jump.triggered)
+        if(input.Gameplay.Jump.triggered)
         {
             return new PlayerJump(player);
         }
 
         // Check input for melee attacking
-        // if(Input.GetButtonDown("Fire1"))
-        if(movingInput.Melee.triggered)
+        if(input.Gameplay.Melee.triggered)
         {
-            // meleeAttack.gameObject.SetActive(true);
             return new PlayerMelee(player, horizontalMovement);
         }
 
         // Check input for shooting with a projectile
-        // if(Input.GetButtonDown("Fire2"))
-        if(movingInput.ShootProjectile.triggered)
+        if(input.Gameplay.ShootProjectile.triggered)
         {
             return new PlayerShoot(player);
         }
-        
-        // When player is airborne and down key is pressed
-        if(isFlying &&
-        //    (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)))
-           movingInput.Glide.phase == InputActionPhase.Started)
+
+        if(isGliding)
         {
-            // If pressed during the fastfall window
-            if(Mathf.Abs(playerBody.velocity.y) < 5f &&
-               !isFastFalling)
-            {
-                Debug.Log("Fastfalling?");
-                isFastFalling = true;
-            }
-            // if down was pressed on this frame
-            else
-                return new PlayerGlide(player, PlayerGlide.glideType.Down);
+            return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }
 
         // If landing on a platform
@@ -133,10 +113,9 @@ public class PlayerWalk : IState
             return new PlayerWalk(player, true);
         }
 
-        // horizontalMovement = Input.GetAxis("Horizontal");
-        horizontalMovement = movingInput.Walk.ReadValue<float>();
-        // Debug.Log(horizontalMovement);
-        if(Mathf.Abs(horizontalMovement) > 0)
+        horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();
+        if(Mathf.Abs(horizontalMovement) > 0 ||
+           player.maxSpeed == player.airSpeed)
         {
             player.isFacingRight = (horizontalMovement < 0) ? false : true;
             return null;
@@ -144,6 +123,14 @@ public class PlayerWalk : IState
         else
         {
             return new PlayerIdle(player);
+        }
+    }
+
+    public void Glide(InputAction.CallbackContext context)
+    {
+        if(Mathf.Abs(playerBody.velocity.y) > 3f)
+        {
+            isGliding = true;
         }
     }
 }

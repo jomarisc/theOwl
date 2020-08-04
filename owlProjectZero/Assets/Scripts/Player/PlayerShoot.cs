@@ -7,13 +7,13 @@ public class PlayerShoot : IState
 {
     private readonly playerControl player;
     private GameObject projectile;
-    private PlayerInputs.ShootingActions shootInput;
+    private PlayerInputs input;
 
     public PlayerShoot(playerControl p)
     {
         player = p;
         projectile = p.projectile.gameObject;
-        shootInput = p.input.Shooting;
+        input = p.input;
     }
     public void Enter()
     {
@@ -44,8 +44,7 @@ public class PlayerShoot : IState
         }
 
         // Check for glide input
-        // if(Input.GetAxis("Vertical") < 0)
-        if(shootInput.Glide.triggered)
+        if(input.Gameplay.Glide.triggered)
         {
             return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }
