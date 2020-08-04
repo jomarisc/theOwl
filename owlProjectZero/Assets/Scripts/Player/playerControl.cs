@@ -100,9 +100,12 @@ public class playerControl : Character
     {
         if(activeTetherPoint != null)
         {
-            myState.Exit();
-            myState = new PlayerTether(this);
-            myState.Enter();
+            if(rb.position.y < activeTetherPoint.transform.position.y)
+            {
+                myState.Exit();
+                myState = new PlayerTether(this);
+                myState.Enter();
+            }
         }
         Debug.Log(myState);
     }
