@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5492792926999471545}
   - component: {fileID: 8282652260901784960}
   - component: {fileID: 1087469117397529104}
-  - component: {fileID: 8322965130657091661}
   m_Layer: 10
   m_Name: BasicEnemy
   m_TagString: Untagged
@@ -112,29 +111,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &8322965130657091661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4474135542371462771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83c56b69bedcd0243a4e63f8a7c29464, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meleeAttack: {fileID: 5647430596391202973}
-  data:
-    numJumps: 1
-    numDodges: 1
-    health: 10
-    maxSpeed: 0
-    groundSpeed: 2
-    airSpeed: 2
-    jumpDistance: 4
-    isFacingRight: 0
-    dodgeDuration: 5
 --- !u!1 &5647430596391202973
 GameObject:
   m_ObjectHideFlags: 0
