@@ -54,7 +54,7 @@ public class PlayerGlide : IState
 
 
         // Check input for dodging
-        if(Input.GetButtonDown("Fire3") && player.numDodges > 0)
+        if(Input.GetButtonDown("Fire3") && player.data.numDodges > 0)
         {
             return new PlayerDodge(player);
         }
@@ -96,8 +96,8 @@ public class PlayerGlide : IState
         }
 
         // If jumps get refreshed, i.e. landing on a platform
-        if(player.maxSpeed == player.groundSpeed &&
-           player.numJumps == playerControl.MAX_JUMPS)
+        if(player.data.maxSpeed == player.data.groundSpeed &&
+           player.data.numJumps == player.MAX_JUMPS)
         {
             return new PlayerIdle(player);
         }
@@ -110,7 +110,7 @@ public class PlayerGlide : IState
         horizontalMovement = Input.GetAxis("Horizontal");
         if(Mathf.Abs(horizontalMovement) > 0)
         {
-            player.isFacingRight = (horizontalMovement < 0) ? false : true;
+            player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
         }
         return null;
     }

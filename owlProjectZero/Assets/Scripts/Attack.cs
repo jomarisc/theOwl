@@ -99,7 +99,7 @@ public abstract class Attack : MonoBehaviour
             // character class
             if(col.gameObject.TryGetComponent(out Character character))
             {
-                col.gameObject.GetComponent<Character>().health -= hitboxes[0].damage;
+                col.gameObject.GetComponent<Character>().data.health -= hitboxes[0].damage;
             }
         }
     }

@@ -13,9 +13,9 @@ public class playerControl : Character
     public GameObject projectile;
     public GameObject tether;
     public TetherPoint activeTetherPoint = null;
-    public const int MAX_JUMPS = 3;
-    public const int MAX_DODGES = 1;
-    public const float DODGE_DURATION = 1.0f;
+
+    public playerControl() : base(3, 1, 4.0f)
+    {}
 
     // Start is called before the first frame update
     private void Start()
@@ -27,7 +27,7 @@ public class playerControl : Character
         }
         rb = GetComponent<Rigidbody>();
         sphereCollider = GetComponent<SphereCollider>();
-        dodgeDuration = -1f;
+        data.dodgeDuration = -1f;
     }
 
     // Update is called once per frame
@@ -55,9 +55,9 @@ public class playerControl : Character
         projectile.gameObject.SetActive(true);
         ProjectileAttack projAtk = projectile.GetComponent<ProjectileAttack>();
         Rigidbody projBody = projectile.GetComponent<Rigidbody>();
-        Vector3 spawnOffset = (isFacingRight) ? new Vector3(0.5f, 0f, 0f) : new Vector3(-0.5f, 0f, 0f);
+        Vector3 spawnOffset = (data.isFacingRight) ? new Vector3(0.5f, 0f, 0f) : new Vector3(-0.5f, 0f, 0f);
         projBody.position = transform.position + spawnOffset;
-        projAtk.speed = (isFacingRight) ? ProjectileAttack.INITIAL_SPEED : -ProjectileAttack.INITIAL_SPEED;
+        projAtk.speed = (data.isFacingRight) ? ProjectileAttack.INITIAL_SPEED : -ProjectileAttack.INITIAL_SPEED;
     }
 
     public void TetherSwing(float tetherLength, Vector3 tetherDirection, float theta)

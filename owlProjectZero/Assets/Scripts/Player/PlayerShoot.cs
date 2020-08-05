@@ -46,7 +46,7 @@ public class PlayerShoot : IState
             return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }
 
-        if(player.maxSpeed == player.airSpeed)
+        if(player.data.maxSpeed == player.data.airSpeed)
         {
             return new PlayerWalk(player, true); // Change this to specify the airborne version later
         }

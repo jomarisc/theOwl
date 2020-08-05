@@ -19,13 +19,13 @@ public class PlayerDodge : IState
         // use ground dodge animation here:
 
         playerRenderer.material.SetColor("_Color", Color.black);
-        player.dodgeDuration = playerControl.DODGE_DURATION;
-        player.numDodges--;
+        player.data.dodgeDuration = player.DODGE_DURATION;
+        player.data.numDodges--;
 
         playerBody.useGravity = false;
         playerBody.velocity = Vector3.zero;
         playerBody.drag = 1.0f;
-        float direction = (player.isFacingRight) ? 1f : -1f;
+        float direction = (player.data.isFacingRight) ? 1f : -1f;
         playerBody.AddForce(new Vector3(direction * 10f, 0f, 0f), ForceMode.VelocityChange);
     }
 
@@ -34,7 +34,7 @@ public class PlayerDodge : IState
         playerRenderer.material.SetColor("_Color", Color.red);
         playerBody.useGravity = true;
         playerBody.drag = 0.0f;
-        player.dodgeDuration = -1f;
+        player.data.dodgeDuration = -1f;
     }
 
     public void FixedUpdate()
@@ -46,9 +46,9 @@ public class PlayerDodge : IState
     {
         // -1 <= dodgeDuration <= DODGE_DURATION
         // Decrement dodgeDuration until it reaches below 0
-        if(player.dodgeDuration >= 0f)
+        if(player.data.dodgeDuration >= 0f)
         {
-            player.dodgeDuration -= Time.deltaTime;
+            player.data.dodgeDuration -= Time.deltaTime;
             return null;
         }
 
@@ -61,7 +61,7 @@ public class PlayerDodge : IState
         // If the player has jumped and is still airborne
         // Should be changed to a airborne walk state instead
         // to avoid burning another jump automatically
-        if(player.maxSpeed == player.airSpeed)
+        if(player.data.maxSpeed == player.data.airSpeed)
         {
             return new PlayerWalk(player, true);
         }

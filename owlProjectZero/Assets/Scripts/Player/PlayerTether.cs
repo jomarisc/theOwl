@@ -50,7 +50,7 @@ public class PlayerTether : IState
     public IState Update()
     {
         // Check input for dodging
-        if(Input.GetButtonDown("Fire3") && player.numDodges > 0)
+        if(Input.GetButtonDown("Fire3") && player.data.numDodges > 0)
         {
             return new PlayerDodge(player);
         }
