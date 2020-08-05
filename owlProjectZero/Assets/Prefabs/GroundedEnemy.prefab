@@ -21,7 +21,7 @@ MonoBehaviour:
     groundSpeed: 2
     airSpeed: 2
     jumpDistance: 4
-    isFacingRight: 0
+    isFacingRight: 1
     dodgeDuration: 5
 --- !u!1001 &257466304092606747
 PrefabInstance:
@@ -89,6 +89,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GroundedEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4939920216119016103, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647430596391202973, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8322965130657091661, guid: a94cdbb1a371e434da94986eea1d80d4, type: 3}
