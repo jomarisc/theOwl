@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Character
+public abstract class Enemy : Character
 {
-    public Enemy() : base(1, 1, 5.0f)
+    public Enemy(int maxJumps, int maxDodges, float dodgeDuration) : base(maxJumps, maxDodges, dodgeDuration)
     {}
 
     // Update is called once per frame
-    new private void Update()
+    new protected void Update()
     {
         base.Update();
     }
