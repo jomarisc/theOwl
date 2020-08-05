@@ -6,15 +6,10 @@ public class Enemy : Character
 {
     public Enemy() : base(1, 1, 5.0f)
     {}
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     new private void Update()
     {
-        
+        base.Update();
     }
 }
