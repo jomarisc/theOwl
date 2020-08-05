@@ -44,8 +44,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         if(data.health <= 0f)
         {
-            Debug.Log("Got rekt");
-            Destroy(this.gameObject);
+            GetRekt();
         }
     }
 
@@ -114,7 +113,8 @@ public abstract class Character : MonoBehaviour, ICharacter
 
     public void GetRekt()
     {
-        
+        Debug.Log("Got rekt");
+        Destroy(this.gameObject);
     }
 
     protected void ChangeSkill()
