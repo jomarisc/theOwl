@@ -6,15 +6,11 @@ using UnityEngine;
 public class playerControl : Character
 {
     SphereCollider sphereCollider;
-
-    private float acceleration;
-    private float xSpeed;
-    private IState myState;
     public GameObject projectile;
     public GameObject tether;
     public TetherPoint activeTetherPoint = null;
 
-    public playerControl() : base(3, 1, 4.0f)
+    public playerControl() : base(3, 1, 1f)
     {}
 
     // Start is called before the first frame update

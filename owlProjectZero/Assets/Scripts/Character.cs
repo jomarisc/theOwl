@@ -25,6 +25,7 @@ public abstract class Character : MonoBehaviour, ICharacter
 
     // protected attributes
     protected Rigidbody rb;
+    protected IState myState;
 
     // public attributes
     public GameObject meleeAttack;
