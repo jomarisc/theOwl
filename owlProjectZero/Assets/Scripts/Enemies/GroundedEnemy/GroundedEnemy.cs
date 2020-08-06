@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class GroundedEnemy : Enemy
 {
+    // private fields
+
+    // protected fields
+
+    // public fields
+
+
     // Initializing maxJumps, maxDodges, dodgeDuration
     public GroundedEnemy() : base(0, 1, 5f)
     {}
@@ -11,12 +18,21 @@ public class GroundedEnemy : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(myState == null)
+        {
+            myState = new GEnemyIdle(this);
+        }
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     new private void Update()
     {
         base.Update();
+    }
+
+    new private void FixedUpdate()
+    {
+        base.FixedUpdate();
     }
 }
