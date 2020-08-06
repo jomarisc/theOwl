@@ -14,14 +14,18 @@ public class GroundedEnemy : Enemy
     // Initializing maxJumps, maxDodges, dodgeDuration
     public GroundedEnemy() : base(0, 1, 5f)
     {}
-    
-    // Start is called before the first frame update
-    void Start()
+
+    void OnEnable()
     {
         if(myState == null)
         {
             myState = new GEnemyIdle(this);
         }
+    }
+    
+    // Start is called before the first frame update
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
     }
 
@@ -34,5 +38,17 @@ public class GroundedEnemy : Enemy
     new private void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    void OnBecameVisible()
+    {
+        Debug.Log("Visible");
+        gameObject.SetActive(true);
+    }
+
+    void OnBecameInvisible()
+    {
+        Debug.Log("Invisible");
+        gameObject.SetActive(false);
     }
 }
