@@ -47,6 +47,19 @@ public abstract class Character : MonoBehaviour, ICharacter
         {
             GetRekt();
         }
+
+        IState currentState = myState.Update();
+        if(currentState != null)
+        {
+            myState.Exit();
+            myState = currentState;
+            myState.Enter();
+        }
+    }
+
+    public void FixedUpdate()
+    {
+        myState.FixedUpdate();
     }
 
     // Moves the player left/right based off of the value of its acceleration

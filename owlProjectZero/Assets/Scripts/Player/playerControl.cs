@@ -31,19 +31,11 @@ public class playerControl : Character
                               // of a warning for calling base.Update()
     {
         base.Update();
-        IState currentState = myState.Update();
-        if(currentState != null)
-        {
-            myState.Exit();
-            myState = currentState;
-            Debug.Log(myState);
-            myState.Enter();
-        }
     }
 
-    private void FixedUpdate()
+    new private void FixedUpdate()
     {
-        myState.FixedUpdate();
+        base.FixedUpdate();
     }
 
     public void SpawnProjectile()

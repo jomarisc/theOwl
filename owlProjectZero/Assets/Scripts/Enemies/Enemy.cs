@@ -12,4 +12,9 @@ public abstract class Enemy : Character
     {
         base.Update();
     }
+
+    new protected void FixedUpdate()
+    {
+        base.FixedUpdate();
+    }
 }
