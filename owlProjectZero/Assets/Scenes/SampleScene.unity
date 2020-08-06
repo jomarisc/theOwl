@@ -638,7 +638,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330665068}
-  m_LocalRotation: {x: -0.22706117, y: 0.009771473, z: -0.0021296605, w: -0.9738292}
+  m_LocalRotation: {x: -0.22706115, y: 0.009771473, z: -0.0021296605, w: -0.9738292}
   m_LocalPosition: {x: 0, y: 4, z: -8.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1350,7 +1350,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.22706117, y: 0.009771473, z: -0.0021296605, w: -0.9738292}
+  m_LocalRotation: {x: -0.22706115, y: 0.009771473, z: -0.0021296605, w: -0.9738292}
   m_LocalPosition: {x: 0, y: 4, z: -8.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2432,40 +2432,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2529497728352103112, guid: 8b768704a9719d3408f4b19946d302e4,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 120
-      objectReference: {fileID: 0}
     - target: {fileID: 2529497728352103115, guid: 8b768704a9719d3408f4b19946d302e4,
         type: 3}
       propertyPath: m_Name
       value: player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8999999630293863110, guid: 8b768704a9719d3408f4b19946d302e4,
-        type: 3}
-      propertyPath: hitboxes.Array.data[0].startup
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8999999630293863110, guid: 8b768704a9719d3408f4b19946d302e4,
-        type: 3}
-      propertyPath: hitboxes.Array.data[0].timeActive
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8999999630293863110, guid: 8b768704a9719d3408f4b19946d302e4,
-        type: 3}
-      propertyPath: hitboxes.Array.data[0].recovery
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8999999630293863110, guid: 8b768704a9719d3408f4b19946d302e4,
-        type: 3}
-      propertyPath: hitboxes.Array.data[0].knockbackAngle
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 8999999630293863110, guid: 8b768704a9719d3408f4b19946d302e4,
-        type: 3}
-      propertyPath: hitboxes.Array.data[0].knockback
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b768704a9719d3408f4b19946d302e4, type: 3}
