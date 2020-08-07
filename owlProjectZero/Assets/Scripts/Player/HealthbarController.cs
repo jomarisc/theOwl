@@ -28,12 +28,6 @@ public class HealthbarController : MonoBehaviour
         Debug.Log("Health: " + healthSystem.GetHealth());
 
         /*
-        CMDebug.ButtonUI(new Vector2(100, 100), "damage", () =>
-        {
-            healthSystem.Damage(2);
-            Debug.Log("Damaged: " + healthSystem.GetHealth());
-        });
-
         CMDebug.ButtonUI(new Vector2(-100, 100), "heal", () =>
         {
             healthSystem.Heal(2);
@@ -47,9 +41,17 @@ public class HealthbarController : MonoBehaviour
         currentHealth -= damageAmount;
         // Ensures that health does not go below 0
         healthBar.fillAmount = currentHealth / healthMax;
-        if (currentHealth < 0) currentHealth = 0;
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+
+            GameObject player = GameObject.Find("player");
+            playerControl playerScript = player.GetComponent<playerControl>();
+            playerScript.GoToDeadState();
+            //Debug.Log("Got rekt2");
+            //return new PlayerDeath(player);
+        }
         Debug.Log("Current Health: " + currentHealth);
-        
     }
 
     /*

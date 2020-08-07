@@ -10,7 +10,7 @@ public class CollisionController : MonoBehaviour
     {
         if (collision.gameObject.tag == "TestEnemy")
         {
-            if (healthbar)
+            if (healthbar.currentHealth > 0)
             {
                 healthbar.Damage(2);
                 //Debug.Log("Current Health: " + player.getHealth());

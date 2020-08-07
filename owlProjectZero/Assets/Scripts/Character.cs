@@ -23,6 +23,7 @@ public abstract class Character : MonoBehaviour, ICharacter
                                //facing in the right-hand direction
                                // *So far, must be initialized in sub classes*
     public float dodgeDuration = 0.4f;
+    public float deadDuration = 0.0f;
 
     public void Update()
     {
@@ -98,7 +99,9 @@ public abstract class Character : MonoBehaviour, ICharacter
 
     public void GetRekt()
     {
-        
+        // New lines
+        Debug.Log("Got rekt");
+        Destroy(this.gameObject);
     }
 
     protected void ChangeSkill()

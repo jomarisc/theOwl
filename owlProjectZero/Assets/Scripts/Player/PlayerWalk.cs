@@ -11,7 +11,6 @@ public class PlayerWalk : IState
     private float verticalMovement = 0f;
     private bool isFlying = false;
     private bool isFastFalling = false;
-
     // Maybe add another argument in constructor that determines
     // whether the player is grounded or not bc I'm considering having this
     // state govern strictly horizontal movement; grounded or otherwise
