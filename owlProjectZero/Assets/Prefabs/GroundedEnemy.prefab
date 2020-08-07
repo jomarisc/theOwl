@@ -21,8 +21,12 @@ MonoBehaviour:
     groundSpeed: 2
     airSpeed: 1.5
     jumpDistance: 4
-    isFacingRight: 1
+    isFacingRight: 0
     dodgeDuration: 5
+  eyePrescription: 15
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1001 &257466304092606747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84,6 +88,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685062507063603794, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: hitboxes.Array.data[0].startup
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4474135542371462771, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}

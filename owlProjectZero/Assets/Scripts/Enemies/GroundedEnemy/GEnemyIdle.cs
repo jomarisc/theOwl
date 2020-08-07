@@ -7,6 +7,7 @@ public class GEnemyIdle : IState
     private readonly GroundedEnemy character;
     private const float IDLE_TIME = 3f;
     private float waitTime;
+    private bool playerFound;
     
     public GEnemyIdle(GroundedEnemy myself)
     {
@@ -18,6 +19,7 @@ public class GEnemyIdle : IState
         // Enter Grounded enemy idle animation here:
 
         waitTime = IDLE_TIME;
+        playerFound = false;
     }
 
     public void Exit()
@@ -27,11 +29,16 @@ public class GEnemyIdle : IState
 
     public void FixedUpdate()
     {
-
+        playerFound = character.SeesPlayer();
     }
     
     public IState Update()
     {
+        if(playerFound)
+        {
+            return new GEnemyChase(character);
+        }
+
         if(waitTime >= 0f)
         {
             waitTime -= Time.deltaTime;

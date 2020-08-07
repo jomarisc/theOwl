@@ -53,6 +53,7 @@ public abstract class Character : MonoBehaviour, ICharacter
         {
             myState.Exit();
             myState = currentState;
+            Debug.Log(myState);
             myState.Enter();
         }
     }
