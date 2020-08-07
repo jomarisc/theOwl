@@ -34,6 +34,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1087469117397529104, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: m_Drag
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1635083202522667732, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -93,6 +98,11 @@ PrefabInstance:
         type: 3}
       propertyPath: hitboxes.Array.data[0].startup
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685062507063603794, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: hitboxes.Array.data[0].knockback
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4474135542371462771, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
