@@ -22,10 +22,10 @@ public class HealthbarController : MonoBehaviour
     {
         GameObject player = GameObject.Find("player");
         playerControl playerScript = player.GetComponent<playerControl>();
-        //playerScript.health -= 0f;
+        
         currentHealth = playerScript.health;
-        HealthbarSystem healthSystem = new HealthbarSystem(currentHealth);
-        Debug.Log("Health: " + healthSystem.GetHealth());
+        
+        Debug.Log("Health: " + currentHealth);
 
         /*
         CMDebug.ButtonUI(new Vector2(-100, 100), "heal", () =>
