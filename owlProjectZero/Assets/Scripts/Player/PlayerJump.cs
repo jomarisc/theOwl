@@ -22,6 +22,7 @@ using UnityEngine;
 public class PlayerJump : IState
 {
     private readonly playerControl player;
+    private AudioSource jump;
     private Rigidbody playerBody;
     private float horizontalMovement = 0f;
     // private float jumpCooldown = 0.06f;
@@ -29,12 +30,15 @@ public class PlayerJump : IState
     public PlayerJump(playerControl p)
     {
         player = p;
+        jump = p.gameObject.GetComponentInChildren<AudioSource>();
         playerBody = p.gameObject.GetComponent<Rigidbody>();
     }
     public void Enter()
     {
         // use jump animation here
-
+    	if(player.numJumps > 0){
+    		jump.Play();
+    	}
         player.Jump();
     }
 
