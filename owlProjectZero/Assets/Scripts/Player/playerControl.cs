@@ -16,6 +16,7 @@ public class playerControl : Character
     public const int MAX_JUMPS = 3;
     public const int MAX_DODGES = 1;
     public const float DODGE_DURATION = 1.0f;
+    public const float DEAD_DURATION = 3.0f;
 
     // Start is called before the first frame update
     private void Start()
@@ -38,6 +39,7 @@ public class playerControl : Character
         IState currentState = myState.Update();
         if(currentState != null)
         {
+            //Debug.Log("Entered here!");
             myState.Exit();
             myState = currentState;
             Debug.Log(myState);
@@ -79,5 +81,16 @@ public class playerControl : Character
         Debug.DrawLine(rb.position, rb.position + pendulumForce, Color.blue);
 
         Debug.DrawLine(rb.position, rb.position + rb.velocity);
+    }
+
+    // New
+    public void GoToDeadState()
+    {
+
+        myState.Exit();
+        myState = new PlayerDead(this);
+        Debug.Log(myState);
+        myState.Enter();
+
     }
 }

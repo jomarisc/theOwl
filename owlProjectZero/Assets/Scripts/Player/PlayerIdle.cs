@@ -14,6 +14,7 @@ public class PlayerIdle : IState
     }
     public void Enter()
     {
+        Debug.Log("In Idle!");
         // Enter idle animation code here:
     }
 
