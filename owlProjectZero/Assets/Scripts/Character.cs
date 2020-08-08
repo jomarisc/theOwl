@@ -24,6 +24,8 @@ public abstract class Character : MonoBehaviour, ICharacter
                                // *So far, must be initialized in sub classes*
     public float dodgeDuration = 0.4f;
 
+    //public Animator animator;
+
     public void Update()
     {
         if(health <= 0f)
@@ -109,11 +111,19 @@ public abstract class Character : MonoBehaviour, ICharacter
     protected void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.GetComponent<EnvironmentElement>() != null)
+        {
             maxSpeed = groundSpeed;
+            //animator.SetBool("grounded", true);
+        }
+            
     }
     protected void OnCollisionExit(Collision col)
     {
         if(col.gameObject.GetComponent<EnvironmentElement>() != null)
+        {
             maxSpeed = airSpeed;
+            //animator.SetBool("grounded", false);
+        }
+            
     }
 }

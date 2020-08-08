@@ -17,9 +17,13 @@ public class playerControl : Character
     public const int MAX_DODGES = 1;
     public const float DODGE_DURATION = 1.0f;
 
+    public Animator animator;
+    
+
     // Start is called before the first frame update
     private void Start()
     {
+        animator = GetComponent<Animator>();
         if(myState == null)
         {
             myState = new PlayerIdle(this);
@@ -43,6 +47,9 @@ public class playerControl : Character
             Debug.Log(myState);
             myState.Enter();
         }
+
+        //This is probably suboptimal and juryrigs the animation. But it works. -Joel
+        //animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
     }
 
     private void FixedUpdate()

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,10 @@ public class PlayerWalk : IState
     private bool isFlying = false;
     private bool isFastFalling = false;
 
+    //Reference to animator/renderer.
+    private Animator animator;
+    private SpriteRenderer spriterenderer;
+
     // Maybe add another argument in constructor that determines
     // whether the player is grounded or not bc I'm considering having this
     // state govern strictly horizontal movement; grounded or otherwise
@@ -21,22 +26,33 @@ public class PlayerWalk : IState
         playerBody = p.gameObject.GetComponent<Rigidbody>();
         isFlying = isAirborne;
         verticalMovement = (isAirborne) ? playerBody.velocity.y : 0f;
+        
+        //Trying to pass a reference to the Animator/Renderer components here. 
+        animator = p.gameObject.GetComponent<Animator>();
+        spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
     }
     public void Enter()
     {
-        if(isFlying)
+        if (isFlying)
         {
             // use descending animation here:
+            animator.SetBool("walking", false);
+            animator.SetBool("idling", false);
         }
         else
         {
             // Use walking animation here
+            animator.SetBool("walking", true);
+            animator.SetBool("jumpup", false);
+            animator.SetBool("jumpdown", false);
         }
     }
 
     public void Exit()
     {
-        // Nothing so far
+        animator.SetBool("walking", false);
+        animator.SetBool("jumpup", false);
+        isFastFalling = false;
     }
 
     public void FixedUpdate()
@@ -44,10 +60,35 @@ public class PlayerWalk : IState
 
         verticalMovement = (isFlying && isFastFalling) ? fastFallSpeed : playerBody.velocity.y;
         player.MoveCharacter(horizontalMovement, verticalMovement);
+
+        //Also checking Vertical speed.
+        animator.SetFloat("VerticalMovement", verticalMovement);
+        animator.SetFloat("horizontalMovement", horizontalMovement);
     }
 
     public IState Update()
     {
+        //Check Horizontal Movement. Flip accordingly.
+        if (horizontalMovement > 0) 
+        {
+            animator.SetBool("walking", true);
+            animator.SetBool("idling", false);
+            spriterenderer.flipX = false; 
+        }
+        else if (horizontalMovement < 0) 
+        {
+            animator.SetBool("walking", true);
+            animator.SetBool("idling", false);
+            spriterenderer.flipX = true; 
+        }
+        else 
+        { 
+            animator.SetBool("walking", false);
+            animator.SetBool("idling", true);
+        }
+
+
+
         if(player.maxSpeed == player.airSpeed &&
            player.activeTetherPoint != null &&
            Input.GetKeyDown(KeyCode.T) &&
@@ -96,6 +137,7 @@ public class PlayerWalk : IState
             {
                 Debug.Log("Fastfalling?");
                 isFastFalling = true;
+                
             }
             // if down was pressed on this frame
             else if(Input.GetKeyDown(KeyCode.DownArrow) ||
@@ -110,7 +152,9 @@ public class PlayerWalk : IState
            player.maxSpeed == player.groundSpeed)
         {
             Debug.Log("Landing");
+            isFastFalling = false;
             return new PlayerWalk(player, false);
+            
         }
 
         // If leaving a platform

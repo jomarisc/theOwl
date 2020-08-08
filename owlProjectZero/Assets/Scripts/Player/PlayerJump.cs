@@ -26,30 +26,46 @@ public class PlayerJump : IState
     private float horizontalMovement = 0f;
     // private float jumpCooldown = 0.06f;
 
+    private Animator animator;
+    private SpriteRenderer spriterenderer;
+
     public PlayerJump(playerControl p)
     {
         player = p;
         playerBody = p.gameObject.GetComponent<Rigidbody>();
+        //Need to pass references. - Joel
+        animator = p.gameObject.GetComponent<Animator>();
+        spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
+        
     }
     public void Enter()
     {
         // use jump animation here
 
         player.Jump();
+        animator.SetBool("jumpup", true);
     }
 
     public void Exit()
     {
-
+        animator.SetBool("jumpup", false);
     }
 
     public void FixedUpdate()
     {
         player.MoveCharacter(horizontalMovement);
+        //Also checking Vertical speed.
+        animator.SetFloat("VerticalMovement", playerBody.velocity.y);
     }
 
     public IState Update()
     {
+        //Checking velocity to change sprite direction.
+        if (horizontalMovement > 0) { spriterenderer.flipX = false;}
+        else if (horizontalMovement < 0) { spriterenderer.flipX = true;}
+        else { }
+
+
         // Check input for tether
         if(player.activeTetherPoint != null &&
            Input.GetKeyDown(KeyCode.T) &&
@@ -64,6 +80,7 @@ public class PlayerJump : IState
         if(Input.GetButtonDown("Jump"))
         {
             // player.numJumps--;
+            
             return new PlayerJump(player);
         }
 
@@ -89,6 +106,7 @@ public class PlayerJump : IState
         // Check if descending
         if(playerBody.velocity.y <= 0)
         {
+            
             // If jumps get refreshed, i.e. landing on a platform
             if(player.maxSpeed == player.groundSpeed &&
                player.numJumps == playerControl.MAX_JUMPS)

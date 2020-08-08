@@ -10,10 +10,19 @@ public class PlayerGlide : IState
     private glideType method = 0;
     public enum glideType {Jump, Down}
 
+    //Get references to both animator and sprite renderer. -Joel
+    private Animator animator;
+    private SpriteRenderer spriterenderer;
+
     public PlayerGlide(playerControl p, glideType glideMethod)
     {
         player = p;
         method = glideMethod;
+
+        //Assign those references. -Joel
+
+        animator = p.gameObject.GetComponent<Animator>();
+        spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
     }
     public void Enter()
     {
@@ -24,12 +33,14 @@ public class PlayerGlide : IState
         // Halt vertical movement
         float xMovement = Input.GetAxis("Horizontal");
         player.GetComponent<Rigidbody>().velocity = new Vector3(xMovement, 0f, 0f);
+        animator.SetBool("gliding", true);
     }
 
     public void Exit()
     {
         // Reset gravity
         player.GetComponent<Rigidbody>().useGravity = true;
+        animator.SetBool("gliding", false);
     }
 
     public void FixedUpdate()
@@ -40,6 +51,12 @@ public class PlayerGlide : IState
 
     public IState Update()
     {
+        //Check for direction of movement to flip sprite. - Joel
+        if (horizontalMovement > 0) { spriterenderer.flipX = false; }
+        else if (horizontalMovement < 0) { spriterenderer.flipX = true; }
+        else { }
+
+
         // Check input for tether
         if(player.activeTetherPoint != null &&
            Input.GetKeyDown(KeyCode.T) &&
