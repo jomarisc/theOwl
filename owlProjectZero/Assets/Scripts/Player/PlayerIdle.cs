@@ -8,19 +8,24 @@ public class PlayerIdle : IState
     private readonly playerControl player;
     private float waitTime = 30f; // Time until the "no input" animation kicks in
 
+    private Animator animator;
+
     public PlayerIdle(playerControl p)
     {
         player = p;
+        animator = p.gameObject.GetComponent<Animator>();
     }
     public void Enter()
     {
         Debug.Log("In Idle!");
         // Enter idle animation code here:
+        animator.SetBool("idling", true);
     }
 
     public void Exit()
     {
         // Nothing so far
+        animator.SetBool("idling", false);
     }
 
     public void FixedUpdate()

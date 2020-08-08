@@ -10,6 +10,9 @@ public class PlayerTether : IState
     private Vector3 tetherDirection;
     private float tetherLength;
     private float angle;
+    //References to animator and sprite renderer.
+    private Animator animator;
+    private SpriteRenderer spriterenderer;
 
     public PlayerTether(playerControl p)
     {
@@ -18,6 +21,9 @@ public class PlayerTether : IState
         tetherDirection = p.activeTetherPoint.transform.position - playerRB.position;
         tetherLength = tetherDirection.magnitude;
         angle = Vector3.SignedAngle(tetherDirection, Vector3.up, Vector3.forward) * Mathf.Deg2Rad;
+        //Set those references.
+        animator = p.gameObject.GetComponent<Animator>();
+        spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
     }
     public void Enter()
     {
@@ -28,12 +34,14 @@ public class PlayerTether : IState
         player.tether.SetActive(true);
         playerRB.velocity = Vector3.zero;
         playerRB.drag = 0f;
+        animator.SetBool("tethered", true);
     }
 
     public void Exit()
     {
         // playerRB.useGravity = true;
         player.tether.SetActive(false);
+        animator.SetBool("tethered", false);
     }
 
     public void FixedUpdate()
@@ -49,8 +57,22 @@ public class PlayerTether : IState
 
     public IState Update()
     {
+        //Checking velocity to change sprite direction.
+        if (playerRB.velocity.x > 0)
+        {
+            spriterenderer.flipX = false;
+        }
+        else if (playerRB.velocity.x < 0)
+        {
+            spriterenderer.flipX = true;
+        }
+        else
+        {
+
+        }
+
         // Check input for dodging
-        if(Input.GetButtonDown("Fire3") && player.numDodges > 0)
+        if (Input.GetButtonDown("Fire3") && player.numDodges > 0)
         {
             return new PlayerDodge(player);
         }

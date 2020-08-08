@@ -8,11 +8,14 @@ public class PlayerMelee : IState
     private GameObject meleeAttack;
     private float horizontalMovement;
 
+    private Animator animator;
+
     public PlayerMelee(playerControl p, float hm)
     {
         player = p;
         meleeAttack = p.meleeAttack.gameObject;
         horizontalMovement = hm;
+        animator = p.gameObject.GetComponent<Animator>();
     }
     public void Enter()
     {
@@ -20,6 +23,7 @@ public class PlayerMelee : IState
 
         player.Attack();
         meleeAttack.SetActive(true);
+        animator.SetBool("meleeing", true);
     }
 
     public void Exit()
@@ -29,6 +33,7 @@ public class PlayerMelee : IState
         {
             meleeAttack.SetActive(false);
         }
+        animator.SetBool("meleeing", false);
     }
 
     public void FixedUpdate()

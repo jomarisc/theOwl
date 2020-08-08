@@ -8,11 +8,15 @@ public class PlayerDodge : IState
     private Renderer playerRenderer;
     private Rigidbody playerBody;
 
+    private Animator animator;
+    
+
     public PlayerDodge(playerControl p)
     {
         player = p;
         playerRenderer = p.gameObject.GetComponent<Renderer>();
         playerBody = p.gameObject.GetComponent<Rigidbody>();
+        animator = p.gameObject.GetComponent<Animator>();
     }
     public void Enter()
     {
@@ -27,6 +31,7 @@ public class PlayerDodge : IState
         playerBody.drag = 1.0f;
         float direction = (player.isFacingRight) ? 1f : -1f;
         playerBody.AddForce(new Vector3(direction * 10f, 0f, 0f), ForceMode.VelocityChange);
+        animator.SetBool("dodging", true);
     }
 
     public void Exit()
@@ -35,6 +40,7 @@ public class PlayerDodge : IState
         playerBody.useGravity = true;
         playerBody.drag = 0.0f;
         player.dodgeDuration = -1f;
+        animator.SetBool("dodging", false);
     }
 
     public void FixedUpdate()
