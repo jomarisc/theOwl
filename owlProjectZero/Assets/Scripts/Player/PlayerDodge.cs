@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerDodge : IState
 {
     private readonly playerControl player;
     private Renderer playerRenderer;
     private Rigidbody playerBody;
+    private PlayerInputs input;
 
     private Animator animator;
     
@@ -17,6 +19,7 @@ public class PlayerDodge : IState
         playerRenderer = p.gameObject.GetComponent<Renderer>();
         playerBody = p.gameObject.GetComponent<Rigidbody>();
         animator = p.gameObject.GetComponent<Animator>();
+        input = p.input;
     }
     public void Enter()
     {
@@ -32,6 +35,8 @@ public class PlayerDodge : IState
         float direction = (player.data.isFacingRight) ? 1f : -1f;
         playerBody.AddForce(new Vector3(direction * 10f, 0f, 0f), ForceMode.VelocityChange);
         animator.SetBool("dodging", true);
+
+        player.Dodge();
     }
 
     public void Exit()
@@ -41,11 +46,13 @@ public class PlayerDodge : IState
         playerBody.drag = 0.0f;
         player.data.dodgeDuration = -1f;
         animator.SetBool("dodging", false);
+
+        player.Dodge();
     }
 
     public void FixedUpdate()
     {
-        player.Dodge();
+        // player.Dodge();
     }
 
     public IState Update()
@@ -59,7 +66,7 @@ public class PlayerDodge : IState
         }
 
         // Check for glide input
-        if(Input.GetAxis("Vertical") < 0)
+        if(input.Gameplay.Glide.triggered)
         {
             return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }
@@ -67,7 +74,8 @@ public class PlayerDodge : IState
         // If the player has jumped and is still airborne
         // Should be changed to a airborne walk state instead
         // to avoid burning another jump automatically
-        if(player.data.maxSpeed == player.data.airSpeed)
+        if(player.data.maxSpeed == player.data.airSpeed &&
+           input.Gameplay.MoveX.triggered)
         {
             return new PlayerWalk(player, true);
         }

@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 // Player Tether State
 public class PlayerTether : IState
 {
     private readonly playerControl player;
     private Rigidbody playerRB;
+    private PlayerInputs input;
     private Vector3 tetherDirection;
     private float tetherLength;
     private float angle;
@@ -24,24 +26,29 @@ public class PlayerTether : IState
         //Set those references.
         animator = p.gameObject.GetComponent<Animator>();
         spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
+        input = p.input;
     }
     public void Enter()
     {
-        // Enter tetherDirection animation code here:
+        // Enter tether animation code here:
 
 
-        // player.GetComponent<Rigidbody>().useGravity = false;
         player.tether.SetActive(true);
         playerRB.velocity = Vector3.zero;
         playerRB.drag = 0f;
         animator.SetBool("tethered", true);
+
+        input.Gameplay.Tether.started += player.Untether;
+        input.Gameplay.Glide.started += player.Untether;
     }
 
     public void Exit()
     {
-        // playerRB.useGravity = true;
         player.tether.SetActive(false);
         animator.SetBool("tethered", false);
+
+        input.Gameplay.Tether.started -= player.Untether;
+        input.Gameplay.Glide.started -= player.Untether;
     }
 
     public void FixedUpdate()
@@ -50,7 +57,6 @@ public class PlayerTether : IState
         {
             tetherDirection = player.activeTetherPoint.transform.position - playerRB.position;
             angle = Vector3.SignedAngle(tetherDirection, Vector3.up, Vector3.forward) * Mathf.Deg2Rad;
-            // Debug.Log(angle);
             player.TetherSwing(tetherLength, tetherDirection, angle);
         }
     }
@@ -72,38 +78,37 @@ public class PlayerTether : IState
         }
 
         // Check input for dodging
-        if(Input.GetButtonDown("Fire3") && player.data.numDodges > 0)
+        if(input.Gameplay.Dodge.triggered && player.data.numDodges > 0)
         {
             return new PlayerDodge(player);
         }
 
         // Check input for jumping
-        if(Input.GetButtonDown("Jump"))
+        if(input.Gameplay.Jump.triggered)
         {
             return new PlayerJump(player);
         }
 
         // Check input for melee attacking
-        if(Input.GetButtonDown("Fire1"))
+        if(input.Gameplay.Melee.triggered)
         {
-            // meleeAttack.gameObject.SetActive(true);
             return new PlayerMelee(player, 0f);
         }
 
         // Check input for shooting with a projectile
-        if(Input.GetButtonDown("Fire2"))
+        if(input.Gameplay.ShootProjectile.triggered)
         {
             return new PlayerShoot(player);
         }
 
         // Check for glide input
-        if(Input.GetAxis("Vertical") < 0)
+        if(input.Gameplay.Glide.ReadValue<float>() > 0.8f &&
+           input.Gameplay.Glide.phase == InputActionPhase.Started)
         {
             return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }
 
         if(player.activeTetherPoint == null ||
-           Input.GetKeyDown(KeyCode.T) ||
            player.transform.position.y > player.activeTetherPoint.transform.position.y)
         {
             return new PlayerWalk(player, true); // Specify the airborne version later

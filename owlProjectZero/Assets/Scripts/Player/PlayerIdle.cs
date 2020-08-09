@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 // Player Idle State
 public class PlayerIdle : IState
 {
     private readonly playerControl player;
+    private PlayerInputs input;
     private float waitTime = 30f; // Time until the "no input" animation kicks in
 
     private Animator animator;
@@ -14,6 +16,7 @@ public class PlayerIdle : IState
     {
         player = p;
         animator = p.gameObject.GetComponent<Animator>();
+        input = p.input;
     }
     public void Enter()
     {
@@ -36,9 +39,8 @@ public class PlayerIdle : IState
 
     public IState Update()
     {
-        
         // Check input for horizontal movement
-        if(Input.GetAxis("Horizontal") != 0)
+        if(input.Gameplay.MoveX.ReadValue<float>() != 0f)
         {
             return new PlayerWalk(player, false);
         }
@@ -49,26 +51,25 @@ public class PlayerIdle : IState
 
 
         // Check input for dodging
-        if(Input.GetButtonDown("Fire3") && player.data.numDodges > 0)
+        if(input.Gameplay.Dodge.triggered && player.data.numDodges > 0)
         {
             return new PlayerDodge(player);
         }
 
         // Check input for jumping
-        if(Input.GetButtonDown("Jump"))
+        if(input.Gameplay.Jump.triggered)
         {
             return new PlayerJump(player);
         }
 
         // Check input for melee attacking
-        if(Input.GetButtonDown("Fire1"))
+        if(input.Gameplay.Melee.triggered)
         {
-            // meleeAttack.gameObject.SetActive(true);
             return new PlayerMelee(player, 0f);
         }
 
         // Check input for shooting with a projectile
-        if(Input.GetButtonDown("Fire2"))
+        if(input.Gameplay.ShootProjectile.triggered)
         {
             return new PlayerShoot(player);
         }

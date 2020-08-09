@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider))]
 public class playerControl : Character
@@ -10,9 +11,26 @@ public class playerControl : Character
     public GameObject tether;
     public TetherPoint activeTetherPoint = null;
     public Animator animator;
+    public PlayerInputs input { get; private set; }
+    public const float FAST_FALL_SPEED = -10f;
 
     public playerControl() : base(3, 1, 1f, 3f)
     {}
+
+    private void Awake()
+    {
+        input = new PlayerInputs();
+    }
+
+    private void OnEnable()
+    {
+        input.Enable();
+    }
+
+    private void OnDisable()
+    {
+        input.Disable();
+    }
 
     // Start is called before the first frame update
     private void Start()
@@ -21,6 +39,7 @@ public class playerControl : Character
         if(myState == null)
         {
             myState = new PlayerIdle(this);
+            myState.Enter();
             Debug.Log(myState);
         }
         rb = GetComponent<Rigidbody>();
@@ -57,10 +76,6 @@ public class playerControl : Character
         rb.AddForce(tension, ForceMode.Acceleration); // Tension
         Debug.DrawLine(rb.position, rb.position + tension, Color.red);
 
-        // Vector3 forceAgainstTension = playerWeight * -tetherDirection.normalized;
-        // rb.AddForce(forceAgainstTension, ForceMode.Acceleration);
-        // Debug.DrawLine(rb.position, rb.position + forceAgainstTension, Color.green);
-
         Vector3 tempTether = tetherDirection;
         Vector3 pendulumForce = Vector3.down;
         Vector3.OrthoNormalize(ref tempTether, ref pendulumForce);
@@ -79,6 +94,36 @@ public class playerControl : Character
         myState = new PlayerDead(this);
         Debug.Log(myState);
         myState.Enter();
+    }
 
+    public void ActivateTether(InputAction.CallbackContext context)
+    {
+        if(activeTetherPoint != null)
+        {
+            if(rb.position.y < activeTetherPoint.transform.position.y)
+            {
+                myState.Exit();
+                myState = new PlayerTether(this);
+                myState.Enter();
+            }
+        }
+        Debug.Log(myState);
+    }
+
+    public void Untether(InputAction.CallbackContext context)
+    {
+        if(activeTetherPoint != null)
+        {
+            myState.Exit();
+            myState = new PlayerWalk(this, true);
+            myState.Enter();
+        }
+    }
+
+    public void FastFall(InputAction.CallbackContext context)
+    {
+        Debug.Log("Fastfall input");
+        if(Mathf.Abs(rb.velocity.y) <= 3f)
+            PlayerWalk.verticalMovement = FAST_FALL_SPEED;
     }
 }

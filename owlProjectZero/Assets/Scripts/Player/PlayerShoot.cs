@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerShoot : IState
 {
     private readonly playerControl player;
     private GameObject projectile;
+    private PlayerInputs input;
 
     public PlayerShoot(playerControl p)
     {
         player = p;
         projectile = p.projectile.gameObject;
+        input = p.input;
     }
     public void Enter()
     {
@@ -41,7 +44,7 @@ public class PlayerShoot : IState
         }
 
         // Check for glide input
-        if(Input.GetAxis("Vertical") < 0)
+        if(input.Gameplay.Glide.triggered)
         {
             return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }

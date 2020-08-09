@@ -1,6 +1,4 @@
-﻿
-
-///////////////////////////////////
+﻿///////////////////////////////////
 //                               //
 // ADD GLIDE TIMER               //
 // - a.k.a. the time it takes to //
@@ -8,24 +6,23 @@
 //                               //
 ///////////////////////////////////
 
-
-
-
-
+// Not sure why I added this comment before
+//                      - Charles
 
 
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerJump : IState
 {
     private readonly playerControl player;
     private AudioSource jump;
     private Rigidbody playerBody;
+    private PlayerInputs input;
     private float horizontalMovement = 0f;
-    // private float jumpCooldown = 0.06f;
 
     private Animator animator;
     private SpriteRenderer spriterenderer;
@@ -39,6 +36,7 @@ public class PlayerJump : IState
         animator = p.gameObject.GetComponent<Animator>();
         spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
         
+        input = p.input;
     }
     public void Enter()
     {
@@ -48,11 +46,17 @@ public class PlayerJump : IState
     	}
         player.Jump();
         animator.SetBool("jumpup", true);
+
+        input.Gameplay.Tether.started += player.ActivateTether;
+        input.Gameplay.Glide.started += player.FastFall;
     }
 
     public void Exit()
     {
         animator.SetBool("jumpup", false);
+        
+        input.Gameplay.Tether.started -= player.ActivateTether;
+        input.Gameplay.Glide.started -= player.FastFall;
     }
 
     public void FixedUpdate()
@@ -69,40 +73,32 @@ public class PlayerJump : IState
         else if (horizontalMovement < 0) { spriterenderer.flipX = true;}
         else { }
 
-
-        // Check input for tether
-        if(player.activeTetherPoint != null &&
-           Input.GetKeyDown(KeyCode.T) &&
-           player.transform.position.y <= player.activeTetherPoint.transform.position.y)
-        {
-            return new PlayerTether(player);
-        }
-
         // Check input for changing skills
 
-        // Check input for double jump
-        if(Input.GetButtonDown("Jump"))
-        {
-            // player.numJumps--;
-            
-            return new PlayerJump(player);
-        }
+
+
+
 
         // Check input for dodging
-        if(Input.GetButtonDown("Fire3") && player.data.numDodges > 0)
+        if(input.Gameplay.Dodge.triggered && player.data.numDodges > 0)
         {
             return new PlayerDodge(player);
         }
 
-        // Check input for melee attacking
-        if(Input.GetButtonDown("Fire1"))
+        // Check input for double jumping
+        if(input.Gameplay.Jump.triggered)
         {
-            // meleeAttack.gameObject.SetActive(true);
+            return new PlayerJump(player);
+        }
+
+        // Check input for melee attacking
+        if(input.Gameplay.Melee.triggered)
+        {
             return new PlayerMelee(player, horizontalMovement);
         }
 
         // Check input for shooting with a projectile
-        if(Input.GetButtonDown("Fire2"))
+        if(input.Gameplay.ShootProjectile.triggered)
         {
             return new PlayerShoot(player);
         }                 
@@ -110,43 +106,52 @@ public class PlayerJump : IState
         // Check if descending
         if(playerBody.velocity.y <= 0)
         {
-            
+            if(input.Gameplay.Jump.ReadValue<float>() == 1f)
+                return new PlayerGlide(player, PlayerGlide.glideType.Jump);
+                
             // If jumps get refreshed, i.e. landing on a platform
             if(player.data.maxSpeed == player.data.groundSpeed &&
                player.data.numJumps == player.MAX_JUMPS)
             {
                 return new PlayerIdle(player);
             }
-            else if(Input.GetButton("Jump"))
-                return new PlayerGlide(player, PlayerGlide.glideType.Jump);
         }
 
-        if(Input.GetKey(KeyCode.DownArrow) ||
-           Input.GetKey(KeyCode.S))
+        // Check for downwards input
+        if(input.Gameplay.Glide.ReadValue<float>() > 0.975f)
         {
-            // Check for fastfall input during fastfall window
-            if(playerBody.velocity.y < 0f &&
-               playerBody.velocity.y > -2f)
-            {
+            if(Mathf.Abs(playerBody.velocity.y) <= 3f)
                 return new PlayerWalk(player, true);
-            }
-            // Check if cancelling into glide
-            else
-            {
-                return new PlayerGlide(player, PlayerGlide.glideType.Down);
-            }
-        }   
+
+            return new PlayerGlide(player, PlayerGlide.glideType.Down);
+        }
 
         /////////////////////////////////////////////////////////////////////
         //                                                                 //
         //  This Chunk of code is also in PlayerWalk                       //
         //                                                                 //
         /////////////////////////////////////////////////////////////////////
-        horizontalMovement = Input.GetAxis("Horizontal");
+        horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();
         if(Mathf.Abs(horizontalMovement) > 0)
         {
             player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
         }
         return null;
+    }
+
+    private void DoubleJump(InputAction.CallbackContext context)
+    {
+        // if(context.startTime == context.duration)
+        Debug.Log("Double Jump is called");
+        player.Jump();
+    }
+
+    private void GlideByJump(InputAction.CallbackContext context)
+    {
+        if(context.time == context.duration)
+            Debug.Log("Should glide now");
+        Debug.Log("Value: " + context.ReadValue<float>());
+        Debug.Log("Time: " + context.time);
+        Debug.Log("Duration: " + context.duration);
     }
 }

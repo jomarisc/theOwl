@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMelee : IState
 {
     private readonly playerControl player;
     private GameObject meleeAttack;
+    private PlayerInputs input;
     private float horizontalMovement;
 
     private Animator animator;
@@ -14,6 +16,7 @@ public class PlayerMelee : IState
     {
         player = p;
         meleeAttack = p.meleeAttack.gameObject;
+        input = p.input;
         horizontalMovement = hm;
         animator = p.gameObject.GetComponent<Animator>();
     }
@@ -47,7 +50,7 @@ public class PlayerMelee : IState
         if(!meleeAttack.activeInHierarchy)
         {
             // Check input for glide
-            if(Input.GetAxis("Vertical") < 0)
+            if(input.Gameplay.Glide.triggered)
             {
                 return new PlayerGlide(player, PlayerGlide.glideType.Down);
             }
