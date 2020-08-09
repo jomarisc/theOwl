@@ -52,7 +52,7 @@ public class PlayerMelee : IState
                 return new PlayerGlide(player, PlayerGlide.glideType.Down);
             }
             
-            if(player.maxSpeed == player.airSpeed)
+            if(player.data.maxSpeed == player.data.airSpeed)
             {
                 return new PlayerWalk(player, true); // Specify this to be the airborne version later
             }

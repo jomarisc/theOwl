@@ -89,9 +89,7 @@ public class PlayerWalk : IState
             animator.SetBool("idling", true);
         }
 
-
-
-        if(player.maxSpeed == player.airSpeed &&
+        if(player.data.maxSpeed == player.data.airSpeed &&
            player.activeTetherPoint != null &&
            Input.GetKeyDown(KeyCode.T) &&
            player.transform.position.y <= player.activeTetherPoint.transform.position.y)
@@ -105,7 +103,7 @@ public class PlayerWalk : IState
 
 
         // Check input for dodging
-        if(Input.GetButtonDown("Fire3") && player.numDodges > 0)
+        if(Input.GetButtonDown("Fire3") && player.data.numDodges > 0)
         {
             return new PlayerDodge(player);
         }
@@ -151,7 +149,7 @@ public class PlayerWalk : IState
 
         // If landing on a platform
         if(isFlying &&
-           player.maxSpeed == player.groundSpeed)
+           player.data.maxSpeed == player.data.groundSpeed)
         {
             Debug.Log("Landing");
             isFastFalling = false;
@@ -161,7 +159,7 @@ public class PlayerWalk : IState
 
         // If leaving a platform
         if(!isFlying &&
-           player.maxSpeed == player.airSpeed)
+           player.data.maxSpeed == player.data.airSpeed)
         {
             Debug.Log("Left platform");
             return new PlayerWalk(player, true);
@@ -170,7 +168,7 @@ public class PlayerWalk : IState
         horizontalMovement = Input.GetAxis("Horizontal");
         if(Mathf.Abs(horizontalMovement) > 0)
         {
-            player.isFacingRight = (horizontalMovement < 0) ? false : true;
+            player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
         }
 
         return null;

@@ -14,7 +14,7 @@ public class PlayerDead : IState
     public void Enter()
     {
         player.Dodge();
-        player.deadDuration = playerControl.DEAD_DURATION;
+        player.data.deadDuration = player.DEAD_DURATION;
     }
 
     public void Exit()
@@ -29,9 +29,9 @@ public class PlayerDead : IState
 
     public IState Update()
     {
-        if (player.deadDuration >= 0f)
+        if (player.data.deadDuration >= 0f)
         {
-            player.deadDuration -= Time.deltaTime; // 3.0 - The completion time in seconds since the last frame
+            player.data.deadDuration -= Time.deltaTime; // 3.0 - The completion time in seconds since the last frame
             return null;
         }
 

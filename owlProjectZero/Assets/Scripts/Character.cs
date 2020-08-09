@@ -2,16 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public abstract class Character : MonoBehaviour, ICharacter
+[System.Serializable]
+public struct CharacterData
 {
-    // private attributes
-
-    // protected attributes
-    protected Rigidbody rb;
-
-    // public attributes
-    public GameObject meleeAttack;
     public int numJumps;
     public int numDodges;
     public float health;
@@ -22,64 +15,103 @@ public abstract class Character : MonoBehaviour, ICharacter
     public bool isFacingRight; // Determines whether the character is
                                //facing in the right-hand direction
                                // *So far, must be initialized in sub classes*
-    public float dodgeDuration = 0.4f;
-    public float deadDuration = 0.0f;
+    public float deadDuration;
 
     //public Animator animator;
+    public float dodgeDuration;
+}
 
+[RequireComponent(typeof(Rigidbody))]
+public abstract class Character : MonoBehaviour, ICharacter
+{
+    // private attributes
+
+    // protected attributes
+    protected Rigidbody rb;
+    protected IState myState;
+
+    // public attributes
+    public GameObject meleeAttack;
+    public CharacterData data;
+    public readonly int MAX_JUMPS;
+    public readonly int MAX_DODGES;
+    public readonly float DODGE_DURATION;
+    public readonly float DEAD_DURATION;
+
+    public Character(int maxJumps, int maxDodges, float dodgeDuration, float deadDuration)
+    {
+        MAX_JUMPS = maxJumps;
+        MAX_DODGES = maxDodges;
+        DODGE_DURATION = dodgeDuration;
+        DEAD_DURATION = deadDuration;
+    }
+    
     public void Update()
     {
-        if(health <= 0f)
+        if(data.health <= 0f)
         {
-            Debug.Log("Got rekt");
-            Destroy(this.gameObject);
+            GetRekt();
         }
+
+        IState currentState = myState.Update();
+        if(currentState != null)
+        {
+            myState.Exit();
+            myState = currentState;
+            Debug.Log(myState);
+            myState.Enter();
+        }
+    }
+
+    public void FixedUpdate()
+    {
+        myState.FixedUpdate();
     }
 
     // Moves the player left/right based off of the value of its acceleration
     public void MoveCharacter(float direction)
     {
         Vector3 newVelocity = rb.velocity;
-        newVelocity[0] = direction * maxSpeed;
+        newVelocity[0] = direction * data.maxSpeed;
         rb.velocity = newVelocity;
     }
 
     public void MoveCharacter(float xDirection, float yVelocity)
     {
         Vector3 newVelocity = rb.velocity;
-        newVelocity[0] = xDirection * maxSpeed;
+        newVelocity[0] = xDirection * data.maxSpeed;
         newVelocity[1] = yVelocity;
         rb.velocity = newVelocity;
     }
 
     public void Jump()
     {
-        if(numJumps > 0)
+        if(data.numJumps > 0)
         {
             Vector3 newVelocity = rb.velocity;
-            newVelocity[1] = jumpDistance;
+            newVelocity[1] = data.jumpDistance;
             rb.velocity = newVelocity;
-            numJumps--;
+            data.numJumps--;
         }
     }
 
     public void Attack()
     {
         Vector3 atkPos = meleeAttack.transform.localPosition;
-        atkPos[0] = (isFacingRight) ? 1.5f : -1.5f;
+        atkPos[0] = (data.isFacingRight) ? 1.5f : -1.5f;
         meleeAttack.transform.localPosition = atkPos;
     }
 
     // Currently Only toggles player collisions with Enemy-related rigidbodies/colliders
     public void Dodge()
     {
-        if(dodgeDuration > 0f)
+        if(data.dodgeDuration > 0f)
         {
             // Stop checking collisions with player hurtbox and enemy-related physics layers
             Physics.IgnoreLayerCollision(9, 10, true); // Player x Enemies
             Physics.IgnoreLayerCollision(9, 12, true); // Player x Enemies' Attacks
             // If character is grounded, do a roll in whichever facing direction
-            if(maxSpeed == groundSpeed)
+            if(data.maxSpeed == data.groundSpeed)
             {
                 
             }
@@ -115,7 +147,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         if(col.gameObject.GetComponent<EnvironmentElement>() != null)
         {
-            maxSpeed = groundSpeed;
+            data.maxSpeed = data.groundSpeed;
             //animator.SetBool("grounded", true);
         }
             
@@ -124,7 +156,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         if(col.gameObject.GetComponent<EnvironmentElement>() != null)
         {
-            maxSpeed = airSpeed;
+            data.maxSpeed = data.airSpeed;
             //animator.SetBool("grounded", false);
         }
             

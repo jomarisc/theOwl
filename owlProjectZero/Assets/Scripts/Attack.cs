@@ -78,9 +78,12 @@ public abstract class Attack : MonoBehaviour
         if(startupDuration <= 0f)
         {
             hitboxes[0].shape.enabled = true;
+            hitboxes[0].shape.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
         }
         if(recoveryDuration <= 0f)
         {
+            Color hitboxColor = new Color(255f, 0f, 0f, 96f);
+            hitboxes[0].shape.gameObject.GetComponent<Renderer>().material.SetColor("_Color", hitboxColor);
             hitboxes[0].shape.enabled = false;
             gameObject.SetActive(false);
         }
@@ -99,7 +102,7 @@ public abstract class Attack : MonoBehaviour
             // character class
             if(col.gameObject.TryGetComponent(out Character character))
             {
-                col.gameObject.GetComponent<Character>().health -= hitboxes[0].damage;
+                col.gameObject.GetComponent<Character>().data.health -= hitboxes[0].damage;
             }
         }
     }

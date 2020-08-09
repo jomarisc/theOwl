@@ -23,7 +23,7 @@ public class HealthbarController : MonoBehaviour
         GameObject player = GameObject.Find("player");
         playerControl playerScript = player.GetComponent<playerControl>();
         
-        currentHealth = playerScript.health;
+        currentHealth = playerScript.data.health;
         
         Debug.Log("Health: " + currentHealth);
 
