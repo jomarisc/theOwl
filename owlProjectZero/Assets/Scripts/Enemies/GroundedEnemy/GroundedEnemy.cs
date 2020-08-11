@@ -24,8 +24,9 @@ public class GroundedEnemy : Enemy
     }
     
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
         rb = GetComponent<Rigidbody>();
     }
 
