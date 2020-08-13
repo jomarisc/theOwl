@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class playerControl : Character
 {
     SphereCollider sphereCollider;
+    private bool InGuntime = false;
     public GameObject projectile;
     public GameObject tether;
     public TetherPoint activeTetherPoint = null;
@@ -25,10 +26,12 @@ public class playerControl : Character
     private void OnEnable()
     {
         input.Enable();
+        input.Gameplay.Guntime.started += ToggleGuntime;
     }
 
     private void OnDisable()
     {
+        input.Gameplay.Guntime.started -= ToggleGuntime;
         input.Disable();
     }
 
@@ -125,5 +128,19 @@ public class playerControl : Character
         Debug.Log("Fastfall input");
         if(Mathf.Abs(rb.velocity.y) <= 3f)
             PlayerWalk.verticalMovement = FAST_FALL_SPEED;
+    }
+
+    public void ToggleGuntime(InputAction.CallbackContext context)
+    {
+        InGuntime = !InGuntime;
+
+        if(InGuntime)
+        {
+            Time.timeScale = 0.2f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 }
