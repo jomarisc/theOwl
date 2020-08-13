@@ -7,7 +7,9 @@ using UnityEngine.InputSystem;
 public class playerControl : Character
 {
     SphereCollider sphereCollider;
-    private bool InGuntime = false;
+    private const float MAX_GUNTIME_DURATION = 5f;
+    private int guntimeDuration;
+    private bool inGuntime = false;
     public GameObject projectile;
     public GameObject tether;
     public TetherPoint activeTetherPoint = null;
@@ -60,6 +62,10 @@ public class playerControl : Character
     new private void FixedUpdate()
     {
         base.FixedUpdate();
+        if(inGuntime)
+        {
+            rb.AddForce(Physics.gravity);
+        }
     }
 
     public void SpawnProjectile()
@@ -132,15 +138,23 @@ public class playerControl : Character
 
     public void ToggleGuntime(InputAction.CallbackContext context)
     {
-        InGuntime = !InGuntime;
+        inGuntime = !inGuntime;
 
-        if(InGuntime)
+        if(inGuntime)
         {
-            Time.timeScale = 0.2f;
+            Time.timeScale = 0.5f;
+            animator.speed *= 2;
+            data.groundSpeed *= 2;
+            data.airSpeed *= 2;
+            data.jumpDistance *= 1.4f;
         }
         else
         {
             Time.timeScale = 1f;
+            animator.speed /= 2;
+            data.groundSpeed /= 2;
+            data.airSpeed /= 2;
+            data.jumpDistance /= 1.4f;
         }
     }
 }
