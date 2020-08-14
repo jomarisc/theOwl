@@ -50,7 +50,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         if(data.health <= 0f)
         {
-            GetRekt();
+            //GetRekt();
         }
 
         IState currentState = myState.Update();

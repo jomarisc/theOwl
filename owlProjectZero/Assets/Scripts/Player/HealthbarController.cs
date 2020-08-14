@@ -11,21 +11,15 @@ public class HealthbarController : MonoBehaviour
     public float currentHealth;
     public float healthMax;
 
-    //public class OnHealthChangedEventArgs : EventArgs
-    //{
-    // Define fields that are needed
-    //public float amountChanged;
-
-    //}
+    GameObject player;
+    playerControl playerScript;
 
     void Start()
     {
-        GameObject player = GameObject.Find("player");
-        playerControl playerScript = player.GetComponent<playerControl>();
+        player = GameObject.Find("player");
+        playerScript = player.GetComponent<playerControl>();
         
-        currentHealth = playerScript.data.health;
-        
-        Debug.Log("Health: " + currentHealth);
+        Debug.Log("Health: " + playerScript.data.health);
 
         /*
         CMDebug.ButtonUI(new Vector2(-100, 100), "heal", () =>
@@ -36,22 +30,22 @@ public class HealthbarController : MonoBehaviour
         */
     }
 
-    public void Damage(int damageAmount)
+    public void Damage(float damageAmount)
     {
-        currentHealth -= damageAmount;
+        playerScript.data.health -= damageAmount;
         // Ensures that health does not go below 0
-        healthBar.fillAmount = currentHealth / healthMax;
-        if (currentHealth <= 0)
+        healthBar.fillAmount = playerScript.data.health / healthMax;
+        if (playerScript.data.health <= 0)
         {
-            currentHealth = 0;
+            playerScript.data.health = 0;
 
-            GameObject player = GameObject.Find("player");
-            playerControl playerScript = player.GetComponent<playerControl>();
+            //GameObject player = GameObject.Find("player");
+            //playerControl playerScript = player.GetComponent<playerControl>();
             playerScript.GoToDeadState();
             //Debug.Log("Got rekt2");
             //return new PlayerDeath(player);
         }
-        Debug.Log("Current Health: " + currentHealth);
+        Debug.Log("Current Health: " + playerScript.data.health);
     }
 
     /*

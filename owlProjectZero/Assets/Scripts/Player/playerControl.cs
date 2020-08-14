@@ -13,6 +13,12 @@ public class playerControl : Character
     public Animator animator;
     public PlayerInputs input { get; private set; }
     public const float FAST_FALL_SPEED = -10f;
+    public HealthbarController healthbar;
+
+    // New line
+    [SerializeField] private LevelWindow levelWindow;
+    public LevelSystem levelSystem;
+    
 
     public playerControl() : base(3, 1, 1f, 3f)
     {}
@@ -36,7 +42,11 @@ public class playerControl : Character
     private void Start()
     {
         animator = GetComponent<Animator>();
-        if(myState == null)
+        // New line
+        levelSystem = new LevelSystem();
+        levelWindow.SetLevelSystem(levelSystem);
+        
+        if (myState == null)
         {
             myState = new PlayerIdle(this);
             myState.Enter();
@@ -126,4 +136,18 @@ public class playerControl : Character
         if(Mathf.Abs(rb.velocity.y) <= 3f)
             PlayerWalk.verticalMovement = FAST_FALL_SPEED;
     }
+    /*
+    public void SetLevelSystem(LevelSystem levelSystem)
+    {
+        this.levelSystem = levelSystem;
+
+        levelSystem.OnLevelChanged += LevelSystem_OnLevelChanged;
+    }
+    */
+    /*
+    private void LevelSystem_OnLevelChanged(object sender, EventArgs e)
+    {
+        Debug.Log("Execute extra code here when player changes level");
+    }
+    */
 }
