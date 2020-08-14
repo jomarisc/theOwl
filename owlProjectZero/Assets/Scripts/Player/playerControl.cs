@@ -9,13 +9,13 @@ public class playerControl : Character
     SphereCollider sphereCollider;
     private const float MAX_GUNTIME_DURATION = 5f;
     private int guntimeDuration;
-    private bool inGuntime = false;
     public GameObject projectile;
     public GameObject tether;
     public TetherPoint activeTetherPoint = null;
     public Animator animator;
     public PlayerInputs input { get; private set; }
     public const float FAST_FALL_SPEED = -10f;
+    public bool inGuntime = false;
 
     public playerControl() : base(3, 1, 1f, 3f)
     {}
@@ -64,7 +64,7 @@ public class playerControl : Character
         base.FixedUpdate();
         if(inGuntime)
         {
-            rb.AddForce(Physics.gravity);
+            rb.AddForce(2 * Physics.gravity);
         }
     }
 
@@ -81,6 +81,8 @@ public class playerControl : Character
     public void TetherSwing(float tetherLength, Vector3 tetherDirection, float theta)
     {
         float playerWeight = rb.mass * Physics.gravity.magnitude;
+        if(inGuntime)
+            playerWeight *= 3.5f;
         Vector3 tension = Mathf.Cos(theta) * playerWeight * tetherLength * tetherDirection.normalized;
         rb.AddForce(tension, ForceMode.Acceleration); // Tension
         Debug.DrawLine(rb.position, rb.position + tension, Color.red);
@@ -133,7 +135,9 @@ public class playerControl : Character
     {
         Debug.Log("Fastfall input");
         if(Mathf.Abs(rb.velocity.y) <= 3f)
+        {
             PlayerWalk.verticalMovement = FAST_FALL_SPEED;
+        }
     }
 
     public void ToggleGuntime(InputAction.CallbackContext context)
@@ -144,17 +148,21 @@ public class playerControl : Character
         {
             Time.timeScale = 0.5f;
             animator.speed *= 2;
-            data.groundSpeed *= 2;
-            data.airSpeed *= 2;
-            data.jumpDistance *= 1.4f;
+
+            // Magic Numbers Ahead...
+            data.groundSpeed *= 1.85f;
+            data.airSpeed *= 1.85f;
+            data.jumpDistance *= 1.605f;
         }
         else
         {
             Time.timeScale = 1f;
             animator.speed /= 2;
-            data.groundSpeed /= 2;
-            data.airSpeed /= 2;
-            data.jumpDistance /= 1.4f;
+
+            // Magic Numbers Ahead...
+            data.groundSpeed /= 1.85f;
+            data.airSpeed /= 1.85f;
+            data.jumpDistance /= 1.605f;
         }
     }
 }
