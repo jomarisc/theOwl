@@ -8,15 +8,15 @@ public class CollisionController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        /*
+        
         if (collision.gameObject.tag == "GroundedEnemy")
         {
-            if (healthbar.currentHealth > 0)
+            if (healthbar.playerScript.data.health > 0)
             {
                 healthbar.Damage(2);
                 //Debug.Log("Current Health: " + player.getHealth());
             }
         }
-        */
+        
     }
 }

@@ -11,8 +11,8 @@ public class HealthbarController : MonoBehaviour
     public float currentHealth;
     public float healthMax;
 
-    GameObject player;
-    playerControl playerScript;
+    private GameObject player;
+    public playerControl playerScript;
 
     void Start()
     {
