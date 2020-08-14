@@ -11,7 +11,7 @@ public class playerControl : Character
     public GameObject tether;
     public TetherPoint activeTetherPoint = null;
     public Animator animator;
-    public PlayerInputs input { get; private set; }
+    public PlayerInputs input;
     public const float FAST_FALL_SPEED = -10f;
 
     public playerControl() : base(3, 1, 1f, 3f)
