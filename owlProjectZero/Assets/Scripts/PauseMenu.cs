@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class Pausemenu : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
     public GameObject pausemenu = null;
     public GameObject resumebutton;
