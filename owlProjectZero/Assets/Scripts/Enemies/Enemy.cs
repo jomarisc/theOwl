@@ -75,8 +75,9 @@ public abstract class Enemy : Character
 
     private void SpawnExperience(bool sender)
     {
-        Debug.Log("Spawn Experience!");
+        //Debug.Log("Spawn Experience!");
+        Instantiate(experienceCollectable, transform.position, Quaternion.identity);
         enemyDeadListener.OnEnemyDead -= SpawnExperience;
-        Debug.Break();
+        //Debug.Break();
     }
 }

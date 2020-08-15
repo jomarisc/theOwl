@@ -22,11 +22,15 @@ MonoBehaviour:
     airSpeed: 1.5
     jumpDistance: 4
     isFacingRight: 0
+    deadDuration: 0
     dodgeDuration: 5
   eyePrescription: 15
+  experienceCollectable: {fileID: 9102680711599866488, guid: 0c7a9e3fe10b9f54595053935f0ef549,
+    type: 3}
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
+  enemyCounter: {fileID: 0}
 --- !u!1001 &257466304092606747
 PrefabInstance:
   m_ObjectHideFlags: 0
