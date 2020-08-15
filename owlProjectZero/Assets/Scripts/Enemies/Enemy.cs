@@ -8,10 +8,15 @@ public abstract class Enemy : Character
     private Vector3 lookingDirection;
     [SerializeField]
     private float eyePrescription = 0f;
+    [SerializeField]
+    private GameObject experienceCollectable;
     public LayerMask targetLayer;
     public static int totalEnemies = 0;
     public static int numDefeatedEnemies = 0;
     public Text enemyCounter;
+    EnemyDead enemyDeadListener;
+
+
     public Enemy(int maxJumps, int maxDodges, float dodgeDuration, float deadDuration) : base(maxJumps, maxDodges, dodgeDuration, deadDuration)
     {
         lookingDirection = Vector3.zero;
@@ -55,5 +60,24 @@ public abstract class Enemy : Character
             numDefeatedEnemies++;
             enemyCounter.text = "Defeated Enemies: " + numDefeatedEnemies + "/" + totalEnemies;
         }
+    }
+
+    public void EnemyGoToDeadState()
+    {
+        myState.Exit();
+        myState = new EnemyDead(this);
+
+        enemyDeadListener = (EnemyDead) myState;
+        enemyDeadListener.OnEnemyDead += SpawnExperience; // Subscribes to publisher
+        Debug.Log(myState);
+        myState.Enter();
+    }
+
+    private void SpawnExperience(bool sender)
+    {
+        //Debug.Log("Spawn Experience!");
+        Instantiate(experienceCollectable, transform.position, Quaternion.identity);
+        enemyDeadListener.OnEnemyDead -= SpawnExperience;
+        //Debug.Break();
     }
 }

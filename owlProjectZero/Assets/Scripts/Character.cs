@@ -50,7 +50,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         if(data.health <= 0f)
         {
-            GetRekt();
+            //GetRekt();
         }
 
         IState currentState = myState.Update();
@@ -124,8 +124,8 @@ public abstract class Character : MonoBehaviour, ICharacter
         // This branch should only be called once as dodgeDuration becomes negative
         else
         {
-            Physics.IgnoreLayerCollision(9, 10, false); // Player x Enemies
             Physics.IgnoreLayerCollision(9, 12, false); // Player x Enemies' Attacks
+            Physics.IgnoreLayerCollision(9, 10, false); // Player x Enemies
             var myRenderer = GetComponent<Renderer>();
             myRenderer.material.SetColor("_Color", Color.red);
         }

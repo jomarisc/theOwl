@@ -6,11 +6,13 @@ public class Collectable : MonoBehaviour
 {
     private float heightOffset;
     private static int numCollectables = 0;
+    
     // Start is called before the first frame update
     void Start()
     {
         Transform prnt = transform.parent;
         heightOffset = transform.position.y;
+        
     }
 
     // Update is called once per frame
@@ -37,6 +39,11 @@ public class Collectable : MonoBehaviour
         {
             numCollectables++;
             gameObject.SetActive(false);
+
+            // Refers to the levelSystem of the collider passed into this function.
+            // Then uses AddExperience of this levelSystem.
+            col.gameObject.GetComponent<playerControl>().levelSystem.AddExperience(50);
+            
         }
     }
 }

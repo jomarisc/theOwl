@@ -104,6 +104,19 @@ public abstract class Attack : MonoBehaviour
             {
                 col.gameObject.GetComponent<Character>().data.health -= hitboxes[0].damage;
             }
+            if(col.gameObject.TryGetComponent(out playerControl player))
+            {
+                //Debug.Log("Player Damaged by Hitbox!");
+                col.gameObject.GetComponent<playerControl>().healthbar.Damage(hitboxes[0].damage);
+            }
+            if(col.gameObject.TryGetComponent(out Enemy enemy))
+            {
+                if (col.gameObject.GetComponent<Enemy>().data.health <= 0)
+                {
+                    // Have enemy go to dead state.
+                    col.gameObject.GetComponent<Enemy>().EnemyGoToDeadState();
+                }
+            }
         }
     }
 

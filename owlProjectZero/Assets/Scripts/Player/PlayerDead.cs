@@ -39,5 +39,4 @@ public class PlayerDead : IState
     }
 
         // Remember to handle collision between player and enemy
-
-    }
+}
