@@ -18,6 +18,7 @@ public class playerControl : Character
     // New line
     [SerializeField] private LevelWindow levelWindow;
     public LevelSystem levelSystem;
+    //private PlayerSkills playerSkills;
     
 
     public playerControl() : base(3, 1, 1f, 3f)
@@ -26,6 +27,9 @@ public class playerControl : Character
     private void Awake()
     {
         input = new PlayerInputs();
+
+        // New line
+        //playerSkills = new PlayerSkills()
     }
 
     private void OnEnable()
