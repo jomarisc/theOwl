@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSkills
 {
-    /*
+    
     public enum SkillType
     {
         Shield,
@@ -24,5 +24,5 @@ public class PlayerSkills
     {
         return unlockedSkillTypeList.Contains(skillType);
     }
-    */
+    
 }
