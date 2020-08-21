@@ -62,9 +62,11 @@ public class playerControl : Character
     new private void FixedUpdate()
     {
         base.FixedUpdate();
-        if(inGuntime)
+        if(inGuntime && 
+           !(myState is PlayerGlide) &&
+           !(myState is PlayerDodge))
         {
-            rb.AddForce(2 * Physics.gravity);
+            rb.AddForce(4.5f * Physics.gravity);
         }
     }
 
@@ -82,7 +84,7 @@ public class playerControl : Character
     {
         float playerWeight = rb.mass * Physics.gravity.magnitude;
         if(inGuntime)
-            playerWeight *= 3.5f;
+            playerWeight *= 6f;
         Vector3 tension = Mathf.Cos(theta) * playerWeight * tetherLength * tetherDirection.normalized;
         rb.AddForce(tension, ForceMode.Acceleration); // Tension
         Debug.DrawLine(rb.position, rb.position + tension, Color.red);
@@ -136,7 +138,10 @@ public class playerControl : Character
         Debug.Log("Fastfall input");
         if(Mathf.Abs(rb.velocity.y) <= 3f)
         {
-            PlayerWalk.verticalMovement = FAST_FALL_SPEED;
+            if(inGuntime)
+                PlayerWalk.verticalMovement = FAST_FALL_SPEED * 2;
+            else
+                PlayerWalk.verticalMovement = FAST_FALL_SPEED;
         }
     }
 
@@ -146,23 +151,51 @@ public class playerControl : Character
 
         if(inGuntime)
         {
-            Time.timeScale = 0.5f;
-            animator.speed *= 2;
 
             // Magic Numbers Ahead...
-            data.groundSpeed *= 1.85f;
-            data.airSpeed *= 1.85f;
-            data.jumpDistance *= 1.605f;
+            Time.timeScale = 0.5f;
+            Time.fixedDeltaTime = 0.016f * Time.timeScale;
+
+            rb.useGravity = false;
+
+            animator.speed *= 2;
+
+            if(data.maxSpeed == data.groundSpeed)
+            {
+                data.groundSpeed *= 2f;
+                data.maxSpeed = data.groundSpeed;
+                data.airSpeed *= 2f;
+            }
+            else if(data.maxSpeed == data.airSpeed)
+            {
+                data.airSpeed *= 2f;
+                data.maxSpeed = data.airSpeed;
+                data.groundSpeed *= 2f;
+            }
+            data.jumpDistance *= 2f;
         }
         else
         {
-            Time.timeScale = 1f;
+            rb.useGravity = true;
             animator.speed /= 2;
 
             // Magic Numbers Ahead...
-            data.groundSpeed /= 1.85f;
-            data.airSpeed /= 1.85f;
-            data.jumpDistance /= 1.605f;
+            if(data.maxSpeed == data.groundSpeed)
+            {
+                data.groundSpeed /= 2f;
+                data.maxSpeed = data.groundSpeed;
+                data.airSpeed /= 2f;
+            }
+            else if(data.maxSpeed == data.airSpeed)
+            {
+                data.airSpeed /= 2f;
+                data.maxSpeed = data.airSpeed;
+                data.groundSpeed /= 2f;
+            }
+            data.jumpDistance /= 2f;
+            
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = 0.016f * Time.timeScale;
         }
     }
 }
