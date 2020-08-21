@@ -88,9 +88,11 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         if(data.numJumps > 0)
         {
-            Vector3 newVelocity = rb.velocity;
-            newVelocity[1] = data.jumpDistance;
-            rb.velocity = newVelocity;
+            // Vector3 newVelocity = rb.velocity;
+            // newVelocity[1] = data.jumpDistance;
+            // rb.velocity = newVelocity;
+            rb.velocity = Vector3.zero;
+            rb.AddForce(new Vector3(0f, data.jumpDistance, 0f), ForceMode.VelocityChange);
             data.numJumps--;
         }
     }

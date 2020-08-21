@@ -44,6 +44,7 @@ public class PlayerTether : IState
 
     public void Exit()
     {
+        playerRB.drag = 1f;
         player.tether.SetActive(false);
         animator.SetBool("tethered", false);
 

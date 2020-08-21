@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class playerControl : Character
 {
     SphereCollider sphereCollider;
+    private const float MAX_GUNTIME_DURATION = 5f;
+    private int guntimeDuration;
     public GameObject projectile;
     public GameObject tether;
     public TetherPoint activeTetherPoint = null;
@@ -19,6 +21,7 @@ public class playerControl : Character
     [SerializeField] private LevelWindow levelWindow;
     public LevelSystem levelSystem;
     
+    public bool inGuntime = false;
 
     public playerControl() : base(3, 1, 1f, 3f)
     {}
@@ -31,10 +34,12 @@ public class playerControl : Character
     private void OnEnable()
     {
         input.Enable();
+        input.Gameplay.Guntime.started += ToggleGuntime;
     }
 
     private void OnDisable()
     {
+        input.Gameplay.Guntime.started -= ToggleGuntime;
         input.Disable();
     }
 
@@ -67,6 +72,12 @@ public class playerControl : Character
     new private void FixedUpdate()
     {
         base.FixedUpdate();
+        if(inGuntime && 
+           !(myState is PlayerGlide) &&
+           !(myState is PlayerDodge))
+        {
+            rb.AddForce(4.5f * Physics.gravity);
+        }
     }
 
     public void SpawnProjectile()
@@ -82,6 +93,8 @@ public class playerControl : Character
     public void TetherSwing(float tetherLength, Vector3 tetherDirection, float theta)
     {
         float playerWeight = rb.mass * Physics.gravity.magnitude;
+        if(inGuntime)
+            playerWeight *= 6f;
         Vector3 tension = Mathf.Cos(theta) * playerWeight * tetherLength * tetherDirection.normalized;
         rb.AddForce(tension, ForceMode.Acceleration); // Tension
         Debug.DrawLine(rb.position, rb.position + tension, Color.red);
@@ -134,7 +147,66 @@ public class playerControl : Character
     {
         Debug.Log("Fastfall input");
         if(Mathf.Abs(rb.velocity.y) <= 3f)
-            PlayerWalk.verticalMovement = FAST_FALL_SPEED;
+        {
+            if(inGuntime)
+                PlayerWalk.verticalMovement = FAST_FALL_SPEED * 2;
+            else
+                PlayerWalk.verticalMovement = FAST_FALL_SPEED;
+        }
+    }
+
+    public void ToggleGuntime(InputAction.CallbackContext context)
+    {
+        inGuntime = !inGuntime;
+
+        if(inGuntime)
+        {
+
+            // Magic Numbers Ahead...
+            Time.timeScale = 0.5f;
+            Time.fixedDeltaTime = 0.016f * Time.timeScale;
+
+            rb.useGravity = false;
+
+            animator.speed *= 2;
+
+            if(data.maxSpeed == data.groundSpeed)
+            {
+                data.groundSpeed *= 2f;
+                data.maxSpeed = data.groundSpeed;
+                data.airSpeed *= 2f;
+            }
+            else if(data.maxSpeed == data.airSpeed)
+            {
+                data.airSpeed *= 2f;
+                data.maxSpeed = data.airSpeed;
+                data.groundSpeed *= 2f;
+            }
+            data.jumpDistance *= 2f;
+        }
+        else
+        {
+            rb.useGravity = true;
+            animator.speed /= 2;
+
+            // Magic Numbers Ahead...
+            if(data.maxSpeed == data.groundSpeed)
+            {
+                data.groundSpeed /= 2f;
+                data.maxSpeed = data.groundSpeed;
+                data.airSpeed /= 2f;
+            }
+            else if(data.maxSpeed == data.airSpeed)
+            {
+                data.airSpeed /= 2f;
+                data.maxSpeed = data.airSpeed;
+                data.groundSpeed /= 2f;
+            }
+            data.jumpDistance /= 2f;
+            
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = 0.016f * Time.timeScale;
+        }
     }
     /*
     public void SetLevelSystem(LevelSystem levelSystem)
