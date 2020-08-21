@@ -24,6 +24,7 @@ public class EnemyDead : IState
 
     public void Exit()
     {
+        enemy.IncrementDefeatedEnemies();
         enemy.GetRekt();
     }
 

@@ -31,7 +31,7 @@ public abstract class Enemy : Character
     new protected void Update()
     {
         base.Update();
-        IncrementDefeatedEnemies();
+        // IncrementDefeatedEnemies();
     }
 
     new protected void FixedUpdate()
