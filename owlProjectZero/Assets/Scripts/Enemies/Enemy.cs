@@ -9,7 +9,7 @@ public abstract class Enemy : Character
     [SerializeField]
     private float eyePrescription = 0f;
     [SerializeField]
-    private GameObject experienceCollectable;
+    private GameObject experienceCollectable = null;
     public LayerMask targetLayer;
     public static int totalEnemies = 0;
     public static int numDefeatedEnemies = 0;

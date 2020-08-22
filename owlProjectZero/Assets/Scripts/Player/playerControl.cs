@@ -18,7 +18,8 @@ public class playerControl : Character
     public HealthbarController healthbar;
 
     // New line
-    [SerializeField] private LevelWindow levelWindow;
+    [SerializeField]
+    private LevelWindow levelWindow = null;
     public LevelSystem levelSystem;
     
     public bool inGuntime = false;
