@@ -9,7 +9,7 @@ public class CollisionController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         
-        if (collision.gameObject.tag == "GroundedEnemy")
+        if (collision.gameObject.TryGetComponent(out Enemy enemy))
         {
             if (healthbar.playerScript.data.health > 0)
             {
