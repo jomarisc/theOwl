@@ -11,8 +11,8 @@ public class HeavyEnemy : Enemy
     // public fields
 
 
-    // Initializing maxJumps, maxDodges, dodgeDuration
-    public HeavyEnemy() : base(0, 1, 5f, 3f)
+    // Initializing maxJumps, maxDodges, dodgeDuration, and deadDuration
+    public HeavyEnemy() : base(1, 0, 5f, 3f)
     {}
 
     void OnEnable()
@@ -51,5 +51,11 @@ public class HeavyEnemy : Enemy
     {
         Debug.Log("Invisible");
         gameObject.SetActive(false);
+    }
+
+    new public void MoveCharacter(float direction)
+    {
+        Debug.Log(data.maxSpeed);
+        rb.AddForce(new Vector3(direction * data.maxSpeed, 0f, 0f), ForceMode.VelocityChange);
     }
 }
