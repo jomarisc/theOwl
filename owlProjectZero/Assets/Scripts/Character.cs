@@ -145,9 +145,10 @@ public abstract class Character : MonoBehaviour, ICharacter
         // Yet to be implemented
     }
 
-    protected void OnCollisionEnter(Collision col)
+    protected void OnCollisionStay(Collision col)
     {
-        if(col.gameObject.GetComponent<EnvironmentElement>() != null)
+        if(col.gameObject.GetComponent<EnvironmentElement>() != null &&
+           data.maxSpeed != data.groundSpeed)
         {
             data.maxSpeed = data.groundSpeed;
             //animator.SetBool("grounded", true);
