@@ -16,7 +16,9 @@ public class playerControl : Character
     public PlayerInputs input;
     public const float FAST_FALL_SPEED = -10f;
     public HealthbarController healthbar;
+
     public AudioSource landingSfx;
+    public AudioSource projectileHit;
 
     // New line
     [SerializeField] private LevelWindow levelWindow;
