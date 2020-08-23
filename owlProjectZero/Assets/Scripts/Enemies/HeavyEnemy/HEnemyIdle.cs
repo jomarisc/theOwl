@@ -39,18 +39,16 @@ public class HEnemyIdle : IState
         //     return new GEnemyChase(character);
         // }
 
-        // if(waitTime >= 0f)
-        // {
-        //     waitTime -= Time.deltaTime;
-        //     return null;
-        // }
-        // else
-        // {
-        //     // Turn around and walk
-        //     character.data.isFacingRight = !character.data.isFacingRight;
-        //     return new GEnemyWalk(character);
-        // }
-
-        return null;
+        if(waitTime >= 0f)
+        {
+            waitTime -= Time.deltaTime;
+            return null;
+        }
+        else
+        {
+            // Turn around and walk
+            character.data.isFacingRight = !character.data.isFacingRight;
+            return new HEnemyWalk(character);
+        }
     }
 }
