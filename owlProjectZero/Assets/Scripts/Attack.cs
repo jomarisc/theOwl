@@ -54,7 +54,7 @@ public abstract class Attack : MonoBehaviour
 
     private void OnEnable()
     {
-        transform.eulerAngles = new Vector3(0f, 0f, hitboxes[0].knockbackAngle);
+        // transform.eulerAngles = new Vector3(0f, 0f, hitboxes[0].knockbackAngle);
         startupDuration = hitboxes[0].startup * Time.fixedDeltaTime;
         activeDuration = hitboxes[0].timeActive * Time.fixedDeltaTime;
         recoveryDuration = hitboxes[0].recovery * Time.fixedDeltaTime;
@@ -69,21 +69,21 @@ public abstract class Attack : MonoBehaviour
         else if(activeDuration > 0f)
         {
             activeDuration -= Time.fixedDeltaTime;
+            Color hitboxColor = new Color(255f, 0f, 0f, 96f);
+            hitboxes[0].shape.gameObject.GetComponent<Renderer>().material.SetColor("_Color", hitboxColor);
         }
         else
         {
             recoveryDuration -= Time.fixedDeltaTime;
+            hitboxes[0].shape.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
         }
 
         if(startupDuration <= 0f)
         {
             hitboxes[0].shape.enabled = true;
-            hitboxes[0].shape.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
         }
         if(recoveryDuration <= 0f)
         {
-            Color hitboxColor = new Color(255f, 0f, 0f, 96f);
-            hitboxes[0].shape.gameObject.GetComponent<Renderer>().material.SetColor("_Color", hitboxColor);
             hitboxes[0].shape.enabled = false;
             gameObject.SetActive(false);
         }
@@ -95,7 +95,7 @@ public abstract class Attack : MonoBehaviour
            col.GetComponent<EnvironmentElement>() == null)
         {
             // Use the hitbox's transform rotation as the knockback angle
-            Vector3 knockback = KnockbackForce(hitboxes[0].knockback, transform.eulerAngles[2]);
+            Vector3 knockback = KnockbackForce(hitboxes[0].knockback, hitboxes[0].knockbackAngle);
             col.attachedRigidbody.AddForce(knockback, ForceMode.VelocityChange);
 
             // This should eventually get refactored into a damaged state for the
