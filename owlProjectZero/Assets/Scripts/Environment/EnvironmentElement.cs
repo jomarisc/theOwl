@@ -32,4 +32,15 @@ public class EnvironmentElement : MonoBehaviour
             }
         }
     }
+
+    private void OnCollisionEnter(Collision col)
+    {
+    	if(col.gameObject.GetComponent<playerControl>() != null)
+    	{
+    		Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
+            Collider sphereCollider = col.gameObject.GetComponent<Collider>();
+
+            col.gameObject.GetComponent<playerControl>().landingSfx.Play();
+    	}
+    }
 }
