@@ -34,10 +34,10 @@ public class HEnemyIdle : IState
     
     public IState Update()
     {
-        // if(playerFound)
-        // {
-        //     return new GEnemyChase(character);
-        // }
+        if(playerFound)
+        {
+            return new HEnemyChase(character);
+        }
 
         if(waitTime >= 0f)
         {

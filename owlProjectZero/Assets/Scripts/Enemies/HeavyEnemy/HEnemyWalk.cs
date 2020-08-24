@@ -46,10 +46,10 @@ public class HEnemyWalk : IState
     
     public IState Update()
     {
-        // if(playerFound)
-        // {
-        //     return new HEnemyChase(character);
-        // }
+        if(playerFound)
+        {
+            return new HEnemyChase(character);
+        }
 
         if(stepsTaken < NUM_STEPS)
         {

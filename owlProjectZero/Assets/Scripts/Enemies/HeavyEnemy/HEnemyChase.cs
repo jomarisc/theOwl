@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GEnemyChase : IState
+public class HEnemyChase : IState
 {
-    private readonly GroundedEnemy character;
+    private readonly HeavyEnemy character;
+    private const float TIME_BETWEEN_STEPS = 0.25f;
+    private float stepTime;
     private const float MAX_CHASE_DURATION = 3f;
     private float horizontalMovement;
     private float chaseDuration;
     private bool playerIsInSight;
     private bool playerIsInAttackRange;
     
-    public GEnemyChase(Enemy myself)
+    public HEnemyChase(Enemy myself)
     {
-        character = (GroundedEnemy)myself;
+        character = (HeavyEnemy)myself;
     }
 
     public void Enter()
@@ -21,6 +23,7 @@ public class GEnemyChase : IState
         // Enter grounded enemy chase animation here:
         
         horizontalMovement = (character.data.isFacingRight) ? 1f : -1f;
+        stepTime = TIME_BETWEEN_STEPS;
         chaseDuration = MAX_CHASE_DURATION;
         playerIsInSight = true;
         playerIsInAttackRange = false;
@@ -33,21 +36,28 @@ public class GEnemyChase : IState
 
     public void FixedUpdate()
     {
-        character.MoveCharacter(horizontalMovement);
+        // character.MoveCharacter(horizontalMovement);
+        if(stepTime <= 0f)
+        {
+            character.MoveCharacter(horizontalMovement);
+            stepTime = TIME_BETWEEN_STEPS;
+        }
+
         playerIsInSight = character.SeesPlayer();
 
         if(playerIsInSight)
-            playerIsInAttackRange = character.PlayerInAttackRange(character.meleeAttack.transform.localPosition.x);
+            playerIsInAttackRange = character.PlayerInAttackRange(character.meleeAttack.transform.localPosition.x + 2f); // 2f comes from scaleY from hitbox's transform component
     }
     
     public IState Update()
     {
-        if(playerIsInAttackRange || chaseDuration < 0f)
-            return new GEnemyAttack(character, horizontalMovement);
+        if(playerIsInAttackRange)
+            return new HEnemyAttackPrep(character);
 
         if(!playerIsInSight)
-            return new GEnemyIdle(character);
+            return new HEnemyIdle(character);
 
+        stepTime -= Time.deltaTime;
         chaseDuration -= Time.deltaTime;
         return null;
     }

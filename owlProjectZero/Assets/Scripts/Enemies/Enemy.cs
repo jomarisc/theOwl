@@ -46,11 +46,13 @@ public abstract class Enemy : Character
         return Physics.Raycast(rb.position, lookingDirection, eyePrescription, targetLayer);
     }
 
-    public bool PlayerInAttackRange()
+    public bool PlayerInAttackRange(float range)
     {
         lookingDirection.x = (data.isFacingRight) ? 1f : -1f;
-        Debug.DrawRay(rb.position, rb.position + lookingDirection * Mathf.Abs(meleeAttack.transform.localPosition.x), Color.red);
-        return Physics.Raycast(rb.position, lookingDirection, Mathf.Abs(meleeAttack.transform.localPosition.x), targetLayer);
+        Debug.DrawRay(rb.position, rb.position + lookingDirection * Mathf.Abs(range), Color.red);
+        bool inAtkRange = Physics.Raycast(rb.position, lookingDirection, Mathf.Abs(range), targetLayer);
+        Debug.Log(inAtkRange);
+        return inAtkRange;
     }
 
     public void IncrementDefeatedEnemies()
