@@ -49,7 +49,7 @@ public abstract class Enemy : Character
     public bool PlayerInAttackRange(float range)
     {
         lookingDirection.x = (data.isFacingRight) ? 1f : -1f;
-        Debug.DrawRay(rb.position, rb.position + lookingDirection * Mathf.Abs(range), Color.red);
+        Debug.DrawLine(rb.position, rb.position + lookingDirection * Mathf.Abs(range), Color.red);
         bool inAtkRange = Physics.Raycast(rb.position, lookingDirection, Mathf.Abs(range), targetLayer);
         Debug.Log(inAtkRange);
         return inAtkRange;

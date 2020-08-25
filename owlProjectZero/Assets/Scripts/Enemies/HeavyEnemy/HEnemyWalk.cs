@@ -5,7 +5,7 @@ using UnityEngine;
 public class HEnemyWalk : IState
 {
     private readonly HeavyEnemy character;
-    private const float TIME_BETWEEN_STEPS = 0.25f;
+    private const float TIME_BETWEEN_STEPS = 0.5f;
     private const int NUM_STEPS = 10;
     private int stepsTaken;
     private float stepTime;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class HEnemyChase : IState
 {
     private readonly HeavyEnemy character;
-    private const float TIME_BETWEEN_STEPS = 0.25f;
+    private const float TIME_BETWEEN_STEPS = 0.5f;
     private float stepTime;
     private const float MAX_CHASE_DURATION = 3f;
     private float horizontalMovement;
@@ -46,7 +46,7 @@ public class HEnemyChase : IState
         playerIsInSight = character.SeesPlayer();
 
         if(playerIsInSight)
-            playerIsInAttackRange = character.PlayerInAttackRange(character.meleeAttack.transform.localPosition.x + 2f); // 2f comes from scaleY from hitbox's transform component
+            playerIsInAttackRange = character.PlayerInAttackRange(character.meleeAttack.transform.localPosition.x); // 2f comes from scaleY from hitbox's transform component
     }
     
     public IState Update()
