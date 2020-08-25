@@ -15,6 +15,7 @@ public struct CharacterData
     public bool isFacingRight; // Determines whether the character is
                                //facing in the right-hand direction
                                // *So far, must be initialized in sub classes*
+    public bool hasSuperArmor;
     public float deadDuration;
 
     //public Animator animator;

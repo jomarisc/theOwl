@@ -94,15 +94,21 @@ public abstract class Attack : MonoBehaviour
         if(col.gameObject.TryGetComponent(out Rigidbody body) &&
            col.GetComponent<EnvironmentElement>() == null)
         {
-            // Use the hitbox's transform rotation as the knockback angle
-            Vector3 knockback = KnockbackForce(hitboxes[0].knockback, hitboxes[0].knockbackAngle);
-            col.attachedRigidbody.AddForce(knockback, ForceMode.VelocityChange);
-
             // This should eventually get refactored into a damaged state for the
             // character class
             if(col.gameObject.TryGetComponent(out Character character))
             {
+                // Trigger hitstop mechanic for player feedback on hit
+
+                
                 col.gameObject.GetComponent<Character>().data.health -= hitboxes[0].damage;
+
+                if(!col.gameObject.GetComponent<Character>().data.hasSuperArmor)
+                {
+                    // Apply the hitbox's knockback angle if character does not have super armor
+                    Vector3 knockback = KnockbackForce(hitboxes[0].knockback, hitboxes[0].knockbackAngle);
+                    col.attachedRigidbody.AddForce(knockback, ForceMode.VelocityChange);
+                }
             }
             if(col.gameObject.TryGetComponent(out playerControl player))
             {
