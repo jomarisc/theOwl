@@ -20,12 +20,12 @@ public class PlayerShoot : IState
         // use projectile shooting animation here
 
         player.SpawnProjectile();
-        player.projectileHit.Play();
+        player.projectileShoot.Play();
     }
 
     public void Exit()
     {
-
+        player.projectileHit.Play();
     }
 
     public void FixedUpdate()

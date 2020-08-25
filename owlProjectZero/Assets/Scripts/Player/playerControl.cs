@@ -18,6 +18,7 @@ public class playerControl : Character
     public HealthbarController healthbar;
 
     public AudioSource landingSfx;
+    public AudioSource projectileShoot;
     public AudioSource projectileHit;
 
     // New line
