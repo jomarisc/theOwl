@@ -45,6 +45,7 @@ public class EnemyDead : IState
         }
 
         // Set to arbitrary state to exit to Character Update()
-        return new GEnemyIdle((GroundedEnemy) enemy);
+        // return new GEnemyIdle((GroundedEnemy) enemy);
+        return new EnemyDead(enemy);
     }
 }
