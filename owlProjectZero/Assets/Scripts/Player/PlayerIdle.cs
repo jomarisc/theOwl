@@ -22,6 +22,7 @@ public class PlayerIdle : IState
     {
         Debug.Log("In Idle!");
         // Enter idle animation code here:
+        animator.SetFloat("horizontalMovement", 0f);
         animator.SetBool("idling", true);
     }
 
