@@ -43,7 +43,7 @@ public class PlayerDodge : IState
     {
         playerRenderer.material.SetColor("_Color", Color.red);
         playerBody.useGravity = true;
-        playerBody.drag = 0.0f;
+        playerBody.drag = 1.0f;
         player.data.dodgeDuration = -1f;
         animator.SetBool("dodging", false);
 
@@ -74,8 +74,7 @@ public class PlayerDodge : IState
         // If the player has jumped and is still airborne
         // Should be changed to a airborne walk state instead
         // to avoid burning another jump automatically
-        if(player.data.maxSpeed == player.data.airSpeed &&
-           input.Gameplay.MoveX.triggered)
+        if(player.data.maxSpeed == player.data.airSpeed)
         {
             return new PlayerWalk(player, true);
         }
