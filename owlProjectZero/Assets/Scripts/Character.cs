@@ -141,8 +141,6 @@ public abstract class Character : MonoBehaviour, ICharacter
         {
             Physics.IgnoreLayerCollision(9, 12, false); // Player x Enemies' Attacks
             Physics.IgnoreLayerCollision(9, 10, false); // Player x Enemies
-            var myRenderer = GetComponent<Renderer>();
-            myRenderer.material.SetColor("_Color", Color.red);
         }
     }
 

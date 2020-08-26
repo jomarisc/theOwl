@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerDodge : IState
 {
     private readonly playerControl player;
-    private Renderer playerRenderer;
+    private SpriteRenderer playerRenderer;
+    private Color playerColor;
     private Rigidbody playerBody;
     private PlayerInputs input;
 
@@ -16,7 +17,8 @@ public class PlayerDodge : IState
     public PlayerDodge(playerControl p)
     {
         player = p;
-        playerRenderer = p.gameObject.GetComponent<Renderer>();
+        playerRenderer = p.gameObject.GetComponent<SpriteRenderer>();
+        playerColor = playerRenderer.color;
         playerBody = p.gameObject.GetComponent<Rigidbody>();
         animator = p.gameObject.GetComponent<Animator>();
         input = p.input;
@@ -25,7 +27,9 @@ public class PlayerDodge : IState
     {
         // use ground dodge animation here:
 
-        playerRenderer.material.SetColor("_Color", Color.black);
+        // playerRenderer.color.SetColor("_Color", Color.black);
+        playerColor.a = 0.5f;
+        playerRenderer.color = playerColor;
         player.data.dodgeDuration = player.DODGE_DURATION;
         player.data.numDodges--;
 
@@ -41,7 +45,8 @@ public class PlayerDodge : IState
 
     public void Exit()
     {
-        playerRenderer.material.SetColor("_Color", Color.red);
+        playerColor.a = 1f;
+        playerRenderer.color = playerColor;
         playerBody.useGravity = true;
         playerBody.drag = 1.0f;
         player.data.dodgeDuration = -1f;
