@@ -56,17 +56,17 @@ public class playerControl : Character
             myState = new PlayerIdle(this);
             myState.Enter();
             Debug.Log(myState);
-            Debug.Log("moveY " + animator.GetFloat("VerticalMovement"));
-            Debug.Log("moveX " + animator.GetFloat("horizontalMovement"));
-            Debug.Log("dodging? " + animator.GetBool("dodging"));
-            Debug.Log("idling? " + animator.GetBool("idling"));
-            Debug.Log("walking? " + animator.GetBool("walking"));
-            Debug.Log("tethered? " + animator.GetBool("tethered"));
-            Debug.Log("meleeing? " + animator.GetBool("meleeing"));
-            Debug.Log("gliding? " + animator.GetBool("gliding"));
-            Debug.Log("grounded? " + animator.GetBool("grounded"));
-            Debug.Log("jumping up? " + animator.GetBool("jumpup"));
-            Debug.Log("jumping down? " + animator.GetBool("jumpdown"));
+            // Debug.Log("moveY " + animator.GetFloat("VerticalMovement"));
+            // Debug.Log("moveX " + animator.GetFloat("horizontalMovement"));
+            // Debug.Log("dodging? " + animator.GetBool("dodging"));
+            // Debug.Log("idling? " + animator.GetBool("idling"));
+            // Debug.Log("moving? " + animator.GetBool("moving"));
+            // Debug.Log("tethered? " + animator.GetBool("tethered"));
+            // Debug.Log("meleeing? " + animator.GetBool("meleeing"));
+            // Debug.Log("gliding? " + animator.GetBool("gliding"));
+            // Debug.Log("grounded? " + animator.GetBool("grounded"));
+            // Debug.Log("jumping up? " + animator.GetBool("jumpup"));
+            // Debug.Log("jumping down? " + animator.GetBool("jumpdown"));
         }
         rb = GetComponent<Rigidbody>();
         sphereCollider = GetComponent<SphereCollider>();
@@ -156,9 +156,11 @@ public class playerControl : Character
 
     public void FastFall(InputAction.CallbackContext context)
     {
-        Debug.Log("Fastfall input");
+        // Debug.Log("Fastfall input");
         if(Mathf.Abs(rb.velocity.y) <= 3f)
         {
+            animator.SetBool("fastfalling", true);
+            Debug.Log("fastfalling? " + animator.GetBool("fastfalling"));
             if(inGuntime)
                 PlayerWalk.verticalMovement = FAST_FALL_SPEED * 2;
             else
