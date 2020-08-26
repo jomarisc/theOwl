@@ -45,7 +45,7 @@ public class PlayerJump : IState
     		jump.Play();
     	}
         player.Jump();
-        animator.SetBool("jumpup", true);
+        // animator.SetBool("jumpup", true);
 
         input.Gameplay.Tether.started += player.ActivateTether;
         input.Gameplay.Glide.started += player.FastFall;
@@ -53,7 +53,8 @@ public class PlayerJump : IState
 
     public void Exit()
     {
-        animator.SetBool("jumpup", false);
+        // animator.SetBool("jumpup", false);
+        animator.SetFloat("VerticalMovement", 0f);
         
         input.Gameplay.Tether.started -= player.ActivateTether;
         input.Gameplay.Glide.started -= player.FastFall;
@@ -72,6 +73,8 @@ public class PlayerJump : IState
         if (horizontalMovement > 0) { spriterenderer.flipX = false;}
         else if (horizontalMovement < 0) { spriterenderer.flipX = true;}
         else { }
+
+        // animator.SetFloat("VerticalMovement", playerBody.velocity.y);
 
         // Check input for changing skills
 

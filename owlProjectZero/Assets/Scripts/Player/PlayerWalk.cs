@@ -37,11 +37,16 @@ public class PlayerWalk : IState
     }
     public void Enter()
     {
+        animator.SetBool("moving", true);
         if (isFlying)
         {
             // use descending animation here:
-            animator.SetBool("walking", false);
-            animator.SetBool("idling", false);
+            animator.SetFloat("VerticalMovement", playerBody.velocity.y);
+            Debug.Log(animator.GetFloat("VerticalMovement"));
+            // if(playerBody.velocity.y > 0f)
+            //     animator.SetBool("jumpup", true);
+            // else
+            //     animator.SetBool("jumpdown", true);
 
             input.Gameplay.Tether.started += player.ActivateTether;
             input.Gameplay.Glide.started += player.FastFall;
@@ -50,16 +55,20 @@ public class PlayerWalk : IState
         else
         {
             // Use walking animation here
-            animator.SetBool("walking", true);
-            animator.SetBool("jumpup", false);
-            animator.SetBool("jumpdown", false);
+            // animator.SetBool("jumpup", false);
+            // animator.SetBool("jumpdown", false);
+
+            verticalMovement = 0f;
+            animator.SetFloat("VerticalMovement", verticalMovement);
         }
     }
 
     public void Exit()
     {
-        animator.SetBool("walking", false);
-        animator.SetBool("jumpup", false);
+        animator.SetBool("moving", false);
+        animator.SetBool("fastfalling", false);
+        // animator.SetBool("jumpup", false);
+        // animator.SetBool("jumpdown", false);
         // isFastFalling = false;
         input.Gameplay.Tether.started -= player.ActivateTether;
         input.Gameplay.Glide.started -= player.FastFall;
@@ -81,8 +90,6 @@ public class PlayerWalk : IState
         player.MoveCharacter(horizontalMovement, verticalMovement);
 
         //Also checking Vertical speed.
-        animator.SetFloat("VerticalMovement", verticalMovement);
-        animator.SetFloat("horizontalMovement", horizontalMovement);
     }
 
     public IState Update()
@@ -90,21 +97,24 @@ public class PlayerWalk : IState
         //Check Horizontal Movement. Flip accordingly.
         if (horizontalMovement > 0) 
         {
-            animator.SetBool("walking", true);
-            animator.SetBool("idling", false);
+            // animator.SetBool("walking", true);
+            // animator.SetBool("idling", false);
             spriterenderer.flipX = false; 
         }
         else if (horizontalMovement < 0) 
         {
-            animator.SetBool("walking", true);
-            animator.SetBool("idling", false);
+            // animator.SetBool("walking", true);
+            // animator.SetBool("idling", false);
             spriterenderer.flipX = true; 
         }
         else 
         { 
-            animator.SetBool("walking", false);
-            animator.SetBool("idling", true);
+            // animator.SetBool("walking", false);
+            // animator.SetBool("idling", true);
         }
+
+        if(isFlying)
+            animator.SetFloat("VerticalMovement", playerBody.velocity.y);
 
         // Check input for changing skills
 
@@ -145,7 +155,6 @@ public class PlayerWalk : IState
            player.data.maxSpeed == player.data.groundSpeed)
         {
             Debug.Log("Landing");
-            // isFastFalling = false;
             return new PlayerWalk(player, false);
             
         }
@@ -159,6 +168,7 @@ public class PlayerWalk : IState
         }
 
         horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();
+        animator.SetFloat("horizontalMovement", horizontalMovement);
         if(Mathf.Abs(horizontalMovement) > 0 ||
            player.data.maxSpeed == player.data.airSpeed)
         {
