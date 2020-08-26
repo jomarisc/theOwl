@@ -127,7 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495a84bf54c13b14dbfa5d568f2f6aeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeAttack: {fileID: 5476406654723804732}
   data:
     numJumps: 1
     numDodges: 0
@@ -140,6 +139,8 @@ MonoBehaviour:
     hasSuperArmor: 1
     deadDuration: 0
     dodgeDuration: 0
+  meleeAttack: {fileID: 5476406654723804732}
+  animator: {fileID: 3602563350163768425}
   eyePrescription: 15
   experienceCollectable: {fileID: 9102680711599866488, guid: 0c7a9e3fe10b9f54595053935f0ef549,
     type: 3}
@@ -214,6 +215,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeavyEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5260203863440350989, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a06643aac1486e247a670e7e75b79718, type: 2}
     - target: {fileID: 5647430596391202973, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: m_IsActive
@@ -230,6 +236,12 @@ GameObject:
 --- !u!4 &8048465035459543472 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1635083202522667732, guid: a94cdbb1a371e434da94986eea1d80d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8719285318242900836}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3602563350163768425 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5260203863440350989, guid: a94cdbb1a371e434da94986eea1d80d4,
     type: 3}
   m_PrefabInstance: {fileID: 8719285318242900836}
   m_PrefabAsset: {fileID: 0}
