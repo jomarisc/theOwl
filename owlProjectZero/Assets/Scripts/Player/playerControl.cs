@@ -56,6 +56,17 @@ public class playerControl : Character
             myState = new PlayerIdle(this);
             myState.Enter();
             Debug.Log(myState);
+            Debug.Log("moveY " + animator.GetFloat("VerticalMovement"));
+            Debug.Log("moveX " + animator.GetFloat("horizontalMovement"));
+            Debug.Log("dodging? " + animator.GetBool("dodging"));
+            Debug.Log("idling? " + animator.GetBool("idling"));
+            Debug.Log("walking? " + animator.GetBool("walking"));
+            Debug.Log("tethered? " + animator.GetBool("tethered"));
+            Debug.Log("meleeing? " + animator.GetBool("meleeing"));
+            Debug.Log("gliding? " + animator.GetBool("gliding"));
+            Debug.Log("grounded? " + animator.GetBool("grounded"));
+            Debug.Log("jumping up? " + animator.GetBool("jumpup"));
+            Debug.Log("jumping down? " + animator.GetBool("jumpdown"));
         }
         rb = GetComponent<Rigidbody>();
         sphereCollider = GetComponent<SphereCollider>();

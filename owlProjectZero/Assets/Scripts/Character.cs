@@ -62,6 +62,17 @@ public abstract class Character : MonoBehaviour, ICharacter
             myState = currentState;
             Debug.Log(myState);
             myState.Enter();
+            Debug.Log("moveY " + animator.GetFloat("VerticalMovement"));
+            Debug.Log("moveX " + animator.GetFloat("horizontalMovement"));
+            Debug.Log("dodging? " + animator.GetBool("dodging"));
+            Debug.Log("idling? " + animator.GetBool("idling"));
+            Debug.Log("walking? " + animator.GetBool("walking"));
+            Debug.Log("tethered? " + animator.GetBool("tethered"));
+            Debug.Log("meleeing? " + animator.GetBool("meleeing"));
+            Debug.Log("gliding? " + animator.GetBool("gliding"));
+            Debug.Log("grounded? " + animator.GetBool("grounded"));
+            Debug.Log("jumping up? " + animator.GetBool("jumpup"));
+            Debug.Log("jumping down? " + animator.GetBool("jumpdown"));
         }
     }
 
@@ -153,7 +164,7 @@ public abstract class Character : MonoBehaviour, ICharacter
            data.maxSpeed != data.groundSpeed)
         {
             data.maxSpeed = data.groundSpeed;
-            // animator.SetBool("grounded", true);
+            animator.SetBool("grounded", true);
         }
             
     }
@@ -162,7 +173,7 @@ public abstract class Character : MonoBehaviour, ICharacter
         if(col.gameObject.GetComponent<EnvironmentElement>() != null)
         {
             data.maxSpeed = data.airSpeed;
-            // animator.SetBool("grounded", false);
+            animator.SetBool("grounded", false);
         }
             
     }
