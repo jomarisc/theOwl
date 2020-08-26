@@ -32,8 +32,9 @@ public abstract class Character : MonoBehaviour, ICharacter
     protected IState myState;
 
     // public attributes
-    public GameObject meleeAttack;
     public CharacterData data;
+    public GameObject meleeAttack;
+    public Animator animator;
     public readonly int MAX_JUMPS;
     public readonly int MAX_DODGES;
     public readonly float DODGE_DURATION;
@@ -152,7 +153,7 @@ public abstract class Character : MonoBehaviour, ICharacter
            data.maxSpeed != data.groundSpeed)
         {
             data.maxSpeed = data.groundSpeed;
-            //animator.SetBool("grounded", true);
+            // animator.SetBool("grounded", true);
         }
             
     }
@@ -161,7 +162,7 @@ public abstract class Character : MonoBehaviour, ICharacter
         if(col.gameObject.GetComponent<EnvironmentElement>() != null)
         {
             data.maxSpeed = data.airSpeed;
-            //animator.SetBool("grounded", false);
+            // animator.SetBool("grounded", false);
         }
             
     }

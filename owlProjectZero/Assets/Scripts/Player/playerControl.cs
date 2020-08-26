@@ -12,7 +12,6 @@ public class playerControl : Character
     public GameObject projectile;
     public GameObject tether;
     public TetherPoint activeTetherPoint = null;
-    public Animator animator;
     public PlayerInputs input;
     public const float FAST_FALL_SPEED = -10f;
     public HealthbarController healthbar;
