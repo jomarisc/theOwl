@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDead : IState
 {
@@ -21,6 +22,7 @@ public class PlayerDead : IState
     public void Exit()
     {
         player.GetRekt();// Nothing so far
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void FixedUpdate()
