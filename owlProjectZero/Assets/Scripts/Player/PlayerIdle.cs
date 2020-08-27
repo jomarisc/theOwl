@@ -40,6 +40,12 @@ public class PlayerIdle : IState
 
     public IState Update()
     {
+        // Check if somehow airborne while in idle state
+        if(player.data.maxSpeed == player.data.airSpeed)
+        {
+            return new PlayerWalk(player, true);
+        }
+        
         // Check input for horizontal movement
         if(input.Gameplay.MoveX.ReadValue<float>() != 0f)
         {
