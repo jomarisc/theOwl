@@ -11,12 +11,12 @@ public class HEnemyAttackPrep : IState
     private readonly HeavyEnemy character;
     private Rigidbody characterBody;
     private GameObject meleeAttack;
+    private bool hasLeftTheGround;
     
     public HEnemyAttackPrep(Enemy myself)
     {
         character = (HeavyEnemy)myself;
         characterBody = myself.GetComponent<Rigidbody>();
-        meleeAttack = myself.meleeAttack.gameObject;
     }
 
     public void Enter()
@@ -25,6 +25,7 @@ public class HEnemyAttackPrep : IState
         
         characterBody.velocity = Vector3.zero;
         characterBody.AddForce(Vector3.up * 5, ForceMode.VelocityChange);
+        hasLeftTheGround = false;
     }
 
     public void Exit()
@@ -41,10 +42,14 @@ public class HEnemyAttackPrep : IState
     {
         if(characterBody.velocity.y <= 0f &&
            character.data.maxSpeed == character.data.groundSpeed &&
-           character.data.numJumps == character.MAX_JUMPS)
+           character.data.numJumps == character.MAX_JUMPS &&
+           hasLeftTheGround)
         {
+            Debug.Break();
             return new HEnemyAttack(character);
         }
+        else if(characterBody.velocity.y > 0f)
+            hasLeftTheGround = true;
         
         return null;
     }
