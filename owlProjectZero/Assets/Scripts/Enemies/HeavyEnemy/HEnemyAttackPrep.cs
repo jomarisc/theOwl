@@ -45,7 +45,6 @@ public class HEnemyAttackPrep : IState
            character.data.numJumps == character.MAX_JUMPS &&
            hasLeftTheGround)
         {
-            Debug.Break();
             return new HEnemyAttack(character);
         }
         else if(characterBody.velocity.y > 0f)
