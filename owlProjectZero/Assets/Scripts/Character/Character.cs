@@ -154,7 +154,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     public void GoToDamagedState()
     {
         myState.Exit();
-        myState = new CharacterDamagedState(this);
+        myState = new CharacterDamaged(this);
         Debug.Log(myState);
         myState.Enter();
     }
