@@ -13,6 +13,7 @@ public class PlayerDead : IState
 
     public void Enter()
     {
+        player.GetComponent<SpriteRenderer>().color = Color.red;
         player.Dodge();
         player.data.deadDuration = player.DEAD_DURATION;
     }
