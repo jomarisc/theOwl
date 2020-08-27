@@ -151,6 +151,14 @@ public abstract class Character : MonoBehaviour, ICharacter
         Destroy(this.gameObject);
     }
 
+    public void GoToDamagedState()
+    {
+        myState.Exit();
+        myState = new CharacterDamagedState(this);
+        Debug.Log(myState);
+        myState.Enter();
+    }
+
     protected void ChangeSkill()
     {
         // Yet to be implemented

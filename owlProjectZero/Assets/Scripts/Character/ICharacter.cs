@@ -9,4 +9,5 @@ public interface ICharacter
     void Attack();
     void Dodge();
     void GetRekt();
+    void GoToDamagedState();
 }
