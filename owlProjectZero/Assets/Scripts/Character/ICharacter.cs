@@ -9,5 +9,5 @@ public interface ICharacter
     void Attack();
     void Dodge();
     void GetRekt();
-    void GoToDamagedState();
+    void GoToDamagedState(float damageAmount, float knockback);
 }

@@ -46,6 +46,7 @@ public class playerControl : Character
     // Start is called before the first frame update
     private void Start()
     {
+        defaultState = new PlayerIdle(this);
         animator = GetComponent<Animator>();
         // New line
         levelSystem = new LevelSystem();
@@ -53,7 +54,7 @@ public class playerControl : Character
         
         if (myState == null)
         {
-            myState = new PlayerIdle(this);
+            myState = defaultState;
             myState.Enter();
             Debug.Log(myState);
             // Debug.Log("moveY " + animator.GetFloat("VerticalMovement"));

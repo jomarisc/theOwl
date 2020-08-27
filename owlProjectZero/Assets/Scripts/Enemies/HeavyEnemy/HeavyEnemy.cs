@@ -19,7 +19,8 @@ public class HeavyEnemy : Enemy
     {
         if(myState == null)
         {
-            myState = new HEnemyIdle(this);
+            defaultState = new HEnemyIdle(this);
+            myState = defaultState;
         }
     }
     

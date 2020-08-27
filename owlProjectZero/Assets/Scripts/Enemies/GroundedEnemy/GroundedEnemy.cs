@@ -19,7 +19,8 @@ public class GroundedEnemy : Enemy
     {
         if(myState == null)
         {
-            myState = new GEnemyIdle(this);
+            defaultState = new GEnemyIdle(this);
+            myState = defaultState;
         }
     }
     

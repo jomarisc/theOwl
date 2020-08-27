@@ -35,6 +35,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     public CharacterData data;
     public GameObject meleeAttack;
     public Animator animator;
+    public IState defaultState { get; protected set; }
     public readonly int MAX_JUMPS;
     public readonly int MAX_DODGES;
     public readonly float DODGE_DURATION;
@@ -151,10 +152,10 @@ public abstract class Character : MonoBehaviour, ICharacter
         Destroy(this.gameObject);
     }
 
-    public void GoToDamagedState()
+    public void GoToDamagedState(float damageAmount, float knockback)
     {
         myState.Exit();
-        myState = new CharacterDamaged(this);
+        myState = new CharacterDamaged(this, damageAmount, knockback);
         Debug.Log(myState);
         myState.Enter();
     }
