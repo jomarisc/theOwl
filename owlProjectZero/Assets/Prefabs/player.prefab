@@ -43,7 +43,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4e06ea484c189bd499bcfa2abd5d43d1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -562,7 +562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db19439da9eb30a4796e564768348618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeAttack: {fileID: 8548501586489388540}
   data:
     numJumps: 3
     numDodges: 1
@@ -572,12 +571,14 @@ MonoBehaviour:
     airSpeed: 10
     jumpDistance: 8
     isFacingRight: 0
+    hasSuperArmor: 0
     deadDuration: 0
     dodgeDuration: 2
+  meleeAttack: {fileID: 8548501586489388540}
+  animator: {fileID: 1050675498}
   projectile: {fileID: 377738018264958676}
   tether: {fileID: 2089168639421051169}
   activeTetherPoint: {fileID: 0}
-  animator: {fileID: 1050675498}
   healthbar: {fileID: 0}
   landingSfx: {fileID: 8219641611721027624}
   projectileShoot: {fileID: 1041482719160789296}
@@ -710,7 +711,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3f39b7e70cb6fdd42b1832403539bd88, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.65
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -837,7 +838,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ed76f75279420bf4bbf5f9f6dc85baae, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
+  m_Volume: 0.35
   m_Pitch: 1.3
   Loop: 0
   Mute: 0
@@ -964,7 +965,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 079b2924ec8e32040a291f88113c5739, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.65
   m_Pitch: 1
   Loop: 0
   Mute: 0
