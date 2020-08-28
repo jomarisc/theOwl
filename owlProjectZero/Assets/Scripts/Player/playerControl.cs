@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider))]
@@ -10,6 +11,8 @@ public class playerControl : Character
     private float guntimeDuration;
     [SerializeField]
     private float guntimeRecoveryRate = 0f;
+    [SerializeField]
+    private Image guntimeMeter;
     public GameObject projectile;
     public GameObject tether;
     public TetherPoint activeTetherPoint = null;
@@ -85,6 +88,7 @@ public class playerControl : Character
             if(guntimeDuration > 0f)
             {
                 guntimeDuration -= Time.deltaTime;
+                guntimeMeter.fillAmount = guntimeDuration / MAX_GUNTIME_DURATION;
                 Debug.Log("Guntime Duration: " + guntimeDuration);
             }
             // If ran out of guntime resource, remove character from guntime
@@ -97,6 +101,7 @@ public class playerControl : Character
             if(guntimeDuration < MAX_GUNTIME_DURATION)
             {
                 guntimeDuration += guntimeRecoveryRate * Time.deltaTime; // deltaTime is so that the recovery rate is hopefully framerate independent
+                guntimeMeter.fillAmount = guntimeDuration / MAX_GUNTIME_DURATION;
                 Debug.Log("Guntime Duration: " + guntimeDuration);
             }
             // Cap guntimeDuration @ max value
