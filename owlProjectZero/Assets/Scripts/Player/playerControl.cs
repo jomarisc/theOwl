@@ -91,18 +91,18 @@ public class playerControl : Character
             else
                 TurnOffGuntime();
         }
-        // else
-        // {
-        //     // Recover any missing guntimeDuration
-        //     if(guntimeDuration < MAX_GUNTIME_DURATION)
-        //     {
-        //         guntimeDuration += guntimeRecoveryRate * Time.deltaTime; // deltaTime is so that the recovery rate is hopefully framerate independent
-        //         Debug.Log("Guntime Duration: " + guntimeDuration);
-        //     }
-        //     // Cap guntimeDuration @ max value
-        //     if(guntimeDuration > MAX_GUNTIME_DURATION)
-        //         guntimeDuration = MAX_GUNTIME_DURATION;
-        // }
+        else
+        {
+            // Recover any missing guntimeDuration
+            if(guntimeDuration < MAX_GUNTIME_DURATION)
+            {
+                guntimeDuration += guntimeRecoveryRate * Time.deltaTime; // deltaTime is so that the recovery rate is hopefully framerate independent
+                Debug.Log("Guntime Duration: " + guntimeDuration);
+            }
+            // Cap guntimeDuration @ max value
+            if(guntimeDuration > MAX_GUNTIME_DURATION)
+                guntimeDuration = MAX_GUNTIME_DURATION;
+        }
     }
 
     new private void FixedUpdate()
