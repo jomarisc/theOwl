@@ -431,7 +431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db19439da9eb30a4796e564768348618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeAttack: {fileID: 8548501586489388540}
   data:
     numJumps: 3
     numDodges: 1
@@ -441,12 +440,20 @@ MonoBehaviour:
     airSpeed: 10
     jumpDistance: 8
     isFacingRight: 0
+    hasSuperArmor: 0
     deadDuration: 0
     dodgeDuration: 2
+  meleeAttack: {fileID: 8548501586489388540}
+  animator: {fileID: 1050675498}
+  guntimeUsageRate: 1
+  guntimeRecoveryRate: 0.5
+  guntimeMeter: {fileID: 0}
   projectile: {fileID: 377738018264958676}
   tether: {fileID: 2089168639421051169}
   activeTetherPoint: {fileID: 0}
-  animator: {fileID: 1050675498}
+  healthbar: {fileID: 0}
+  levelWindow: {fileID: 0}
+  inGuntime: 0
 --- !u!212 &1050675499
 SpriteRenderer:
   m_ObjectHideFlags: 0
