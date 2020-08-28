@@ -27,6 +27,7 @@ public class PlayerMelee : IState
         player.Attack();
         meleeAttack.SetActive(true);
         animator.SetBool("meleeing", true);
+        player.meleeHit.Play();
     }
 
     public void Exit()

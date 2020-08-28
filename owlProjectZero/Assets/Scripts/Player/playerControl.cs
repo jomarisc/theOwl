@@ -20,6 +20,7 @@ public class playerControl : Character
     public AudioSource landingSfx;
     public AudioSource projectileShoot;
     public AudioSource projectileHit;
+    public AudioSource meleeHit;
 
     // New line
     [SerializeField] private LevelWindow levelWindow;
