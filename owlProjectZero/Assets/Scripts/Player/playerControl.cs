@@ -7,7 +7,9 @@ using UnityEngine.InputSystem;
 public class playerControl : Character
 {
     private const float MAX_GUNTIME_DURATION = 5f;
-    private int guntimeDuration;
+    private float guntimeDuration;
+    [SerializeField]
+    private float guntimeRecoveryRate = 0f;
     public GameObject projectile;
     public GameObject tether;
     public TetherPoint activeTetherPoint = null;
@@ -77,6 +79,30 @@ public class playerControl : Character
                               // of a warning for calling base.Update()
     {
         base.Update();
+        if(inGuntime)
+        {
+            // Use up guntime resource
+            if(guntimeDuration > 0f)
+            {
+                guntimeDuration -= Time.deltaTime;
+                Debug.Log("Guntime Duration: " + guntimeDuration);
+            }
+            // // If ran out of guntime resource, remove character from guntime
+            // else
+            //     TurnOffGuntime();
+        }
+        // else
+        // {
+        //     // Recover any missing guntimeDuration
+        //     if(guntimeDuration < MAX_GUNTIME_DURATION)
+        //     {
+        //         guntimeDuration += guntimeRecoveryRate * Time.deltaTime; // deltaTime is so that the recovery rate is hopefully framerate independent
+        //         Debug.Log("Guntime Duration: " + guntimeDuration);
+        //     }
+        //     // Cap guntimeDuration @ max value
+        //     if(guntimeDuration > MAX_GUNTIME_DURATION)
+        //         guntimeDuration = MAX_GUNTIME_DURATION;
+        // }
     }
 
     new private void FixedUpdate()
@@ -167,6 +193,32 @@ public class playerControl : Character
         }
     }
 
+    public void TurnOffGuntime()
+    {
+        rb.useGravity = true;
+        animator.speed /= 2;
+
+        // Magic Numbers Ahead...
+        if(data.maxSpeed == data.groundSpeed)
+        {
+            data.groundSpeed /= 2f;
+            data.maxSpeed = data.groundSpeed;
+            data.airSpeed /= 2f;
+        }
+        else if(data.maxSpeed == data.airSpeed)
+        {
+            data.airSpeed /= 2f;
+            data.maxSpeed = data.airSpeed;
+            data.groundSpeed /= 2f;
+        }
+        data.jumpDistance /= 2f;
+        
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.016f * Time.timeScale;
+
+        inGuntime = false;
+    }
+
     public void ToggleGuntime(InputAction.CallbackContext context)
     {
         inGuntime = !inGuntime;
@@ -198,26 +250,7 @@ public class playerControl : Character
         }
         else
         {
-            rb.useGravity = true;
-            animator.speed /= 2;
-
-            // Magic Numbers Ahead...
-            if(data.maxSpeed == data.groundSpeed)
-            {
-                data.groundSpeed /= 2f;
-                data.maxSpeed = data.groundSpeed;
-                data.airSpeed /= 2f;
-            }
-            else if(data.maxSpeed == data.airSpeed)
-            {
-                data.airSpeed /= 2f;
-                data.maxSpeed = data.airSpeed;
-                data.groundSpeed /= 2f;
-            }
-            data.jumpDistance /= 2f;
-            
-            Time.timeScale = 1f;
-            Time.fixedDeltaTime = 0.016f * Time.timeScale;
+            TurnOffGuntime();
         }
     }
     /*
