@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Collider))]
 public class playerControl : Character
 {
-    SphereCollider sphereCollider;
     private const float MAX_GUNTIME_DURATION = 5f;
     private int guntimeDuration;
     public GameObject projectile;
@@ -70,7 +69,6 @@ public class playerControl : Character
             // Debug.Log("jumping down? " + animator.GetBool("jumpdown"));
         }
         rb = GetComponent<Rigidbody>();
-        sphereCollider = GetComponent<SphereCollider>();
         data.dodgeDuration = -1f;
     }
 
