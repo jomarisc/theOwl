@@ -87,9 +87,9 @@ public class playerControl : Character
                 guntimeDuration -= Time.deltaTime;
                 Debug.Log("Guntime Duration: " + guntimeDuration);
             }
-            // // If ran out of guntime resource, remove character from guntime
-            // else
-            //     TurnOffGuntime();
+            // If ran out of guntime resource, remove character from guntime
+            else
+                TurnOffGuntime();
         }
         // else
         // {
