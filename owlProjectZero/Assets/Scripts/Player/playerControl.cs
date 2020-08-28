@@ -10,9 +10,11 @@ public class playerControl : Character
     private const float MAX_GUNTIME_DURATION = 5f;
     private float guntimeDuration;
     [SerializeField]
+    private float guntimeUsageRate = 0f;
+    [SerializeField]
     private float guntimeRecoveryRate = 0f;
     [SerializeField]
-    private Image guntimeMeter;
+    private Image guntimeMeter = null;
     public GameObject projectile;
     public GameObject tether;
     public TetherPoint activeTetherPoint = null;
@@ -87,7 +89,7 @@ public class playerControl : Character
             // Use up guntime resource
             if(guntimeDuration > 0f)
             {
-                guntimeDuration -= Time.deltaTime;
+                guntimeDuration -= guntimeUsageRate * Time.deltaTime;
                 guntimeMeter.fillAmount = guntimeDuration / MAX_GUNTIME_DURATION;
                 Debug.Log("Guntime Duration: " + guntimeDuration);
             }
