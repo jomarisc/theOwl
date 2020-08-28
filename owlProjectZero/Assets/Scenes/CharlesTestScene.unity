@@ -1588,7 +1588,7 @@ GameObject:
   - component: {fileID: 639740714}
   - component: {fileID: 639740713}
   m_Layer: 5
-  m_Name: Meter
+  m_Name: GuntimeMeter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3150,6 +3150,11 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 1095568947}
+    - target: {fileID: 2529497728352103109, guid: 8b768704a9719d3408f4b19946d302e4,
+        type: 3}
+      propertyPath: guntimeMeter
+      value: 
+      objectReference: {fileID: 639740713}
     - target: {fileID: 2529497728352103115, guid: 8b768704a9719d3408f4b19946d302e4,
         type: 3}
       propertyPath: m_Name
