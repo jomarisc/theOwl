@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class GameSettings : MonoBehaviour
 {
     public Text defeatedEnemies;
+    public GameObject areaClearScreen;
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 144;
+
     }
 
     // Update is called once per frame
@@ -23,9 +25,10 @@ public class GameSettings : MonoBehaviour
 
     private void Win()
     {
-        defeatedEnemies.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        /*defeatedEnemies.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         defeatedEnemies.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         defeatedEnemies.rectTransform.anchoredPosition = new Vector2(0f, 0f);
-        defeatedEnemies.text = "YOU WIN!";
+        defeatedEnemies.text = "YOU WIN!";*/
+        areaClearScreen.SetActive(true);
     }
 }
