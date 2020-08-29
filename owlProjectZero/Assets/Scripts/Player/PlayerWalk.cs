@@ -19,10 +19,6 @@ public class PlayerWalk : IState
     private Animator animator;
     private SpriteRenderer spriterenderer;
 
-
-    // Maybe add another argument in constructor that determines
-    // whether the player is grounded or not bc I'm considering having this
-    // state govern strictly horizontal movement; grounded or otherwise
     public PlayerWalk(playerControl p, bool isAirborne)
     {
         player = p;
@@ -33,7 +29,6 @@ public class PlayerWalk : IState
         //Trying to pass a reference to the Animator/Renderer components here. 
         animator = p.gameObject.GetComponent<Animator>();
         spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
-        // verticalMovement = (isAirborne) ? playerBody.velocity.y : 0f;
     }
     public void Enter()
     {
@@ -42,11 +37,6 @@ public class PlayerWalk : IState
         {
             // use descending animation here:
             animator.SetFloat("VerticalMovement", playerBody.velocity.y);
-            Debug.Log(animator.GetFloat("VerticalMovement"));
-            // if(playerBody.velocity.y > 0f)
-            //     animator.SetBool("jumpup", true);
-            // else
-            //     animator.SetBool("jumpdown", true);
 
             input.Gameplay.Tether.started += player.ActivateTether;
             input.Gameplay.Glide.started += player.FastFall;
@@ -55,9 +45,6 @@ public class PlayerWalk : IState
         else
         {
             // Use walking animation here
-            // animator.SetBool("jumpup", false);
-            // animator.SetBool("jumpdown", false);
-
             verticalMovement = 0f;
             animator.SetFloat("VerticalMovement", verticalMovement);
         }
@@ -67,9 +54,7 @@ public class PlayerWalk : IState
     {
         animator.SetBool("moving", false);
         animator.SetBool("fastfalling", false);
-        // animator.SetBool("jumpup", false);
-        // animator.SetBool("jumpdown", false);
-        // isFastFalling = false;
+
         input.Gameplay.Tether.started -= player.ActivateTether;
         input.Gameplay.Glide.started -= player.FastFall;
         input.Gameplay.Glide.started -= Glide;
@@ -88,8 +73,6 @@ public class PlayerWalk : IState
         else
             verticalMovement = playerBody.velocity.y;
         player.MoveCharacter(horizontalMovement, verticalMovement);
-
-        //Also checking Vertical speed.
     }
 
     public IState Update()
@@ -97,20 +80,11 @@ public class PlayerWalk : IState
         //Check Horizontal Movement. Flip accordingly.
         if (horizontalMovement > 0) 
         {
-            // animator.SetBool("walking", true);
-            // animator.SetBool("idling", false);
             spriterenderer.flipX = false; 
         }
         else if (horizontalMovement < 0) 
         {
-            // animator.SetBool("walking", true);
-            // animator.SetBool("idling", false);
             spriterenderer.flipX = true; 
-        }
-        else 
-        { 
-            // animator.SetBool("walking", false);
-            // animator.SetBool("idling", true);
         }
 
         if(isFlying)

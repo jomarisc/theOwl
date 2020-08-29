@@ -576,6 +576,9 @@ MonoBehaviour:
     dodgeDuration: 2
   meleeAttack: {fileID: 8548501586489388540}
   animator: {fileID: 1050675498}
+  guntimeUsageRate: 1
+  guntimeRecoveryRate: 0.5
+  guntimeMeter: {fileID: 0}
   projectile: {fileID: 377738018264958676}
   tether: {fileID: 2089168639421051169}
   activeTetherPoint: {fileID: 0}
