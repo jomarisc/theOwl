@@ -1701,7 +1701,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596449058}
-  m_LocalRotation: {x: -0.22706115, y: 0.009771147, z: -0.0021296171, w: -0.9738292}
+  m_LocalRotation: {x: -0.22706117, y: 0.009770989, z: -0.0021295832, w: -0.9738292}
   m_LocalPosition: {x: -3.72, y: 4, z: -8.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3138,9 +3138,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2529497728352103109, guid: 8b768704a9719d3408f4b19946d302e4,
         type: 3}
-      propertyPath: levelWindow
+      propertyPath: guntimeMeter
       value: 
-      objectReference: {fileID: 1040901156}
+      objectReference: {fileID: 639740713}
     - target: {fileID: 2529497728352103109, guid: 8b768704a9719d3408f4b19946d302e4,
         type: 3}
       propertyPath: healthbar
@@ -3148,9 +3148,9 @@ PrefabInstance:
       objectReference: {fileID: 1095568947}
     - target: {fileID: 2529497728352103109, guid: 8b768704a9719d3408f4b19946d302e4,
         type: 3}
-      propertyPath: guntimeMeter
+      propertyPath: levelWindow
       value: 
-      objectReference: {fileID: 639740713}
+      objectReference: {fileID: 1040901156}
     - target: {fileID: 2529497728352103115, guid: 8b768704a9719d3408f4b19946d302e4,
         type: 3}
       propertyPath: m_Name
@@ -3310,7 +3310,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169641594}
-  m_LocalRotation: {x: -0.22706115, y: 0.009771147, z: -0.0021296171, w: -0.9738292}
+  m_LocalRotation: {x: -0.22706117, y: 0.009770989, z: -0.0021295832, w: -0.9738292}
   m_LocalPosition: {x: -3.72, y: 4, z: -8.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3683,6 +3683,11 @@ PrefabInstance:
     - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
         type: 3}
       propertyPath: data.isFacingRight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
