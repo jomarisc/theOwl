@@ -7,6 +7,7 @@ public class ProjectileAttack : Attack
     Rigidbody rb;
     // public const float INITIAL_SPEED = 12f;
     public float speed;
+    public float mySpeed { get; private set; } // This gets set in the editor and should not be modified in code
     // public float knockback = 5f;
     // public float knockbackAngle = 45f;
     // public float damage = 0.5f;
@@ -16,14 +17,24 @@ public class ProjectileAttack : Attack
     {}
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
         rb = GetComponent<Rigidbody>();
     }
-    // void OnEnable()
-    // {
-    //     activeFrames = 60;
-    // }
+    new void OnEnable()
+    {
+        base.OnEnable();
+        // Debug.Log(speed);
+        mySpeed = speed;
+        // Debug.Log(mySpeed);
+        // Debug.Break();
+    }
+
+    void OnDisable()
+    {
+        speed = mySpeed;
+    }
 
     // Update is called once per frame
     // void Update()

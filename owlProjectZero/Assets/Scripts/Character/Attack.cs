@@ -58,13 +58,13 @@ public abstract class Attack : MonoBehaviour
         InitializeHitboxes(hitboxes, hitboxes.Length);
     }
 
-    private void Start()
+    protected void Start()
     {
         initialLocalPosition = transform.localPosition.x;
         phase = AttackPhase.Startup;
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         // transform.eulerAngles = new Vector3(0f, 0f, hitboxes[0].knockbackAngle);
         startupDuration = hitboxes[0].startup * Time.fixedDeltaTime;

@@ -40,6 +40,7 @@ public class playerControl : Character
     private void Awake()
     {
         input = new PlayerInputs();
+        guntimeDuration = MAX_GUNTIME_DURATION;
     }
 
     private void OnEnable()
@@ -130,15 +131,17 @@ public class playerControl : Character
 
     public void SpawnProjectile(int direction) // Direction should be -1 or 1
     {
-        projectile.gameObject.SetActive(true);
+        projectile.SetActive(true);
         ProjectileAttack projAtk = projectile.GetComponent<ProjectileAttack>();
         // Vector3 spawnOffset = (data.isFacingRight) ? new Vector3(0.5f, 0f, 0f) : new Vector3(-0.5f, 0f, 0f);
         // projBody.position = transform.position + spawnOffset;
         Vector3 projPos = projectile.transform.position;
-        projPos.x = direction * projAtk.initialLocalPosition;
+        projPos.x = transform.position.x + direction * projAtk.initialLocalPosition;
+        projPos.y = transform.position.y;
+        projectile.transform.position = projPos;
 
         // projAtk.speed = (data.isFacingRight) ? ProjectileAttack.INITIAL_SPEED : -ProjectileAttack.INITIAL_SPEED;
-        projAtk.speed = direction * Mathf.Abs(projAtk.speed);
+        projAtk.speed = rb.velocity.x + direction * projAtk.mySpeed;
     }
 
     public void TetherSwing(float tetherLength, Vector3 tetherDirection, float theta)
