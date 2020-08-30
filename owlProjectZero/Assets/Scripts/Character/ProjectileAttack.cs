@@ -56,9 +56,9 @@ public class ProjectileAttack : Attack
     new void OnTriggerEnter(Collider col)
     {
         base.OnTriggerEnter(col);
-        // if(col.GetComponent<EnvironmentElement>() == null)
+        if(col.TryGetComponent<Character>(out Character c))
         //     col.gameObject.SetActive(false);
-        this.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
     }
 
     // void OnBecameInvisible()
