@@ -35,8 +35,9 @@ public class ProjectileAttack : Attack
     //     }
     // }
 
-    void FixedUpdate()
+    new void FixedUpdate()
     {
+        base.FixedUpdate();
         rb.velocity = new Vector3(speed, 0f, 0f);
     }
 

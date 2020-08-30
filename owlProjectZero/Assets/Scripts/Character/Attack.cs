@@ -73,13 +73,16 @@ public abstract class Attack : MonoBehaviour
         phase = AttackPhase.Startup;
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         if(startupDuration > 0f)
         {
             startupDuration -= Time.fixedDeltaTime;
             if(phase != AttackPhase.Startup)
+            {
                 phase = AttackPhase.Startup;
+                Debug.Log(phase);
+            }
         }
         else if(activeDuration > 0f)
         {
@@ -87,14 +90,20 @@ public abstract class Attack : MonoBehaviour
             Color hitboxColor = new Color(255f, 0f, 0f, 96f);
             hitboxes[0].shape.gameObject.GetComponent<Renderer>().material.SetColor("_Color", hitboxColor);
             if(phase != AttackPhase.Active)
+            {
                 phase = AttackPhase.Active;
+                Debug.Log(phase);
+            }
         }
         else
         {
             recoveryDuration -= Time.fixedDeltaTime;
             hitboxes[0].shape.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
             if(phase != AttackPhase.Recovery)
+            {
                 phase = AttackPhase.Recovery;
+                Debug.Log(phase);
+            }
         }
 
         if(startupDuration <= 0f)
