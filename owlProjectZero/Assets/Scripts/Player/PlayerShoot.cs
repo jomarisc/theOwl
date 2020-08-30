@@ -7,19 +7,25 @@ public class PlayerShoot : IState
 {
     private readonly playerControl player;
     private GameObject projectile;
+    private ProjectileAttack projAtk;
     private PlayerInputs input;
+    private bool playerCanMove;
+    private float horizontalMovement = 0f;
 
     public PlayerShoot(playerControl p)
     {
         player = p;
         projectile = p.projectile.gameObject;
+        projAtk = projectile.GetComponent<ProjectileAttack>();
         input = p.input;
     }
     public void Enter()
     {
         // use projectile shooting animation here
 
-        player.SpawnProjectile();
+        playerCanMove = false;
+        int shootingDirection = (player.data.isFacingRight) ? 1 : -1;
+        player.SpawnProjectile(shootingDirection);
         player.projectileShoot.Play();
     }
 
@@ -30,7 +36,8 @@ public class PlayerShoot : IState
 
     public void FixedUpdate()
     {
-
+        if(playerCanMove)
+            player.MoveCharacter(horizontalMovement);
     }
 
     public IState Update()
@@ -41,6 +48,10 @@ public class PlayerShoot : IState
         // This has potential to encourage skillful play or be weird/clunky
         if(projectile.activeInHierarchy)
         {
+            if(projAtk.phase != AttackPhase.Startup)
+                playerCanMove = true;
+            if(playerCanMove)
+                horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();
             return null;
         }
 

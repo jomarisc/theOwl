@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AttackPhase {Startup, Active, Recovery}
+
 [System.Serializable] // This allows us to initialze struct values
                       // in the Unity inspector
 public struct HitboxData
@@ -26,6 +28,10 @@ public abstract class Attack : MonoBehaviour
     protected float startupDuration;
     protected float activeDuration;
     protected float recoveryDuration;
+
+    // public fields
+    public float initialLocalPosition {get; private set; }
+    public AttackPhase phase { get; private set; }
 
     // Constructors for attack with only 1 hitbox
     public Attack(float dmg, int start, int active, int lag, float kb, float angle)
@@ -52,12 +58,19 @@ public abstract class Attack : MonoBehaviour
         InitializeHitboxes(hitboxes, hitboxes.Length);
     }
 
+    private void Start()
+    {
+        initialLocalPosition = transform.localPosition.x;
+        phase = AttackPhase.Startup;
+    }
+
     private void OnEnable()
     {
         // transform.eulerAngles = new Vector3(0f, 0f, hitboxes[0].knockbackAngle);
         startupDuration = hitboxes[0].startup * Time.fixedDeltaTime;
         activeDuration = hitboxes[0].timeActive * Time.fixedDeltaTime;
         recoveryDuration = hitboxes[0].recovery * Time.fixedDeltaTime;
+        phase = AttackPhase.Startup;
     }
 
     private void FixedUpdate()
@@ -65,17 +78,23 @@ public abstract class Attack : MonoBehaviour
         if(startupDuration > 0f)
         {
             startupDuration -= Time.fixedDeltaTime;
+            if(phase != AttackPhase.Startup)
+                phase = AttackPhase.Startup;
         }
         else if(activeDuration > 0f)
         {
             activeDuration -= Time.fixedDeltaTime;
             Color hitboxColor = new Color(255f, 0f, 0f, 96f);
             hitboxes[0].shape.gameObject.GetComponent<Renderer>().material.SetColor("_Color", hitboxColor);
+            if(phase != AttackPhase.Active)
+                phase = AttackPhase.Active;
         }
         else
         {
             recoveryDuration -= Time.fixedDeltaTime;
             hitboxes[0].shape.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+            if(phase != AttackPhase.Recovery)
+                phase = AttackPhase.Recovery;
         }
 
         if(startupDuration <= 0f)

@@ -128,14 +128,17 @@ public class playerControl : Character
         }
     }
 
-    public void SpawnProjectile()
+    public void SpawnProjectile(int direction) // Direction should be -1 or 1
     {
         projectile.gameObject.SetActive(true);
         ProjectileAttack projAtk = projectile.GetComponent<ProjectileAttack>();
-        Rigidbody projBody = projectile.GetComponent<Rigidbody>();
-        Vector3 spawnOffset = (data.isFacingRight) ? new Vector3(0.5f, 0f, 0f) : new Vector3(-0.5f, 0f, 0f);
-        projBody.position = transform.position + spawnOffset;
-        projAtk.speed = (data.isFacingRight) ? ProjectileAttack.INITIAL_SPEED : -ProjectileAttack.INITIAL_SPEED;
+        // Vector3 spawnOffset = (data.isFacingRight) ? new Vector3(0.5f, 0f, 0f) : new Vector3(-0.5f, 0f, 0f);
+        // projBody.position = transform.position + spawnOffset;
+        Vector3 projPos = projectile.transform.position;
+        projPos.x = direction * projAtk.initialLocalPosition;
+
+        // projAtk.speed = (data.isFacingRight) ? ProjectileAttack.INITIAL_SPEED : -ProjectileAttack.INITIAL_SPEED;
+        projAtk.speed = direction * Mathf.Abs(projAtk.speed);
     }
 
     public void TetherSwing(float tetherLength, Vector3 tetherDirection, float theta)
