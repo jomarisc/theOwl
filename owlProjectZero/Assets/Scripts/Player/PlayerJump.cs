@@ -137,7 +137,8 @@ public class PlayerJump : IState
         horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();
         if(Mathf.Abs(horizontalMovement) > 0)
         {
-            player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
+            // player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
+            player.data.isFacingRight = !spriterenderer.flipX;
         }
         return null;
     }

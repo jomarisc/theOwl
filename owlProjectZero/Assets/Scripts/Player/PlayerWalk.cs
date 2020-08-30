@@ -146,7 +146,8 @@ public class PlayerWalk : IState
         if(Mathf.Abs(horizontalMovement) > 0 ||
            player.data.maxSpeed == player.data.airSpeed)
         {
-            player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
+            // player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
+            player.data.isFacingRight = !spriterenderer.flipX;
             return null;
         }
         else
