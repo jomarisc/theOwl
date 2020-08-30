@@ -19,8 +19,8 @@ public class HEnemyAttack : IState
     {
         // Enter grounded enemy walk animation here:
         
-        character.Attack();
         meleeAttack.SetActive(true);
+        character.Attack();
     }
 
     public void Exit()
