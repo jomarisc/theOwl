@@ -30,7 +30,10 @@ public abstract class Attack : MonoBehaviour
     protected float recoveryDuration;
 
     // public fields
-    public float initialLocalPosition {get; private set; }
+    [HideInInspector]
+    public bool isFacingRight;
+    public float initialLocalPosition { get; private set; }
+    public float initialKnockbackAngle { get; private set; }
     public AttackPhase phase { get; private set; }
 
     // Constructors for attack with only 1 hitbox
@@ -71,6 +74,12 @@ public abstract class Attack : MonoBehaviour
         activeDuration = hitboxes[0].timeActive * Time.fixedDeltaTime;
         recoveryDuration = hitboxes[0].recovery * Time.fixedDeltaTime;
         phase = AttackPhase.Startup;
+        initialKnockbackAngle = hitboxes[0].knockbackAngle;
+    }
+
+    protected void OnDisable()
+    {
+        hitboxes[0].knockbackAngle = initialKnockbackAngle;
     }
 
     protected void FixedUpdate()
@@ -134,7 +143,8 @@ public abstract class Attack : MonoBehaviour
                 if(!col.gameObject.GetComponent<Character>().data.hasSuperArmor)
                 {
                     // Apply the hitbox's knockback angle if character does not have super armor
-                    Vector3 knockback = KnockbackForce(hitboxes[0].knockback, hitboxes[0].knockbackAngle);
+                    float adjustedKBAngle = (isFacingRight) ? hitboxes[0].knockbackAngle : 180 - hitboxes[0].knockbackAngle;
+                    Vector3 knockback = KnockbackForce(hitboxes[0].knockback, adjustedKBAngle);
                     col.attachedRigidbody.AddForce(knockback, ForceMode.VelocityChange);
                     
                     // Go to damaged state

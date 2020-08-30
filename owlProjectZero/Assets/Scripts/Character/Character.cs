@@ -116,6 +116,7 @@ public abstract class Character : MonoBehaviour, ICharacter
         Vector3 atkPos = meleeAttack.transform.localPosition;
         atkPos[0] = (data.isFacingRight) ? 1.5f : -1.5f;
         meleeAttack.transform.localPosition = atkPos;
+        meleeAttack.GetComponent<MeleeAttack>().isFacingRight = data.isFacingRight;
     }
 
     // Currently Only toggles player collisions with Enemy-related rigidbodies/colliders

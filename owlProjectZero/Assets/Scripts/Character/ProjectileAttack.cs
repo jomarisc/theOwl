@@ -31,8 +31,9 @@ public class ProjectileAttack : Attack
         // Debug.Break();
     }
 
-    void OnDisable()
+    new void OnDisable()
     {
+        base.OnDisable();
         speed = mySpeed;
     }
 
@@ -52,12 +53,13 @@ public class ProjectileAttack : Attack
         rb.velocity = new Vector3(speed, 0f, 0f);
     }
 
-    // void OnTriggerEnter(Collider col)
-    // {
-    //     if(col.GetComponent<EnvironmentElement>() == null)
-    //         col.gameObject.SetActive(false);
-    //     this.gameObject.SetActive(false);
-    // }
+    new void OnTriggerEnter(Collider col)
+    {
+        base.OnTriggerEnter(col);
+        // if(col.GetComponent<EnvironmentElement>() == null)
+        //     col.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
+    }
 
     // void OnBecameInvisible()
     // {
