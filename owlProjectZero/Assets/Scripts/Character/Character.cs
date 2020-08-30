@@ -113,8 +113,11 @@ public abstract class Character : MonoBehaviour, ICharacter
 
     public void Attack()
     {
+        Debug.Log(meleeAttack.transform.localPosition);
         Vector3 atkPos = meleeAttack.transform.localPosition;
-        atkPos[0] = (data.isFacingRight) ? 1.5f : -1.5f;
+        int direction = (data.isFacingRight) ? 1 : -1;
+        atkPos.x = direction * meleeAttack.GetComponent<MeleeAttack>().initialLocalPosition;
+        Debug.Log(atkPos.x);
         meleeAttack.transform.localPosition = atkPos;
         meleeAttack.GetComponent<MeleeAttack>().isFacingRight = data.isFacingRight;
     }
