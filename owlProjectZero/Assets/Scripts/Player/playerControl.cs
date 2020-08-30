@@ -142,6 +142,7 @@ public class playerControl : Character
 
         // projAtk.speed = (data.isFacingRight) ? ProjectileAttack.INITIAL_SPEED : -ProjectileAttack.INITIAL_SPEED;
         projAtk.speed = rb.velocity.x + direction * projAtk.mySpeed;
+        projAtk.isFacingRight = data.isFacingRight;
     }
 
     public void TetherSwing(float tetherLength, Vector3 tetherDirection, float theta)
