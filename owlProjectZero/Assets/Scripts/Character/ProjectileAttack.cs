@@ -25,10 +25,7 @@ public class ProjectileAttack : Attack
     new void OnEnable()
     {
         base.OnEnable();
-        // Debug.Log(speed);
         mySpeed = speed;
-        // Debug.Log(mySpeed);
-        // Debug.Break();
     }
 
     new void OnDisable()

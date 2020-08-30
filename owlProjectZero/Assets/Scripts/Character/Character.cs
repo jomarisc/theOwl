@@ -63,17 +63,6 @@ public abstract class Character : MonoBehaviour, ICharacter
             myState = currentState;
             Debug.Log(myState);
             myState.Enter();
-            // Debug.Log("moveY " + animator.GetFloat("VerticalMovement"));
-            // Debug.Log("moveX " + animator.GetFloat("horizontalMovement"));
-            // Debug.Log("dodging? " + animator.GetBool("dodging"));
-            // Debug.Log("idling? " + animator.GetBool("idling"));
-            // Debug.Log("moving? " + animator.GetBool("moving"));
-            // Debug.Log("tethered? " + animator.GetBool("tethered"));
-            // Debug.Log("meleeing? " + animator.GetBool("meleeing"));
-            // Debug.Log("gliding? " + animator.GetBool("gliding"));
-            // Debug.Log("grounded? " + animator.GetBool("grounded"));
-            // Debug.Log("jumping up? " + animator.GetBool("jumpup"));
-            // Debug.Log("jumping down? " + animator.GetBool("jumpdown"));
         }
     }
 
@@ -113,11 +102,9 @@ public abstract class Character : MonoBehaviour, ICharacter
 
     public void Attack()
     {
-        Debug.Log(meleeAttack.transform.localPosition);
         Vector3 atkPos = meleeAttack.transform.localPosition;
         int direction = (data.isFacingRight) ? 1 : -1;
         atkPos.x = direction * meleeAttack.GetComponent<MeleeAttack>().initialLocalPosition;
-        Debug.Log(atkPos.x);
         meleeAttack.transform.localPosition = atkPos;
         meleeAttack.GetComponent<MeleeAttack>().isFacingRight = data.isFacingRight;
     }

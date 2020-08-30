@@ -64,8 +64,6 @@ public abstract class Attack : MonoBehaviour
     protected void Start()
     {
         initialLocalPosition = Mathf.Abs(transform.localPosition.x);
-        Debug.Log(transform.localPosition.x);
-        Debug.Log(initialLocalPosition);
         phase = AttackPhase.Startup;
     }
 
@@ -75,7 +73,6 @@ public abstract class Attack : MonoBehaviour
         startupDuration = hitboxes[0].startup * Time.fixedDeltaTime;
         activeDuration = hitboxes[0].timeActive * Time.fixedDeltaTime;
         recoveryDuration = hitboxes[0].recovery * Time.fixedDeltaTime;
-        Debug.Log(transform.localPosition);
         initialLocalPosition = Mathf.Abs(transform.localPosition.x);
         phase = AttackPhase.Startup;
         initialKnockbackAngle = hitboxes[0].knockbackAngle;
@@ -97,7 +94,7 @@ public abstract class Attack : MonoBehaviour
             if(phase != AttackPhase.Startup)
             {
                 phase = AttackPhase.Startup;
-                Debug.Log(phase);
+                // Debug.Log(phase);
             }
         }
         else if(activeDuration > 0f)
@@ -108,7 +105,7 @@ public abstract class Attack : MonoBehaviour
             if(phase != AttackPhase.Active)
             {
                 phase = AttackPhase.Active;
-                Debug.Log(phase);
+                // Debug.Log(phase);
             }
         }
         else
@@ -118,7 +115,7 @@ public abstract class Attack : MonoBehaviour
             if(phase != AttackPhase.Recovery)
             {
                 phase = AttackPhase.Recovery;
-                Debug.Log(phase);
+                // Debug.Log(phase);
             }
         }
 

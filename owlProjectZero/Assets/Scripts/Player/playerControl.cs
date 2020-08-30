@@ -69,17 +69,6 @@ public class playerControl : Character
             myState = defaultState;
             myState.Enter();
             Debug.Log(myState);
-            // Debug.Log("moveY " + animator.GetFloat("VerticalMovement"));
-            // Debug.Log("moveX " + animator.GetFloat("horizontalMovement"));
-            // Debug.Log("dodging? " + animator.GetBool("dodging"));
-            // Debug.Log("idling? " + animator.GetBool("idling"));
-            // Debug.Log("moving? " + animator.GetBool("moving"));
-            // Debug.Log("tethered? " + animator.GetBool("tethered"));
-            // Debug.Log("meleeing? " + animator.GetBool("meleeing"));
-            // Debug.Log("gliding? " + animator.GetBool("gliding"));
-            // Debug.Log("grounded? " + animator.GetBool("grounded"));
-            // Debug.Log("jumping up? " + animator.GetBool("jumpup"));
-            // Debug.Log("jumping down? " + animator.GetBool("jumpdown"));
         }
         rb = GetComponent<Rigidbody>();
         data.dodgeDuration = -1f;
@@ -97,7 +86,6 @@ public class playerControl : Character
             {
                 guntimeDuration -= guntimeUsageRate * Time.deltaTime;
                 guntimeMeter.fillAmount = guntimeDuration / MAX_GUNTIME_DURATION;
-                Debug.Log("Guntime Duration: " + guntimeDuration);
             }
             // If ran out of guntime resource, remove character from guntime
             else
@@ -110,7 +98,6 @@ public class playerControl : Character
             {
                 guntimeDuration += guntimeRecoveryRate * Time.deltaTime; // deltaTime is so that the recovery rate is hopefully framerate independent
                 guntimeMeter.fillAmount = guntimeDuration / MAX_GUNTIME_DURATION;
-                Debug.Log("Guntime Duration: " + guntimeDuration);
             }
             // Cap guntimeDuration @ max value
             if(guntimeDuration > MAX_GUNTIME_DURATION)
@@ -133,14 +120,11 @@ public class playerControl : Character
     {
         projectile.SetActive(true);
         ProjectileAttack projAtk = projectile.GetComponent<ProjectileAttack>();
-        // Vector3 spawnOffset = (data.isFacingRight) ? new Vector3(0.5f, 0f, 0f) : new Vector3(-0.5f, 0f, 0f);
-        // projBody.position = transform.position + spawnOffset;
         Vector3 projPos = projectile.transform.position;
         projPos.x = transform.position.x + direction * projAtk.initialLocalPosition;
         projPos.y = transform.position.y;
         projectile.transform.position = projPos;
 
-        // projAtk.speed = (data.isFacingRight) ? ProjectileAttack.INITIAL_SPEED : -ProjectileAttack.INITIAL_SPEED;
         projAtk.speed = rb.velocity.x + direction * projAtk.mySpeed;
         projAtk.isFacingRight = data.isFacingRight;
     }
