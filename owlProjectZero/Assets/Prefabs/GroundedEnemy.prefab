@@ -84,7 +84,7 @@ MonoBehaviour:
     groundSpeed: 2
     airSpeed: 1.5
     jumpDistance: 4
-    isFacingRight: 1
+    isFacingRight: 0
     hasSuperArmor: 0
     deadDuration: 0
     dodgeDuration: 5
@@ -187,7 +187,7 @@ PrefabInstance:
     - target: {fileID: 4474135542371462771, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: m_Name
-      value: GroundedEnemy (1)
+      value: GroundedEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 4474135542371462771, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
@@ -197,7 +197,7 @@ PrefabInstance:
     - target: {fileID: 4939920216119016103, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.2
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5260203863440350989, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
@@ -207,7 +207,7 @@ PrefabInstance:
     - target: {fileID: 5647430596391202973, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8322965130657091661, guid: a94cdbb1a371e434da94986eea1d80d4, type: 3}

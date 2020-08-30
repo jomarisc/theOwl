@@ -24,8 +24,8 @@ public class GEnemyAttack : IState
         // Enter grounded enemy walk animation here:
         
         characterBody.velocity = Vector3.zero;
-        character.Attack();
         meleeAttack.SetActive(true);
+        character.Attack();
     }
 
     public void Exit()
