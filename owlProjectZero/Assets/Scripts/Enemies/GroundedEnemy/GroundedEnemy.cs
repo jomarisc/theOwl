@@ -42,15 +42,15 @@ public class GroundedEnemy : Enemy
         base.FixedUpdate();
     }
 
-    void OnBecameVisible()
-    {
-        Debug.Log("Visible");
-        gameObject.SetActive(true);
-    }
+    // void OnBecameVisible()
+    // {
+    //     Debug.Log("Visible");
+    //     gameObject.SetActive(true);
+    // }
 
-    void OnBecameInvisible()
-    {
-        Debug.Log("Invisible");
-        gameObject.SetActive(false);
-    }
+    // void OnBecameInvisible()
+    // {
+    //     Debug.Log("Invisible");
+    //     gameObject.SetActive(false);
+    // }
 }
