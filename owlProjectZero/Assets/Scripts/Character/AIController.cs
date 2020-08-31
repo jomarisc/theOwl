@@ -11,12 +11,6 @@ public class AIController : MonoBehaviour
         myBehavior = gameObject.GetComponent<Character>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnBecameVisible()
     {
         Debug.Log("Visible");
