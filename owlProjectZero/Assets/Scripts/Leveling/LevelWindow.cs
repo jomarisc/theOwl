@@ -25,7 +25,7 @@ public class LevelWindow : MonoBehaviour
 
     private void SetLevelNumber(int levelNumber)
     {
-        levelText.text = " " + (levelNumber + 1);
+        levelText.text = " " + (levelNumber);
     }
 
     public void SetLevelSystem(LevelSystem levelSystem)

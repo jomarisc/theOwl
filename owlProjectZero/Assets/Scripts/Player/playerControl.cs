@@ -28,10 +28,12 @@ public class playerControl : Character
     public AudioSource meleeHit;
 
     // New line
-    [SerializeField]
-    private LevelWindow levelWindow = null;
+    [SerializeField] private LevelWindow levelWindow;
+    [SerializeField] private SkillTreeWindow skillTreeWindow;
     public LevelSystem levelSystem;
-    
+    public PlayerSkills playerSkills;
+    public int numCurrency;
+
     public bool inGuntime = false;
 
     public playerControl() : base(3, 1, 1f, 3f)
@@ -41,6 +43,8 @@ public class playerControl : Character
     {
         input = new PlayerInputs();
         guntimeDuration = MAX_GUNTIME_DURATION;
+        playerSkills = new PlayerSkills();
+        numCurrency = 0;
     }
 
     private void OnEnable()
@@ -108,7 +112,10 @@ public class playerControl : Character
     new private void FixedUpdate()
     {
         base.FixedUpdate();
-        if(inGuntime && 
+
+        levelWindow.SetLevelSystem(levelSystem);
+
+        if (inGuntime && 
            !(myState is PlayerGlide) &&
            !(myState is PlayerDodge))
         {
@@ -146,16 +153,6 @@ public class playerControl : Character
         Debug.DrawLine(rb.position, rb.position + pendulumForce, Color.blue);
 
         Debug.DrawLine(rb.position, rb.position + rb.velocity);
-    }
-
-    // New
-    public void GoToDeadState()
-    {
-
-        myState.Exit();
-        myState = new PlayerDead(this);
-        Debug.Log(myState);
-        myState.Enter();
     }
 
     public void ActivateTether(InputAction.CallbackContext context)
@@ -256,18 +253,56 @@ public class playerControl : Character
             TurnOffGuntime();
         }
     }
-    /*
-    public void SetLevelSystem(LevelSystem levelSystem)
-    {
-        this.levelSystem = levelSystem;
 
-        levelSystem.OnLevelChanged += LevelSystem_OnLevelChanged;
-    }
-    */
-    /*
-    private void LevelSystem_OnLevelChanged(object sender, EventArgs e)
+    // Function(s) for Dead State
+    public void GoToDeadState()
     {
-        Debug.Log("Execute extra code here when player changes level");
+
+        myState.Exit();
+        myState = new PlayerDead(this);
+        Debug.Log(myState);
+        myState.Enter();
     }
-    */
+
+    // Function(s) for LevelSystem
+
+    public LevelSystem GetLevelSystem()
+    {
+        return levelSystem;
+    }
+
+    // Functions for currency
+
+    public int GetCurrency()
+    {
+        return numCurrency;
+    }
+
+    public void AddCurrency(int addAmount)
+    {
+        numCurrency += addAmount;
+    }
+
+    public void SubtractCurrency(int subAmount)
+    {
+        numCurrency -= subAmount;
+        if (numCurrency < 0)
+        {
+            numCurrency = 0;
+        }
+    }
+
+    // Functions for PlayerSkills
+
+    public PlayerSkills GetPlayerSkills()
+    {
+        return playerSkills;
+    }
+
+    public bool CanUseShield()
+    {
+        //return true; 
+        return playerSkills.IsSkillUnlocked(PlayerSkills.SkillType.Shield);
+    }
+
 }
