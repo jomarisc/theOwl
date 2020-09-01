@@ -110,9 +110,11 @@ public class playerControl : Character
         }
     }
 
+    // Should disable the current selected and active skill
+    // Then enable the desired skill
     new private void ChangeSkill()
     {
-        PlayerSkills equippedSkills = gameObject.GetComponentInChildren<PlayerSkills>();
+
     }
 
     new private void FixedUpdate()
