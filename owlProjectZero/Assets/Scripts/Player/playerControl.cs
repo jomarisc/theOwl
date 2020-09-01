@@ -31,7 +31,8 @@ public class playerControl : Character
     [SerializeField] private LevelWindow levelWindow;
     [SerializeField] private SkillTreeWindow skillTreeWindow;
     public LevelSystem levelSystem;
-    public PlayerSkills playerSkills;
+    public PlayerSkills unlockedSkills;
+    public PlayerSkills equippedSkills;
     public int numCurrency;
 
     public bool inGuntime = false;
@@ -43,7 +44,7 @@ public class playerControl : Character
     {
         input = new PlayerInputs();
         guntimeDuration = MAX_GUNTIME_DURATION;
-        playerSkills = new PlayerSkills();
+        // playerSkills = new PlayerSkills();
         numCurrency = 0;
     }
 
@@ -107,6 +108,11 @@ public class playerControl : Character
             if(guntimeDuration > MAX_GUNTIME_DURATION)
                 guntimeDuration = MAX_GUNTIME_DURATION;
         }
+    }
+
+    new private void ChangeSkill()
+    {
+        PlayerSkills equippedSkills = gameObject.GetComponentInChildren<PlayerSkills>();
     }
 
     new private void FixedUpdate()
@@ -296,13 +302,14 @@ public class playerControl : Character
 
     public PlayerSkills GetPlayerSkills()
     {
-        return playerSkills;
+        // return playerSkills;
+        return unlockedSkills;
     }
 
     public bool CanUseShield()
     {
-        //return true; 
-        return playerSkills.IsSkillUnlocked(PlayerSkills.SkillType.Shield);
+        return true; 
+        // return playerSkills.IsSkillUnlocked(PlayerSkills.SkillType.Shield);
     }
 
 }
