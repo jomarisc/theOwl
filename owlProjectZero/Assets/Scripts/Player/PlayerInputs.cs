@@ -250,6 +250,17 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""64057694-dc6f-4d91-a9c4-8b2004cbb836"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseActiveSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b8153b4a-f1aa-4621-bf60-09b529510982"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
