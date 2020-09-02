@@ -56,7 +56,7 @@ public class HeavyEnemy : Enemy
 
     new public void MoveCharacter(float direction)
     {
-        Debug.Log(data.maxSpeed);
+        // Debug.Log(data.maxSpeed);
         rb.AddForce(new Vector3(direction * data.maxSpeed, 0f, 0f), ForceMode.VelocityChange);
     }
 }
