@@ -37,6 +37,7 @@ public class playerControl : Character
 
     public bool inGuntime = false;
 
+
     public playerControl() : base(3, 1, 1f, 3f)
     {}
 
@@ -52,11 +53,13 @@ public class playerControl : Character
     {
         input.Enable();
         input.Gameplay.Guntime.started += ToggleGuntime;
+        input.Gameplay.UseActiveSkill.started += UseCurrentSkill;
     }
 
     private void OnDisable()
     {
         input.Gameplay.Guntime.started -= ToggleGuntime;
+        input.Gameplay.UseActiveSkill.started -= UseCurrentSkill;
         input.Disable();
     }
 
@@ -260,6 +263,11 @@ public class playerControl : Character
         {
             TurnOffGuntime();
         }
+    }
+
+    public void UseCurrentSkill(InputAction.CallbackContext context)
+    {
+        equippedSkills.currentSkill.UseSkill();
     }
 
     // Function(s) for Dead State
