@@ -13,13 +13,13 @@ public class Shield : Skill
     // Start is called before the first frame update
     new private void Start()
     {
-
+        base.Start();
     }
 
     // Update is called once per frame
     new private void Update()
     {
-        
+        base.Update();
     }
     
     public override void UseSkill()
@@ -41,5 +41,6 @@ public class Shield : Skill
     {
         gameObject.GetComponent<Renderer>().enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
+        cooldown = 0f;
     }
 }
