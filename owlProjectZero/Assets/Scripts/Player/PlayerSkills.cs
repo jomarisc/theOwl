@@ -7,11 +7,7 @@ public class PlayerSkills : MonoBehaviour
     
     //private readonly playerControl player;
 
-    public enum SkillType
-    {
-        Shield, None,
-    }
-
+    public Skill currentSkill;
     public List<Skill> unlockedSkillTypeList;
     
     public PlayerSkills()
