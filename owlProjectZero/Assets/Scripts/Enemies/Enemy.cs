@@ -10,11 +10,13 @@ public abstract class Enemy : Character
     private float eyePrescription = 0f;
     [SerializeField]
     private GameObject experienceCollectable = null;
+    public GameObject currencyCollectable = null;
     public LayerMask targetLayer;
     public static int totalEnemies = 0;
     public static int numDefeatedEnemies = 0;
     public Text enemyCounter;
     EnemyDead enemyDeadListener;
+    public float range = 1.0f;
 
 
     public Enemy(int maxJumps, int maxDodges, float dodgeDuration, float deadDuration) : base(maxJumps, maxDodges, dodgeDuration, deadDuration)
@@ -79,6 +81,14 @@ public abstract class Enemy : Character
     {
         //Debug.Log("Spawn Experience!");
         Instantiate(experienceCollectable, transform.position, Quaternion.identity);
+
+        
+        for (int i = 1 ; i <= 3; i++)
+        {
+            var randomPos = (Random.insideUnitSphere * range);
+            randomPos.z = 0;
+            Instantiate(currencyCollectable, transform.position + randomPos, Quaternion.identity);
+        }
         enemyDeadListener.OnEnemyDead -= SpawnExperience;
         //Debug.Break();
     }

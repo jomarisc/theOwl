@@ -444,6 +444,17 @@ PrefabInstance:
       propertyPath: data.isFacingRight
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: experienceCollectable
+      value: 
+      objectReference: {fileID: 198094913682120957, guid: 3f2a4850f14f43347a2bee6ba7577ca1,
+        type: 3}
+    - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: currencyCollectable
+      value: 
+      objectReference: {fileID: 725397073}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb030aaad8d879b47b3ab0d608bb220c, type: 3}
 --- !u!1 &115787427
@@ -1383,7 +1394,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330665068}
-  m_LocalRotation: {x: -0.087472945, y: 0.012377597, z: -0.000941727, w: -0.9960896}
+  m_LocalRotation: {x: -0.08747285, y: 0.012486862, z: -0.0009513536, w: -0.9960882}
   m_LocalPosition: {x: 0, y: 1.5, z: -8.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2049,6 +2060,17 @@ PrefabInstance:
       propertyPath: data.isFacingRight
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: experienceCollectable
+      value: 
+      objectReference: {fileID: 198094913682120957, guid: 3f2a4850f14f43347a2bee6ba7577ca1,
+        type: 3}
+    - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: currencyCollectable
+      value: 
+      objectReference: {fileID: 725397073}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb030aaad8d879b47b3ab0d608bb220c, type: 3}
 --- !u!1 &518647625
@@ -2788,6 +2810,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c7a9e3fe10b9f54595053935f0ef549, type: 3}
+--- !u!1 &725397073 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9102680711599866488, guid: 0c7a9e3fe10b9f54595053935f0ef549,
+    type: 3}
+  m_PrefabInstance: {fileID: 1837651871}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &762658161
 GameObject:
   m_ObjectHideFlags: 0
@@ -3103,7 +3131,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.087472945, y: 0.012377597, z: -0.000941727, w: -0.9960896}
+  m_LocalRotation: {x: -0.08747285, y: 0.012486862, z: -0.0009513536, w: -0.9960882}
   m_LocalPosition: {x: 0, y: 1.5, z: -8.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3442,6 +3470,17 @@ PrefabInstance:
       propertyPath: enemyCounter
       value: 
       objectReference: {fileID: 1609787557}
+    - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: experienceCollectable
+      value: 
+      objectReference: {fileID: 198094913682120957, guid: 3f2a4850f14f43347a2bee6ba7577ca1,
+        type: 3}
+    - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: currencyCollectable
+      value: 
+      objectReference: {fileID: 725397073}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb030aaad8d879b47b3ab0d608bb220c, type: 3}
 --- !u!1 &1100823315
@@ -3619,12 +3658,12 @@ PrefabInstance:
     - target: {fileID: 1522867306659630031, guid: fb030aaad8d879b47b3ab0d608bb220c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18
+      value: 16.8
       objectReference: {fileID: 0}
     - target: {fileID: 1522867306659630031, guid: fb030aaad8d879b47b3ab0d608bb220c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.74
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 1522867306659630031, guid: fb030aaad8d879b47b3ab0d608bb220c,
         type: 3}
@@ -3686,6 +3725,17 @@ PrefabInstance:
       propertyPath: enemyCounter
       value: 
       objectReference: {fileID: 1609787557}
+    - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: experienceCollectable
+      value: 
+      objectReference: {fileID: 198094913682120957, guid: 3f2a4850f14f43347a2bee6ba7577ca1,
+        type: 3}
+    - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: currencyCollectable
+      value: 
+      objectReference: {fileID: 725397073}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb030aaad8d879b47b3ab0d608bb220c, type: 3}
 --- !u!1001 &1215747044
@@ -6083,6 +6133,17 @@ PrefabInstance:
       propertyPath: enemyCounter
       value: 
       objectReference: {fileID: 1609787557}
+    - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: experienceCollectable
+      value: 
+      objectReference: {fileID: 198094913682120957, guid: 3f2a4850f14f43347a2bee6ba7577ca1,
+        type: 3}
+    - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: currencyCollectable
+      value: 
+      objectReference: {fileID: 725397073}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb030aaad8d879b47b3ab0d608bb220c, type: 3}
 --- !u!1001 &7465775570026728421
