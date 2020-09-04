@@ -6,9 +6,12 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Shield : Skill
 {
-    [SerializeField]
-    private float damageToNegate = 0f; // shouldn't be modified anywhere in code
+    private const float DISCOLORATION_TIMER = 0.25f;
+    private float discolorationTimer;
+    private Color originalColor;
+    [SerializeField] private float damageToNegate = 0f; // shouldn't be modified anywhere in code
     private float negatedDamage;
+    private bool isDamaged;
     Shield()
     {
         type = SkillType.Defensive;
@@ -17,12 +20,25 @@ public class Shield : Skill
     new private void Start()
     {
         base.Start();
+        discolorationTimer = 0f;
+        originalColor = gameObject.GetComponent<Renderer>().material.color;
+        isDamaged = false;
     }
 
     // Update is called once per frame
     new private void Update()
     {
         base.Update();
+        if(isDamaged)
+        {
+            discolorationTimer -= Time.deltaTime;
+            if(discolorationTimer <= 0f)
+            {
+                discolorationTimer = 0f;
+                isDamaged = false;
+                gameObject.GetComponent<Renderer>().material.color = originalColor;
+            }
+        }
         if(isActive && negatedDamage < 0f)
             DeactivateSkill(); // Should probably have 2 kinds of skill deactivation: Forced and Manual
     }
@@ -33,6 +49,7 @@ public class Shield : Skill
         {
             Physics.IgnoreLayerCollision(9, 12, true);
             gameObject.GetComponent<Renderer>().enabled = true;
+            gameObject.GetComponent<Renderer>().material.color = originalColor;
             gameObject.GetComponent<Collider>().enabled = true;
             isActive = true;
             negatedDamage = damageToNegate;
@@ -55,6 +72,11 @@ public class Shield : Skill
 
     public void GetDamaged(float damage)
     {
+        discolorationTimer = DISCOLORATION_TIMER;
+        Color myColor = gameObject.GetComponent<Renderer>().material.color;
+        myColor.a = 0.75f;
+        gameObject.GetComponent<Renderer>().material.color = myColor;
         negatedDamage -= damage;
+        isDamaged = true;
     }
 }
