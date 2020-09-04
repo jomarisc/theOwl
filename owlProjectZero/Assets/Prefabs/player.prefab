@@ -593,6 +593,7 @@ MonoBehaviour:
   currencyCost: 0
   type: 2
   requiredLevel: 0
+  damageToNegate: 0
 --- !u!1 &2529497728352103115
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,11 +978,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stamanaCost: 10
-  maxCooldown: 20
+  maxCooldown: 5
   passiveMultiplier: 1
   currencyCost: 1
   type: 2
   requiredLevel: 0
+  damageToNegate: 1
 --- !u!1 &5161132263505729630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,6 +1063,7 @@ MonoBehaviour:
   currencyCost: 0
   type: 2
   requiredLevel: 0
+  damageToNegate: 0
 --- !u!1 &5370420138850324902
 GameObject:
   m_ObjectHideFlags: 0
