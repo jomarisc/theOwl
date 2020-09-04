@@ -267,7 +267,11 @@ public class playerControl : Character
 
     public void UseCurrentSkill(InputAction.CallbackContext context)
     {
-        equippedSkills.currentSkill.UseSkill();
+        Skill currentSkill = equippedSkills.currentSkill;
+        if(currentSkill.isActive)
+            currentSkill.DeactivateSkill();
+        else
+            currentSkill.UseSkill();
     }
 
     // Function(s) for Dead State

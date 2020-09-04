@@ -17,12 +17,12 @@ public abstract class Skill : MonoBehaviour, ISkill
     protected float cooldown;
     [SerializeField] protected float passiveMultiplier;
     [SerializeField] protected float currencyCost;
-    protected bool isActive;
 
     // public fields
     public SkillType type;
 
     public int requiredLevel;
+    public bool isActive;
     public float usageCost { get; protected set; }
 
 
