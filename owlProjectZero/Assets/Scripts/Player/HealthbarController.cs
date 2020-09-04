@@ -34,7 +34,12 @@ public class HealthbarController : MonoBehaviour
     {
         playerScript.data.health -= damageAmount;
         // Ensures that health does not go below 0
-        healthBar.fillAmount = playerScript.data.health / healthMax;
+        Redraw();
+        Debug.Log("Current Health: " + playerScript.data.health);
+    }
+
+    public void Redraw()
+    {
         if (playerScript.data.health <= 0)
         {
             playerScript.data.health = 0;
@@ -45,7 +50,7 @@ public class HealthbarController : MonoBehaviour
             //Debug.Log("Got rekt2");
             //return new PlayerDeath(player);
         }
-        Debug.Log("Current Health: " + playerScript.data.health);
+        healthBar.fillAmount = playerScript.data.health / healthMax;
     }
 
     /*

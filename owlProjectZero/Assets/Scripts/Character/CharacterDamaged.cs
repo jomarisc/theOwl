@@ -38,7 +38,7 @@ public class CharacterDamaged : IState
             character.GetComponent<Renderer>().material.color = Color.red;
         }
 
-        // character.data.health -= damageReceived;
+        character.data.health -= damageReceived;
     }
 
     public void Exit()
