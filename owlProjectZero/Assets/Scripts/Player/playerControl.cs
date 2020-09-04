@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Collider))]
 public class playerControl : Character
 {
+    private float MAX_STAMANA;
     private const float MAX_GUNTIME_DURATION = 5f;
     private float guntimeDuration;
     [SerializeField]
@@ -80,6 +81,8 @@ public class playerControl : Character
         }
         rb = GetComponent<Rigidbody>();
         data.dodgeDuration = -1f;
+        MAX_STAMANA = data.remainingStamana;
+        Debug.Log("MAX_STAMANA " + MAX_STAMANA);
     }
 
     // Update is called once per frame
@@ -110,6 +113,15 @@ public class playerControl : Character
             // Cap guntimeDuration @ max value
             if(guntimeDuration > MAX_GUNTIME_DURATION)
                 guntimeDuration = MAX_GUNTIME_DURATION;
+        }
+
+        // Naturally recover stamana
+        if(!equippedSkills.currentSkill.isActive)
+        {
+            if(data.remainingStamana < MAX_STAMANA)
+                data.remainingStamana += Time.deltaTime;
+            else if(data.remainingStamana > MAX_STAMANA)
+                data.remainingStamana = MAX_STAMANA;
         }
     }
 
@@ -271,7 +283,15 @@ public class playerControl : Character
         if(currentSkill.isActive)
             currentSkill.DeactivateSkill();
         else
-            currentSkill.UseSkill();
+        {
+            if(data.remainingStamana >= currentSkill.usageCost)
+            {
+                data.remainingStamana -= currentSkill.usageCost;
+                currentSkill.UseSkill();
+            }
+            else
+                Debug.Log("Not enough stamana!");
+        }
     }
 
     // Function(s) for Dead State

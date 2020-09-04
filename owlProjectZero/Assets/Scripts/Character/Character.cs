@@ -20,6 +20,7 @@ public struct CharacterData
 
     //public Animator animator;
     public float dodgeDuration;
+    public float remainingStamana;
 }
 
 [RequireComponent(typeof(Rigidbody))]

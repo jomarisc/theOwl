@@ -306,7 +306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5675200177422650690
 Transform:
   m_ObjectHideFlags: 0
@@ -559,7 +559,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1380438921548497797
 Transform:
   m_ObjectHideFlags: 0
@@ -694,6 +694,7 @@ MonoBehaviour:
     hasSuperArmor: 0
     deadDuration: 0
     dodgeDuration: 2
+    remainingStamana: 100
   meleeAttack: {fileID: 8548501586489388540}
   animator: {fileID: 1050675498}
   guntimeUsageRate: 1
@@ -810,7 +811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5368351558354610488
 Transform:
   m_ObjectHideFlags: 0
@@ -887,7 +888,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6254331834336007244
 Transform:
   m_ObjectHideFlags: 0
