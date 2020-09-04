@@ -141,6 +141,12 @@ public abstract class Attack : MonoBehaviour
         if(col.gameObject.TryGetComponent(out Rigidbody body) &&
            col.GetComponent<EnvironmentElement>() == null)
         {
+            if(col.gameObject.TryGetComponent<Shield>(out Shield s))
+            {
+                col.gameObject.GetComponent<Shield>().GetDamaged(hitboxes[0].damage);
+            }
+
+
             // This should eventually get refactored into a damaged state for the
             // character class
             if(col.gameObject.TryGetComponent(out Character character))
