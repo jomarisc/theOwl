@@ -1600,10 +1600,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield
       objectReference: {fileID: 0}
+    - target: {fileID: 3849327204251050522, guid: 5ac0a6abd7abba64aa8962dc7596fb84,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 6567899886119994640, guid: 5ac0a6abd7abba64aa8962dc7596fb84,
         type: 3}
       propertyPath: damageToNegate
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567899886119994640, guid: 5ac0a6abd7abba64aa8962dc7596fb84,
+        type: 3}
+      propertyPath: maxCooldown
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ac0a6abd7abba64aa8962dc7596fb84, type: 3}
