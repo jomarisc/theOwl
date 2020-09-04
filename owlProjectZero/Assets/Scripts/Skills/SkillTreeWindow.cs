@@ -75,22 +75,22 @@ public class SkillTreeWindow : MonoBehaviour
 
         if (playerScript.GetCurrency() >= 0)
         {
-            if (playerScript.GetCurrency() >= 20 && playerScript.levelSystem.GetLevelNumber() >= 2
-                && !(playerSkills.IsSkillUnlocked(PlayerSkills.SkillType.Shield)))
-                //&& (EventSystem.current.currentSelectedGameObject == shieldButton))
-            {
-                Debug.Log("Skill Unlocked!");
-                playerSkills.UnlockSkill(PlayerSkills.SkillType.Shield);
-                playerScript.SubtractCurrency(20);
-                currency.currencyText.text = "Currency: " + playerScript.GetCurrency();
-                Debug.Log("Player Currency (AFTER): " + playerScript.GetCurrency());
+            // if (playerScript.GetCurrency() >= 20 && playerScript.levelSystem.GetLevelNumber() >= 2
+            //     && !(playerSkills.IsSkillUnlocked(PlayerSkills.SkillType.Shield)))
+            //     //&& (EventSystem.current.currentSelectedGameObject == shieldButton))
+            // {
+            //     Debug.Log("Skill Unlocked!");
+            //     playerSkills.UnlockSkill(PlayerSkills.SkillType.Shield);
+            //     playerScript.SubtractCurrency(20);
+            //     currency.currencyText.text = "Currency: " + playerScript.GetCurrency();
+            //     Debug.Log("Player Currency (AFTER): " + playerScript.GetCurrency());
 
               
-            }
-            else //if (playerScript.GetCurrency) // Further define the else condition - 8/31/2020
-            {
-                Debug.Log("Not enough currency or level");
-            }
+            // }
+            // else //if (playerScript.GetCurrency) // Further define the else condition - 8/31/2020
+            // {
+            //     Debug.Log("Not enough currency or level");
+            // }
         }
 
         // Other ways to use SetSelectedGameObject

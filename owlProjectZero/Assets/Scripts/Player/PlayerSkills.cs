@@ -2,24 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSkills
+public class PlayerSkills : MonoBehaviour
 {
     
     //private readonly playerControl player;
 
-    public enum SkillType
-    {
-        Shield,
-    }
-
-    public List<SkillType> unlockedSkillTypeList;
+    public Skill currentSkill;
+    public List<Skill> unlockedSkillTypeList;
     
     public PlayerSkills()
     {
-        unlockedSkillTypeList = new List<SkillType>();
+        unlockedSkillTypeList = new List<Skill>();
     }
 
-    public void UnlockSkill(SkillType skillType)
+    public void UnlockSkill(Skill skillType)
     {
         if (!IsSkillUnlocked(skillType))
         {
@@ -31,7 +27,7 @@ public class PlayerSkills
         }
     }
 
-    public bool IsSkillUnlocked(SkillType skillType)
+    public bool IsSkillUnlocked(Skill skillType)
     {
         return unlockedSkillTypeList.Contains(skillType);
     }

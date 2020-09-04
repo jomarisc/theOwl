@@ -71,7 +71,10 @@ public abstract class Attack : MonoBehaviour
     {
         // transform.eulerAngles = new Vector3(0f, 0f, hitboxes[0].knockbackAngle);
         startupDuration = hitboxes[0].startup * Time.fixedDeltaTime;
-        activeDuration = hitboxes[0].timeActive * Time.fixedDeltaTime;
+        if(hitboxes[0].timeActive == 0)
+            activeDuration = Mathf.Infinity;
+        else
+            activeDuration = hitboxes[0].timeActive * Time.fixedDeltaTime;
         recoveryDuration = hitboxes[0].recovery * Time.fixedDeltaTime;
         initialLocalPosition = Mathf.Abs(transform.localPosition.x);
         phase = AttackPhase.Startup;
@@ -99,13 +102,16 @@ public abstract class Attack : MonoBehaviour
         }
         else if(activeDuration > 0f)
         {
-            activeDuration -= Time.fixedDeltaTime;
-            Color hitboxColor = new Color(255f, 0f, 0f, 96f);
-            hitboxes[0].shape.gameObject.GetComponent<Renderer>().material.SetColor("_Color", hitboxColor);
-            if(phase != AttackPhase.Active)
+            if(activeDuration != Mathf.Infinity)
             {
-                phase = AttackPhase.Active;
-                // Debug.Log(phase);
+                activeDuration -= Time.fixedDeltaTime;
+                Color hitboxColor = new Color(255f, 0f, 0f, 96f);
+                hitboxes[0].shape.gameObject.GetComponent<Renderer>().material.SetColor("_Color", hitboxColor);
+                if(phase != AttackPhase.Active)
+                {
+                    phase = AttackPhase.Active;
+                    // Debug.Log(phase);
+                }
             }
         }
         else
@@ -163,7 +169,7 @@ public abstract class Attack : MonoBehaviour
             }
             if(col.gameObject.TryGetComponent(out playerControl player))
             {
-                //Debug.Log("Player Damaged by Hitbox!");
+                Debug.Log("Player Damaged by Hitbox!");
                 col.gameObject.GetComponent<playerControl>().healthbar.Damage(hitboxes[0].damage);
             }
             if(col.gameObject.TryGetComponent(out Enemy enemy))

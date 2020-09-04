@@ -53,7 +53,7 @@ public abstract class Enemy : Character
         lookingDirection.x = (data.isFacingRight) ? 1f : -1f;
         Debug.DrawLine(rb.position, rb.position + lookingDirection * Mathf.Abs(range), Color.red);
         bool inAtkRange = Physics.Raycast(rb.position, lookingDirection, Mathf.Abs(range), targetLayer);
-        Debug.Log(inAtkRange);
+        // Debug.Log(inAtkRange);
         return inAtkRange;
     }
 
