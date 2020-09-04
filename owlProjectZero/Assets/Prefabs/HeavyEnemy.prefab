@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitboxes:
   - shape: {fileID: 4889121729216290004}
-    damage: 1
+    damage: 4
     startup: 0
     timeActive: 10
     recovery: 20
@@ -140,15 +140,18 @@ MonoBehaviour:
     hasSuperArmor: 1
     deadDuration: 0
     dodgeDuration: 0
+    remainingStamana: 0
   meleeAttack: {fileID: 5476406654723804732}
   animator: {fileID: 3602563350163768425}
   eyePrescription: 15
   experienceCollectable: {fileID: 9102680711599866488, guid: 0c7a9e3fe10b9f54595053935f0ef549,
     type: 3}
+  currencyCollectable: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
   enemyCounter: {fileID: 0}
+  range: 1
 --- !u!1001 &8719285318242900836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225,6 +228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779699542684388324, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a94cdbb1a371e434da94986eea1d80d4, type: 3}
