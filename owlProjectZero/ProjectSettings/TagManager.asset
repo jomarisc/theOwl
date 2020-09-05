@@ -6,6 +6,8 @@ TagManager:
   tags:
   - TestEnemy
   - GroundedEnemy
+  - Experience
+  - Currency
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - PlayerHitbox
   - EnemyHitbox
   - Intangible
-  - 
-  - 
+  - PlayerShield
+  - EnemyBodyHitbox
   - 
   - 
   - 
