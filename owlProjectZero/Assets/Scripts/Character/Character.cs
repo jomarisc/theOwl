@@ -118,6 +118,7 @@ public abstract class Character : MonoBehaviour, ICharacter
             // Stop checking collisions with player hurtbox and enemy-related physics layers
             Physics.IgnoreLayerCollision(9, 10, true); // Player x Enemies
             Physics.IgnoreLayerCollision(9, 12, true); // Player x Enemies' Attacks
+            Physics.IgnoreLayerCollision(9, 15, true); // Player x Enemies' Bodu Hitbox
             // If character is grounded, do a roll in whichever facing direction
             if(data.maxSpeed == data.groundSpeed)
             {
@@ -132,6 +133,7 @@ public abstract class Character : MonoBehaviour, ICharacter
         // This branch should only be called once as dodgeDuration becomes negative
         else
         {
+            Physics.IgnoreLayerCollision(9, 15, false); // Player x Enemies' Bodu Hitbox
             Physics.IgnoreLayerCollision(9, 12, false); // Player x Enemies' Attacks
             Physics.IgnoreLayerCollision(9, 10, false); // Player x Enemies
         }
