@@ -31,10 +31,10 @@ public abstract class Skill : MonoBehaviour, ISkill
     protected void Start()
     {
         cooldown = maxCooldown;
-        Debug.Log("cooldown" + cooldown);
+        // Debug.Log("cooldown" + cooldown);
         isActive = false;
         usageCost = stamanaCost;
-        Debug.Log("S cost: " + usageCost);
+        // Debug.Log("S cost: " + usageCost);
     }
 
     // Update is called once per frame
