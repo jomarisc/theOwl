@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum SkillType
 {
@@ -12,6 +13,7 @@ public abstract class Skill : MonoBehaviour, ISkill
     // private fields
 
     // protected fields
+    [SerializeField] protected Sprite icon;
     [SerializeField] protected float stamanaCost;
     [SerializeField] protected float maxCooldown;
     protected float cooldown;
@@ -20,7 +22,6 @@ public abstract class Skill : MonoBehaviour, ISkill
 
     // public fields
     public SkillType type;
-
     public int requiredLevel;
     public bool isActive;
     public float usageCost { get; protected set; }
@@ -57,6 +58,8 @@ public abstract class Skill : MonoBehaviour, ISkill
                 cooldown = maxCooldown;
         }
     }
+
+    public Sprite GetIcon() { return icon; }
 
     public abstract void UseSkill();
     public abstract void DeactivateSkill();

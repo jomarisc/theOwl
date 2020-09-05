@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6cc04440088fb5438f762d90f200ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 1541c05fdb7941946b2ab7ead8ac3106, type: 3}
   stamanaCost: 10
   maxCooldown: 5
   passiveMultiplier: 1
@@ -130,4 +131,4 @@ MonoBehaviour:
   type: 2
   requiredLevel: 0
   isActive: 0
-  DAMAGE_TO_NEGATE: 0
+  damageToNegate: 0
