@@ -34,6 +34,7 @@ public class playerControl : Character
     public LevelSystem levelSystem;
     public PlayerSkills unlockedSkills;
     public PlayerSkills equippedSkills;
+    public GameObject equippedSkillsUI;
     public int numCurrency;
 
     public bool inGuntime = false;
@@ -55,12 +56,16 @@ public class playerControl : Character
         input.Enable();
         input.Gameplay.Guntime.started += ToggleGuntime;
         input.Gameplay.UseActiveSkill.started += UseCurrentSkill;
+        // input.Gameplay.OpenSkillWheel.started += OpenSkillWheel;
+        // input.Gameplay.OpenSkillWheel.canceled += CloseSkillWheel;
     }
 
     private void OnDisable()
     {
         input.Gameplay.Guntime.started -= ToggleGuntime;
         input.Gameplay.UseActiveSkill.started -= UseCurrentSkill;
+        // input.Gameplay.OpenSkillWheel.started -= OpenSkillWheel;
+        // input.Gameplay.OpenSkillWheel.canceled -= CloseSkillWheel;
         input.Disable();
     }
 
@@ -122,6 +127,20 @@ public class playerControl : Character
                 data.remainingStamana += Time.deltaTime;
             else if(data.remainingStamana > MAX_STAMANA)
                 data.remainingStamana = MAX_STAMANA;
+        }
+
+        if(!equippedSkillsUI.activeInHierarchy &&
+           input.Gameplay.OpenSkillWheel.ReadValue<Vector2>().magnitude >= 0.125f)
+        {
+            OpenSkillWheel();
+            Debug.Log(input.Gameplay.OpenSkillWheel.phase);
+        }
+
+        if(equippedSkillsUI.activeInHierarchy &&
+           input.Gameplay.OpenSkillWheel.ReadValue<Vector2>().magnitude < 0.125f)
+        {
+            CloseSkillWheel();
+            Debug.Log(input.Gameplay.OpenSkillWheel.phase);
         }
     }
 
@@ -292,6 +311,16 @@ public class playerControl : Character
             else
                 Debug.Log("Not enough stamana!");
         }
+    }
+
+    public void OpenSkillWheel()
+    {
+        equippedSkillsUI.SetActive(true);
+    }
+
+    public void CloseSkillWheel()
+    {
+        equippedSkillsUI.SetActive(false);
     }
 
     // Function(s) for Dead State
