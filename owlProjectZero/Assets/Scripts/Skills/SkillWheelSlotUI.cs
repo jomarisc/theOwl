@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 // This class is in charge of updating the skill wheel UI when necessary
 [RequireComponent(typeof(Image))]
-public class SkillWheelUI : MonoBehaviour
+public class SkillWheelSlotUI : MonoBehaviour
 {
     [SerializeField] private PlayerSkills equippedSkills;
     [SerializeField] private int slotNumber;
