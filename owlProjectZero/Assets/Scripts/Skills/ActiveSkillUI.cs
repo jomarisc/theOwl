@@ -24,7 +24,8 @@ public class ActiveSkillUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
+        currentSkillIcon.sprite = equippedSkills.currentSkill.GetIcon();
     }
 
     // Update is called once per frame
