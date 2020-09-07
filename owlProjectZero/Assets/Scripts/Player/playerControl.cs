@@ -320,6 +320,7 @@ public class playerControl : Character
 
     public void OpenSkillWheel()
     {
+        Time.timeScale = 0.5f;
         ((InputSystemUIInputModule)EventSystem.current.currentInputModule).move = InputActionReference.Create(input.SkillWheel.Navigate);
         equippedSkillsUI.SetActive(true);
         StartCoroutine(ReadRightStickInput());
@@ -355,6 +356,7 @@ public class playerControl : Character
         if(OnSkillEquip != null)
             OnSkillEquip();
         equippedSkillsUI.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     // Function(s) for Dead State
