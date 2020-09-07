@@ -9,8 +9,8 @@ using UnityEngine.EventSystems;
 public class SkillWheelSlotUI : MonoBehaviour
 {
     [SerializeField] private PlayerSkills equippedSkills;
-    [SerializeField] private int slotNumber;
     private Image myIcon;
+    public int slotNumber;
 
     void Awake()
     {

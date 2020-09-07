@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Collider))]
 public class playerControl : Character
@@ -320,6 +321,7 @@ public class playerControl : Character
 
     public void CloseSkillWheel()
     {
+        equippedSkills.currentSkill = equippedSkills.unlockedSkillTypeList[EventSystem.current.currentSelectedGameObject.GetComponentInChildren<SkillWheelSlotUI>().slotNumber - 1];
         equippedSkillsUI.SetActive(false);
     }
 
