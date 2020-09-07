@@ -9,16 +9,32 @@ public class ActiveSkillUI : MonoBehaviour
 {
     [SerializeField] private PlayerSkills equippedSkills;
     private Image currentSkillIcon;
+    void Awake()
+    {
+        currentSkillIcon = gameObject.GetComponent<Image>();
+    }
+    void OnEnable()
+    {
+        playerControl.OnSkillEquip += SetSkillIcon;
+    }
+    void OnDisable()
+    {
+        playerControl.OnSkillEquip -= SetSkillIcon;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        currentSkillIcon = gameObject.GetComponent<Image>();
-        currentSkillIcon.sprite = equippedSkills.currentSkill.GetIcon();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void SetSkillIcon()
+    {
+        currentSkillIcon.sprite = equippedSkills.currentSkill.GetIcon();
     }
 }

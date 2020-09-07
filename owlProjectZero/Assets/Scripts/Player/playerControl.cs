@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
@@ -36,6 +37,8 @@ public class playerControl : Character
     public PlayerSkills unlockedSkills;
     public PlayerSkills equippedSkills;
     public GameObject equippedSkillsUI;
+    public static event SkillEquip OnSkillEquip;
+    public delegate void SkillEquip();
     public int numCurrency;
 
     public bool inGuntime = false;
@@ -322,6 +325,8 @@ public class playerControl : Character
     public void CloseSkillWheel()
     {
         equippedSkills.currentSkill = equippedSkills.unlockedSkillTypeList[EventSystem.current.currentSelectedGameObject.GetComponentInChildren<SkillWheelSlotUI>().slotNumber - 1];
+        if(OnSkillEquip != null)
+            OnSkillEquip();
         equippedSkillsUI.SetActive(false);
     }
 
