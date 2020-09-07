@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -37,6 +38,9 @@ public class PauseMenu : MonoBehaviour
             if (isPaused) ResumeGame();
             else PauseGame();
         }
+
+        if(isPaused && input.UI.Cancel.triggered)
+            ResumeGame();
     }
 
     private void OnEnable()
@@ -57,6 +61,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
 
         EventSystem.current.SetSelectedGameObject(resumebutton);
+        ((InputSystemUIInputModule)EventSystem.current.currentInputModule).move = InputActionReference.Create(input.UI.Navigate);
     }
 
     public void ResumeGame()
