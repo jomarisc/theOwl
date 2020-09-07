@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 
 [RequireComponent(typeof(Collider))]
 public class playerControl : Character
@@ -319,11 +320,19 @@ public class playerControl : Character
 
     public void OpenSkillWheel()
     {
+        // input.UI.Navigate.ChangeBindingWithPath("Navigate:<Gamepad>/leftStick/up[;Gamepad]");
+        // EventSystem.current.GetComponent<InputSystemUIInputModule>().move = InputActionReference.Create(input.SkillWheel.Navigate);
+        ((InputSystemUIInputModule)EventSystem.current.currentInputModule).move = InputActionReference.Create(input.SkillWheel.Navigate);
+        // Debug.Log(input.UI.Navigate.bindings.ToArray().ToString());
+        // for(int i = 0; i < input.UI.Navigate.bindings.Count; i++)
+        //     Debug.Log(input.UI.Navigate.bindings[i].ToString());
+        // Debug.Break();
         equippedSkillsUI.SetActive(true);
     }
 
     public void CloseSkillWheel()
     {
+        ((InputSystemUIInputModule)EventSystem.current.currentInputModule).move = InputActionReference.Create(input.UI.Navigate);
         equippedSkills.currentSkill = equippedSkills.unlockedSkillTypeList[EventSystem.current.currentSelectedGameObject.GetComponentInChildren<SkillWheelSlotUI>().slotNumber - 1];
         if(OnSkillEquip != null)
             OnSkillEquip();
