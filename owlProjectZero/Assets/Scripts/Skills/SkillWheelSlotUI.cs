@@ -20,8 +20,13 @@ public class SkillWheelSlotUI : MonoBehaviour
     void OnEnable()
     {
         myIcon.sprite = equippedSkills.unlockedSkillTypeList[slotNumber - 1].GetIcon();
-        if(slotNumber == 1)
-            EventSystem.current.SetSelectedGameObject(this.gameObject.GetComponentInParent<Button>().gameObject);
+        // if(slotNumber == 1)
+        // {
+        //     // EventSystem.current.SetSelectedGameObject(null);
+        //     // EventSystem.current.SetSelectedGameObject(this.gameObject.GetComponentInParent<Button>().gameObject);
+        //     this.gameObject.GetComponentInParent<Button>().Select();
+        //     this.gameObject.GetComponentInParent<Button>().OnSelect(null);
+        // }
     }
 
     // Start is called before the first frame update

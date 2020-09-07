@@ -320,14 +320,32 @@ public class playerControl : Character
 
     public void OpenSkillWheel()
     {
-        // input.UI.Navigate.ChangeBindingWithPath("Navigate:<Gamepad>/leftStick/up[;Gamepad]");
-        // EventSystem.current.GetComponent<InputSystemUIInputModule>().move = InputActionReference.Create(input.SkillWheel.Navigate);
         ((InputSystemUIInputModule)EventSystem.current.currentInputModule).move = InputActionReference.Create(input.SkillWheel.Navigate);
-        // Debug.Log(input.UI.Navigate.bindings.ToArray().ToString());
-        // for(int i = 0; i < input.UI.Navigate.bindings.Count; i++)
-        //     Debug.Log(input.UI.Navigate.bindings[i].ToString());
-        // Debug.Break();
         equippedSkillsUI.SetActive(true);
+        StartCoroutine(ReadRightStickInput());
+    }
+
+    IEnumerator ReadRightStickInput()
+    {
+        yield return new WaitForEndOfFrame();
+        Vector2 stickInput = input.Gameplay.OpenSkillWheel.ReadValue<Vector2>();
+        while(stickInput.magnitude == 0f)
+            yield return null;
+
+        float stickAngle = Vector2.SignedAngle(stickInput, Vector2.up);
+        Button[] skillSlots = equippedSkillsUI.GetComponentsInChildren<Button>();
+        int index = 0;
+        if(stickAngle < -45 && stickAngle > -135)
+            index = 3;
+        else if(stickAngle > 45 && stickAngle < 135)
+            index = 1;
+        else if(Mathf.Abs(stickAngle) > 90)
+            index = 2;
+        else
+            index = 0;
+
+        skillSlots[index].Select();
+        skillSlots[index].OnSelect(null);
     }
 
     public void CloseSkillWheel()

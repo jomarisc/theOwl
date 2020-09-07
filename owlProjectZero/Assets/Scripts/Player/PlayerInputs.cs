@@ -840,7 +840,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""id"": ""83c8e86a-61e9-4962-b4ed-478ea94dcbc6"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone(min=0.075,max=0.925)"",
                     ""groups"": """",
                     ""action"": ""Navigate"",
                     ""isComposite"": true,
