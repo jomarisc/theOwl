@@ -15,7 +15,7 @@ public class Checkpoint : MonoBehaviour
 
     // Checkpoint Handler
     public checkpointHandler ch;
-    //public PlayerInputs input;
+    public PlayerInputs input;
     public bool triggerEntered;
 
     public Sprite[] sprites;
@@ -23,7 +23,7 @@ public class Checkpoint : MonoBehaviour
     void Start()
     {
         ch = GameObject.Find("CheckpointHandler").GetComponent<checkpointHandler>();
-        //input = new PlayerInputs();
+        input = new PlayerInputs();
         triggerEntered = false;
     }
 
@@ -34,11 +34,11 @@ public class Checkpoint : MonoBehaviour
         SetCheckpointColor();
         
         // OLD CODE to try to coordinate player input with trigger
-        //Debug.Log("Pressing enter trigger in Checkpoint!: " + input.Gameplay.Pause.triggered);
+        //Debug.Log("Pressing enter trigger in Checkpoint!: " + input.Gameplay.Interact.triggered);
         /*
-        if (input.Gameplay.Pause.triggered && triggerEntered == true)
+        if (input.Gameplay.Interact.triggered && triggerEntered == true)
         {
-            //Debug.Log("Checkpoint activated!");
+            Debug.Log("Checkpoint activated!");
             ch.UpdateCheckpoints(this.gameObject);
         }
         */
@@ -69,11 +69,15 @@ public class Checkpoint : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         // Checks if the collision is happening between the checkpoint and the player game object
-        if (col.gameObject.GetComponent<playerControl>() != null) 
+        if (col.gameObject.GetComponent<playerControl>() != null)
         {
-            triggerEntered = true;
-            ch.UpdateCheckpoints(this.gameObject); // Investigate this to see if there's a way in Update() to use this function with a keypress.
-                                                   // Check if it's possible to respawn enemies
+            //triggerEntered = true;
+            //Debug.Log("TRIGGER ENTERED: " + triggerEntered);
+            //if (input.Gameplay.Interact.triggered)
+            //{
+                ch.UpdateCheckpoints(this.gameObject); // Investigate this to see if there's a way in Update() to use this function with a keypress.
+                                                       // Check if it's possible to respawn enemies   
+            //}
         } 
     }
 
@@ -82,7 +86,8 @@ public class Checkpoint : MonoBehaviour
         // Checks if the collision is happening between the checkpoint and the player game object
         if (col.gameObject.GetComponent<playerControl>() != null)
         {
-            triggerEntered = false;
+            //triggerEntered = false;
+            //Debug.Log("TRIGGER EXITED: " + triggerEntered);
         }
     }
 }
