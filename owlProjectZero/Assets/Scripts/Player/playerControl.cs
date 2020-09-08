@@ -148,15 +148,27 @@ public class playerControl : Character
                 usingFastSkillWheel = false;
                 OpenSkillWheel2();
                 Debug.Log(input.Gameplay.OpenSkillWheel2.phase);
+                // input.Gameplay.Disable();
+                input.Gameplay.MoveX.Disable();
+                input.Gameplay.Jump.Disable();
+                input.Gameplay.Melee.Disable();
+                input.Gameplay.Guntime.Disable();
+                input.Gameplay.Dodge.Disable();
+                input.Gameplay.ShootProjectile.Disable();
+                input.Gameplay.Tether.Disable();
+                input.Gameplay.Glide.Disable();
             }
         }
 
         if(equippedSkillsUI.activeInHierarchy)
         {
-            if(usingFastSkillWheel && input.Gameplay.OpenSkillWheel.ReadValue<Vector2>().magnitude < 0.125f)
+            if(usingFastSkillWheel)
             {
-                CloseSkillWheel();
-                Debug.Log(input.Gameplay.OpenSkillWheel.phase);
+                if(input.Gameplay.OpenSkillWheel.ReadValue<Vector2>().magnitude < 0.125f)
+                {
+                    CloseSkillWheel();
+                    Debug.Log(input.Gameplay.OpenSkillWheel.phase);
+                }
             }
             else
             {
@@ -164,6 +176,15 @@ public class playerControl : Character
                 {
                     CloseSkillWheel();
                     Debug.Log(input.Gameplay.OpenSkillWheel2.phase);
+                    // input.Gameplay.Enable();
+                    input.Gameplay.MoveX.Enable();
+                    input.Gameplay.Jump.Enable();
+                    input.Gameplay.Melee.Enable();
+                    input.Gameplay.Guntime.Enable();
+                    input.Gameplay.Dodge.Enable();
+                    input.Gameplay.ShootProjectile.Enable();
+                    input.Gameplay.Tether.Enable();
+                    input.Gameplay.Glide.Enable();
                 }
             }
         }
