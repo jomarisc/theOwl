@@ -64,6 +64,7 @@ public class Shield : Skill
 
     public override void DeactivateSkill()
     {
+        Physics.IgnoreLayerCollision(9, 12, false);
         Physics.IgnoreLayerCollision(9, 15, false);
         gameObject.GetComponent<Renderer>().enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
