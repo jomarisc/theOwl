@@ -40,6 +40,7 @@ public class playerControl : Character
     public GameObject equippedSkillsUI;
     public static event SkillEquip OnSkillEquip;
     public delegate void SkillEquip();
+    private bool usingFastSkillWheel = false;
     public int numCurrency;
 
     public bool inGuntime = false;
@@ -134,18 +135,37 @@ public class playerControl : Character
                 data.remainingStamana = MAX_STAMANA;
         }
 
-        if(!equippedSkillsUI.activeInHierarchy &&
-           input.Gameplay.OpenSkillWheel.ReadValue<Vector2>().magnitude >= 0.125f)
+        if(!equippedSkillsUI.activeInHierarchy)
         {
-            OpenSkillWheel();
-            Debug.Log(input.Gameplay.OpenSkillWheel.phase);
+            if(input.Gameplay.OpenSkillWheel.ReadValue<Vector2>().magnitude >= 0.125f)
+            {
+                usingFastSkillWheel = true;
+                OpenSkillWheel();
+                Debug.Log(input.Gameplay.OpenSkillWheel.phase);
+            }
+            else if(input.Gameplay.OpenSkillWheel2.ReadValue<float>() == 1f)
+            {
+                usingFastSkillWheel = false;
+                OpenSkillWheel2();
+                Debug.Log(input.Gameplay.OpenSkillWheel2.phase);
+            }
         }
 
-        if(equippedSkillsUI.activeInHierarchy &&
-           input.Gameplay.OpenSkillWheel.ReadValue<Vector2>().magnitude < 0.125f)
+        if(equippedSkillsUI.activeInHierarchy)
         {
-            CloseSkillWheel();
-            Debug.Log(input.Gameplay.OpenSkillWheel.phase);
+            if(usingFastSkillWheel && input.Gameplay.OpenSkillWheel.ReadValue<Vector2>().magnitude < 0.125f)
+            {
+                CloseSkillWheel();
+                Debug.Log(input.Gameplay.OpenSkillWheel.phase);
+            }
+            else
+            {
+                if(input.Gameplay.OpenSkillWheel2.ReadValue<float>() == 0f)
+                {
+                    CloseSkillWheel();
+                    Debug.Log(input.Gameplay.OpenSkillWheel2.phase);
+                }
+            }
         }
     }
 
@@ -326,6 +346,18 @@ public class playerControl : Character
         StartCoroutine(ReadRightStickInput());
     }
 
+    // A slower way of opening the skill wheel
+    public void OpenSkillWheel2()
+    {
+        Time.timeScale = 0f;
+        ((InputSystemUIInputModule)EventSystem.current.currentInputModule).move = InputActionReference.Create(input.SkillWheel.Navigate);
+        equippedSkillsUI.SetActive(true);
+        // StartCoroutine(ReadRightStickInput());
+        Button slotOne = equippedSkillsUI.GetComponentInChildren<Button>();
+        slotOne.Select();
+        slotOne.OnSelect(null);
+    }
+
     IEnumerator ReadRightStickInput()
     {
         yield return new WaitForEndOfFrame();
@@ -351,6 +383,7 @@ public class playerControl : Character
 
     public void CloseSkillWheel()
     {
+        usingFastSkillWheel = false;
         ((InputSystemUIInputModule)EventSystem.current.currentInputModule).move = InputActionReference.Create(input.UI.Navigate);
         equippedSkills.currentSkill = equippedSkills.unlockedSkillTypeList[EventSystem.current.currentSelectedGameObject.GetComponentInChildren<SkillWheelSlotUI>().slotNumber - 1];
         if(OnSkillEquip != null)
