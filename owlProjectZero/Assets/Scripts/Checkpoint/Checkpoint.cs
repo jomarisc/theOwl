@@ -23,7 +23,7 @@ public class Checkpoint : MonoBehaviour
     void Start()
     {
         ch = GameObject.Find("CheckpointHandler").GetComponent<checkpointHandler>();
-        input = new PlayerInputs();
+        input = GameObject.Find("player").GetComponent<playerControl>().input;
         triggerEntered = false;
     }
 
@@ -66,10 +66,10 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
         // Checks if the collision is happening between the checkpoint and the player game object
-        if (col.gameObject.GetComponent<playerControl>() != null)
+        if (input.Gameplay.Interact.triggered && col.gameObject.GetComponent<playerControl>() != null)
         {
             //triggerEntered = true;
             //Debug.Log("TRIGGER ENTERED: " + triggerEntered);
