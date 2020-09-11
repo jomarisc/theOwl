@@ -1013,6 +1013,11 @@ PrefabInstance:
       propertyPath: equippedSkills
       value: 
       objectReference: {fileID: 1592451863}
+    - target: {fileID: 8871991240520242382, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 96.1582
+      objectReference: {fileID: 0}
     - target: {fileID: 8871991240711320345, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1032,6 +1037,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871991241106729819, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 208.7002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871991241325042407, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 170.7002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871991241325042407, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -88.30005
       objectReference: {fileID: 0}
     - target: {fileID: 8871991241766762457, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
         type: 3}
@@ -1500,7 +1520,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596449058}
-  m_LocalRotation: {x: -0.22706115, y: 0.009771839, z: -0.0021297806, w: -0.9738292}
+  m_LocalRotation: {x: -0.22706118, y: 0.009758118, z: -0.0021266115, w: -0.9738293}
   m_LocalPosition: {x: -3.72, y: 4, z: -8.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2485,7 +2505,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169641594}
-  m_LocalRotation: {x: -0.22706115, y: 0.009771839, z: -0.0021297806, w: -0.9738292}
+  m_LocalRotation: {x: -0.22706118, y: 0.009758118, z: -0.0021266115, w: -0.9738293}
   m_LocalPosition: {x: -3.72, y: 4, z: -8.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
