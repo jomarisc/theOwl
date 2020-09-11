@@ -10,15 +10,8 @@ using UnityEngine.InputSystem.UI;
 [RequireComponent(typeof(Collider))]
 public class playerControl : Character
 {
+    [SerializeField] private Guntime guntimeAbility;
     private float MAX_STAMANA;
-    private const float MAX_GUNTIME_DURATION = 5f;
-    private float guntimeDuration;
-    [SerializeField]
-    private float guntimeUsageRate = 0f;
-    [SerializeField]
-    private float guntimeRecoveryRate = 0f;
-    [SerializeField]
-    private Image guntimeMeter = null;
     public GameObject projectile;
     public GameObject tether;
     public TetherPoint activeTetherPoint = null;
@@ -42,8 +35,12 @@ public class playerControl : Character
     public delegate void SkillEquip();
     private bool usingFastSkillWheel = false;
     public int numCurrency;
-
-    public bool inGuntime = false;
+    public bool inGuntime { get; private set; } = false;
+    private bool UpdateInGuntime()
+    {
+        inGuntime = guntimeAbility.inGuntime;
+        return inGuntime;
+    }
 
 
     public playerControl() : base(3, 1, 1f, 3f)
@@ -52,27 +49,24 @@ public class playerControl : Character
     private void Awake()
     {
         input = new PlayerInputs();
-        guntimeDuration = MAX_GUNTIME_DURATION;
-        // playerSkills = new PlayerSkills();
+        input.Enable();
+        Debug.Log($"Gameplay enabled? {input.Gameplay.enabled}");
         numCurrency = 0;
     }
 
     private void OnEnable()
     {
+        Debug.Log("Player OnEnable()");
         input.Enable();
-        input.Gameplay.Guntime.started += ToggleGuntime;
         input.Gameplay.UseActiveSkill.started += UseCurrentSkill;
-        // input.Gameplay.OpenSkillWheel.started += OpenSkillWheel;
-        // input.Gameplay.OpenSkillWheel.canceled += CloseSkillWheel;
+        guntimeAbility.OnInGuntimeChanged += UpdateInGuntime;
     }
 
     private void OnDisable()
     {
-        input.Gameplay.Guntime.started -= ToggleGuntime;
         input.Gameplay.UseActiveSkill.started -= UseCurrentSkill;
-        // input.Gameplay.OpenSkillWheel.started -= OpenSkillWheel;
-        // input.Gameplay.OpenSkillWheel.canceled -= CloseSkillWheel;
         input.Disable();
+        guntimeAbility.OnInGuntimeChanged -= UpdateInGuntime;
     }
 
     // Start is called before the first frame update
@@ -101,30 +95,6 @@ public class playerControl : Character
                               // of a warning for calling base.Update()
     {
         base.Update();
-        if(inGuntime)
-        {
-            // Use up guntime resource
-            if(guntimeDuration > 0f)
-            {
-                guntimeDuration -= guntimeUsageRate * Time.deltaTime;
-                guntimeMeter.fillAmount = guntimeDuration / MAX_GUNTIME_DURATION;
-            }
-            // If ran out of guntime resource, remove character from guntime
-            else
-                TurnOffGuntime();
-        }
-        else
-        {
-            // Recover any missing guntimeDuration
-            if(guntimeDuration < MAX_GUNTIME_DURATION)
-            {
-                guntimeDuration += guntimeRecoveryRate * Time.deltaTime; // deltaTime is so that the recovery rate is hopefully framerate independent
-                guntimeMeter.fillAmount = guntimeDuration / MAX_GUNTIME_DURATION;
-            }
-            // Cap guntimeDuration @ max value
-            if(guntimeDuration > MAX_GUNTIME_DURATION)
-                guntimeDuration = MAX_GUNTIME_DURATION;
-        }
 
         // Naturally recover stamana
         if(!equippedSkills.currentSkill.isActive)
@@ -294,67 +264,6 @@ public class playerControl : Character
                 PlayerWalk.verticalMovement = FAST_FALL_SPEED * 2;
             else
                 PlayerWalk.verticalMovement = FAST_FALL_SPEED;
-        }
-    }
-
-    public void TurnOffGuntime()
-    {
-        rb.useGravity = true;
-        animator.speed /= 2;
-
-        // Magic Numbers Ahead...
-        if(data.maxSpeed == data.groundSpeed)
-        {
-            data.groundSpeed /= 2f;
-            data.maxSpeed = data.groundSpeed;
-            data.airSpeed /= 2f;
-        }
-        else if(data.maxSpeed == data.airSpeed)
-        {
-            data.airSpeed /= 2f;
-            data.maxSpeed = data.airSpeed;
-            data.groundSpeed /= 2f;
-        }
-        data.jumpDistance /= 2f;
-        
-        Time.timeScale = 1f;
-        Time.fixedDeltaTime = 0.016f * Time.timeScale;
-
-        inGuntime = false;
-    }
-
-    public void ToggleGuntime(InputAction.CallbackContext context)
-    {
-        inGuntime = !inGuntime;
-
-        if(inGuntime)
-        {
-
-            // Magic Numbers Ahead...
-            Time.timeScale = 0.5f;
-            Time.fixedDeltaTime = 0.016f * Time.timeScale;
-
-            rb.useGravity = false;
-
-            animator.speed *= 2;
-
-            if(data.maxSpeed == data.groundSpeed)
-            {
-                data.groundSpeed *= 2f;
-                data.maxSpeed = data.groundSpeed;
-                data.airSpeed *= 2f;
-            }
-            else if(data.maxSpeed == data.airSpeed)
-            {
-                data.airSpeed *= 2f;
-                data.maxSpeed = data.airSpeed;
-                data.groundSpeed *= 2f;
-            }
-            data.jumpDistance *= 2f;
-        }
-        else
-        {
-            TurnOffGuntime();
         }
     }
 
