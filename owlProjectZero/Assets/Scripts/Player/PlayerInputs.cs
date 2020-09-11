@@ -119,7 +119,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8d49d2ad-d454-4d37-bdcf-593f7c3f1f37"",
-                    ""path"": ""<Keyboard>/t"",
+                    ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
