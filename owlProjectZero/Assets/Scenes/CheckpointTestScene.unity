@@ -1511,6 +1511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1805882710}
+  groundedEnemy: {fileID: 0}
   spawn: {fileID: 0}
   playerState: {fileID: 0}
   mode: 0
@@ -1519,6 +1520,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  groundedEnemiesArray: []
 --- !u!4 &576529123
 Transform:
   m_ObjectHideFlags: 0

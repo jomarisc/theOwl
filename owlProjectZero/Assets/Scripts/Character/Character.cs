@@ -143,7 +143,8 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         // New lines
         Debug.Log("Got rekt");
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+        this.gameObject.active = false;
     }
 
     public void GoToDamagedState(float damageAmount, float knockback)

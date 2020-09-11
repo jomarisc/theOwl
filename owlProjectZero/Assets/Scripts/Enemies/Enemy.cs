@@ -92,4 +92,12 @@ public abstract class Enemy : Character
         enemyDeadListener.OnEnemyDead -= SpawnExperience;
         //Debug.Break();
     }
+
+    public void Respawn()
+    {
+        GameObject enemyClone = (GameObject)Instantiate(this.gameObject);
+        enemyClone.transform.position = this.transform.position;
+
+        Destroy(this.gameObject);
+    }
 }
