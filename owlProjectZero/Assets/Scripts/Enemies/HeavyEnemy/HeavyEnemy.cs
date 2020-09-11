@@ -12,7 +12,7 @@ public class HeavyEnemy : Enemy
 
 
     // Initializing maxJumps, maxDodges, dodgeDuration, and deadDuration
-    public HeavyEnemy() : base(1, 0, 5f, 3f)
+    public HeavyEnemy() : base(1, 0, 3f)
     {}
 
     void OnEnable()

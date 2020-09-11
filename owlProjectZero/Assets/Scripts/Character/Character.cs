@@ -19,7 +19,6 @@ public struct CharacterData
     public float deadDuration;
 
     //public Animator animator;
-    public float dodgeDuration;
     public float remainingStamana;
 }
 
@@ -36,17 +35,17 @@ public abstract class Character : MonoBehaviour, ICharacter
     public CharacterData data;
     public GameObject meleeAttack;
     public Animator animator;
+    public Dodge dodgeAbility;
     public IState defaultState { get; protected set; }
+    // public float DODGE_DURATION { get; protected set; }
     public readonly int MAX_JUMPS;
     public readonly int MAX_DODGES;
-    public readonly float DODGE_DURATION;
     public readonly float DEAD_DURATION;
 
-    public Character(int maxJumps, int maxDodges, float dodgeDuration, float deadDuration)
+    public Character(int maxJumps, int maxDodges, float deadDuration)
     {
         MAX_JUMPS = maxJumps;
         MAX_DODGES = maxDodges;
-        DODGE_DURATION = dodgeDuration;
         DEAD_DURATION = deadDuration;
     }
     
@@ -113,7 +112,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     // Currently Only toggles player collisions with Enemy-related rigidbodies/colliders
     public void Dodge()
     {
-        if(data.dodgeDuration > 0f)
+        if(dodgeAbility.dodgeDuration > 0f)
         {
             // Stop checking collisions with player hurtbox and enemy-related physics layers
             Physics.IgnoreLayerCollision(9, 10, true); // Player x Enemies

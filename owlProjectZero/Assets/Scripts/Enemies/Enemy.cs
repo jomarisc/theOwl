@@ -19,7 +19,7 @@ public abstract class Enemy : Character
     public float range = 1.0f;
 
 
-    public Enemy(int maxJumps, int maxDodges, float dodgeDuration, float deadDuration) : base(maxJumps, maxDodges, dodgeDuration, deadDuration)
+    public Enemy(int maxJumps, int maxDodges, float deadDuration) : base(maxJumps, maxDodges, deadDuration)
     {
         lookingDirection = Vector3.zero;
     }

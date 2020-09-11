@@ -18,7 +18,6 @@ public class playerControl : Character
     public PlayerInputs input;
     public const float FAST_FALL_SPEED = -10f;
     public HealthbarController healthbar;
-
     public AudioSource landingSfx;
     public AudioSource projectileShoot;
     public AudioSource projectileHit;
@@ -43,7 +42,7 @@ public class playerControl : Character
     }
 
 
-    public playerControl() : base(3, 1, 1f, 3f)
+    public playerControl() : base(3, 1, 3f)
     {}
 
     private void Awake()
@@ -85,7 +84,8 @@ public class playerControl : Character
             Debug.Log(myState);
         }
         rb = GetComponent<Rigidbody>();
-        data.dodgeDuration = -1f;
+        // DODGE_DURATION = dodgeAbility.dodgeDuration;
+        dodgeAbility.dodgeDuration = -1f;
         MAX_STAMANA = data.remainingStamana;
         Debug.Log("MAX_STAMANA " + MAX_STAMANA);
     }

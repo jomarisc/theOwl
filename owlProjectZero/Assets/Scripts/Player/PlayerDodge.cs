@@ -28,16 +28,16 @@ public class PlayerDodge : IState
         // use ground dodge animation here:
 
         // playerRenderer.color.SetColor("_Color", Color.black);
-        playerColor.a = 0.5f;
+        playerColor.a = player.dodgeAbility.alpha;
         playerRenderer.color = playerColor;
-        player.data.dodgeDuration = player.DODGE_DURATION;
+        player.dodgeAbility.dodgeDuration = player.dodgeAbility.fullDuration; //  player.DODGE_DURATION;
         player.data.numDodges--;
 
-        playerBody.useGravity = false;
+        playerBody.useGravity = player.dodgeAbility.usingGravity;
         playerBody.velocity = Vector3.zero;
-        playerBody.drag = 1.0f;
+        playerBody.drag = player.dodgeAbility.drag;
         float direction = (player.data.isFacingRight) ? 1f : -1f;
-        playerBody.AddForce(new Vector3(direction * 10f, 0f, 0f), ForceMode.VelocityChange);
+        playerBody.AddForce(new Vector3(direction * player.dodgeAbility.pushForce, 0f, 0f), ForceMode.VelocityChange);
         animator.SetBool("dodging", true);
 
         player.Dodge();
@@ -49,7 +49,7 @@ public class PlayerDodge : IState
         playerRenderer.color = playerColor;
         playerBody.useGravity = true;
         playerBody.drag = 1.0f;
-        player.data.dodgeDuration = -1f;
+        player.dodgeAbility.dodgeDuration = -1f;
         animator.SetBool("dodging", false);
 
         player.Dodge();
@@ -64,9 +64,9 @@ public class PlayerDodge : IState
     {
         // -1 <= dodgeDuration <= DODGE_DURATION
         // Decrement dodgeDuration until it reaches below 0
-        if(player.data.dodgeDuration >= 0f)
+        if(player.dodgeAbility.dodgeDuration >= 0f)
         {
-            player.data.dodgeDuration -= Time.deltaTime;
+            player.dodgeAbility.dodgeDuration -= Time.deltaTime;
             return null;
         }
 
