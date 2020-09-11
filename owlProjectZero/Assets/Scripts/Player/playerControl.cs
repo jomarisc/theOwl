@@ -151,21 +151,21 @@ public class playerControl : Character
                 // input.Gameplay.Tether.Disable();
                 // input.Gameplay.Glide.Disable();
             }
-            else if(input.Gameplay.OpenSkillWheel2.ReadValue<float>() == 1f)
-            {
-                usingFastSkillWheel = false;
-                OpenSkillWheel2();
-                Debug.Log(input.Gameplay.OpenSkillWheel2.phase);
-                // input.Gameplay.Disable();
-                input.Gameplay.MoveX.Disable();
-                input.Gameplay.Jump.Disable();
-                input.Gameplay.Melee.Disable();
-                input.Gameplay.Guntime.Disable();
-                input.Gameplay.Dodge.Disable();
-                input.Gameplay.ShootProjectile.Disable();
-                input.Gameplay.Tether.Disable();
-                input.Gameplay.Glide.Disable();
-            }
+            // else if(input.Gameplay.OpenSkillWheel2.ReadValue<float>() == 1f)
+            // {
+            //     usingFastSkillWheel = false;
+            //     OpenSkillWheel2();
+            //     Debug.Log(input.Gameplay.OpenSkillWheel2.phase);
+            //     // input.Gameplay.Disable();
+            //     input.Gameplay.MoveX.Disable();
+            //     input.Gameplay.Jump.Disable();
+            //     input.Gameplay.Melee.Disable();
+            //     input.Gameplay.Guntime.Disable();
+            //     input.Gameplay.Dodge.Disable();
+            //     input.Gameplay.ShootProjectile.Disable();
+            //     input.Gameplay.Tether.Disable();
+            //     input.Gameplay.Glide.Disable();
+            // }
         }
 
         if(equippedSkillsUI.activeInHierarchy)
@@ -186,23 +186,23 @@ public class playerControl : Character
                     // input.Gameplay.Glide.Enable();
                 }
             }
-            else
-            {
-                if(input.Gameplay.OpenSkillWheel2.ReadValue<float>() == 0f)
-                {
-                    CloseSkillWheel();
-                    Debug.Log(input.Gameplay.OpenSkillWheel2.phase);
-                    // input.Gameplay.Enable();
-                    input.Gameplay.MoveX.Enable();
-                    input.Gameplay.Jump.Enable();
-                    input.Gameplay.Melee.Enable();
-                    input.Gameplay.Guntime.Enable();
-                    input.Gameplay.Dodge.Enable();
-                    input.Gameplay.ShootProjectile.Enable();
-                    input.Gameplay.Tether.Enable();
-                    input.Gameplay.Glide.Enable();
-                }
-            }
+            // else
+            // {
+            //     if(input.Gameplay.OpenSkillWheel2.ReadValue<float>() == 0f)
+            //     {
+            //         CloseSkillWheel();
+            //         Debug.Log(input.Gameplay.OpenSkillWheel2.phase);
+            //         // input.Gameplay.Enable();
+            //         input.Gameplay.MoveX.Enable();
+            //         input.Gameplay.Jump.Enable();
+            //         input.Gameplay.Melee.Enable();
+            //         input.Gameplay.Guntime.Enable();
+            //         input.Gameplay.Dodge.Enable();
+            //         input.Gameplay.ShootProjectile.Enable();
+            //         input.Gameplay.Tether.Enable();
+            //         input.Gameplay.Glide.Enable();
+            //     }
+            // }
         }
     }
 
