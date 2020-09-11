@@ -10,7 +10,7 @@ public class Dodge : MonoBehaviour
     [Range(0f, 1f)] public float alpha = 0.5f;
     public float fullDuration;
     [HideInInspector] public float dodgeDuration;
-    [field: SerializeField] public bool usingGravity { get; private set; }
-    [field: SerializeField] public float pushForce { get; private set; }
-    [field: SerializeField] public float drag { get; private set; }
+    [field: SerializeField] public bool USING_GRAVITY { get; private set; }
+    [field: SerializeField] public float PUSH_FORCE { get; private set; }
+    [field: SerializeField] public float DRAG { get; private set; }
 }
