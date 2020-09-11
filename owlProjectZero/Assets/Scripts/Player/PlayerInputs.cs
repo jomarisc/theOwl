@@ -140,17 +140,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""41fb7145-2361-4ccb-9a98-db11f3400e41"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Glide"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""1549d47d-b67b-4553-9b90-a1ceb7196082"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
