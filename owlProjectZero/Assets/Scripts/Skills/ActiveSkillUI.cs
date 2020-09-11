@@ -16,10 +16,12 @@ public class ActiveSkillUI : MonoBehaviour
     void OnEnable()
     {
         playerControl.OnSkillEquip += SetSkillIcon;
+        SkillWheelSlotUI.OnSkillEquip += SetSkillIcon;
     }
     void OnDisable()
     {
         playerControl.OnSkillEquip -= SetSkillIcon;
+        SkillWheelSlotUI.OnSkillEquip -= SetSkillIcon;
     }
     // Start is called before the first frame update
     void Start()
