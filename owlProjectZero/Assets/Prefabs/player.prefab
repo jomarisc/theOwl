@@ -747,11 +747,11 @@ MonoBehaviour:
   meleeAttack: {fileID: 8548501586489388540}
   animator: {fileID: 1050675498}
   dodgeAbility: {fileID: 4892516316583734358}
+  <FAST_FALL_SPEED>k__BackingField: -10
   guntimeAbility: {fileID: 4538674539265694219}
   projectile: {fileID: 377738018264958676}
   tether: {fileID: 2089168639421051169}
   activeTetherPoint: {fileID: 0}
-  <FAST_FALL_SPEED>k__BackingField: -10
   healthbar: {fileID: 0}
   landingSfx: {fileID: 8219641611721027624}
   projectileShoot: {fileID: 1041482719160789296}
@@ -1581,8 +1581,8 @@ MonoBehaviour:
   fullDuration: 1
   dodgeDuration: 1
   <USING_GRAVITY>k__BackingField: 0
-  <PUSH_FORCE>k__BackingField: 0
-  <DRAG>k__BackingField: 0
+  <PUSH_FORCE>k__BackingField: 10
+  <DRAG>k__BackingField: 1
 --- !u!1001 &655529592242141691
 PrefabInstance:
   m_ObjectHideFlags: 0
