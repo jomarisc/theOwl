@@ -10,13 +10,14 @@ using UnityEngine.InputSystem.UI;
 [RequireComponent(typeof(Collider))]
 public class playerControl : Character
 {
+    // public const float FAST_FALL_SPEED = -10f;
+    [field: SerializeField] public float FAST_FALL_SPEED { get; private set; } = -10f;
     [SerializeField] private Guntime guntimeAbility;
     private float MAX_STAMANA;
     public GameObject projectile;
     public GameObject tether;
     public TetherPoint activeTetherPoint = null;
     public PlayerInputs input;
-    public const float FAST_FALL_SPEED = -10f;
     public HealthbarController healthbar;
     public AudioSource landingSfx;
     public AudioSource projectileShoot;

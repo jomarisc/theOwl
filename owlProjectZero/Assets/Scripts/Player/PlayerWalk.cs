@@ -66,8 +66,8 @@ public class PlayerWalk : IState
     {
         if(isFlying)
         {
-            if((player.inGuntime && verticalMovement != playerControl.FAST_FALL_SPEED * 2) ||
-               (!player.inGuntime && verticalMovement != playerControl.FAST_FALL_SPEED))
+            if((player.inGuntime && verticalMovement != player.FAST_FALL_SPEED * 2) ||
+               (!player.inGuntime && verticalMovement != player.FAST_FALL_SPEED))
                     verticalMovement = playerBody.velocity.y;
         }
         else
