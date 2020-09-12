@@ -49,8 +49,6 @@ public class playerControl : Character
     private void Awake()
     {
         input = new PlayerInputs();
-        input.Enable();
-        Debug.Log($"Gameplay enabled? {input.Gameplay.enabled}");
         numCurrency = 0;
     }
 
@@ -59,7 +57,13 @@ public class playerControl : Character
         Debug.Log("Player OnEnable()");
         input.Enable();
         input.Gameplay.UseActiveSkill.started += UseCurrentSkill;
-        guntimeAbility.OnInGuntimeChanged += UpdateInGuntime;
+        if(guntimeAbility.enabled)
+            guntimeAbility.OnInGuntimeChanged += UpdateInGuntime;
+        else
+            input.Gameplay.Guntime.Disable();
+
+        if(!tetherAbility.enabled)
+            input.Gameplay.Tether.Disable();
     }
 
     private void OnDisable()
