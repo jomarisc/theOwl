@@ -35,9 +35,17 @@ public class PlayerDodge : IState
 
         playerBody.useGravity = player.dodgeAbility.USING_GRAVITY;
         playerBody.velocity = Vector3.zero;
-        playerBody.drag = player.dodgeAbility.DRAG;
         float direction = (player.data.isFacingRight) ? 1f : -1f;
-        playerBody.AddForce(new Vector3(direction * player.dodgeAbility.PUSH_FORCE, 0f, 0f), ForceMode.VelocityChange);
+        if(player.inGuntime)
+        {
+            playerBody.drag = player.dodgeAbility.DRAG * 2;
+            playerBody.AddForce(new Vector3(direction * player.dodgeAbility.PUSH_FORCE * 2, 0f, 0f), ForceMode.VelocityChange);
+        }
+        else
+        {
+            playerBody.drag = player.dodgeAbility.DRAG;
+            playerBody.AddForce(new Vector3(direction * player.dodgeAbility.PUSH_FORCE, 0f, 0f), ForceMode.VelocityChange);
+        }
         animator.SetBool("dodging", true);
 
         player.Dodge();
@@ -66,7 +74,7 @@ public class PlayerDodge : IState
         // Decrement dodgeDuration until it reaches below 0
         if(player.dodgeAbility.dodgeDuration >= 0f)
         {
-            player.dodgeAbility.dodgeDuration -= Time.deltaTime;
+            player.dodgeAbility.dodgeDuration -= Time.unscaledDeltaTime;
             return null;
         }
 
