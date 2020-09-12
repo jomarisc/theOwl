@@ -11,13 +11,12 @@ using UnityEngine.InputSystem.UI;
 public class playerControl : Character
 {
     public Guntime guntimeAbility;
+    public Tether tetherAbility;
     // public const float FAST_FALL_SPEED = -10f;
     [field: SerializeField] public float FAST_FALL_SPEED { get; private set; } = -10f;
     [field:SerializeField] public float GLIDE_GRAVITY { get; private set; } = -2.0f;
     private float MAX_STAMANA;
     public GameObject projectile;
-    public GameObject tether;
-    public TetherPoint activeTetherPoint = null;
     public PlayerInputs input;
     public HealthbarController healthbar;
     public AudioSource landingSfx;
@@ -211,31 +210,12 @@ public class playerControl : Character
         projAtk.speed = rb.velocity.x + direction * projAtk.mySpeed;
         projAtk.isFacingRight = data.isFacingRight;
     }
-
-    public void TetherSwing(float tetherLength, Vector3 tetherDirection, float theta)
-    {
-        float playerWeight = rb.mass * Physics.gravity.magnitude;
-        if(inGuntime)
-            playerWeight *= 6f;
-        Vector3 tension = Mathf.Cos(theta) * playerWeight * tetherLength * tetherDirection.normalized;
-        rb.AddForce(tension, ForceMode.Acceleration); // Tension
-        Debug.DrawLine(rb.position, rb.position + tension, Color.red);
-
-        Vector3 tempTether = tetherDirection;
-        Vector3 pendulumForce = Vector3.down;
-        Vector3.OrthoNormalize(ref tempTether, ref pendulumForce);
-        pendulumForce *= (Mathf.Cos(theta) * playerWeight);
-        rb.AddForce(pendulumForce, ForceMode.Acceleration); // Tangential Force
-        Debug.DrawLine(rb.position, rb.position + pendulumForce, Color.blue);
-
-        Debug.DrawLine(rb.position, rb.position + rb.velocity);
-    }
-
+    
     public void ActivateTether(InputAction.CallbackContext context)
     {
-        if(activeTetherPoint != null)
+        if(tetherAbility.activeTetherPoint != null)
         {
-            if(rb.position.y < activeTetherPoint.transform.position.y)
+            if(rb.position.y < tetherAbility.activeTetherPoint.transform.position.y)
             {
                 myState.Exit();
                 myState = new PlayerTether(this);
@@ -247,7 +227,7 @@ public class playerControl : Character
 
     public void Untether(InputAction.CallbackContext context)
     {
-        if(activeTetherPoint != null)
+        if(tetherAbility.activeTetherPoint != null)
         {
             myState.Exit();
             myState = new PlayerWalk(this, true);
