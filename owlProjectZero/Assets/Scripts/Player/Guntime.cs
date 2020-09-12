@@ -9,6 +9,7 @@ public class Guntime : MonoBehaviour
     [SerializeField] private playerControl player;
     private const float MAX_GUNTIME_DURATION = 5f;
     private float guntimeDuration;
+    [field: Min(1f)] [field: SerializeField] public float GUNTIME_SLOWDOWN_FACTOR { get; private set; } = 2f;
     [SerializeField] private float guntimeUsageRate = 0f;
     [SerializeField] private float guntimeRecoveryRate = 0f;
     [SerializeField] private Image guntimeMeter = null;
@@ -63,22 +64,22 @@ public class Guntime : MonoBehaviour
     public void TurnOffGuntime()
     {
         player.GetComponent<Rigidbody>().useGravity = true;
-        player.animator.speed /= 2;
+        player.animator.speed /= GUNTIME_SLOWDOWN_FACTOR;
 
         // Magic Numbers Ahead...
         if(player.data.maxSpeed == player.data.groundSpeed)
         {
-            player.data.groundSpeed /= 2f;
+            player.data.groundSpeed /= GUNTIME_SLOWDOWN_FACTOR;
             player.data.maxSpeed = player.data.groundSpeed;
-            player.data.airSpeed /= 2f;
+            player.data.airSpeed /= GUNTIME_SLOWDOWN_FACTOR;
         }
         else if(player.data.maxSpeed == player.data.airSpeed)
         {
-            player.data.airSpeed /= 2f;
+            player.data.airSpeed /= GUNTIME_SLOWDOWN_FACTOR;
             player.data.maxSpeed = player.data.airSpeed;
-            player.data.groundSpeed /= 2f;
+            player.data.groundSpeed /= GUNTIME_SLOWDOWN_FACTOR;
         }
-        player.data.jumpDistance /= 2f;
+        player.data.jumpDistance /= GUNTIME_SLOWDOWN_FACTOR;
         
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.016f * Time.timeScale;
@@ -101,21 +102,21 @@ public class Guntime : MonoBehaviour
 
             player.GetComponent<Rigidbody>().useGravity = false;
 
-            player.animator.speed *= 2;
+            player.animator.speed *= GUNTIME_SLOWDOWN_FACTOR;
 
             if(player.data.maxSpeed == player.data.groundSpeed)
             {
-                player.data.groundSpeed *= 2f;
+                player.data.groundSpeed *= GUNTIME_SLOWDOWN_FACTOR;
                 player.data.maxSpeed = player.data.groundSpeed;
-                player.data.airSpeed *= 2f;
+                player.data.airSpeed *= GUNTIME_SLOWDOWN_FACTOR;
             }
             else if(player.data.maxSpeed == player.data.airSpeed)
             {
-                player.data.airSpeed *= 2f;
+                player.data.airSpeed *= GUNTIME_SLOWDOWN_FACTOR;
                 player.data.maxSpeed = player.data.airSpeed;
-                player.data.groundSpeed *= 2f;
+                player.data.groundSpeed *= GUNTIME_SLOWDOWN_FACTOR;
             }
-            player.data.jumpDistance *= 2f;
+            player.data.jumpDistance *= GUNTIME_SLOWDOWN_FACTOR;
         }
         else
         {

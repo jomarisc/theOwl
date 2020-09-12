@@ -38,7 +38,7 @@ public class PlayerDodge : IState
         float direction = (player.data.isFacingRight) ? 1f : -1f;
         if(player.inGuntime)
         {
-            playerBody.drag = player.dodgeAbility.DRAG * 2;
+            playerBody.drag = player.dodgeAbility.DRAG * player.guntimeAbility.GUNTIME_SLOWDOWN_FACTOR;
             playerBody.AddForce(new Vector3(direction * player.dodgeAbility.PUSH_FORCE * 2, 0f, 0f), ForceMode.VelocityChange);
         }
         else
