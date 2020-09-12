@@ -10,9 +10,10 @@ using UnityEngine.InputSystem.UI;
 [RequireComponent(typeof(Collider))]
 public class playerControl : Character
 {
+    [SerializeField] private Guntime guntimeAbility;
     // public const float FAST_FALL_SPEED = -10f;
     [field: SerializeField] public float FAST_FALL_SPEED { get; private set; } = -10f;
-    [SerializeField] private Guntime guntimeAbility;
+    [field:SerializeField] public float GLIDE_GRAVITY { get; private set; } = -2.0f;
     private float MAX_STAMANA;
     public GameObject projectile;
     public GameObject tether;

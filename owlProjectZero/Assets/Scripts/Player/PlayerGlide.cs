@@ -7,7 +7,7 @@ public class PlayerGlide : IState
 {
     private readonly playerControl player;
     private PlayerInputs input;
-    private const float newGravity = -2.0f;
+    // private const float newGravity = -2.0f;
     private float horizontalMovement = 0f;
     private glideType method = 0;
     public enum glideType {Jump, Down}
@@ -48,7 +48,7 @@ public class PlayerGlide : IState
 
     public void FixedUpdate()
     {
-        player.GetComponent<Rigidbody>().AddForce(new Vector3(0f, newGravity, 0f));
+        player.GetComponent<Rigidbody>().AddForce(new Vector3(0f, player.GLIDE_GRAVITY, 0f));
         player.MoveCharacter(horizontalMovement);
     }
 
