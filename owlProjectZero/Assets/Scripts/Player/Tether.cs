@@ -9,6 +9,8 @@ public class Tether : MonoBehaviour
     [SerializeField] private playerControl player;
     // public GameObject tether;
     [HideInInspector] public TetherPoint activeTetherPoint = null;
+    [SerializeField] private ForceMode forceMode = ForceMode.Acceleration;
+    [Min(0)] [SerializeField] private float tensionFactor = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,15 +28,15 @@ public class Tether : MonoBehaviour
         float playerWeight = rb.mass * Physics.gravity.magnitude;
         if(player.inGuntime)
             playerWeight *= 6f;
-        Vector3 tension = Mathf.Cos(theta) * playerWeight * tetherLength * tetherDirection.normalized;
-        rb.AddForce(tension, ForceMode.Acceleration); // Tension
+        Vector3 tension = Mathf.Cos(theta) * playerWeight * tetherLength * tensionFactor * tetherDirection.normalized;
+        rb.AddForce(tension, forceMode); // Tension
         Debug.DrawLine(rb.position, rb.position + tension, Color.red);
 
         Vector3 tempTether = tetherDirection;
         Vector3 pendulumForce = Vector3.down;
         Vector3.OrthoNormalize(ref tempTether, ref pendulumForce);
         pendulumForce *= (Mathf.Cos(theta) * playerWeight);
-        rb.AddForce(pendulumForce, ForceMode.Acceleration); // Tangential Force
+        rb.AddForce(pendulumForce, forceMode); // Tangential Force
         Debug.DrawLine(rb.position, rb.position + pendulumForce, Color.blue);
 
         Debug.DrawLine(rb.position, rb.position + rb.velocity);
