@@ -2,11 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[System.Serializable]
+public struct CharacterConstants
+{
+    public int MAX_JUMPS;
+    public int MAX_DODGES;
+    public float DEAD_DURATION;
+}
+
 [System.Serializable]
 public struct CharacterData
 {
     public int numJumps;
     public int numDodges;
+    public float deadDuration;
     public float health;
     public float maxSpeed;
     public float groundSpeed;
@@ -16,7 +26,6 @@ public struct CharacterData
                                //facing in the right-hand direction
                                // *So far, must be initialized in sub classes*
     public bool hasSuperArmor;
-    public float deadDuration;
 
     //public Animator animator;
     public float remainingStamana;
@@ -32,21 +41,26 @@ public abstract class Character : MonoBehaviour, ICharacter
     protected IState myState;
 
     // public attributes
+    [field: SerializeField] public CharacterConstants CONSTANTS { get; protected set; }
     public CharacterData data;
     public GameObject meleeAttack;
     public Animator animator;
     public Dodge dodgeAbility;
     public IState defaultState { get; protected set; }
     // public float DODGE_DURATION { get; protected set; }
-    public readonly int MAX_JUMPS;
-    public readonly int MAX_DODGES;
-    public readonly float DEAD_DURATION;
+    // public readonly int MAX_JUMPS;
+    // public readonly int MAX_DODGES;
+    // public readonly float DEAD_DURATION;
 
-    public Character(int maxJumps, int maxDodges, float deadDuration)
+    // public Character(int maxJumps, int maxDodges, float deadDuration)
+    // {
+    //     MAX_JUMPS = maxJumps;
+    //     MAX_DODGES = maxDodges;
+    //     DEAD_DURATION = deadDuration;
+    // }
+    public Character()
     {
-        MAX_JUMPS = maxJumps;
-        MAX_DODGES = maxDodges;
-        DEAD_DURATION = deadDuration;
+        
     }
     
     public void Update()

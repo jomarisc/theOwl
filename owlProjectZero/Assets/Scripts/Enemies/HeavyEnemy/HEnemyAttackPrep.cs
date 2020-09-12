@@ -42,7 +42,7 @@ public class HEnemyAttackPrep : IState
     {
         if(characterBody.velocity.y <= 0f &&
            character.data.maxSpeed == character.data.groundSpeed &&
-           character.data.numJumps == character.MAX_JUMPS &&
+           character.data.numJumps == character.CONSTANTS.MAX_JUMPS &&
            hasLeftTheGround)
         {
             return new HEnemyAttack(character);

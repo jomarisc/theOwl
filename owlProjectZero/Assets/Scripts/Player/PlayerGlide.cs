@@ -106,7 +106,7 @@ public class PlayerGlide : IState
 
         // If jumps get refreshed, i.e. landing on a platform
         if(player.data.maxSpeed == player.data.groundSpeed &&
-           player.data.numJumps == player.MAX_JUMPS)
+           player.data.numJumps == player.CONSTANTS.MAX_JUMPS)
         {
             return new PlayerIdle(player);
         }

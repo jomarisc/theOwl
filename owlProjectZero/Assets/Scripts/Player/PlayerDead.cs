@@ -16,7 +16,7 @@ public class PlayerDead : IState
     {
         player.GetComponent<SpriteRenderer>().color = Color.red;
         player.Dodge();
-        player.data.deadDuration = player.DEAD_DURATION;
+        player.data.deadDuration = player.CONSTANTS.DEAD_DURATION;
     }
 
     public void Exit()

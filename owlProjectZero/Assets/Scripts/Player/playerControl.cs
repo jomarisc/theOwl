@@ -44,7 +44,7 @@ public class playerControl : Character
     }
 
 
-    public playerControl() : base(3, 1, 3f)
+    public playerControl() // : base(3, 1, 3f)
     {}
 
     private void Awake()

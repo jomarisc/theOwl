@@ -128,9 +128,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495a84bf54c13b14dbfa5d568f2f6aeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CONSTANTS>k__BackingField:
+    MAX_JUMPS: 1
+    MAX_DODGES: 0
+    DEAD_DURATION: 3
   data:
     numJumps: 1
     numDodges: 0
+    deadDuration: 0
     health: 15
     maxSpeed: 0
     groundSpeed: 2
@@ -138,11 +143,10 @@ MonoBehaviour:
     jumpDistance: 2
     isFacingRight: 0
     hasSuperArmor: 1
-    deadDuration: 0
-    dodgeDuration: 0
     remainingStamana: 0
   meleeAttack: {fileID: 5476406654723804732}
   animator: {fileID: 3602563350163768425}
+  dodgeAbility: {fileID: 0}
   eyePrescription: 15
   experienceCollectable: {fileID: 9102680711599866488, guid: 0c7a9e3fe10b9f54595053935f0ef549,
     type: 3}

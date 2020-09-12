@@ -12,7 +12,7 @@ public class GroundedEnemy : Enemy
 
 
     // Initializing maxJumps, maxDodges, dodgeDuration
-    public GroundedEnemy() : base(0, 1, 3f)
+    public GroundedEnemy() // : base(0, 1, 3f)
     {}
 
     void OnEnable()
