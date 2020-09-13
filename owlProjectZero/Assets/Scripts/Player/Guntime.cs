@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Guntime : MonoBehaviour
 {
-    [SerializeField] private playerControl player;
+    [SerializeField] private playerControl player = null;
     private const float MAX_GUNTIME_DURATION = 5f;
     private float guntimeDuration;
     [field: Min(1f)] [field: SerializeField] public float GUNTIME_SLOWDOWN_FACTOR { get; private set; } = 2f;
