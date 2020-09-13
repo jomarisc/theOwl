@@ -40,8 +40,8 @@ public class PlayerTether : IState
         playerRB.drag = 0f;
         animator.SetBool("tethered", true);
 
-        input.Gameplay.Tether.started += player.Untether;
-        input.Gameplay.Glide.started += player.Untether;
+        input.Gameplay.Tether.started += player.tetherAbility.Untether;
+        input.Gameplay.Glide.started += player.tetherAbility.Untether;
     }
 
     public void Exit()
@@ -52,8 +52,8 @@ public class PlayerTether : IState
         player.tetherAbility.GetComponent<Collider>().enabled = false;
         animator.SetBool("tethered", false);
 
-        input.Gameplay.Tether.started -= player.Untether;
-        input.Gameplay.Glide.started -= player.Untether;
+        input.Gameplay.Tether.started -= player.tetherAbility.Untether;
+        input.Gameplay.Glide.started -= player.tetherAbility.Untether;
     }
 
     public void FixedUpdate()

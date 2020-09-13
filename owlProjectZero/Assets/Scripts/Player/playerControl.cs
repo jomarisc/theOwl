@@ -12,6 +12,9 @@ public class playerControl : Character
 {
     public Guntime guntimeAbility;
     public Tether tetherAbility;
+    public PlayerSkills unlockedSkills;
+    public PlayerSkills equippedSkills;
+    public GameObject equippedSkillsUI;
     // public const float FAST_FALL_SPEED = -10f;
     [field: SerializeField] public float FAST_FALL_SPEED { get; private set; } = -10f;
     [field:SerializeField] public float GLIDE_GRAVITY { get; private set; } = -2.0f;
@@ -28,9 +31,6 @@ public class playerControl : Character
     [SerializeField] private LevelWindow levelWindow;
     [SerializeField] private SkillTreeWindow skillTreeWindow;
     public LevelSystem levelSystem;
-    public PlayerSkills unlockedSkills;
-    public PlayerSkills equippedSkills;
-    public GameObject equippedSkillsUI;
     public static event SkillEquip OnSkillEquip;
     public delegate void SkillEquip();
     private bool usingFastSkillWheel = false;
@@ -55,6 +55,8 @@ public class playerControl : Character
     private void OnEnable()
     {
         Debug.Log("Player OnEnable()");
+
+        // Subscribe to any events
         input.Enable();
         input.Gameplay.UseActiveSkill.started += UseCurrentSkill;
         if(guntimeAbility.enabled)
@@ -62,12 +64,16 @@ public class playerControl : Character
         else
             input.Gameplay.Guntime.Disable();
 
-        if(!tetherAbility.enabled)
+        // The tether object (not the script) must be enabled at the start of a scene
+        // in order to use the tether ability. This is so that we can simply enable
+        // the gameobject to show that the suit and its capabilities have been unlocked
+        if(!tetherAbility.gameObject.activeInHierarchy)
             input.Gameplay.Tether.Disable();
     }
 
     private void OnDisable()
     {
+        // Unsubscribe from events
         input.Gameplay.UseActiveSkill.started -= UseCurrentSkill;
         input.Disable();
         guntimeAbility.OnInGuntimeChanged -= UpdateInGuntime;
@@ -214,30 +220,6 @@ public class playerControl : Character
         projAtk.speed = rb.velocity.x + direction * projAtk.mySpeed;
         projAtk.isFacingRight = data.isFacingRight;
     }
-    
-    public void ActivateTether(InputAction.CallbackContext context)
-    {
-        if(tetherAbility.activeTetherPoint != null)
-        {
-            if(rb.position.y < tetherAbility.activeTetherPoint.transform.position.y)
-            {
-                myState.Exit();
-                myState = new PlayerTether(this);
-                myState.Enter();
-            }
-        }
-        Debug.Log(myState);
-    }
-
-    public void Untether(InputAction.CallbackContext context)
-    {
-        if(tetherAbility.activeTetherPoint != null)
-        {
-            myState.Exit();
-            myState = new PlayerWalk(this, true);
-            myState.Enter();
-        }
-    }
 
     public void FastFall(InputAction.CallbackContext context)
     {
@@ -327,7 +309,6 @@ public class playerControl : Character
     // Function(s) for Dead State
     public void GoToDeadState()
     {
-
         myState.Exit();
         myState = new PlayerDead(this);
         Debug.Log(myState);

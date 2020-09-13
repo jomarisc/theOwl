@@ -47,7 +47,7 @@ public class PlayerJump : IState
         player.Jump();
         // animator.SetBool("jumpup", true);
 
-        input.Gameplay.Tether.started += player.ActivateTether;
+        input.Gameplay.Tether.started += player.tetherAbility.ActivateTether;
         input.Gameplay.Glide.started += player.FastFall;
     }
 
@@ -56,7 +56,7 @@ public class PlayerJump : IState
         // animator.SetBool("jumpup", false);
         animator.SetFloat("VerticalMovement", 0f);
         
-        input.Gameplay.Tether.started -= player.ActivateTether;
+        input.Gameplay.Tether.started -= player.tetherAbility.ActivateTether;
         input.Gameplay.Glide.started -= player.FastFall;
     }
 

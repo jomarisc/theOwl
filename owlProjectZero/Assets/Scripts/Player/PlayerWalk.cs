@@ -38,7 +38,7 @@ public class PlayerWalk : IState
             // use descending animation here:
             animator.SetFloat("VerticalMovement", playerBody.velocity.y);
 
-            input.Gameplay.Tether.started += player.ActivateTether;
+            input.Gameplay.Tether.started += player.tetherAbility.ActivateTether;
             input.Gameplay.Glide.started += player.FastFall;
             input.Gameplay.Glide.started += Glide;
         }
@@ -55,7 +55,7 @@ public class PlayerWalk : IState
         animator.SetBool("moving", false);
         animator.SetBool("fastfalling", false);
 
-        input.Gameplay.Tether.started -= player.ActivateTether;
+        input.Gameplay.Tether.started -= player.tetherAbility.ActivateTether;
         input.Gameplay.Glide.started -= player.FastFall;
         input.Gameplay.Glide.started -= Glide;
 

@@ -6,21 +6,26 @@ using UnityEngine.InputSystem;
 public class Tether : MonoBehaviour
 {
     private Rigidbody rb;
-    [SerializeField] private playerControl player;
+    [SerializeField] private playerControl player = null;
     // public GameObject tether;
     [HideInInspector] public TetherPoint activeTetherPoint = null;
     [SerializeField] private ForceMode forceMode = ForceMode.Acceleration;
     [Min(0)] [SerializeField] private float tensionFactor = 1;
+
+    void OnEnable()
+    {
+        player.input.Gameplay.Tether.Enable();
+    }
+
+    void OnDisable()
+    {
+        player.input.Gameplay.Tether.Disable();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         rb = player.GetComponent<Rigidbody>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     
     public void TetherSwing(float tetherLength, Vector3 tetherDirection, float theta)
@@ -40,5 +45,27 @@ public class Tether : MonoBehaviour
         Debug.DrawLine(rb.position, rb.position + pendulumForce, Color.blue);
 
         Debug.DrawLine(rb.position, rb.position + rb.velocity);
+    }
+
+    public void ActivateTether(InputAction.CallbackContext context)
+    {
+        if(activeTetherPoint != null)
+        {
+            if(rb.position.y < activeTetherPoint.transform.position.y)
+            {
+                IState tetherState = new PlayerTether(player);
+                player.GoToState(tetherState);
+            }
+        }
+        // Debug.Log(myState);
+    }
+
+    public void Untether(InputAction.CallbackContext context)
+    {
+        if(activeTetherPoint != null)
+        {
+            IState movingState = new PlayerWalk(player, true);
+            player.GoToState(movingState);
+        }
     }
 }
