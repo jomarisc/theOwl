@@ -19,6 +19,7 @@ public class EnemyDead : IState
 
     public void Enter()
     {
+        if (OnEnemyDead != null) OnEnemyDead(true);
         //Instantiate(enemy.experienceCollectable, enemy.transform.position, Quaternion.identity);
     }
 
@@ -35,8 +36,6 @@ public class EnemyDead : IState
 
     public IState Update()
     {
-
-        if (OnEnemyDead != null) OnEnemyDead(true);
 
         if (enemy.data.deadDuration >= 0f)
         {
