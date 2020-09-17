@@ -9,6 +9,8 @@ public class Tether : MonoBehaviour
     [SerializeField] private playerControl player = null;
     // public GameObject tether;
     [HideInInspector] public TetherPoint activeTetherPoint = null;
+
+    [Header("Level Designer Variables")]
     [SerializeField] private ForceMode forceMode = ForceMode.Acceleration;
     [Min(0)] [SerializeField] private float tensionFactor = 1;
 
