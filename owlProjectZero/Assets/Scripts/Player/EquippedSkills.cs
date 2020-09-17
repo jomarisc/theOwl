@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class EquippedSkills : MonoBehaviour
 {
     [Header("Necessary Attachments")]
-    [SerializeField] private playerControl player;
+    [SerializeField] private playerControl player = null;
     public SkillWheelUI skillWheel;
     public Skill currentSkill;
     public Skill[] skills = new Skill[4];

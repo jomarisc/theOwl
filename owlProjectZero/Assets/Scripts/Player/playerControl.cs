@@ -35,8 +35,8 @@ public class playerControl : Character
     public HealthbarController healthbar;
 
     // New line
-    [SerializeField] private LevelWindow levelWindow;
-    [SerializeField] private SkillTreeWindow skillTreeWindow;
+    [SerializeField] private LevelWindow levelWindow = null;
+    [SerializeField] private SkillTreeWindow skillTreeWindow = null;
     public LevelSystem levelSystem;
     public int numCurrency;
     public bool inGuntime { get; private set; } = false;
@@ -58,8 +58,6 @@ public class playerControl : Character
 
     private void OnEnable()
     {
-        Debug.Log("Player OnEnable()");
-
         // Subscribe to any events
         input.Enable();
         if(guntimeAbility.enabled)

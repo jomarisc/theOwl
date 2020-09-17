@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 public class SkillWheelUI : MonoBehaviour
 {
-    [SerializeField] private playerControl player;
+    [SerializeField] private playerControl player = null;
     private bool usingFastSkillWheel = false;
     private Button[] slots;
     public static event SkillEquip OnSkillEquip;

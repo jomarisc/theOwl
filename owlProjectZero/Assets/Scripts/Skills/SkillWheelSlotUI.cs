@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(Image))]
 public class SkillWheelSlotUI : MonoBehaviour
 {
-    [SerializeField] private EquippedSkills equippedSkills;
+    [SerializeField] private EquippedSkills equippedSkills = null;
     private Image myIcon;
     public int slotNumber;
     public static event SkillEquip OnSkillEquip;

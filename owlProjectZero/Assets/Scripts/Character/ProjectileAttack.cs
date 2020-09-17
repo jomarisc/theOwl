@@ -6,7 +6,7 @@ public class ProjectileAttack : Attack
 {
     Rigidbody rb;
     // public const float INITIAL_SPEED = 12f;
-    [SerializeField] private Character myShooter;
+    [SerializeField] private Character myShooter = null;
     public float speed;
     public float mySpeed { get; private set; } // This gets set in the editor and should not be modified in code
 
