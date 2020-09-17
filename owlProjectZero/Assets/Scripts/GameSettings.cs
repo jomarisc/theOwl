@@ -11,7 +11,6 @@ public class GameSettings : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 144;
-
     }
 
     // Update is called once per frame

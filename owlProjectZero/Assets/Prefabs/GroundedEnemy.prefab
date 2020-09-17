@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!136 &7959669710967506972
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3974359231657122177}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &7338233564947620
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -108,16 +94,30 @@ MonoBehaviour:
     remainingStamana: 0
   basicAttack: {fileID: 5606137153869537670}
   animator: {fileID: 5435083570553900566}
-  eyePrescription: 15
   experienceCollectable: {fileID: 198094913682120957, guid: 3f2a4850f14f43347a2bee6ba7577ca1,
     type: 3}
   currencyCollectable: {fileID: 5746714417445567809, guid: 85e4f296b8750dc439593c06c751a528,
     type: 3}
+  enemyCounter: {fileID: 0}
+  eyePrescription: 15
+  collectableSpawnRange: 1
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
-  enemyCounter: {fileID: 0}
-  range: 1
+--- !u!136 &7959669710967506972
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3974359231657122177}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &257466304092606747
 PrefabInstance:
   m_ObjectHideFlags: 0

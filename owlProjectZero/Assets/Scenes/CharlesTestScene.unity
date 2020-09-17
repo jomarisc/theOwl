@@ -990,6 +990,11 @@ PrefabInstance:
       propertyPath: equippedSkills
       value: 
       objectReference: {fileID: 1683245026}
+    - target: {fileID: 3824176640613783300, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1147975906}
     - target: {fileID: 4474079447437005559, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
         type: 3}
       propertyPath: player
@@ -1448,8 +1453,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0775663577ba7d34a97e9fa51a8f63db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defeatedEnemies: {fileID: 0}
-  areaClearScreen: {fileID: 0}
+  defeatedEnemies: {fileID: 225783133}
+  areaClearScreen: {fileID: 1287486486}
 --- !u!114 &596449060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2655,6 +2660,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85e4f296b8750dc439593c06c751a528, type: 3}
+--- !u!1 &1287486486 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8871991240864448182, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
+    type: 3}
+  m_PrefabInstance: {fileID: 550795760}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1307612759
 PrefabInstance:
   m_ObjectHideFlags: 0
