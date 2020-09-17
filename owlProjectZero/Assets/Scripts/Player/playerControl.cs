@@ -10,21 +10,28 @@ using UnityEngine.InputSystem.UI;
 [RequireComponent(typeof(Collider))]
 public class playerControl : Character
 {
+    [field: Header("Level Designer Variables")]
+    [field: SerializeField] public float FAST_FALL_SPEED { get; private set; } = -10f;
+    [field:SerializeField] public float GLIDE_GRAVITY { get; private set; } = -2.0f;
+    [Header("Sound Effects")]
+    public AudioSource landingSfx;
+    public AudioSource projectileShoot;
+    public AudioSource projectileHit;
+    public AudioSource meleeHit;
+    
+    [Header("Player-Specific Abilites")]
     public Guntime guntimeAbility;
     public Tether tetherAbility;
     public PlayerSkills unlockedSkills;
     public EquippedSkills equippedSkills;
     // public const float FAST_FALL_SPEED = -10f;
-    [field: SerializeField] public float FAST_FALL_SPEED { get; private set; } = -10f;
-    [field:SerializeField] public float GLIDE_GRAVITY { get; private set; } = -2.0f;
+
     private float MAX_STAMANA;
+
+    [Header("Other")]
     public GameObject projectile;
     public PlayerInputs input;
     public HealthbarController healthbar;
-    public AudioSource landingSfx;
-    public AudioSource projectileShoot;
-    public AudioSource projectileHit;
-    public AudioSource meleeHit;
 
     // New line
     [SerializeField] private LevelWindow levelWindow;

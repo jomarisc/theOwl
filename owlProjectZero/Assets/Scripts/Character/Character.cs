@@ -41,6 +41,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     protected IState myState;
 
     // public attributes
+    [field: Header("General")]
     [field: SerializeField] public CharacterConstants CONSTANTS { get; protected set; }
     public CharacterData data;
     public GameObject meleeAttack;
