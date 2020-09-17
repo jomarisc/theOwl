@@ -2474,6 +2474,21 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
       objectReference: {fileID: 8871991240910689789}
+    - target: {fileID: 4736829442204474327, guid: 2f2bf46667ea05749941bb8372163656,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831952221134799581, guid: 2f2bf46667ea05749941bb8372163656,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568814774206410695, guid: 2f2bf46667ea05749941bb8372163656,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8455292961671003438, guid: 2f2bf46667ea05749941bb8372163656,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2588,6 +2603,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091915280391854927, guid: 2f2bf46667ea05749941bb8372163656,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f2bf46667ea05749941bb8372163656, type: 3}
