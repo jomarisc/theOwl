@@ -20,7 +20,7 @@ public class PlayerTether : IState
     {
         player = p;
         playerRB = p.GetComponent<Rigidbody>();
-        tetherDirection = p.activeTetherPoint.transform.position - playerRB.position;
+        tetherDirection = p.tetherAbility.activeTetherPoint.transform.position - playerRB.position;
         tetherLength = tetherDirection.magnitude;
         angle = Vector3.SignedAngle(tetherDirection, Vector3.up, Vector3.forward) * Mathf.Deg2Rad;
         //Set those references.
@@ -33,32 +33,36 @@ public class PlayerTether : IState
         // Enter tether animation code here:
 
 
-        player.tether.SetActive(true);
+        // player.tetherAbility.gameObject.SetActive(true);
+        player.tetherAbility.GetComponent<Renderer>().enabled = true;
+        player.tetherAbility.GetComponent<Collider>().enabled = true;
         playerRB.velocity = Vector3.zero;
         playerRB.drag = 0f;
         animator.SetBool("tethered", true);
 
-        input.Gameplay.Tether.started += player.Untether;
-        input.Gameplay.Glide.started += player.Untether;
+        input.Gameplay.Tether.started += player.tetherAbility.Untether;
+        input.Gameplay.Glide.started += player.tetherAbility.Untether;
     }
 
     public void Exit()
     {
         playerRB.drag = 1f;
-        player.tether.SetActive(false);
+        // player.tetherAbility.gameObject.SetActive(false);
+        player.tetherAbility.GetComponent<Renderer>().enabled = false;
+        player.tetherAbility.GetComponent<Collider>().enabled = false;
         animator.SetBool("tethered", false);
 
-        input.Gameplay.Tether.started -= player.Untether;
-        input.Gameplay.Glide.started -= player.Untether;
+        input.Gameplay.Tether.started -= player.tetherAbility.Untether;
+        input.Gameplay.Glide.started -= player.tetherAbility.Untether;
     }
 
     public void FixedUpdate()
     {
-        if(player.activeTetherPoint != null)
+        if(player.tetherAbility.activeTetherPoint != null)
         {
-            tetherDirection = player.activeTetherPoint.transform.position - playerRB.position;
+            tetherDirection = player.tetherAbility.activeTetherPoint.transform.position - playerRB.position;
             angle = Vector3.SignedAngle(tetherDirection, Vector3.up, Vector3.forward) * Mathf.Deg2Rad;
-            player.TetherSwing(tetherLength, tetherDirection, angle);
+            player.tetherAbility.TetherSwing(tetherLength, tetherDirection, angle);
         }
     }
 
@@ -109,26 +113,26 @@ public class PlayerTether : IState
             return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }
 
-        if(player.activeTetherPoint == null ||
-           player.transform.position.y > player.activeTetherPoint.transform.position.y)
+        if(player.tetherAbility.activeTetherPoint == null ||
+           player.transform.position.y > player.tetherAbility.activeTetherPoint.transform.position.y)
         {
-            return new PlayerWalk(player, true); // Specify the airborne version later
+            return new PlayerMove(player, true); // Specify the airborne version later
         }
 
         // Update tether position, size, and rotation
-        if(player.activeTetherPoint != null)
+        if(player.tetherAbility.activeTetherPoint != null)
         {
             Vector3 tetherPos = tetherDirection / 2;
-            player.tether.transform.localPosition = tetherPos;
+            player.tetherAbility.transform.localPosition = tetherPos;
 
             Quaternion tetherRotation = new Quaternion();
             float tetherAngle = -angle * Mathf.Rad2Deg;
             tetherRotation.eulerAngles = new Vector3(0f, 0f, tetherAngle);
-            player.tether.transform.rotation = tetherRotation;
+            player.tetherAbility.transform.rotation = tetherRotation;
 
-            Vector3 tetherScale = player.tether.transform.localScale;
+            Vector3 tetherScale = player.tetherAbility.transform.localScale;
             tetherScale[1] = tetherDirection.magnitude / 2;
-            player.tether.transform.localScale = tetherScale;
+            player.tetherAbility.transform.localScale = tetherScale;
         }
 
         return null;

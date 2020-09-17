@@ -15,10 +15,8 @@ public class PlayerDead : IState
     public void Enter()
     {
         player.GetComponent<SpriteRenderer>().color = Color.red;
-
-        player.Dodge(); // Prevents collision with other enemies
-
-        player.data.deadDuration = player.DEAD_DURATION;
+        player.dodgeAbility.PerformDodge();
+        player.data.deadDuration = player.CONSTANTS.DEAD_DURATION;
     }
 
     public void Exit()

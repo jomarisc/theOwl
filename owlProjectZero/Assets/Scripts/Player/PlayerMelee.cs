@@ -15,7 +15,7 @@ public class PlayerMelee : IState
     public PlayerMelee(playerControl p, float hm)
     {
         player = p;
-        meleeAttack = p.meleeAttack.gameObject;
+        meleeAttack = p.basicAttack.gameObject;
         input = p.input;
         horizontalMovement = hm;
         animator = p.gameObject.GetComponent<Animator>();
@@ -58,7 +58,7 @@ public class PlayerMelee : IState
             
             if(player.data.maxSpeed == player.data.airSpeed)
             {
-                return new PlayerWalk(player, true); // Specify this to be the airborne version later
+                return new PlayerMove(player, true); // Specify this to be the airborne version later
             }
             else
             {

@@ -12,7 +12,7 @@ public class GroundedEnemy : Enemy
 
 
     // Initializing maxJumps, maxDodges, dodgeDuration
-    public GroundedEnemy() : base(0, 1, 5f, 3f)
+    public GroundedEnemy() // : base(0, 1, 3f)
     {}
 
     void OnEnable()
@@ -30,27 +30,4 @@ public class GroundedEnemy : Enemy
         base.Start();
         rb = GetComponent<Rigidbody>();
     }
-
-    // Update is called once per frame
-    new private void Update()
-    {
-        base.Update();
-    }
-
-    new private void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
-
-    // void OnBecameVisible()
-    // {
-    //     Debug.Log("Visible");
-    //     gameObject.SetActive(true);
-    // }
-
-    // void OnBecameInvisible()
-    // {
-    //     Debug.Log("Invisible");
-    //     gameObject.SetActive(false);
-    // }
 }

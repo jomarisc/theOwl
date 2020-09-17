@@ -2,11 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[System.Serializable]
+public struct CharacterConstants
+{
+    public int MAX_JUMPS;
+    public int MAX_DODGES;
+    public float DEAD_DURATION;
+}
+
 [System.Serializable]
 public struct CharacterData
 {
     public int numJumps;
     public int numDodges;
+    public float deadDuration;
     public float health;
     public float maxSpeed;
     public float groundSpeed;
@@ -16,10 +26,8 @@ public struct CharacterData
                                //facing in the right-hand direction
                                // *So far, must be initialized in sub classes*
     public bool hasSuperArmor;
-    public float deadDuration;
 
     //public Animator animator;
-    public float dodgeDuration;
     public float remainingStamana;
 }
 
@@ -33,24 +41,29 @@ public abstract class Character : MonoBehaviour, ICharacter
     protected IState myState;
 
     // public attributes
+    [field: Header("General")]
+    [field: SerializeField] public CharacterConstants CONSTANTS { get; protected set; }
     public CharacterData data;
-    public GameObject meleeAttack;
+    public GameObject basicAttack;
     public Animator animator;
     public IState defaultState { get; protected set; }
-    public readonly int MAX_JUMPS;
-    public readonly int MAX_DODGES;
-    public readonly float DODGE_DURATION;
-    public readonly float DEAD_DURATION;
+    // public float DODGE_DURATION { get; protected set; }
+    // public readonly int MAX_JUMPS;
+    // public readonly int MAX_DODGES;
+    // public readonly float DEAD_DURATION;
 
-    public Character(int maxJumps, int maxDodges, float dodgeDuration, float deadDuration)
+    // public Character(int maxJumps, int maxDodges, float deadDuration)
+    // {
+    //     MAX_JUMPS = maxJumps;
+    //     MAX_DODGES = maxDodges;
+    //     DEAD_DURATION = deadDuration;
+    // }
+    public Character()
     {
-        MAX_JUMPS = maxJumps;
-        MAX_DODGES = maxDodges;
-        DODGE_DURATION = dodgeDuration;
-        DEAD_DURATION = deadDuration;
+        
     }
     
-    public void Update()
+    public virtual void Update()
     {
         if(data.health <= 0f)
         {
@@ -67,13 +80,13 @@ public abstract class Character : MonoBehaviour, ICharacter
         }
     }
 
-    public void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         myState.FixedUpdate();
     }
 
     // Moves the player left/right based off of the value of its acceleration
-    public void MoveCharacter(float direction)
+    public virtual void MoveCharacter(float direction)
     {
         Vector3 newVelocity = rb.velocity;
         newVelocity[0] = direction * data.maxSpeed;
@@ -103,40 +116,11 @@ public abstract class Character : MonoBehaviour, ICharacter
 
     public void Attack()
     {
-        Vector3 atkPos = meleeAttack.transform.localPosition;
+        Vector3 atkPos = basicAttack.transform.localPosition;
         int direction = (data.isFacingRight) ? 1 : -1;
-        atkPos.x = direction * meleeAttack.GetComponent<MeleeAttack>().initialLocalPosition;
-        meleeAttack.transform.localPosition = atkPos;
-        meleeAttack.GetComponent<MeleeAttack>().isFacingRight = data.isFacingRight;
-    }
-
-    // Currently Only toggles player collisions with Enemy-related rigidbodies/colliders
-    public void Dodge()
-    {
-        if(data.dodgeDuration > 0f)
-        {
-            // Stop checking collisions with player hurtbox and enemy-related physics layers
-            Physics.IgnoreLayerCollision(9, 10, true); // Player x Enemies
-            Physics.IgnoreLayerCollision(9, 12, true); // Player x Enemies' Attacks
-            Physics.IgnoreLayerCollision(9, 15, true); // Player x Enemies' Bodu Hitbox
-            // If character is grounded, do a roll in whichever facing direction
-            if(data.maxSpeed == data.groundSpeed)
-            {
-                
-            }
-            // Else do an 8-directional spin in whichever direction the player is holding
-            else
-            {
-
-            }
-        }
-        // This branch should only be called once as dodgeDuration becomes negative
-        else
-        {
-            Physics.IgnoreLayerCollision(9, 15, false); // Player x Enemies' Bodu Hitbox
-            Physics.IgnoreLayerCollision(9, 12, false); // Player x Enemies' Attacks
-            Physics.IgnoreLayerCollision(9, 10, false); // Player x Enemies
-        }
+        atkPos.x = direction * basicAttack.GetComponent<Attack>().initialLocalPosition;
+        basicAttack.transform.localPosition = atkPos;
+        basicAttack.GetComponent<Attack>().isFacingRight = data.isFacingRight;
     }
 
     public void GetRekt()
@@ -152,6 +136,12 @@ public abstract class Character : MonoBehaviour, ICharacter
         myState.Exit();
         myState = new CharacterDamaged(this, damageAmount, knockback);
         Debug.Log(myState);
+        myState.Enter();
+    }
+    public void GoToState(IState state)
+    {
+        myState.Exit();
+        myState = state;
         myState.Enter();
     }
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerWalk : IState
+public class PlayerMove : IState
 {
     private readonly playerControl player;
     private Rigidbody playerBody;
@@ -19,7 +19,7 @@ public class PlayerWalk : IState
     private Animator animator;
     private SpriteRenderer spriterenderer;
 
-    public PlayerWalk(playerControl p, bool isAirborne)
+    public PlayerMove(playerControl p, bool isAirborne)
     {
         player = p;
         playerBody = p.gameObject.GetComponent<Rigidbody>();
@@ -38,7 +38,7 @@ public class PlayerWalk : IState
             // use descending animation here:
             animator.SetFloat("VerticalMovement", playerBody.velocity.y);
 
-            input.Gameplay.Tether.started += player.ActivateTether;
+            input.Gameplay.Tether.started += player.tetherAbility.ActivateTether;
             input.Gameplay.Glide.started += player.FastFall;
             input.Gameplay.Glide.started += Glide;
         }
@@ -55,7 +55,7 @@ public class PlayerWalk : IState
         animator.SetBool("moving", false);
         animator.SetBool("fastfalling", false);
 
-        input.Gameplay.Tether.started -= player.ActivateTether;
+        input.Gameplay.Tether.started -= player.tetherAbility.ActivateTether;
         input.Gameplay.Glide.started -= player.FastFall;
         input.Gameplay.Glide.started -= Glide;
 
@@ -66,8 +66,8 @@ public class PlayerWalk : IState
     {
         if(isFlying)
         {
-            if((player.inGuntime && verticalMovement != playerControl.FAST_FALL_SPEED * 2) ||
-               (!player.inGuntime && verticalMovement != playerControl.FAST_FALL_SPEED))
+            if((player.inGuntime && verticalMovement != player.FAST_FALL_SPEED * 2) ||
+               (!player.inGuntime && verticalMovement != player.FAST_FALL_SPEED))
                     verticalMovement = playerBody.velocity.y;
         }
         else
@@ -128,9 +128,7 @@ public class PlayerWalk : IState
         if(isFlying &&
            player.data.maxSpeed == player.data.groundSpeed)
         {
-            Debug.Log("Landing");
-            return new PlayerWalk(player, false);
-            
+            return new PlayerMove(player, false);
         }
 
         // If leaving a platform
@@ -138,7 +136,7 @@ public class PlayerWalk : IState
            player.data.maxSpeed == player.data.airSpeed)
         {
             Debug.Log("Left platform");
-            return new PlayerWalk(player, true);
+            return new PlayerMove(player, true);
         }
 
         horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();

@@ -47,7 +47,7 @@ public class PlayerJump : IState
         player.Jump();
         // animator.SetBool("jumpup", true);
 
-        input.Gameplay.Tether.started += player.ActivateTether;
+        input.Gameplay.Tether.started += player.tetherAbility.ActivateTether;
         input.Gameplay.Glide.started += player.FastFall;
     }
 
@@ -56,7 +56,7 @@ public class PlayerJump : IState
         // animator.SetBool("jumpup", false);
         animator.SetFloat("VerticalMovement", 0f);
         
-        input.Gameplay.Tether.started -= player.ActivateTether;
+        input.Gameplay.Tether.started -= player.tetherAbility.ActivateTether;
         input.Gameplay.Glide.started -= player.FastFall;
     }
 
@@ -114,7 +114,7 @@ public class PlayerJump : IState
                 
             // If jumps get refreshed, i.e. landing on a platform
             if(player.data.maxSpeed == player.data.groundSpeed &&
-               player.data.numJumps == player.MAX_JUMPS)
+               player.data.numJumps == player.CONSTANTS.MAX_JUMPS)
             {
                 return new PlayerIdle(player);
             }
@@ -124,7 +124,7 @@ public class PlayerJump : IState
         if(input.Gameplay.Glide.ReadValue<float>() > 0.975f)
         {
             if(Mathf.Abs(playerBody.velocity.y) <= 3f)
-                return new PlayerWalk(player, true);
+                return new PlayerMove(player, true);
 
             return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }

@@ -18,15 +18,15 @@ public class EnvironmentElement : MonoBehaviour
                 {
                     // Check if the player managed to land on an environment piece
                     // but the jump refresh didn't work
-                    if(col.gameObject.GetComponent<Character>().data.numJumps < col.gameObject.GetComponent<Character>().MAX_JUMPS)
+                    if(col.gameObject.GetComponent<Character>().data.numJumps < col.gameObject.GetComponent<Character>().CONSTANTS.MAX_JUMPS)
                     {
-                        col.gameObject.GetComponent<Character>().data.numJumps = col.gameObject.GetComponent<Character>().MAX_JUMPS;
+                        col.gameObject.GetComponent<Character>().data.numJumps = col.gameObject.GetComponent<Character>().CONSTANTS.MAX_JUMPS;
                     }
 
                     // Same thing for refreshing number of dodges
-                    if(col.gameObject.GetComponent<Character>().data.numDodges < col.gameObject.GetComponent<Character>().MAX_DODGES)
+                    if(col.gameObject.GetComponent<Character>().data.numDodges < col.gameObject.GetComponent<Character>().CONSTANTS.MAX_DODGES)
                     {
-                        col.gameObject.GetComponent<Character>().data.numDodges = col.gameObject.GetComponent<Character>().MAX_DODGES;
+                        col.gameObject.GetComponent<Character>().data.numDodges = col.gameObject.GetComponent<Character>().CONSTANTS.MAX_DODGES;
                     }
                 }
             }

@@ -7,7 +7,6 @@ public interface ICharacter
     void MoveCharacter(float direction);
     void Jump();
     void Attack();
-    void Dodge();
     void GetRekt();
     void GoToDamagedState(float damageAmount, float knockback);
 }

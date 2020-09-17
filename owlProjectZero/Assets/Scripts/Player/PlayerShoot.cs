@@ -27,7 +27,8 @@ public class PlayerShoot : IState
 
         playerCanMove = false;
         int shootingDirection = (player.data.isFacingRight) ? 1 : -1;
-        player.SpawnProjectile(shootingDirection);
+        player.projectile.SetActive(true);
+        player.projectile.GetComponent<ProjectileAttack>().SpawnProjectile(shootingDirection);
         player.projectileShoot.Play();
     }
 
@@ -57,7 +58,7 @@ public class PlayerShoot : IState
 
             if(player.data.maxSpeed == player.data.airSpeed)
             {
-                return new PlayerWalk(player, true); // Change this to specify the airborne version later
+                return new PlayerMove(player, true); // Change this to specify the airborne version later
             }
             else
             {

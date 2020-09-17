@@ -7,7 +7,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class ActiveSkillUI : MonoBehaviour
 {
-    [SerializeField] private PlayerSkills equippedSkills;
+    [SerializeField] private EquippedSkills equippedSkills = null;
     private Image currentSkillIcon;
     void Awake()
     {
@@ -15,18 +15,19 @@ public class ActiveSkillUI : MonoBehaviour
     }
     void OnEnable()
     {
-        playerControl.OnSkillEquip += SetSkillIcon;
+        // SkillWheelUI.OnSkillEquip += SetSkillIcon;
+        EquippedSkills.OnCurrentSkillChanged += SetSkillIcon;
         SkillWheelSlotUI.OnSkillEquip += SetSkillIcon;
     }
     void OnDisable()
     {
-        playerControl.OnSkillEquip -= SetSkillIcon;
+        // SkillWheelUI.OnSkillEquip -= SetSkillIcon;
+        EquippedSkills.OnCurrentSkillChanged -= SetSkillIcon;
         SkillWheelSlotUI.OnSkillEquip -= SetSkillIcon;
     }
     // Start is called before the first frame update
     void Start()
     {
-        
         currentSkillIcon.sprite = equippedSkills.currentSkill.GetIcon();
     }
 

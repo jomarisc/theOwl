@@ -8,7 +8,7 @@ public class TetherPoint : EnvironmentElement
     {
         if(col.gameObject.TryGetComponent(out playerControl player))
         {
-            col.GetComponent<playerControl>().activeTetherPoint = this;
+            col.GetComponent<playerControl>().tetherAbility.activeTetherPoint = this;
         }
     }
 
@@ -16,7 +16,7 @@ public class TetherPoint : EnvironmentElement
     {
         if(col.gameObject.TryGetComponent(out playerControl player))
         {
-            col.GetComponent<playerControl>().activeTetherPoint = null;
+            col.GetComponent<playerControl>().tetherAbility.activeTetherPoint = null;
         }
     }
 }

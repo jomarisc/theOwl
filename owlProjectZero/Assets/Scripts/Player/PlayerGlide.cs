@@ -7,7 +7,7 @@ public class PlayerGlide : IState
 {
     private readonly playerControl player;
     private PlayerInputs input;
-    private const float newGravity = -2.0f;
+    // private const float newGravity = -2.0f;
     private float horizontalMovement = 0f;
     private glideType method = 0;
     public enum glideType {Jump, Down}
@@ -48,7 +48,7 @@ public class PlayerGlide : IState
 
     public void FixedUpdate()
     {
-        player.GetComponent<Rigidbody>().AddForce(new Vector3(0f, newGravity, 0f));
+        player.GetComponent<Rigidbody>().AddForce(new Vector3(0f, player.GLIDE_GRAVITY, 0f));
         player.MoveCharacter(horizontalMovement);
     }
 
@@ -69,14 +69,14 @@ public class PlayerGlide : IState
             // if(Input.GetButtonUp("Jump"))
             if(input.Gameplay.Jump.ReadValue<float>() == 0f)
             {
-                return new PlayerWalk(player, true);
+                return new PlayerMove(player, true);
             }
         }
         else
         {
             if(input.Gameplay.Glide.ReadValue<float>() == 0f)
             {
-                return new PlayerWalk(player, true);
+                return new PlayerMove(player, true);
             }
         }
 
@@ -106,7 +106,7 @@ public class PlayerGlide : IState
 
         // If jumps get refreshed, i.e. landing on a platform
         if(player.data.maxSpeed == player.data.groundSpeed &&
-           player.data.numJumps == player.MAX_JUMPS)
+           player.data.numJumps == player.CONSTANTS.MAX_JUMPS)
         {
             return new PlayerIdle(player);
         }

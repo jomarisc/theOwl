@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(Image))]
 public class SkillWheelSlotUI : MonoBehaviour
 {
-    [SerializeField] private PlayerSkills equippedSkills;
+    [SerializeField] private EquippedSkills equippedSkills = null;
     private Image myIcon;
     public int slotNumber;
     public static event SkillEquip OnSkillEquip;
@@ -21,13 +21,12 @@ public class SkillWheelSlotUI : MonoBehaviour
     
     void OnEnable()
     {
-        myIcon.sprite = equippedSkills.unlockedSkillTypeList[slotNumber - 1].GetIcon();
+        myIcon.sprite = equippedSkills.skills[slotNumber - 1].GetIcon();
     }
 
     public void EquipSkill()
     {
-        Debug.Log($"Slot {slotNumber} equipped");
-        equippedSkills.currentSkill = equippedSkills.unlockedSkillTypeList[slotNumber - 1];
+        equippedSkills.currentSkill = equippedSkills.skills[slotNumber - 1];
         OnSkillEquip?.Invoke();
     }
 }
