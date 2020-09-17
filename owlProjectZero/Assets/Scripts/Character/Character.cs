@@ -44,7 +44,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     [field: Header("General")]
     [field: SerializeField] public CharacterConstants CONSTANTS { get; protected set; }
     public CharacterData data;
-    public GameObject meleeAttack;
+    public GameObject basicAttack;
     public Animator animator;
     public IState defaultState { get; protected set; }
     // public float DODGE_DURATION { get; protected set; }
@@ -116,11 +116,11 @@ public abstract class Character : MonoBehaviour, ICharacter
 
     public void Attack()
     {
-        Vector3 atkPos = meleeAttack.transform.localPosition;
+        Vector3 atkPos = basicAttack.transform.localPosition;
         int direction = (data.isFacingRight) ? 1 : -1;
-        atkPos.x = direction * meleeAttack.GetComponent<MeleeAttack>().initialLocalPosition;
-        meleeAttack.transform.localPosition = atkPos;
-        meleeAttack.GetComponent<MeleeAttack>().isFacingRight = data.isFacingRight;
+        atkPos.x = direction * basicAttack.GetComponent<Attack>().initialLocalPosition;
+        basicAttack.transform.localPosition = atkPos;
+        basicAttack.GetComponent<Attack>().isFacingRight = data.isFacingRight;
     }
 
     public void GetRekt()

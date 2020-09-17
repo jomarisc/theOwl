@@ -12,7 +12,7 @@ public class HEnemyAttack : IState
     {
         character = (HeavyEnemy)myself;
         characterBody = myself.GetComponent<Rigidbody>();
-        meleeAttack = myself.meleeAttack.gameObject;
+        meleeAttack = myself.basicAttack.gameObject;
     }
 
     public void Enter()

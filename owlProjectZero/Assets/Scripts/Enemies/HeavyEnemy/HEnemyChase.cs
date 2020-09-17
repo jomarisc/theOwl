@@ -46,7 +46,7 @@ public class HEnemyChase : IState
         playerIsInSight = character.SeesPlayer();
 
         if(playerIsInSight)
-            playerIsInAttackRange = character.PlayerInAttackRange(character.meleeAttack.transform.localPosition.x); // 2f comes from scaleY from hitbox's transform component
+            playerIsInAttackRange = character.PlayerInAttackRange(character.basicAttack.transform.localPosition.x); // 2f comes from scaleY from hitbox's transform component
     }
     
     public IState Update()

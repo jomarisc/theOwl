@@ -14,7 +14,7 @@ public class GEnemyAttack : IState
     {
         character = (GroundedEnemy)myself;
         characterBody = myself.GetComponent<Rigidbody>();
-        meleeAttack = myself.meleeAttack.gameObject;
+        meleeAttack = myself.basicAttack.gameObject;
         hitbox = meleeAttack.GetComponent<Collider>();
         horizontalMovement = hm;
     }

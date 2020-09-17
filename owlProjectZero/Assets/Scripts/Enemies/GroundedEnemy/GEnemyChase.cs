@@ -37,7 +37,7 @@ public class GEnemyChase : IState
         playerIsInSight = character.SeesPlayer();
 
         if(playerIsInSight)
-            playerIsInAttackRange = character.PlayerInAttackRange(character.meleeAttack.transform.localPosition.x);
+            playerIsInAttackRange = character.PlayerInAttackRange(character.basicAttack.transform.localPosition.x);
     }
     
     public IState Update()

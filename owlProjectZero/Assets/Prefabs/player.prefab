@@ -244,6 +244,7 @@ MonoBehaviour:
     knockback: 4
     knockbackAngle: 0
   isFacingRight: 0
+  myShooter: {fileID: 2529497728352103109}
   speed: 20
 --- !u!54 &3628072577002676175
 Rigidbody:
@@ -766,21 +767,21 @@ MonoBehaviour:
     isFacingRight: 1
     hasSuperArmor: 0
     remainingStamana: 100
-  meleeAttack: {fileID: 8548501586489388540}
+  basicAttack: {fileID: 8548501586489388540}
   animator: {fileID: 1050675498}
+  <FAST_FALL_SPEED>k__BackingField: -10
+  <GLIDE_GRAVITY>k__BackingField: -2
+  landingSfx: {fileID: 8219641611721027624}
+  projectileShoot: {fileID: 1041482719160789296}
+  projectileHit: {fileID: 7667496188572339682}
+  meleeHit: {fileID: 4935613855480808710}
   dodgeAbility: {fileID: 4892516316583734358}
   guntimeAbility: {fileID: 4538674539265694219}
   tetherAbility: {fileID: 8353569691159498766}
   unlockedSkills: {fileID: 1662708261558932915}
   equippedSkills: {fileID: 3817331622950344475}
-  <FAST_FALL_SPEED>k__BackingField: -10
-  <GLIDE_GRAVITY>k__BackingField: -2
   projectile: {fileID: 377738018264958676}
   healthbar: {fileID: 0}
-  landingSfx: {fileID: 8219641611721027624}
-  projectileShoot: {fileID: 1041482719160789296}
-  projectileHit: {fileID: 7667496188572339682}
-  meleeHit: {fileID: 4935613855480808710}
   levelWindow: {fileID: 0}
   skillTreeWindow: {fileID: 0}
   numCurrency: 0
@@ -1404,13 +1405,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2529497728352103109}
+  skillWheel: {fileID: 0}
   currentSkill: {fileID: 3021721764090842858}
   skills:
   - {fileID: 5925952698634190059}
   - {fileID: 3021721764090842858}
   - {fileID: 8839621157108353849}
   - {fileID: 3921424513570868424}
-  equippedSkillsUI: {fileID: 0}
 --- !u!1 &7998754170819376621
 GameObject:
   m_ObjectHideFlags: 0

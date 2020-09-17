@@ -15,7 +15,7 @@ public class PlayerMelee : IState
     public PlayerMelee(playerControl p, float hm)
     {
         player = p;
-        meleeAttack = p.meleeAttack.gameObject;
+        meleeAttack = p.basicAttack.gameObject;
         input = p.input;
         horizontalMovement = hm;
         animator = p.gameObject.GetComponent<Animator>();

@@ -92,9 +92,8 @@ MonoBehaviour:
     isFacingRight: 0
     hasSuperArmor: 0
     remainingStamana: 0
-  meleeAttack: {fileID: 5606137153869537670}
+  basicAttack: {fileID: 5606137153869537670}
   animator: {fileID: 5435083570553900566}
-  dodgeAbility: {fileID: 0}
   eyePrescription: 15
   experienceCollectable: {fileID: 198094913682120957, guid: 3f2a4850f14f43347a2bee6ba7577ca1,
     type: 3}

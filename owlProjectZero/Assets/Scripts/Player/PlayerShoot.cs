@@ -27,7 +27,8 @@ public class PlayerShoot : IState
 
         playerCanMove = false;
         int shootingDirection = (player.data.isFacingRight) ? 1 : -1;
-        player.SpawnProjectile(shootingDirection);
+        player.projectile.SetActive(true);
+        player.projectile.GetComponent<ProjectileAttack>().SpawnProjectile(shootingDirection);
         player.projectileShoot.Play();
     }
 

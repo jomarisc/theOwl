@@ -131,19 +131,6 @@ public class playerControl : Character
         }
     }
 
-    public void SpawnProjectile(int direction) // Direction should be -1 or 1
-    {
-        projectile.SetActive(true);
-        ProjectileAttack projAtk = projectile.GetComponent<ProjectileAttack>();
-        Vector3 projPos = projectile.transform.position;
-        projPos.x = transform.position.x + direction * projAtk.initialLocalPosition;
-        projPos.y = transform.position.y;
-        projectile.transform.position = projPos;
-
-        projAtk.speed = rb.velocity.x + direction * projAtk.mySpeed;
-        projAtk.isFacingRight = data.isFacingRight;
-    }
-
     public void FastFall(InputAction.CallbackContext context)
     {
         // Debug.Log("Fastfall input");
