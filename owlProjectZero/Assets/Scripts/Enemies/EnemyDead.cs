@@ -19,7 +19,6 @@ public class EnemyDead : IState
 
     public void Enter()
     {
-        if (OnEnemyDead != null) OnEnemyDead(true);
         //Instantiate(enemy.experienceCollectable, enemy.transform.position, Quaternion.identity);
     }
 
@@ -27,6 +26,7 @@ public class EnemyDead : IState
     {
         enemy.IncrementDefeatedEnemies();
         enemy.GetRekt();
+        if (OnEnemyDead != null) OnEnemyDead(true);
     }
 
     public void FixedUpdate()
