@@ -141,8 +141,6 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         myState.Exit();
         myState = state;
-        Debug.Log(myState);
-        Debug.Break();
         myState.Enter();
     }
 
