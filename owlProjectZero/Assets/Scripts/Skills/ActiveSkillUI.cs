@@ -7,7 +7,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class ActiveSkillUI : MonoBehaviour
 {
-    [SerializeField] private PlayerSkills equippedSkills;
+    [SerializeField] private EquippedSkills equippedSkills;
     private Image currentSkillIcon;
     void Awake()
     {
