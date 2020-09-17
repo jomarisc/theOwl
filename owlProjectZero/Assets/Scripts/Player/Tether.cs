@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class Tether : MonoBehaviour
 {
     private Rigidbody rb;
+    [Header("Necessary Attachments")]
     [SerializeField] private playerControl player = null;
     // public GameObject tether;
     [HideInInspector] public TetherPoint activeTetherPoint = null;

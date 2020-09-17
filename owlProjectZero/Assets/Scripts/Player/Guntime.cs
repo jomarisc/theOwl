@@ -6,13 +6,16 @@ using UnityEngine.InputSystem;
 
 public class Guntime : MonoBehaviour
 {
+    [Header("Necessary Attachments")]
     [SerializeField] private playerControl player = null;
+    [SerializeField] private Image guntimeMeter = null;
     private const float MAX_GUNTIME_DURATION = 5f;
     private float guntimeDuration;
+
+    [field: Header("Level Designer Variables")]
     [field: Min(1f)] [field: SerializeField] public float GUNTIME_SLOWDOWN_FACTOR { get; private set; } = 2f;
     [SerializeField] private float guntimeUsageRate = 0f;
     [SerializeField] private float guntimeRecoveryRate = 0f;
-    [SerializeField] private Image guntimeMeter = null;
     public bool inGuntime { get; private set; } = false;
     public event InGuntimeChanged OnInGuntimeChanged;
     public delegate bool InGuntimeChanged();
