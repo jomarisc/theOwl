@@ -6,17 +6,22 @@ using UnityEngine.UI;
 public abstract class Enemy : Character
 {
     private Vector3 lookingDirection;
-    [SerializeField]
-    private float eyePrescription = 0f;
-    [SerializeField]
-    private GameObject experienceCollectable = null;
+    private EnemyDead enemyDeadListener;
+
+    [Header("Necessary Attachments")]
+    [SerializeField] private GameObject experienceCollectable = null;
     public GameObject currencyCollectable = null;
+    public Text enemyCounter;
+
+
+    [Header("Level Designer Variables")]
+    [Tooltip("Range in which enemies can see the player")]
+    [SerializeField] private float eyePrescription = 0f;
+    public float collectableSpawnRange = 1.0f;
     public LayerMask targetLayer;
+
     public static int totalEnemies = 0;
     public static int numDefeatedEnemies = 0;
-    public Text enemyCounter;
-    EnemyDead enemyDeadListener;
-    public float range = 1.0f;
 
 
     // public Enemy(int maxJumps, int maxDodges, float deadDuration) : base(maxJumps, maxDodges, deadDuration)
@@ -90,7 +95,7 @@ public abstract class Enemy : Character
         
         for (int i = 1 ; i <= 3; i++)
         {
-            var randomPos = (Random.insideUnitSphere * range);
+            var randomPos = (Random.insideUnitSphere * collectableSpawnRange);
             randomPos.z = 0;
             Instantiate(currencyCollectable, transform.position + randomPos, Quaternion.identity);
         }
