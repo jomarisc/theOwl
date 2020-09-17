@@ -128,7 +128,8 @@ public abstract class Character : MonoBehaviour, ICharacter
         // New lines
         Debug.Log("Got rekt");
         //Destroy(this.gameObject);
-        this.gameObject.active = false;
+        // this.gameObject.active = false;
+        gameObject.SetActive(false);
     }
 
     public void GoToDamagedState(float damageAmount, float knockback)
