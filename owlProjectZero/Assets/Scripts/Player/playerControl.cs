@@ -10,9 +10,12 @@ using UnityEngine.InputSystem.UI;
 [RequireComponent(typeof(Collider))]
 public class playerControl : Character
 {
+    private float MAX_STAMANA;
+
     [field: Header("Level Designer Variables")]
     [field: SerializeField] public float FAST_FALL_SPEED { get; private set; } = -10f;
     [field:SerializeField] public float GLIDE_GRAVITY { get; private set; } = -2.0f;
+
     [Header("Sound Effects")]
     public AudioSource landingSfx;
     public AudioSource projectileShoot;
@@ -20,13 +23,11 @@ public class playerControl : Character
     public AudioSource meleeHit;
     
     [Header("Player-Specific Abilites")]
+    public Dodge dodgeAbility;
     public Guntime guntimeAbility;
     public Tether tetherAbility;
     public PlayerSkills unlockedSkills;
     public EquippedSkills equippedSkills;
-    // public const float FAST_FALL_SPEED = -10f;
-
-    private float MAX_STAMANA;
 
     [Header("Other")]
     public GameObject projectile;
@@ -96,14 +97,12 @@ public class playerControl : Character
             Debug.Log(myState);
         }
         rb = GetComponent<Rigidbody>();
-        // DODGE_DURATION = dodgeAbility.dodgeDuration;
         dodgeAbility.dodgeDuration = -1f;
         MAX_STAMANA = data.remainingStamana;
-        Debug.Log("MAX_STAMANA " + MAX_STAMANA);
     }
 
     // Update is called once per frame
-    new private void Update() // The new keyword was just tacked on to get rid
+    public override void Update() // The new keyword was just tacked on to get rid
                               // of a warning for calling base.Update()
     {
         base.Update();
@@ -118,14 +117,7 @@ public class playerControl : Character
         }
     }
 
-    // Should disable the current selected and active skill
-    // Then enable the desired skill
-    new private void ChangeSkill()
-    {
-
-    }
-
-    new private void FixedUpdate()
+    public override void FixedUpdate()
     {
         base.FixedUpdate();
 

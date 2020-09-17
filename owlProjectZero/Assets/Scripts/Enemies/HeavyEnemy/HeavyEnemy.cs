@@ -31,32 +31,8 @@ public class HeavyEnemy : Enemy
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    new private void Update()
+    public override void MoveCharacter(float direction)
     {
-        base.Update();
-    }
-
-    new private void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
-
-    // void OnBecameVisible()
-    // {
-    //     Debug.Log("Visible");
-    //     gameObject.SetActive(true);
-    // }
-
-    // void OnBecameInvisible()
-    // {
-    //     Debug.Log("Invisible");
-    //     gameObject.SetActive(false);
-    // }
-
-    new public void MoveCharacter(float direction)
-    {
-        // Debug.Log(data.maxSpeed);
         rb.AddForce(new Vector3(direction * data.maxSpeed, 0f, 0f), ForceMode.VelocityChange);
     }
 }

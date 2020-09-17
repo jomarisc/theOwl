@@ -30,27 +30,4 @@ public class GroundedEnemy : Enemy
         base.Start();
         rb = GetComponent<Rigidbody>();
     }
-
-    // Update is called once per frame
-    new private void Update()
-    {
-        base.Update();
-    }
-
-    new private void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
-
-    // void OnBecameVisible()
-    // {
-    //     Debug.Log("Visible");
-    //     gameObject.SetActive(true);
-    // }
-
-    // void OnBecameInvisible()
-    // {
-    //     Debug.Log("Invisible");
-    //     gameObject.SetActive(false);
-    // }
 }

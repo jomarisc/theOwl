@@ -46,7 +46,6 @@ public abstract class Character : MonoBehaviour, ICharacter
     public CharacterData data;
     public GameObject meleeAttack;
     public Animator animator;
-    public Dodge dodgeAbility;
     public IState defaultState { get; protected set; }
     // public float DODGE_DURATION { get; protected set; }
     // public readonly int MAX_JUMPS;
@@ -64,7 +63,7 @@ public abstract class Character : MonoBehaviour, ICharacter
         
     }
     
-    public void Update()
+    public virtual void Update()
     {
         if(data.health <= 0f)
         {
@@ -81,13 +80,13 @@ public abstract class Character : MonoBehaviour, ICharacter
         }
     }
 
-    public void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         myState.FixedUpdate();
     }
 
     // Moves the player left/right based off of the value of its acceleration
-    public void MoveCharacter(float direction)
+    public virtual void MoveCharacter(float direction)
     {
         Vector3 newVelocity = rb.velocity;
         newVelocity[0] = direction * data.maxSpeed;
@@ -122,35 +121,6 @@ public abstract class Character : MonoBehaviour, ICharacter
         atkPos.x = direction * meleeAttack.GetComponent<MeleeAttack>().initialLocalPosition;
         meleeAttack.transform.localPosition = atkPos;
         meleeAttack.GetComponent<MeleeAttack>().isFacingRight = data.isFacingRight;
-    }
-
-    // Currently Only toggles player collisions with Enemy-related rigidbodies/colliders
-    public void Dodge()
-    {
-        if(dodgeAbility.dodgeDuration > 0f)
-        {
-            // Stop checking collisions with player hurtbox and enemy-related physics layers
-            Physics.IgnoreLayerCollision(9, 10, true); // Player x Enemies
-            Physics.IgnoreLayerCollision(9, 12, true); // Player x Enemies' Attacks
-            Physics.IgnoreLayerCollision(9, 15, true); // Player x Enemies' Bodu Hitbox
-            // If character is grounded, do a roll in whichever facing direction
-            if(data.maxSpeed == data.groundSpeed)
-            {
-                
-            }
-            // Else do an 8-directional spin in whichever direction the player is holding
-            else
-            {
-
-            }
-        }
-        // This branch should only be called once as dodgeDuration becomes negative
-        else
-        {
-            Physics.IgnoreLayerCollision(9, 15, false); // Player x Enemies' Bodu Hitbox
-            Physics.IgnoreLayerCollision(9, 12, false); // Player x Enemies' Attacks
-            Physics.IgnoreLayerCollision(9, 10, false); // Player x Enemies
-        }
     }
 
     public void GetRekt()

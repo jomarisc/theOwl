@@ -15,7 +15,7 @@ public class PlayerDead : IState
     public void Enter()
     {
         player.GetComponent<SpriteRenderer>().color = Color.red;
-        player.Dodge();
+        player.dodgeAbility.PerformDodge();
         player.data.deadDuration = player.CONSTANTS.DEAD_DURATION;
     }
 
