@@ -13,7 +13,7 @@ public class playerControl : Character
     public Guntime guntimeAbility;
     public Tether tetherAbility;
     public PlayerSkills unlockedSkills;
-    public PlayerSkills equippedSkills;
+    public EquippedSkills equippedSkills;
     public GameObject equippedSkillsUI;
     // public const float FAST_FALL_SPEED = -10f;
     [field: SerializeField] public float FAST_FALL_SPEED { get; private set; } = -10f;
@@ -299,7 +299,7 @@ public class playerControl : Character
     {
         usingFastSkillWheel = false;
         ((InputSystemUIInputModule)EventSystem.current.currentInputModule).move = InputActionReference.Create(input.UI.Navigate);
-        equippedSkills.currentSkill = equippedSkills.unlockedSkillTypeList[EventSystem.current.currentSelectedGameObject.GetComponentInChildren<SkillWheelSlotUI>().slotNumber - 1];
+        equippedSkills.currentSkill = equippedSkills.skills[EventSystem.current.currentSelectedGameObject.GetComponentInChildren<SkillWheelSlotUI>().slotNumber - 1];
         if(OnSkillEquip != null)
             OnSkillEquip();
         equippedSkillsUI.SetActive(false);
