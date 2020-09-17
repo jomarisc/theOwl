@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class Dodge : MonoBehaviour
 {
+    [Header("Level Designer Variables")]
     [Range(0f, 1f)] public float alpha = 0.5f;
     public float fullDuration;
     [HideInInspector] public float dodgeDuration;
