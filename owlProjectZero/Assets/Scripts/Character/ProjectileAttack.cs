@@ -58,7 +58,7 @@ public class ProjectileAttack : Attack
         // projAtk.isFacingRight = data.isFacingRight;
 
         Vector3 pos = transform.localPosition;
-        pos.x = direction * initialLocalPosition;
+        pos.x = direction * initialLocalPosition.x;
         transform.localPosition = pos;
 
         speed = myShooter.GetComponent<Rigidbody>().velocity.x + direction * speed;
