@@ -999,51 +999,61 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2330846262781777817, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2121525765}
     - target: {fileID: 3387115507655991099, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
         type: 3}
       propertyPath: equippedSkills
       value: 
-      objectReference: {fileID: 1554806330}
+      objectReference: {fileID: 901143841}
+    - target: {fileID: 4474079447437005559, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2121525765}
     - target: {fileID: 5320199751938468040, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
         type: 3}
       propertyPath: equippedSkills
       value: 
-      objectReference: {fileID: 1554806330}
+      objectReference: {fileID: 901143841}
     - target: {fileID: 5433371719680799170, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
         type: 3}
       propertyPath: equippedSkills
       value: 
-      objectReference: {fileID: 1554806330}
+      objectReference: {fileID: 901143841}
     - target: {fileID: 5745883289535299772, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
         type: 3}
       propertyPath: equippedSkills
       value: 
-      objectReference: {fileID: 1554806330}
+      objectReference: {fileID: 901143841}
     - target: {fileID: 5904977459763643858, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
         type: 3}
       propertyPath: equippedSkills
       value: 
-      objectReference: {fileID: 1554806330}
+      objectReference: {fileID: 901143841}
     - target: {fileID: 6136432757490218156, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
         type: 3}
       propertyPath: equippedSkills
       value: 
-      objectReference: {fileID: 1554806330}
+      objectReference: {fileID: 901143841}
     - target: {fileID: 6312620209447742886, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
         type: 3}
       propertyPath: equippedSkills
       value: 
-      objectReference: {fileID: 1554806330}
+      objectReference: {fileID: 901143841}
     - target: {fileID: 7690068529743148084, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
         type: 3}
       propertyPath: equippedSkills
       value: 
-      objectReference: {fileID: 1554806330}
+      objectReference: {fileID: 901143841}
     - target: {fileID: 8428301209894154586, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
         type: 3}
       propertyPath: equippedSkills
       value: 
-      objectReference: {fileID: 1554806330}
+      objectReference: {fileID: 901143841}
     - target: {fileID: 8871991241897730880, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
         type: 3}
       propertyPath: m_Name
@@ -3132,6 +3142,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 801501405}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &901143841 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3817331622950344475, guid: 8b768704a9719d3408f4b19946d302e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2529497729394323902}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c273f57a0571dd4aa530a2264ec08a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &931809646
 GameObject:
   m_ObjectHideFlags: 0
@@ -4410,18 +4432,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1554806330 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4351949867074691128, guid: 8b768704a9719d3408f4b19946d302e4,
-    type: 3}
-  m_PrefabInstance: {fileID: 2529497729394323902}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b60205ecbda91c8479ce75e924406fdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1583827840
 GameObject:
   m_ObjectHideFlags: 0
