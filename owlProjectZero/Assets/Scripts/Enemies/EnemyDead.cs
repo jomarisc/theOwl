@@ -25,8 +25,8 @@ public class EnemyDead : IState
     public void Exit()
     {
         enemy.IncrementDefeatedEnemies();
-        enemy.GetRekt();
         if (OnEnemyDead != null) OnEnemyDead(true);
+        enemy.GetRekt();
     }
 
     public void FixedUpdate()

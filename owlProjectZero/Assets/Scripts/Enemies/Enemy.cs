@@ -73,6 +73,7 @@ public abstract class Enemy : Character
         {
             numDefeatedEnemies++;
             enemyCounter.text = "Defeated Enemies: " + numDefeatedEnemies + "/" + totalEnemies;
+            Debug.Log($"Defeated Enemies: {numDefeatedEnemies}");
         }
     }
 
