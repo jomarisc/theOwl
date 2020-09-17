@@ -14,7 +14,6 @@ public class playerControl : Character
     public Tether tetherAbility;
     public PlayerSkills unlockedSkills;
     public EquippedSkills equippedSkills;
-    public GameObject equippedSkillsUI;
     // public const float FAST_FALL_SPEED = -10f;
     [field: SerializeField] public float FAST_FALL_SPEED { get; private set; } = -10f;
     [field:SerializeField] public float GLIDE_GRAVITY { get; private set; } = -2.0f;
@@ -31,9 +30,6 @@ public class playerControl : Character
     [SerializeField] private LevelWindow levelWindow;
     [SerializeField] private SkillTreeWindow skillTreeWindow;
     public LevelSystem levelSystem;
-    public static event SkillEquip OnSkillEquip;
-    public delegate void SkillEquip();
-    private bool usingFastSkillWheel = false;
     public int numCurrency;
     public bool inGuntime { get; private set; } = false;
     private bool UpdateInGuntime()
@@ -58,7 +54,6 @@ public class playerControl : Character
 
         // Subscribe to any events
         input.Enable();
-        input.Gameplay.UseActiveSkill.started += UseCurrentSkill;
         if(guntimeAbility.enabled)
             guntimeAbility.OnInGuntimeChanged += UpdateInGuntime;
         else
@@ -74,7 +69,6 @@ public class playerControl : Character
     private void OnDisable()
     {
         // Unsubscribe from events
-        input.Gameplay.UseActiveSkill.started -= UseCurrentSkill;
         input.Disable();
         guntimeAbility.OnInGuntimeChanged -= UpdateInGuntime;
     }
@@ -114,76 +108,6 @@ public class playerControl : Character
                 data.remainingStamana += Time.deltaTime;
             else if(data.remainingStamana > MAX_STAMANA)
                 data.remainingStamana = MAX_STAMANA;
-        }
-
-        if(!equippedSkillsUI.activeInHierarchy)
-        {
-            if(input.Gameplay.OpenSkillWheel.ReadValue<Vector2>().magnitude >= 0.125f)
-            {
-                usingFastSkillWheel = true;
-                OpenSkillWheel();
-                Debug.Log(input.Gameplay.OpenSkillWheel.phase);
-                // input.Gameplay.MoveX.Disable();
-                // input.Gameplay.Jump.Disable();
-                input.Gameplay.Melee.Disable();
-                input.Gameplay.Guntime.Disable();
-                // input.Gameplay.Dodge.Disable();
-                input.Gameplay.ShootProjectile.Disable();
-                // input.Gameplay.Tether.Disable();
-                // input.Gameplay.Glide.Disable();
-            }
-            // else if(input.Gameplay.OpenSkillWheel2.ReadValue<float>() == 1f)
-            // {
-            //     usingFastSkillWheel = false;
-            //     OpenSkillWheel2();
-            //     Debug.Log(input.Gameplay.OpenSkillWheel2.phase);
-            //     // input.Gameplay.Disable();
-            //     input.Gameplay.MoveX.Disable();
-            //     input.Gameplay.Jump.Disable();
-            //     input.Gameplay.Melee.Disable();
-            //     input.Gameplay.Guntime.Disable();
-            //     input.Gameplay.Dodge.Disable();
-            //     input.Gameplay.ShootProjectile.Disable();
-            //     input.Gameplay.Tether.Disable();
-            //     input.Gameplay.Glide.Disable();
-            // }
-        }
-
-        if(equippedSkillsUI.activeInHierarchy)
-        {
-            if(usingFastSkillWheel)
-            {
-                if(input.Gameplay.OpenSkillWheel.ReadValue<Vector2>().magnitude < 0.125f)
-                {
-                    CloseSkillWheel();
-                    Debug.Log(input.Gameplay.OpenSkillWheel.phase);
-                    // input.Gameplay.MoveX.Enable();
-                    // input.Gameplay.Jump.Enable();
-                    input.Gameplay.Melee.Enable();
-                    input.Gameplay.Guntime.Enable();
-                    // input.Gameplay.Dodge.Enable();
-                    input.Gameplay.ShootProjectile.Enable();
-                    // input.Gameplay.Tether.Enable();
-                    // input.Gameplay.Glide.Enable();
-                }
-            }
-            // else
-            // {
-            //     if(input.Gameplay.OpenSkillWheel2.ReadValue<float>() == 0f)
-            //     {
-            //         CloseSkillWheel();
-            //         Debug.Log(input.Gameplay.OpenSkillWheel2.phase);
-            //         // input.Gameplay.Enable();
-            //         input.Gameplay.MoveX.Enable();
-            //         input.Gameplay.Jump.Enable();
-            //         input.Gameplay.Melee.Enable();
-            //         input.Gameplay.Guntime.Enable();
-            //         input.Gameplay.Dodge.Enable();
-            //         input.Gameplay.ShootProjectile.Enable();
-            //         input.Gameplay.Tether.Enable();
-            //         input.Gameplay.Glide.Enable();
-            //     }
-            // }
         }
     }
 
@@ -233,77 +157,6 @@ public class playerControl : Character
             else
                 PlayerWalk.verticalMovement = FAST_FALL_SPEED;
         }
-    }
-
-    public void UseCurrentSkill(InputAction.CallbackContext context)
-    {
-        Skill currentSkill = equippedSkills.currentSkill;
-        if(currentSkill.isActive)
-            currentSkill.DeactivateSkill();
-        else
-        {
-            if(data.remainingStamana >= currentSkill.usageCost)
-            {
-                data.remainingStamana -= currentSkill.usageCost;
-                currentSkill.UseSkill();
-            }
-            else
-                Debug.Log("Not enough stamana!");
-        }
-    }
-
-    public void OpenSkillWheel()
-    {
-        Time.timeScale = 0.5f;
-        ((InputSystemUIInputModule)EventSystem.current.currentInputModule).move = InputActionReference.Create(input.SkillWheel.Navigate);
-        equippedSkillsUI.SetActive(true);
-        StartCoroutine(ReadRightStickInput());
-    }
-
-    // A slower way of opening the skill wheel
-    public void OpenSkillWheel2()
-    {
-        Time.timeScale = 0f;
-        ((InputSystemUIInputModule)EventSystem.current.currentInputModule).move = InputActionReference.Create(input.SkillWheel.Navigate);
-        equippedSkillsUI.SetActive(true);
-        // StartCoroutine(ReadRightStickInput());
-        Button slotOne = equippedSkillsUI.GetComponentInChildren<Button>();
-        slotOne.Select();
-        slotOne.OnSelect(null);
-    }
-
-    IEnumerator ReadRightStickInput()
-    {
-        yield return new WaitForEndOfFrame();
-        Vector2 stickInput = input.Gameplay.OpenSkillWheel.ReadValue<Vector2>();
-        while(stickInput.magnitude == 0f)
-            yield return null;
-
-        float stickAngle = Vector2.SignedAngle(stickInput, Vector2.up);
-        Button[] skillSlots = equippedSkillsUI.GetComponentsInChildren<Button>();
-        int index = 0;
-        if(stickAngle < -45 && stickAngle > -135)
-            index = 3;
-        else if(stickAngle > 45 && stickAngle < 135)
-            index = 1;
-        else if(Mathf.Abs(stickAngle) > 90)
-            index = 2;
-        else
-            index = 0;
-
-        skillSlots[index].Select();
-        skillSlots[index].OnSelect(null);
-    }
-
-    public void CloseSkillWheel()
-    {
-        usingFastSkillWheel = false;
-        ((InputSystemUIInputModule)EventSystem.current.currentInputModule).move = InputActionReference.Create(input.UI.Navigate);
-        equippedSkills.currentSkill = equippedSkills.skills[EventSystem.current.currentSelectedGameObject.GetComponentInChildren<SkillWheelSlotUI>().slotNumber - 1];
-        if(OnSkillEquip != null)
-            OnSkillEquip();
-        equippedSkillsUI.SetActive(false);
-        Time.timeScale = 1f;
     }
 
     // Function(s) for Dead State
