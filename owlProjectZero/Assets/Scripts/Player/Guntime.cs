@@ -27,7 +27,6 @@ public class Guntime : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log("Guntime OnEnable()");
         player.input.Gameplay.Guntime.started += ToggleGuntime;
     }
 

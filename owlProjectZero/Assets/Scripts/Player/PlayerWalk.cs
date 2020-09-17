@@ -128,9 +128,7 @@ public class PlayerWalk : IState
         if(isFlying &&
            player.data.maxSpeed == player.data.groundSpeed)
         {
-            Debug.Log("Landing");
             return new PlayerWalk(player, false);
-            
         }
 
         // If leaving a platform

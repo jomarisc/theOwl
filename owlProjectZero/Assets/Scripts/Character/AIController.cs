@@ -13,13 +13,11 @@ public class AIController : MonoBehaviour
 
     void OnBecameVisible()
     {
-        Debug.Log("Visible");
         myBehavior.enabled = true;
     }
 
     void OnBecameInvisible()
     {
-        Debug.Log("Invisible");
         myBehavior.enabled = false;
     }
 }

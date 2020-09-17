@@ -92,7 +92,6 @@ public class playerControl : Character
         {
             myState = defaultState;
             myState.Enter();
-            Debug.Log(myState);
         }
         rb = GetComponent<Rigidbody>();
         dodgeAbility.dodgeDuration = -1f;
@@ -135,7 +134,6 @@ public class playerControl : Character
         if(Mathf.Abs(rb.velocity.y) <= 3f)
         {
             animator.SetBool("fastfalling", true);
-            Debug.Log("fastfalling? " + animator.GetBool("fastfalling"));
             if(inGuntime)
                 PlayerWalk.verticalMovement = FAST_FALL_SPEED * 2;
             else

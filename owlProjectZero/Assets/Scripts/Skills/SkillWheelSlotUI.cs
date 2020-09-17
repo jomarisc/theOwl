@@ -26,7 +26,6 @@ public class SkillWheelSlotUI : MonoBehaviour
 
     public void EquipSkill()
     {
-        Debug.Log($"Slot {slotNumber} equipped");
         equippedSkills.currentSkill = equippedSkills.skills[slotNumber - 1];
         OnSkillEquip?.Invoke();
     }
