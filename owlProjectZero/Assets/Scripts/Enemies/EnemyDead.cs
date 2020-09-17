@@ -11,6 +11,8 @@ public class EnemyDead : IState
     public event EventDelegate OnEnemyDead;
 
     public delegate void EventDelegate(bool isDead);
+    public static event EnemiesCleared OnEnemiesCleared;
+    public delegate void EnemiesCleared();
 
     public EnemyDead(Enemy e)
     {
@@ -26,6 +28,8 @@ public class EnemyDead : IState
     {
         enemy.IncrementDefeatedEnemies();
         if (OnEnemyDead != null) OnEnemyDead(true);
+        if(Enemy.numDefeatedEnemies >= Enemy.totalEnemies)
+            OnEnemiesCleared?.Invoke();
         enemy.GetRekt();
     }
 

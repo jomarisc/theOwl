@@ -7,6 +7,16 @@ public class GameSettings : MonoBehaviour
 {
     public Text defeatedEnemies;
     public GameObject areaClearScreen;
+
+    void OnEnable()
+    {
+        EnemyDead.OnEnemiesCleared += Win;
+    }
+
+    void OnDisable()
+    {
+        EnemyDead.OnEnemiesCleared -= Win;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +26,10 @@ public class GameSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Enemy.numDefeatedEnemies >= Enemy.totalEnemies)
-        {
-            Win();
-        }
+        // if(Enemy.numDefeatedEnemies >= Enemy.totalEnemies)
+        // {
+        //     Win();
+        // }
     }
 
     private void Win()

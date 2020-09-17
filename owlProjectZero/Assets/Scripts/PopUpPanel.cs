@@ -5,7 +5,7 @@ using UnityEngine;
 public class PopUpPanel : MonoBehaviour
 {
     [Header("Necessary Attachments")]
-    [SerializeField] private playerControl player;
+    [SerializeField] private playerControl player = null;
 
     void OnEnable()
     {
