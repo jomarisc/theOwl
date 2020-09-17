@@ -45,7 +45,9 @@ public class Collectable : MonoBehaviour
             && this.gameObject.tag == "Experience")
         {
             numCollectables++;
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Destroy(this.gameObject);
+
 
             // Refers to the levelSystem of the collider passed into this function.
             // Then uses AddExperience of this levelSystem.
@@ -57,7 +59,8 @@ public class Collectable : MonoBehaviour
         {
             playerScript.AddCurrency(20);
             currencyText.text = "Currency: " + playerScript.GetCurrency();
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Destroy(this.gameObject);
         }
     }
 }

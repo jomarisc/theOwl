@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerDead : IState
 {
     private readonly playerControl player;
-
+    
     public PlayerDead(playerControl p)
     {
         player = p;
@@ -15,14 +15,19 @@ public class PlayerDead : IState
     public void Enter()
     {
         player.GetComponent<SpriteRenderer>().color = Color.red;
-        player.Dodge();
+
+        player.Dodge(); // Prevents collision with other enemies
+
         player.data.deadDuration = player.DEAD_DURATION;
     }
 
     public void Exit()
     {
-        player.GetRekt();// Nothing so far
-        SceneManager.LoadScene("MainMenu");
+        player.GetComponent<SpriteRenderer>().color = Color.white;
+
+        // Old code
+        //player.GetRekt();// Nothing so far
+        //SceneManager.LoadScene("MainMenu");
     }
 
     public void FixedUpdate()

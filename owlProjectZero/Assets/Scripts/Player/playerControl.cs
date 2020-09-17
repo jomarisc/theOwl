@@ -42,6 +42,7 @@ public class playerControl : Character
     public delegate void SkillEquip();
     private bool usingFastSkillWheel = false;
     public int numCurrency;
+    public bool isAlive = true;
 
     public bool inGuntime = false;
 
@@ -432,7 +433,7 @@ public class playerControl : Character
     // Function(s) for Dead State
     public void GoToDeadState()
     {
-
+        isAlive = false;
         myState.Exit();
         myState = new PlayerDead(this);
         Debug.Log(myState);

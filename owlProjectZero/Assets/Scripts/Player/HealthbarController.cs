@@ -16,6 +16,7 @@ public class HealthbarController : MonoBehaviour
 
     void Start()
     {
+        healthMax = 10;
         player = GameObject.Find("player");
         playerScript = player.GetComponent<playerControl>();
         
@@ -53,6 +54,10 @@ public class HealthbarController : MonoBehaviour
         healthBar.fillAmount = playerScript.data.health / healthMax;
     }
 
+    public void ResetHealth()
+    {
+        playerScript.data.health = healthMax;
+    }
     /*
     public void Damage(int damageAmount) 
     {
