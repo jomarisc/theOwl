@@ -116,7 +116,7 @@ public class PlayerTether : IState
         if(player.tetherAbility.activeTetherPoint == null ||
            player.transform.position.y > player.tetherAbility.activeTetherPoint.transform.position.y)
         {
-            return new PlayerWalk(player, true); // Specify the airborne version later
+            return new PlayerMove(player, true); // Specify the airborne version later
         }
 
         // Update tether position, size, and rotation

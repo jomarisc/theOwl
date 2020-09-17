@@ -124,7 +124,7 @@ public class PlayerJump : IState
         if(input.Gameplay.Glide.ReadValue<float>() > 0.975f)
         {
             if(Mathf.Abs(playerBody.velocity.y) <= 3f)
-                return new PlayerWalk(player, true);
+                return new PlayerMove(player, true);
 
             return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }

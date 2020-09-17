@@ -67,7 +67,7 @@ public class Tether : MonoBehaviour
     {
         if(activeTetherPoint != null)
         {
-            IState movingState = new PlayerWalk(player, true);
+            IState movingState = new PlayerMove(player, true);
             player.GoToState(movingState);
         }
     }

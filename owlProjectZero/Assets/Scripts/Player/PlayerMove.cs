@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerWalk : IState
+public class PlayerMove : IState
 {
     private readonly playerControl player;
     private Rigidbody playerBody;
@@ -19,7 +19,7 @@ public class PlayerWalk : IState
     private Animator animator;
     private SpriteRenderer spriterenderer;
 
-    public PlayerWalk(playerControl p, bool isAirborne)
+    public PlayerMove(playerControl p, bool isAirborne)
     {
         player = p;
         playerBody = p.gameObject.GetComponent<Rigidbody>();
@@ -128,7 +128,7 @@ public class PlayerWalk : IState
         if(isFlying &&
            player.data.maxSpeed == player.data.groundSpeed)
         {
-            return new PlayerWalk(player, false);
+            return new PlayerMove(player, false);
         }
 
         // If leaving a platform
@@ -136,7 +136,7 @@ public class PlayerWalk : IState
            player.data.maxSpeed == player.data.airSpeed)
         {
             Debug.Log("Left platform");
-            return new PlayerWalk(player, true);
+            return new PlayerMove(player, true);
         }
 
         horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();

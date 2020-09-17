@@ -69,14 +69,14 @@ public class PlayerGlide : IState
             // if(Input.GetButtonUp("Jump"))
             if(input.Gameplay.Jump.ReadValue<float>() == 0f)
             {
-                return new PlayerWalk(player, true);
+                return new PlayerMove(player, true);
             }
         }
         else
         {
             if(input.Gameplay.Glide.ReadValue<float>() == 0f)
             {
-                return new PlayerWalk(player, true);
+                return new PlayerMove(player, true);
             }
         }
 

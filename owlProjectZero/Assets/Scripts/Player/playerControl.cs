@@ -135,9 +135,9 @@ public class playerControl : Character
         {
             animator.SetBool("fastfalling", true);
             if(inGuntime)
-                PlayerWalk.verticalMovement = FAST_FALL_SPEED * 2;
+                PlayerMove.verticalMovement = FAST_FALL_SPEED * 2;
             else
-                PlayerWalk.verticalMovement = FAST_FALL_SPEED;
+                PlayerMove.verticalMovement = FAST_FALL_SPEED;
         }
     }
 
