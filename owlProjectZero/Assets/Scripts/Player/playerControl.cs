@@ -33,6 +33,7 @@ public class playerControl : Character
     public GameObject projectile;
     public PlayerInputs input;
     public HealthbarController healthbar;
+    [SerializeField] private Image stamanaMeter;
 
     // New line
     [SerializeField] private LevelWindow levelWindow = null;
@@ -113,6 +114,9 @@ public class playerControl : Character
             else if(data.remainingStamana > MAX_STAMANA)
                 data.remainingStamana = MAX_STAMANA;
         }
+
+        // Update the stamana bar
+        stamanaMeter.fillAmount = data.remainingStamana / MAX_STAMANA;
     }
 
     public override void FixedUpdate()
