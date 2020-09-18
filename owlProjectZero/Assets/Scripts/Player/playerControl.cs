@@ -34,7 +34,7 @@ public class playerControl : Character
     public GameObject projectile;
     public PlayerInputs input;
     public HealthbarController healthbar;
-    [SerializeField] private Image stamanaMeter;
+    [SerializeField] private Image stamanaMeter = null;
 
     // New line
     [SerializeField] private LevelWindow levelWindow = null;
