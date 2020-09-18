@@ -28,6 +28,7 @@ public class PlayerMelee : IState
         player.Attack();
         animator.SetBool("meleeing", true);
         player.meleeHit.Play();
+        player.input.Gameplay.UseActiveSkill.Disable();
     }
 
     public void Exit()
@@ -38,6 +39,7 @@ public class PlayerMelee : IState
             meleeAttack.SetActive(false);
         }
         animator.SetBool("meleeing", false);
+        player.input.Gameplay.UseActiveSkill.Enable();
     }
 
     public void FixedUpdate()

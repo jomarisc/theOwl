@@ -17,11 +17,13 @@ public class PlayerDead : IState
         player.GetComponent<SpriteRenderer>().color = Color.red;
         player.dodgeAbility.PerformDodge();
         player.data.deadDuration = player.CONSTANTS.DEAD_DURATION;
+        player.input.Gameplay.Disable();
     }
 
     public void Exit()
     {
         player.GetComponent<SpriteRenderer>().color = Color.white;
+        player.input.Gameplay.Enable();
 
         // Old code
         //player.GetRekt();// Nothing so far
