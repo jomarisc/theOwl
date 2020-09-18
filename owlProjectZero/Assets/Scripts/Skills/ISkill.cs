@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface ISkill
 {
-    void UseSkill();
+    bool UseSkill();
     void DeactivateSkill();
 }

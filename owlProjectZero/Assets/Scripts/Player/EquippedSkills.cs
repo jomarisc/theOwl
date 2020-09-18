@@ -42,8 +42,8 @@ public class EquippedSkills : MonoBehaviour
         {
             if(player.data.remainingStamana >= currentSkill.usageCost)
             {
-                player.data.remainingStamana -= currentSkill.usageCost;
-                currentSkill.UseSkill();
+                if(currentSkill.UseSkill())
+                    player.data.remainingStamana -= currentSkill.usageCost;
             }
             else
                 Debug.Log("Not enough stamana!");

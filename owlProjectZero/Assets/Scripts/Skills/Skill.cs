@@ -61,6 +61,6 @@ public abstract class Skill : MonoBehaviour, ISkill
 
     public Sprite GetIcon() { return icon; }
 
-    public abstract void UseSkill();
+    public abstract bool UseSkill();
     public abstract void DeactivateSkill();
 }

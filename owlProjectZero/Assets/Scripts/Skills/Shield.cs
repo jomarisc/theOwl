@@ -43,7 +43,7 @@ public class Shield : Skill
             DeactivateSkill(); // Should probably have 2 kinds of skill deactivation: Forced and Manual
     }
     
-    public override void UseSkill()
+    public override bool UseSkill()
     {
         if(cooldown >= maxCooldown)
         {
@@ -60,6 +60,8 @@ public class Shield : Skill
             isActive = false;
             Debug.Log("Shield is still in cooldown!");
         }
+
+        return isActive;
     }
 
     public override void DeactivateSkill()
