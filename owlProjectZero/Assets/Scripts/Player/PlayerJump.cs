@@ -70,9 +70,9 @@ public class PlayerJump : IState
     public IState Update()
     {
         //Checking velocity to change sprite direction.
-        if (horizontalMovement > 0) { spriterenderer.flipX = false;}
-        else if (horizontalMovement < 0) { spriterenderer.flipX = true;}
-        else { }
+        // if (horizontalMovement > 0) { spriterenderer.flipX = false;}
+        // else if (horizontalMovement < 0) { spriterenderer.flipX = true;}
+        // else { }
 
         // animator.SetFloat("VerticalMovement", playerBody.velocity.y);
 
@@ -137,8 +137,9 @@ public class PlayerJump : IState
         horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();
         if(Mathf.Abs(horizontalMovement) > 0)
         {
-            // player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
-            player.data.isFacingRight = !spriterenderer.flipX;
+            player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
+            spriterenderer.flipX = !player.data.isFacingRight;
+            // player.data.isFacingRight = !spriterenderer.flipX;
         }
         return null;
     }

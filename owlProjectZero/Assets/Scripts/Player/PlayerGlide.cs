@@ -55,9 +55,9 @@ public class PlayerGlide : IState
     public IState Update()
     {
         //Check for direction of movement to flip sprite. - Joel
-        if (horizontalMovement > 0) { spriterenderer.flipX = false; }
-        else if (horizontalMovement < 0) { spriterenderer.flipX = true; }
-        else { }
+        // if (horizontalMovement > 0) { spriterenderer.flipX = false; }
+        // else if (horizontalMovement < 0) { spriterenderer.flipX = true; }
+        // else { }
 
         // Check input for changing skills
 
@@ -120,8 +120,9 @@ public class PlayerGlide : IState
         horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();
         if(Mathf.Abs(horizontalMovement) > 0)
         {
-            // player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
-            player.data.isFacingRight = !spriterenderer.flipX;
+            player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
+            spriterenderer.flipX = !player.data.isFacingRight;
+            // player.data.isFacingRight = !spriterenderer.flipX;
         }
         return null;
     }

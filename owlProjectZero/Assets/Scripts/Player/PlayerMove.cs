@@ -78,14 +78,14 @@ public class PlayerMove : IState
     public IState Update()
     {
         //Check Horizontal Movement. Flip accordingly.
-        if (horizontalMovement > 0) 
-        {
-            spriterenderer.flipX = false; 
-        }
-        else if (horizontalMovement < 0) 
-        {
-            spriterenderer.flipX = true; 
-        }
+        // if (horizontalMovement > 0) 
+        // {
+        //     spriterenderer.flipX = false; 
+        // }
+        // else if (horizontalMovement < 0) 
+        // {
+        //     spriterenderer.flipX = true; 
+        // }
 
         if(isFlying)
             animator.SetFloat("VerticalMovement", playerBody.velocity.y);
@@ -141,11 +141,11 @@ public class PlayerMove : IState
 
         horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();
         animator.SetFloat("horizontalMovement", horizontalMovement);
-        if(Mathf.Abs(horizontalMovement) > 0 ||
-           player.data.maxSpeed == player.data.airSpeed)
+        if(Mathf.Abs(horizontalMovement) > 0)
         {
-            // player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
-            player.data.isFacingRight = !spriterenderer.flipX;
+            player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
+            spriterenderer.flipX = !player.data.isFacingRight;
+            // player.data.isFacingRight = !spriterenderer.flipX;
             return null;
         }
         else
