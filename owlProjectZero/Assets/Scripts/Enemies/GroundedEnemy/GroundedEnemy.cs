@@ -5,6 +5,7 @@ using UnityEngine;
 public class GroundedEnemy : Enemy
 {
     // private fields
+    private SpriteRenderer sRenderer;
 
     // protected fields
 
@@ -29,5 +30,12 @@ public class GroundedEnemy : Enemy
     {
         base.Start();
         rb = GetComponent<Rigidbody>();
+        sRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    new private void Update()
+    {
+        base.Update();
+        sRenderer.flipX = data.isFacingRight;
     }
 }
