@@ -3948,6 +3948,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1013631092}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1016689726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4477896373070418362, guid: 97a2f92e1400ba44bbb3fb19c1b8c78e,
+    type: 3}
+  m_PrefabInstance: {fileID: 295835353}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1036995316 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5234028426806236852, guid: cdd0bdb84059e1241970dcb316fdf2d0,
@@ -6582,6 +6594,11 @@ PrefabInstance:
       propertyPath: equippedSkillsUI
       value: 
       objectReference: {fileID: 2039204932}
+    - target: {fileID: 2529497728352103109, guid: 8b768704a9719d3408f4b19946d302e4,
+        type: 3}
+      propertyPath: stamanaMeter
+      value: 
+      objectReference: {fileID: 1016689726}
     - target: {fileID: 2529497728352103115, guid: 8b768704a9719d3408f4b19946d302e4,
         type: 3}
       propertyPath: m_Name
