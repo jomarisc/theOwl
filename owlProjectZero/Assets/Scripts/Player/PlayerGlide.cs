@@ -53,17 +53,7 @@ public class PlayerGlide : IState
     }
 
     public IState Update()
-    {
-        //Check for direction of movement to flip sprite. - Joel
-        // if (horizontalMovement > 0) { spriterenderer.flipX = false; }
-        // else if (horizontalMovement < 0) { spriterenderer.flipX = true; }
-        // else { }
-
-        // Check input for changing skills
-
-
-
-        // Check input for exiting glide state while airborne
+    {// Check input for exiting glide state while airborne
         if(method == glideType.Jump)
         {
             // if(Input.GetButtonUp("Jump"))
@@ -116,13 +106,11 @@ public class PlayerGlide : IState
         //  This Chunk of code is also in PlayerWalk                       //
         //                                                                 //
         /////////////////////////////////////////////////////////////////////
-        // horizontalMovement = Input.GetAxis("Horizontal");
         horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();
         if(Mathf.Abs(horizontalMovement) > 0)
         {
             player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
             spriterenderer.flipX = !player.data.isFacingRight;
-            // player.data.isFacingRight = !spriterenderer.flipX;
         }
         return null;
     }

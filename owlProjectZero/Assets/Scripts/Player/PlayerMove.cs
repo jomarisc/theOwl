@@ -77,23 +77,8 @@ public class PlayerMove : IState
 
     public IState Update()
     {
-        //Check Horizontal Movement. Flip accordingly.
-        // if (horizontalMovement > 0) 
-        // {
-        //     spriterenderer.flipX = false; 
-        // }
-        // else if (horizontalMovement < 0) 
-        // {
-        //     spriterenderer.flipX = true; 
-        // }
-
         if(isFlying)
             animator.SetFloat("VerticalMovement", playerBody.velocity.y);
-
-        // Check input for changing skills
-
-
-
 
         // Check input for dodging
         if(input.Gameplay.Dodge.triggered && player.data.numDodges > 0)
@@ -145,7 +130,6 @@ public class PlayerMove : IState
         {
             player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
             spriterenderer.flipX = !player.data.isFacingRight;
-            // player.data.isFacingRight = !spriterenderer.flipX;
             return null;
         }
         else

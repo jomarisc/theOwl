@@ -1,17 +1,4 @@
-﻿///////////////////////////////////
-//                               //
-// ADD GLIDE TIMER               //
-// - a.k.a. the time it takes to //
-//   enter the glide state       //
-//                               //
-///////////////////////////////////
-
-// Not sure why I added this comment before
-//                      - Charles
-
-
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -69,19 +56,6 @@ public class PlayerJump : IState
 
     public IState Update()
     {
-        //Checking velocity to change sprite direction.
-        // if (horizontalMovement > 0) { spriterenderer.flipX = false;}
-        // else if (horizontalMovement < 0) { spriterenderer.flipX = true;}
-        // else { }
-
-        // animator.SetFloat("VerticalMovement", playerBody.velocity.y);
-
-        // Check input for changing skills
-
-
-
-
-
         // Check input for dodging
         if(input.Gameplay.Dodge.triggered && player.data.numDodges > 0)
         {
@@ -139,24 +113,7 @@ public class PlayerJump : IState
         {
             player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
             spriterenderer.flipX = !player.data.isFacingRight;
-            // player.data.isFacingRight = !spriterenderer.flipX;
         }
         return null;
-    }
-
-    private void DoubleJump(InputAction.CallbackContext context)
-    {
-        // if(context.startTime == context.duration)
-        Debug.Log("Double Jump is called");
-        player.Jump();
-    }
-
-    private void GlideByJump(InputAction.CallbackContext context)
-    {
-        if(context.time == context.duration)
-            Debug.Log("Should glide now");
-        Debug.Log("Value: " + context.ReadValue<float>());
-        Debug.Log("Time: " + context.time);
-        Debug.Log("Duration: " + context.duration);
     }
 }
