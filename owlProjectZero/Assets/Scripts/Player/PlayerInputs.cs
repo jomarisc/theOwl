@@ -511,17 +511,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f1711b9f-4359-4983-9ddc-3a3897cfb30d"",
-                    ""path"": ""<Keyboard>/backspace"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""01827d74-23cc-4b25-96ec-c4a88dff9582"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
