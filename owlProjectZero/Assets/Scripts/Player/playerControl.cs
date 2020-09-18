@@ -15,6 +15,7 @@ public class playerControl : Character
     [field: Header("Level Designer Variables")]
     [field: SerializeField] public float FAST_FALL_SPEED { get; private set; } = -10f;
     [field:SerializeField] public float GLIDE_GRAVITY { get; private set; } = -2.0f;
+    [SerializeField] private float stamanaRegenRate = 1f;
 
     [Header("Sound Effects")]
     public AudioSource landingSfx;
@@ -110,7 +111,7 @@ public class playerControl : Character
         if(!equippedSkills.currentSkill.isActive)
         {
             if(data.remainingStamana < MAX_STAMANA)
-                data.remainingStamana += Time.deltaTime;
+                data.remainingStamana += stamanaRegenRate * Time.deltaTime;
             else if(data.remainingStamana > MAX_STAMANA)
                 data.remainingStamana = MAX_STAMANA;
         }

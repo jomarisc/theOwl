@@ -306,10 +306,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2529497728352103109}
+  guntimeMeter: {fileID: 0}
   <GUNTIME_SLOWDOWN_FACTOR>k__BackingField: 2
   guntimeUsageRate: 2
   guntimeRecoveryRate: 1
-  guntimeMeter: {fileID: 0}
 --- !u!1 &764073339994596205
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,6 +771,7 @@ MonoBehaviour:
   animator: {fileID: 1050675498}
   <FAST_FALL_SPEED>k__BackingField: -10
   <GLIDE_GRAVITY>k__BackingField: -2
+  stamanaRegenRate: 5
   landingSfx: {fileID: 8219641611721027624}
   projectileShoot: {fileID: 1041482719160789296}
   projectileHit: {fileID: 7667496188572339682}
@@ -782,9 +783,11 @@ MonoBehaviour:
   equippedSkills: {fileID: 3817331622950344475}
   projectile: {fileID: 377738018264958676}
   healthbar: {fileID: 0}
+  stamanaMeter: {fileID: 0}
   levelWindow: {fileID: 0}
   skillTreeWindow: {fileID: 0}
   numCurrency: 0
+  isAlive: 1
 --- !u!212 &1050675499
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -942,7 +945,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60205ecbda91c8479ce75e924406fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSkill: {fileID: 0}
   unlockedSkillTypeList:
   - {fileID: 5957651919911647662}
 --- !u!1 &5161132263505729630
