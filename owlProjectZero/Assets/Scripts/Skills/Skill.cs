@@ -28,7 +28,7 @@ public abstract class Skill : MonoBehaviour, ISkill
 
 
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
         cooldown = maxCooldown;
         // Debug.Log("cooldown" + cooldown);
@@ -38,7 +38,7 @@ public abstract class Skill : MonoBehaviour, ISkill
     }
 
     // Update is called once per frame
-    protected void Update()
+    protected virtual void Update()
     {
         if(isActive)
         {

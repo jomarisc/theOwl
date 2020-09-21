@@ -17,7 +17,7 @@ public class Shield : Skill
         type = SkillType.Defensive;
     }
     // Start is called before the first frame update
-    new private void Start()
+    protected override void Start()
     {
         base.Start();
         discolorationTimer = 0f;
@@ -26,7 +26,7 @@ public class Shield : Skill
     }
 
     // Update is called once per frame
-    new private void Update()
+    protected override void Update()
     {
         base.Update();
         if(isDamaged)
