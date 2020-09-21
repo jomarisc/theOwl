@@ -143,6 +143,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         myState.Exit();
         myState = state;
+        Debug.Log(myState);
         myState.Enter();
     }
 
