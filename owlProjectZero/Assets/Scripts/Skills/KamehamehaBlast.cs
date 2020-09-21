@@ -16,6 +16,7 @@ public class KamehamehaBlast : IState
     public void Enter()
     {
         blast.gameObject.SetActive(true);
+        user.Attack(blast.gameObject);
         // user.Attack(); // Should change attack method to take in
                           // a GameObject to change positions
 

@@ -22,6 +22,7 @@ public class KamehamehaCharge : IState
     public void Enter()
     {
         chargedEnergy.SetActive(true);
+        user.Attack(chargedEnergy);
         // chargedEnergy.transform.localScale *= chargedEnergyScale;
         initialChargedEnergyScale = chargedEnergy.transform.localScale.magnitude;
     }

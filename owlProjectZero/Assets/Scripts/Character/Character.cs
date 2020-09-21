@@ -123,6 +123,15 @@ public abstract class Character : MonoBehaviour, ICharacter
         basicAttack.GetComponent<Attack>().isFacingRight = data.isFacingRight;
     }
 
+    public void Attack(GameObject attack)
+    {
+        Vector3 atkPos = attack.transform.localPosition;
+        int direction = (data.isFacingRight) ? 1 : -1;
+        atkPos.x = direction * attack.GetComponent<Attack>().initialLocalPosition.x;
+        attack.transform.localPosition = atkPos;
+        attack.GetComponent<Attack>().isFacingRight = data.isFacingRight;
+    }
+
     public void GetRekt()
     {
         // New lines
