@@ -36,14 +36,14 @@ public class KamehamehaCharge : IState
 
     public void FixedUpdate()
     {
-
+        chargeDuration--;
+        Debug.Log(chargeDuration);
     }
 
     public IState Update()
     {
-        if(chargeDuration >= 0f)
+        if(chargeDuration > 0f)
         {
-            chargeDuration -= Time.fixedDeltaTime;
             return null;
         }
         // return new KamehamehaBlast(user);
