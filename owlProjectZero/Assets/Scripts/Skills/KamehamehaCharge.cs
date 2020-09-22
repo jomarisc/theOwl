@@ -39,17 +39,17 @@ public class KamehamehaCharge : IState
     public void FixedUpdate()
     {
         chargeDuration--;
+        if(chargeDuration % (initialChargeDuration / 4) == 0)
+        {
+            Vector3 initialScale = chargedEnergy.transform
+            .localScale.normalized * (initialChargedEnergyScale * 2 / 3);
+            chargedEnergy.transform.localScale += initialScale;
+        }
         Debug.Log(chargeDuration);
     }
 
     public IState Update()
     {
-        if(chargeDuration % (initialChargeDuration / 4) == 0)
-        {
-            Vector3 initialScale = chargedEnergy.transform
-            .localScale.normalized * (initialChargedEnergyScale / 2);
-            chargedEnergy.transform.localScale += initialScale;
-        }
         if(chargeDuration > 0f)
         {
             return null;

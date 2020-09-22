@@ -11,24 +11,34 @@ public class Kamehameha : Skill
     [Tooltip("The number of frames it takes to charge a Kamehameha")]
     [SerializeField] private float chargeDuration;
 
+    Kamehameha()
+    {
+        type = SkillType.Offensive;
+    }
+
     public override bool UseSkill()
     {
         if(cooldown >= maxCooldown)
         {
             IState kamehamehaCharge = new KamehamehaCharge(user, beamCharge, beamAttack, chargeDuration);
             user.GoToState(kamehamehaCharge);
+            // isActive = true;
+            return true;
         }
-        else
-        {
-            isActive = false;
-            Debug.Log("Kamehameha is still in cooldown!");
-        }
+        // else
+        // {
+            // isActive = false;
+        Debug.Log("Kamehameha is still in cooldown!");
+        return false;
+        // }
 
-        return isActive;
+        // return isActive;
     }
 
     public override void DeactivateSkill()
     {
-        
+        // Play Kamehameha cancelled animation?
+        isActive = false;
+        cooldown = 0f;
     }
 }
