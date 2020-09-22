@@ -8,6 +8,7 @@ public class Kamehameha : Skill
     [SerializeField] private Character user;
     [SerializeField] private GameObject beamCharge;
     [SerializeField] private MeleeAttack beamAttack;
+    [Header("Level Designer Variables")]
     [Tooltip("The number of frames it takes to charge a Kamehameha")]
     [SerializeField] private float chargeDuration;
 
