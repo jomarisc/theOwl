@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3393337727599763758}
   - component: {fileID: 270411071741898830}
   - component: {fileID: 1486362309247859583}
+  - component: {fileID: 6966843456033352065}
   m_Layer: 13
   m_Name: ChargingSphere
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5576269733447526100}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5, y: -0.25, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 3534278977258417349}
   m_RootOrder: 0
@@ -93,6 +94,27 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6966843456033352065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5576269733447526100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec5e3e21924fd14428170c636277a84e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitboxes:
+  - shape: {fileID: 1486362309247859583}
+    damage: 0
+    startup: 180
+    timeActive: -1
+    recovery: 1
+    knockback: 0
+    knockbackAngle: 0
+  isFacingRight: 0
 --- !u!1 &7009423683530938167
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +171,7 @@ MonoBehaviour:
   user: {fileID: 0}
   beamCharge: {fileID: 5576269733447526100}
   beamAttack: {fileID: 5865858337950137315}
-  chargeDuration: 5
+  chargeDuration: 180
 --- !u!1 &7276383584689213432
 GameObject:
   m_ObjectHideFlags: 0

@@ -146,15 +146,15 @@ MonoBehaviour:
     remainingStamana: 0
   basicAttack: {fileID: 5476406654723804732}
   animator: {fileID: 3602563350163768425}
-  eyePrescription: 15
   experienceCollectable: {fileID: 9102680711599866488, guid: 0c7a9e3fe10b9f54595053935f0ef549,
     type: 3}
   currencyCollectable: {fileID: 0}
+  enemyCounter: {fileID: 0}
+  eyePrescription: 15
+  collectableSpawnRange: 1
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
-  enemyCounter: {fileID: 0}
-  range: 1
 --- !u!1001 &8719285318242900836
 PrefabInstance:
   m_ObjectHideFlags: 0

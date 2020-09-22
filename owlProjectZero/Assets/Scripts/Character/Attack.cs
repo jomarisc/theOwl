@@ -63,9 +63,12 @@ public abstract class Attack : MonoBehaviour
 
     protected void Start()
     {
-        Vector3 tempLocalPos = transform.localPosition;
-        tempLocalPos.x = Mathf.Abs(tempLocalPos.x);
-        initialLocalPosition = tempLocalPos;
+        // Vector3 tempLocalPos = transform.localPosition;
+        // bool onRightSide = (transform.localPosition.x > 0f) ? true : false;
+        // tempLocalPos.x = Mathf.Abs(tempLocalPos.x);
+        // initialLocalPosition = tempLocalPos;
+        // Debug.Log($"Initial Local Postition: {initialLocalPosition}");
+        // Debug.Break();
         phase = AttackPhase.Startup;
     }
 
@@ -80,7 +83,8 @@ public abstract class Attack : MonoBehaviour
         recoveryDuration = hitboxes[0].recovery * Time.fixedDeltaTime;
         
         Vector3 tempLocalPos = transform.localPosition;
-        tempLocalPos.x = Mathf.Abs(tempLocalPos.x);
+        // bool onRightSide = (transform.localPosition.x > 0f) ? true : false;
+        // tempLocalPos.x = Mathf.Abs(tempLocalPos.x);
         initialLocalPosition = tempLocalPos;
         phase = AttackPhase.Startup;
         initialKnockbackAngle = hitboxes[0].knockbackAngle;
