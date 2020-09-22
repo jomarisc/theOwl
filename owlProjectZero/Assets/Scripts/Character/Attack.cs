@@ -23,6 +23,7 @@ public abstract class Attack : MonoBehaviour
     // private fields
 
     // protected fields
+    [Header("General")]
     [SerializeField]
     protected HitboxData[] hitboxes;
     protected float startupDuration;
@@ -72,7 +73,7 @@ public abstract class Attack : MonoBehaviour
         phase = AttackPhase.Startup;
     }
 
-    protected void OnEnable()
+    protected virtual void OnEnable()
     {
         // transform.eulerAngles = new Vector3(0f, 0f, hitboxes[0].knockbackAngle);
         startupDuration = hitboxes[0].startup * Time.fixedDeltaTime;
@@ -98,7 +99,7 @@ public abstract class Attack : MonoBehaviour
         hitboxes[0].knockbackAngle = initialKnockbackAngle;
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if(startupDuration > 0f)
         {
@@ -146,6 +147,28 @@ public abstract class Attack : MonoBehaviour
     }
 
     protected void OnTriggerEnter(Collider col)
+    {
+        ApplyHitboxInteraction(col);
+    }
+
+    // Initializes hitbox data for a given attack
+    // Helpful if an attack has multiple hitboxes
+    private void InitializeHitboxes(HitboxData[] atkData, int numHitboxes)
+    {
+        if(numHitboxes != atkData.Length)
+        {
+            Debug.Log("Failed Hitbox Initialization");
+            return;
+        }
+
+        hitboxes = new HitboxData[numHitboxes];
+        for(int i = 0 ; i < numHitboxes; i++)
+        {
+            hitboxes[i] = atkData[i];
+        }
+    }
+
+    protected void ApplyHitboxInteraction(Collider col)
     {
         if(col.gameObject.TryGetComponent(out Rigidbody body) &&
            col.GetComponent<EnvironmentElement>() == null)
@@ -196,23 +219,6 @@ public abstract class Attack : MonoBehaviour
                     col.gameObject.GetComponent<Enemy>().EnemyGoToDeadState();
                 }
             }
-        }
-    }
-
-    // Initializes hitbox data for a given attack
-    // Helpful if an attack has multiple hitboxes
-    private void InitializeHitboxes(HitboxData[] atkData, int numHitboxes)
-    {
-        if(numHitboxes != atkData.Length)
-        {
-            Debug.Log("Failed Hitbox Initialization");
-            return;
-        }
-
-        hitboxes = new HitboxData[numHitboxes];
-        for(int i = 0 ; i < numHitboxes; i++)
-        {
-            hitboxes[i] = atkData[i];
         }
     }
 

@@ -8,11 +8,11 @@ public class KamehamehaCharge : IState
     private GameObject chargedEnergy;
     private float initialChargedEnergyScale;
     private float chargedEnergyScaleDelta;
-    private MeleeAttack blast;
+    private Attack blast;
     private float initialChargeDuration;
     private float chargeDuration;
     
-    public KamehamehaCharge(Character c, GameObject ce, MeleeAttack b, float cd)
+    public KamehamehaCharge(Character c, GameObject ce, Attack b, float cd)
     {
         user = c;
         chargedEnergy = ce;

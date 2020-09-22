@@ -5,9 +5,9 @@ using UnityEngine;
 public class KamehamehaBlast : IState
 {
     private readonly Character user;
-    private MeleeAttack blast;
+    private Attack blast;
     
-    public KamehamehaBlast(Character c, MeleeAttack b)
+    public KamehamehaBlast(Character c, Attack b)
     {
         user = c;
         blast = b;

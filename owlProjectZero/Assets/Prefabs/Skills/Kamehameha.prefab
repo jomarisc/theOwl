@@ -90,7 +90,7 @@ SphereCollider:
   m_GameObject: {fileID: 5576269733447526100}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -170,7 +170,7 @@ MonoBehaviour:
   isActive: 0
   user: {fileID: 0}
   beamCharge: {fileID: 5576269733447526100}
-  beamAttack: {fileID: 5865858337950137315}
+  beamAttack: {fileID: 4655765645192596210}
   chargeDuration: 180
 --- !u!1 &7276383584689213432
 GameObject:
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 8631645811047019614}
   - component: {fileID: 6540106771087138482}
   - component: {fileID: 5711864799675379526}
-  - component: {fileID: 5865858337950137315}
+  - component: {fileID: 4655765645192596210}
   m_Layer: 11
   m_Name: Blast
   m_TagString: Untagged
@@ -262,12 +262,12 @@ CapsuleCollider:
   m_GameObject: {fileID: 7276383584689213432}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5865858337950137315
+--- !u!114 &4655765645192596210
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,15 +276,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7276383584689213432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec5e3e21924fd14428170c636277a84e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5eb2541801564cd4b9c58747bec9305b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitboxes:
   - shape: {fileID: 5711864799675379526}
-    damage: 10
+    damage: 1
     startup: 0
     timeActive: 180
     recovery: 60
-    knockback: 3
+    knockback: 10
     knockbackAngle: 45
   isFacingRight: 0
+  rehitRate: 20

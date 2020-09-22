@@ -1962,6 +1962,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kamehameha
       objectReference: {fileID: 0}
+    - target: {fileID: 7276383584689213432, guid: e4db8532b18bb4a468046e5cb0012cb0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4db8532b18bb4a468046e5cb0012cb0, type: 3}
 --- !u!4 &5523277313914828080 stripped
