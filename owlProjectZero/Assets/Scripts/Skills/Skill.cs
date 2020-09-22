@@ -13,6 +13,7 @@ public abstract class Skill : MonoBehaviour, ISkill
     // private fields
 
     // protected fields
+    [Header("General")]
     [SerializeField] protected Sprite icon;
     [SerializeField] protected float stamanaCost;
     [SerializeField] protected float maxCooldown;

@@ -6,9 +6,12 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Shield : Skill
 {
+    
     private const float DISCOLORATION_TIMER = 0.25f;
     private float discolorationTimer;
     private Color originalColor;
+
+    [Header("Level Designer Variables")]
     [SerializeField] private float damageToNegate = 0f; // shouldn't be modified anywhere in code
     private float negatedDamage;
     private bool isDamaged;
