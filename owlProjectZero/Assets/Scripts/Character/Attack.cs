@@ -130,7 +130,7 @@ public abstract class Attack : MonoBehaviour
             }
         }
 
-        if(startupDuration <= 0f)
+        if(startupDuration <= 0f && activeDuration > 0f)
         {
             hitboxes[0].shape.enabled = true;
         }
