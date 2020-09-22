@@ -9,6 +9,7 @@ public class KamehamehaCharge : IState
     private float initialChargedEnergyScale;
     private float chargedEnergyScaleDelta;
     private MeleeAttack blast;
+    private float initialChargeDuration;
     private float chargeDuration;
     
     public KamehamehaCharge(Character c, GameObject ce, MeleeAttack b, float cd)
@@ -16,6 +17,7 @@ public class KamehamehaCharge : IState
         user = c;
         chargedEnergy = ce;
         blast = b;
+        initialChargeDuration = cd;
         chargeDuration = cd;
     }
 
@@ -42,6 +44,12 @@ public class KamehamehaCharge : IState
 
     public IState Update()
     {
+        if(chargeDuration % (initialChargeDuration / 4) == 0)
+        {
+            Vector3 initialScale = chargedEnergy.transform
+            .localScale.normalized * (initialChargedEnergyScale / 2);
+            chargedEnergy.transform.localScale += initialScale;
+        }
         if(chargeDuration > 0f)
         {
             return null;
