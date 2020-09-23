@@ -23,6 +23,7 @@ public abstract class Attack : MonoBehaviour
     // private fields
 
     // protected fields
+    [Header("General")]
     [SerializeField]
     protected HitboxData[] hitboxes;
     protected float startupDuration;
@@ -63,13 +64,16 @@ public abstract class Attack : MonoBehaviour
 
     protected void Start()
     {
-        Vector3 tempLocalPos = transform.localPosition;
-        tempLocalPos.x = Mathf.Abs(tempLocalPos.x);
-        initialLocalPosition = tempLocalPos;
+        // Vector3 tempLocalPos = transform.localPosition;
+        // bool onRightSide = (transform.localPosition.x > 0f) ? true : false;
+        // tempLocalPos.x = Mathf.Abs(tempLocalPos.x);
+        // initialLocalPosition = tempLocalPos;
+        // Debug.Log($"Initial Local Postition: {initialLocalPosition}");
+        // Debug.Break();
         phase = AttackPhase.Startup;
     }
 
-    protected void OnEnable()
+    protected virtual void OnEnable()
     {
         // transform.eulerAngles = new Vector3(0f, 0f, hitboxes[0].knockbackAngle);
         startupDuration = hitboxes[0].startup * Time.fixedDeltaTime;
@@ -80,7 +84,8 @@ public abstract class Attack : MonoBehaviour
         recoveryDuration = hitboxes[0].recovery * Time.fixedDeltaTime;
         
         Vector3 tempLocalPos = transform.localPosition;
-        tempLocalPos.x = Mathf.Abs(tempLocalPos.x);
+        // bool onRightSide = (transform.localPosition.x > 0f) ? true : false;
+        // tempLocalPos.x = Mathf.Abs(tempLocalPos.x);
         initialLocalPosition = tempLocalPos;
         phase = AttackPhase.Startup;
         initialKnockbackAngle = hitboxes[0].knockbackAngle;
@@ -94,7 +99,7 @@ public abstract class Attack : MonoBehaviour
         hitboxes[0].knockbackAngle = initialKnockbackAngle;
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if(startupDuration > 0f)
         {
@@ -130,7 +135,7 @@ public abstract class Attack : MonoBehaviour
             }
         }
 
-        if(startupDuration <= 0f)
+        if(startupDuration <= 0f && activeDuration > 0f)
         {
             hitboxes[0].shape.enabled = true;
         }
@@ -142,6 +147,28 @@ public abstract class Attack : MonoBehaviour
     }
 
     protected void OnTriggerEnter(Collider col)
+    {
+        ApplyHitboxInteraction(col);
+    }
+
+    // Initializes hitbox data for a given attack
+    // Helpful if an attack has multiple hitboxes
+    private void InitializeHitboxes(HitboxData[] atkData, int numHitboxes)
+    {
+        if(numHitboxes != atkData.Length)
+        {
+            Debug.Log("Failed Hitbox Initialization");
+            return;
+        }
+
+        hitboxes = new HitboxData[numHitboxes];
+        for(int i = 0 ; i < numHitboxes; i++)
+        {
+            hitboxes[i] = atkData[i];
+        }
+    }
+
+    protected void ApplyHitboxInteraction(Collider col)
     {
         if(col.gameObject.TryGetComponent(out Rigidbody body) &&
            col.GetComponent<EnvironmentElement>() == null)
@@ -192,23 +219,6 @@ public abstract class Attack : MonoBehaviour
                     col.gameObject.GetComponent<Enemy>().EnemyGoToDeadState();
                 }
             }
-        }
-    }
-
-    // Initializes hitbox data for a given attack
-    // Helpful if an attack has multiple hitboxes
-    private void InitializeHitboxes(HitboxData[] atkData, int numHitboxes)
-    {
-        if(numHitboxes != atkData.Length)
-        {
-            Debug.Log("Failed Hitbox Initialization");
-            return;
-        }
-
-        hitboxes = new HitboxData[numHitboxes];
-        for(int i = 0 ; i < numHitboxes; i++)
-        {
-            hitboxes[i] = atkData[i];
         }
     }
 

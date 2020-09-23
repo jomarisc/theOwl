@@ -49,6 +49,7 @@ public class PlayerDodge : IState
         animator.SetBool("dodging", true);
 
         player.dodgeAbility.PerformDodge();
+        player.input.Gameplay.UseActiveSkill.Disable();
     }
 
     public void Exit()
@@ -61,6 +62,7 @@ public class PlayerDodge : IState
         animator.SetBool("dodging", false);
 
         player.dodgeAbility.PerformDodge();
+        player.input.Gameplay.UseActiveSkill.Enable();
     }
 
     public void FixedUpdate()

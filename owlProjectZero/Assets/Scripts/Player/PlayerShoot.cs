@@ -30,11 +30,13 @@ public class PlayerShoot : IState
         player.projectile.SetActive(true);
         player.projectile.GetComponent<ProjectileAttack>().SpawnProjectile(shootingDirection);
         player.projectileShoot.Play();
+        player.input.Gameplay.UseActiveSkill.Disable();
     }
 
     public void Exit()
     {
         player.projectileHit.Play();
+        player.input.Gameplay.UseActiveSkill.Enable();
     }
 
     public void FixedUpdate()
