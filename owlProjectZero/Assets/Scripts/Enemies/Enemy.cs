@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public abstract class Enemy : Character
 {
+    private Collider myCollider;
     private Vector3 lookingDirection;
     private EnemyDead enemyDeadListener;
 
@@ -37,6 +38,7 @@ public abstract class Enemy : Character
     protected void Start()
     {
         totalEnemies++;
+        myCollider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -51,11 +53,15 @@ public abstract class Enemy : Character
         base.FixedUpdate();
     }
 
-    public bool SeesPlayer()
+    public virtual bool SeesPlayer()
     {
         lookingDirection.x = (data.isFacingRight) ? 1f : -1f;
-        Debug.DrawRay(rb.position, rb.position + lookingDirection * eyePrescription, Color.white);
-        return Physics.Raycast(rb.position, lookingDirection, eyePrescription, targetLayer);
+        // Debug.DrawRay(rb.position, rb.position + lookingDirection * eyePrescription, Color.white);
+        Vector3 boxColliderCenter = myCollider.bounds.center + (lookingDirection * myCollider.bounds.extents.x);
+        Debug.DrawLine(boxColliderCenter - new Vector3(myCollider.bounds.extents.x, myCollider.bounds.extents.y, 0), boxColliderCenter + new Vector3(myCollider.bounds.extents.x, myCollider.bounds.extents.y, 0), Color.red, 0.1f);
+        Debug.DrawLine(boxColliderCenter - new Vector3(myCollider.bounds.extents.x, -myCollider.bounds.extents.y, 0), boxColliderCenter + new Vector3(myCollider.bounds.extents.x, -myCollider.bounds.extents.y, 0), Color.red, 0.1f);
+        return Physics.BoxCast(boxColliderCenter, myCollider.bounds.extents, lookingDirection, Quaternion.identity, eyePrescription, targetLayer);
+        // return Physics.Raycast(rb.position, lookingDirection, eyePrescription, targetLayer);
     }
 
     public bool PlayerInAttackRange(float range)
@@ -64,6 +70,13 @@ public abstract class Enemy : Character
         Debug.DrawLine(rb.position, rb.position + lookingDirection * Mathf.Abs(range), Color.red);
         bool inAtkRange = Physics.Raycast(rb.position, lookingDirection, Mathf.Abs(range), targetLayer);
         // Debug.Log(inAtkRange);
+        return inAtkRange;
+    }
+
+    public bool PlayerInAttackRange(Collider hitbox)
+    {
+        lookingDirection.x = (data.isFacingRight) ? 1f: -1f;
+        bool inAtkRange = Physics.BoxCast(hitbox.bounds.center, hitbox.bounds.extents, lookingDirection, Quaternion.identity, eyePrescription, targetLayer);
         return inAtkRange;
     }
 

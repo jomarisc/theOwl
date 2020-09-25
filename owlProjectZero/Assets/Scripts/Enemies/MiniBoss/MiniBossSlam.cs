@@ -8,11 +8,11 @@ public class MiniBossSlam : IState
     private Rigidbody characterBody;
     private GameObject meleeAttack;
     
-    public MiniBossSlam(Enemy myself)
+    public MiniBossSlam(MiniBoss myself)
     {
         character = (MiniBoss)myself;
         characterBody = myself.GetComponent<Rigidbody>();
-        meleeAttack = myself.basicAttack.gameObject;
+        meleeAttack = myself.slamHitbox;
     }
 
     public void Enter()
@@ -41,7 +41,7 @@ public class MiniBossSlam : IState
         if(!meleeAttack.activeInHierarchy)
         {
             Debug.Log("Returning to idle");
-            return new HEnemyIdle(character);
+            return new MiniBossIdle(character);
         }
         
         return null;

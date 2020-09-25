@@ -46,7 +46,7 @@ public class MiniBossChase : IState
         playerIsInSight = character.SeesPlayer();
 
         if(playerIsInSight)
-            playerIsInAttackRange = character.PlayerInAttackRange(character.basicAttack.transform.localPosition.x); // 2f comes from scaleY from hitbox's transform component
+            playerIsInAttackRange = character.PlayerInAttackRange(character.basicAttack.GetComponent<Collider>()); // 2f comes from scaleY from hitbox's transform component
     }
     
     public IState Update()
@@ -71,7 +71,7 @@ public class MiniBossChase : IState
         }
 
         if(!playerIsInSight)
-            return new HEnemyIdle(character);
+            return new MiniBossIdle(character);
 
         stepTime -= Time.deltaTime;
         chaseDuration -= Time.deltaTime;
