@@ -12,6 +12,8 @@ public class MiniBossChase : IState
     private float chaseDuration;
     private bool playerIsInSight;
     private bool playerIsInAttackRange;
+    IState atkState = null;
+    int atkPattern;
     
     public MiniBossChase(Enemy myself)
     {
@@ -27,6 +29,16 @@ public class MiniBossChase : IState
         chaseDuration = MAX_CHASE_DURATION;
         playerIsInSight = true;
         playerIsInAttackRange = false;
+        atkPattern = Random.Range(0, 2);
+        switch(atkPattern)
+        {
+            case 0:
+                atkState = new MiniBossPunch(character, horizontalMovement);
+                break;
+            default:
+                atkState = new MiniBossJump(character);
+                break;
+        }
     }
 
     public void Exit()
@@ -46,27 +58,15 @@ public class MiniBossChase : IState
         playerIsInSight = character.SeesPlayer();
 
         if(playerIsInSight)
-            playerIsInAttackRange = character.PlayerInAttackRange(character.basicAttack.GetComponent<Collider>()); // 2f comes from scaleY from hitbox's transform component
+        {
+            playerIsInAttackRange = character.PlayerInAttackRange(character.basicAttack.transform.localPosition.x + character.basicAttack.transform.localScale.x / 2); // 2f comes from scaleY from hitbox's transform component
+        }
     }
     
     public IState Update()
     {
         if(playerIsInAttackRange)
         {
-            IState atkState = null;
-            int atkPattern = Random.Range(0, 2);
-            switch(atkPattern)
-            {
-                case 0:
-                    // return new MiniBossPunch(character);
-                    atkState = new MiniBossPunch(character, horizontalMovement);
-                    break;
-                default:
-                    // return new MiniBossJump(character);
-                    atkState = new MiniBossJump(character);
-                    break;
-            }
-            // return new HEnemyAttackPrep(character);
             return atkState;
         }
 

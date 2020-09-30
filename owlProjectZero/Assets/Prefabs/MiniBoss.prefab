@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!136 &5917815846983850556
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2816189262244782668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &552171655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22,7 +36,7 @@ MonoBehaviour:
     deadDuration: 0
     health: 50
     maxSpeed: 0
-    groundSpeed: 5
+    groundSpeed: 2.5
     airSpeed: 0.5
     jumpDistance: 10
     isFacingRight: 1
@@ -50,10 +64,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5154231881493511094}
-  - component: {fileID: 1365415429219700228}
   - component: {fileID: 5049353283549466416}
   - component: {fileID: 1039392953535684549}
   - component: {fileID: 3497627213540068037}
+  - component: {fileID: 2853407207938076918}
   m_Layer: 12
   m_Name: Slam
   m_TagString: Untagged
@@ -75,19 +89,6 @@ Transform:
   m_Father: {fileID: 9221773898102409221}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1365415429219700228
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8321648172540441926}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5049353283549466416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,13 +102,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitboxes:
-  - shape: {fileID: 1365415429219700228}
+  - shape: {fileID: 2853407207938076918}
     damage: 6
     startup: 0
     timeActive: 10
     recovery: 30
     knockback: 20
-    knockbackAngle: 75
+    knockbackAngle: 85
   isFacingRight: 0
 --- !u!23 &1039392953535684549
 MeshRenderer:
@@ -158,6 +159,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8321648172540441926}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!136 &2853407207938076918
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8321648172540441926}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7587062349049058001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -245,6 +260,21 @@ PrefabInstance:
       propertyPath: hitboxes.Array.data[0].knockback
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3685062507063603794, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: hitboxes.Array.data[0].shape
+      value: 
+      objectReference: {fileID: 5917815846983850556}
+    - target: {fileID: 3685062507063603794, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: hitboxes.Array.data[0].startup
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019040549584735083, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4474135542371462771, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: m_Name
@@ -280,7 +310,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Punch
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4019040549584735083, guid: a94cdbb1a371e434da94986eea1d80d4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a94cdbb1a371e434da94986eea1d80d4, type: 3}
 --- !u!1 &6295464450225831074 stripped
 GameObject:

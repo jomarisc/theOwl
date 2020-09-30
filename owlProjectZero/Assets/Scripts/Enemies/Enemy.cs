@@ -56,28 +56,88 @@ public abstract class Enemy : Character
     public virtual bool SeesPlayer()
     {
         lookingDirection.x = (data.isFacingRight) ? 1f : -1f;
-        // Debug.DrawRay(rb.position, rb.position + lookingDirection * eyePrescription, Color.white);
-        Vector3 boxColliderCenter = myCollider.bounds.center + (lookingDirection * myCollider.bounds.extents.x);
-        Debug.DrawLine(boxColliderCenter - new Vector3(myCollider.bounds.extents.x, myCollider.bounds.extents.y, 0), boxColliderCenter + new Vector3(myCollider.bounds.extents.x, myCollider.bounds.extents.y, 0), Color.red, 0.1f);
-        Debug.DrawLine(boxColliderCenter - new Vector3(myCollider.bounds.extents.x, -myCollider.bounds.extents.y, 0), boxColliderCenter + new Vector3(myCollider.bounds.extents.x, -myCollider.bounds.extents.y, 0), Color.red, 0.1f);
-        return Physics.BoxCast(boxColliderCenter, myCollider.bounds.extents, lookingDirection, Quaternion.identity, eyePrescription, targetLayer);
-        // return Physics.Raycast(rb.position, lookingDirection, eyePrescription, targetLayer);
+        for(int i = -3; i <= 3; i++)
+        {
+            Vector3 raycastOrigin = transform.position + new Vector3(0f, transform.localScale.y * i / 6);
+            Debug.DrawLine(raycastOrigin, raycastOrigin + lookingDirection * eyePrescription, Color.red);
+            if(Physics.Raycast(raycastOrigin, lookingDirection, eyePrescription, targetLayer))
+                return true;
+        }
+        return false;
     }
 
     public bool PlayerInAttackRange(float range)
     {
         lookingDirection.x = (data.isFacingRight) ? 1f : -1f;
-        Debug.DrawLine(rb.position, rb.position + lookingDirection * Mathf.Abs(range), Color.red);
-        bool inAtkRange = Physics.Raycast(rb.position, lookingDirection, Mathf.Abs(range), targetLayer);
-        // Debug.Log(inAtkRange);
-        return inAtkRange;
+        for(int i = -3; i <= 3; i++)
+        {
+            Vector3 raycastOrigin = transform.position + new Vector3(transform.localScale.x / 2 * lookingDirection.x, transform.localScale.y * i / 6);
+            Debug.DrawLine(raycastOrigin, raycastOrigin + lookingDirection * Mathf.Abs(range), Color.red);
+            if(Physics.Raycast(raycastOrigin, lookingDirection, Mathf.Abs(range), targetLayer))
+                return true;
+        }
+        return false;
     }
 
+    [System.Obsolete("This function dun work nicely atm. Consider using a different one m8.")]
     public bool PlayerInAttackRange(Collider hitbox)
     {
         lookingDirection.x = (data.isFacingRight) ? 1f: -1f;
-        bool inAtkRange = Physics.BoxCast(hitbox.bounds.center, hitbox.bounds.extents, lookingDirection, Quaternion.identity, eyePrescription, targetLayer);
-        return inAtkRange;
+        Bounds bounds = hitbox.bounds;
+
+        Vector3 topLeft = bounds.center
+                          + new Vector3(-bounds.extents.x, bounds.extents.y, 0f);
+        Vector3 topRight = bounds.center
+                          + new Vector3(bounds.extents.x, bounds.extents.y, 0f);
+        Vector3 bottomLeft = bounds.center
+                          + new Vector3(-bounds.extents.x, -bounds.extents.y, 0f);
+        Vector3 bottomRight = bounds.center
+                          + new Vector3(bounds.extents.x, -bounds.extents.y, 0f);
+
+        Debug.DrawLine(topLeft, topRight, Color.red);
+        Debug.DrawLine(topRight, bottomRight, Color.red);
+        Debug.DrawLine(bottomRight, bottomLeft, Color.red);
+        Debug.DrawLine(bottomLeft, topLeft, Color.red);
+
+        Collider[] playersInRange = Physics.OverlapBox(bounds.center,
+                                             bounds.extents,
+                                             Quaternion.identity,
+                                             targetLayer);
+                                          
+        if(playersInRange.Length > 0)
+            // Debug.Break();
+            return true;
+        return false;
+    }
+
+    [System.Obsolete("This function also dun work nicely atm. Consider using a different one m8.")]
+    public bool PlayerInAttackRange(Bounds bounds)
+    {
+        lookingDirection.x = (data.isFacingRight) ? 1f: -1f;
+
+        Vector3 topLeft = bounds.center
+                          + new Vector3(-bounds.extents.x, bounds.extents.y, 0f);
+        Vector3 topRight = bounds.center
+                          + new Vector3(bounds.extents.x, bounds.extents.y, 0f);
+        Vector3 bottomLeft = bounds.center
+                          + new Vector3(-bounds.extents.x, -bounds.extents.y, 0f);
+        Vector3 bottomRight = bounds.center
+                          + new Vector3(bounds.extents.x, -bounds.extents.y, 0f);
+
+        Debug.DrawLine(topLeft, topRight, Color.red);
+        Debug.DrawLine(topRight, bottomRight, Color.red);
+        Debug.DrawLine(bottomRight, bottomLeft, Color.red);
+        Debug.DrawLine(bottomLeft, topLeft, Color.red);
+
+        Collider[] playersInRange = Physics.OverlapBox(bounds.center,
+                                             bounds.extents,
+                                             Quaternion.identity,
+                                             targetLayer);
+                                          
+        if(playersInRange.Length > 0)
+            // Debug.Break();
+            return true;
+        return false;
     }
 
     public void IncrementDefeatedEnemies()
@@ -90,7 +150,7 @@ public abstract class Enemy : Character
         }
     }
 
-    public void EnemyGoToDeadState()
+    public virtual void EnemyGoToDeadState()
     {
         myState.Exit();
         myState = new EnemyDead(this);

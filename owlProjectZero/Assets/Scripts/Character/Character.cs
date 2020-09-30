@@ -114,6 +114,7 @@ public abstract class Character : MonoBehaviour, ICharacter
         }
     }
 
+    // Default Attack that uses the Character's basic attack
     public void Attack()
     {
         Vector3 atkPos = basicAttack.transform.localPosition;
@@ -123,6 +124,7 @@ public abstract class Character : MonoBehaviour, ICharacter
         basicAttack.GetComponent<Attack>().isFacingRight = data.isFacingRight;
     }
 
+    // Character attack for other kinds of attacks
     public void Attack(GameObject attack)
     {
         Vector3 atkPos = attack.transform.localPosition;

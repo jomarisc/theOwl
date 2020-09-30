@@ -20,7 +20,7 @@ public class MiniBossSlam : IState
         // Enter grounded enemy walk animation here:
         
         meleeAttack.SetActive(true);
-        character.Attack();
+        character.Attack(meleeAttack);
     }
 
     public void Exit()
