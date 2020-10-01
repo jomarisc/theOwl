@@ -5,12 +5,12 @@ using UnityEngine;
 public class Kamehameha : Skill
 {
     [Header("Necessary Attachments")]
-    [SerializeField] private Character user;
-    [SerializeField] private GameObject beamCharge;
-    [SerializeField] private Attack beamAttack;
+    [SerializeField] private Character user = null;
+    [SerializeField] private GameObject beamCharge = null;
+    [SerializeField] private Attack beamAttack = null;
     [Header("Level Designer Variables")]
     [Tooltip("The number of frames it takes to charge a Kamehameha")]
-    [SerializeField] private float chargeDuration;
+    [SerializeField] private float chargeDuration = 0f;
 
     Kamehameha()
     {
