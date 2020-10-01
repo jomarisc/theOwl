@@ -22,6 +22,7 @@ public class EnemyDead : IState
     public void Enter()
     {
         //Instantiate(enemy.experienceCollectable, enemy.transform.position, Quaternion.identity);
+        enemy.data.deadDuration = enemy.CONSTANTS.DEAD_DURATION;
     }
 
     public void Exit()
