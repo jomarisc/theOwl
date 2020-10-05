@@ -58,7 +58,7 @@ public class GEnemyAttack : IState
             animator.SetBool("windingUp", false);
             animator.SetBool("attacking", true);
         }
-        if(!meleeAttack.activeInHierarchy)
+        if(!meleeAttack.activeInHierarchy && Mathf.Approximately(characterBody.velocity.magnitude, 0f))
         {
             Debug.Log("Returning to idle");
             return new GEnemyIdle(character);
