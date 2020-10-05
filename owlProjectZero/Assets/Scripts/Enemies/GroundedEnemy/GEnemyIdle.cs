@@ -27,6 +27,7 @@ public class GEnemyIdle : IState
 
     public void Exit()
     {
+        animator.SetBool("idling", false);
 
     }
 
