@@ -5,6 +5,7 @@ using UnityEngine;
 public class GEnemyIdle : IState
 {
     private readonly GroundedEnemy character;
+    private Animator animator;
     private const float IDLE_TIME = 3f;
     private float waitTime;
     private bool playerFound;
@@ -12,11 +13,13 @@ public class GEnemyIdle : IState
     public GEnemyIdle(GroundedEnemy myself)
     {
         character = myself;
+        animator = myself.gameObject.GetComponent<Animator>();
     }
 
     public void Enter()
     {
         // Enter Grounded enemy idle animation here:
+        animator.SetBool("idling", true);
 
         waitTime = IDLE_TIME;
         playerFound = false;
@@ -24,6 +27,7 @@ public class GEnemyIdle : IState
 
     public void Exit()
     {
+        animator.SetBool("idling", false);
 
     }
 

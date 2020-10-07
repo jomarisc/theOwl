@@ -5,6 +5,7 @@ using UnityEngine;
 public class GEnemyChase : IState
 {
     private readonly GroundedEnemy character;
+    private Animator animator;
     private const float MAX_CHASE_DURATION = 3f;
     private float horizontalMovement;
     private float chaseDuration;
@@ -14,11 +15,13 @@ public class GEnemyChase : IState
     public GEnemyChase(Enemy myself)
     {
         character = (GroundedEnemy)myself;
+        animator = myself.GetComponent<Animator>();
     }
 
     public void Enter()
     {
         // Enter grounded enemy chase animation here:
+        animator.SetBool("walking", true);
         
         horizontalMovement = (character.data.isFacingRight) ? 1f : -1f;
         chaseDuration = MAX_CHASE_DURATION;
@@ -28,7 +31,7 @@ public class GEnemyChase : IState
 
     public void Exit()
     {
-        // Nothing so far
+        animator.SetBool("walking", false);
     }
 
     public void FixedUpdate()
