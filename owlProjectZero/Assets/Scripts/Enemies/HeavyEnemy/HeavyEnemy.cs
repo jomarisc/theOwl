@@ -33,9 +33,14 @@ public class HeavyEnemy : Enemy
         sRenderer = GetComponent<SpriteRenderer>();
     }
 
+    new private void Update()
+    {
+        base.Update();
+        sRenderer.flipX = data.isFacingRight; // WHY IS THIS IN MOVE_CHARACTER
+    }
+
     public override void MoveCharacter(float direction)
     {
         rb.AddForce(new Vector3(direction * data.maxSpeed, 0f, 0f), ForceMode.VelocityChange);
-        sRenderer.flipX = data.isFacingRight;
     }
 }
