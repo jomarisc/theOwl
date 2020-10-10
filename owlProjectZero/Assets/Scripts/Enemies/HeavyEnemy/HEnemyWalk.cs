@@ -21,6 +21,7 @@ public class HEnemyWalk : IState
     public void Enter()
     {
         // Enter heavy enemy walk animation here:
+        character.animator.Play("HeavyWalk");
         
         horizontalMovement = (character.data.isFacingRight) ? 1f : -1f;
         stepsTaken = 0;

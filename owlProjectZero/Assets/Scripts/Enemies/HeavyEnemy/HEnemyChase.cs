@@ -21,6 +21,7 @@ public class HEnemyChase : IState
     public void Enter()
     {
         // Enter grounded enemy chase animation here:
+        character.animator.Play("HeavyWalk");
         
         horizontalMovement = (character.data.isFacingRight) ? 1f : -1f;
         stepTime = TIME_BETWEEN_STEPS;
