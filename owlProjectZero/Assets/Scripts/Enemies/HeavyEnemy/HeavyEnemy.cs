@@ -5,6 +5,7 @@ using UnityEngine;
 public class HeavyEnemy : Enemy
 {
     // private fields
+    private SpriteRenderer sRenderer;
 
     // protected fields
 
@@ -29,10 +30,12 @@ public class HeavyEnemy : Enemy
     {
         base.Start();
         rb = GetComponent<Rigidbody>();
+        sRenderer = GetComponent<SpriteRenderer>();
     }
 
     public override void MoveCharacter(float direction)
     {
         rb.AddForce(new Vector3(direction * data.maxSpeed, 0f, 0f), ForceMode.VelocityChange);
+        sRenderer.flipX = data.isFacingRight;
     }
 }
