@@ -22,6 +22,7 @@ public class HEnemyAttackPrep : IState
     public void Enter()
     {
         // Enter grounded enemy walk animation here:
+        character.animator.Play("HeavyJump");
         
         characterBody.velocity = Vector3.zero;
         characterBody.AddForce(Vector3.up * 5, ForceMode.VelocityChange);
