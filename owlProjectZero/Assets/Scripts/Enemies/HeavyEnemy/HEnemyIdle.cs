@@ -17,6 +17,7 @@ public class HEnemyIdle : IState
     public void Enter()
     {
         // Enter Grounded enemy idle animation here:
+        character.animator.Play("HeavyIdle");
 
         waitTime = IDLE_TIME;
         playerFound = false;
