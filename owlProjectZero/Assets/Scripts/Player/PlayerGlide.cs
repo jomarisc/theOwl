@@ -50,12 +50,11 @@ public class PlayerGlide : IState
     public IState Update()
     {
         // Check input for exiting glide state while airborne
-        if(method == glideType.Jump)
-            if(input.Gameplay.Jump.ReadValue<float>() == 0f)
-                return new PlayerMove(player, true);
-        else
-            if(input.Gameplay.Glide.ReadValue<float>() == 0f)
-                return new PlayerMove(player, true);
+        if((method.Equals(glideType.Jump) && input.Gameplay.Jump.ReadValue<float>() == 0f) ||
+           (method.Equals(glideType.Down) && input.Gameplay.Glide.ReadValue<float>() == 0f))
+        {
+            return new PlayerMove(player, true);
+        }
 
         // Check input for dodging
         if(input.Gameplay.Dodge.triggered && player.data.numDodges > 0)
