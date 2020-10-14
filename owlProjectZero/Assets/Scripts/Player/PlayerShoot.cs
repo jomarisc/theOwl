@@ -24,6 +24,7 @@ public class PlayerShoot : IState
     public void Enter()
     {
         // use projectile shooting animation here
+        player.animator.Play("PlayerShoot");
 
         playerCanMove = false;
         int shootingDirection = (player.data.isFacingRight) ? 1 : -1;
