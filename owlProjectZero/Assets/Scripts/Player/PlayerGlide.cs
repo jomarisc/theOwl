@@ -36,14 +36,15 @@ public class PlayerGlide : IState
         // Halt vertical movement
         float xMovement = input.Gameplay.MoveX.ReadValue<float>();
         player.GetComponent<Rigidbody>().velocity = new Vector3(xMovement, 0f, 0f);
-        animator.SetBool("gliding", true);
+        // animator.SetBool("gliding", true);
+        animator.Play("PlayerGlide");
     }
 
     public void Exit()
     {
         // Reset gravity
         player.GetComponent<Rigidbody>().useGravity = true;
-        animator.SetBool("gliding", false);
+        // animator.SetBool("gliding", false);
     }
 
     public void FixedUpdate()

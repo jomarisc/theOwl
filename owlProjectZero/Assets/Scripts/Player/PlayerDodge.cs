@@ -46,7 +46,8 @@ public class PlayerDodge : IState
             playerBody.drag = player.dodgeAbility.DRAG;
             playerBody.AddForce(new Vector3(direction * player.dodgeAbility.PUSH_FORCE, 0f, 0f), ForceMode.VelocityChange);
         }
-        animator.SetBool("dodging", true);
+        // animator.SetBool("dodging", true);
+        animator.Play("PlayerDodge");
 
         player.dodgeAbility.PerformDodge();
         player.input.Gameplay.UseActiveSkill.Disable();
@@ -59,7 +60,7 @@ public class PlayerDodge : IState
         playerBody.useGravity = true;
         playerBody.drag = 1.0f;
         player.dodgeAbility.dodgeDuration = -1f;
-        animator.SetBool("dodging", false);
+        // animator.SetBool("dodging", false);
 
         player.dodgeAbility.PerformDodge();
         player.input.Gameplay.UseActiveSkill.Enable();

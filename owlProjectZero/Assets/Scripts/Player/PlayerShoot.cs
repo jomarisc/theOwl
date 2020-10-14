@@ -48,8 +48,8 @@ public class PlayerShoot : IState
     public IState Update()
     {
         // Update animation
-        if(player.data.maxSpeed == player.data.airSpeed)
-            player.animator.SetFloat("VerticalMovement", playerBody.velocity.y);
+        // if(player.data.maxSpeed == player.data.airSpeed)
+            // player.animator.SetFloat("VerticalMovement", playerBody.velocity.y);
         if(!projectile.activeInHierarchy)
         {
             // Check for glide input

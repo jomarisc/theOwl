@@ -21,13 +21,14 @@ public class PlayerIdle : IState
     public void Enter()
     {
         // Enter idle animation code here:
-        animator.SetFloat("horizontalMovement", 0f);
-        animator.SetBool("idling", true);
+        // animator.SetFloat("horizontalMovement", 0f);
+        // animator.SetBool("idling", true);
+        animator.Play("PlayerIdle");
     }
 
     public void Exit()
     {
-        animator.SetBool("idling", false);
+        // animator.SetBool("idling", false);
     }
 
     public void FixedUpdate()
