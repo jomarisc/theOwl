@@ -161,7 +161,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""f8c75d3e-847f-44af-b228-5d28596cb0b4"",
                     ""path"": ""<Gamepad>/leftStick/down"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Glide"",
