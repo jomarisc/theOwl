@@ -32,11 +32,21 @@ public class PlayerMove : IState
     }
     public void Enter()
     {
-        animator.SetBool("moving", true);
+        // animator.SetBool("moving", true);
         if (isFlying)
         {
+            // Debug.Log(input.Gameplay.Glide.phase);
+            // Debug.Break();
             // use descending animation here:
-            animator.SetFloat("VerticalMovement", playerBody.velocity.y);
+            // animator.SetFloat("VerticalMovement", playerBody.velocity.y);
+            // animator.Play("PlayerJumpDown");
+            if(!animator.GetBool("fastfalling"))
+            //     animator.Play("PlayerFastFall");
+            // else
+                if(playerBody.velocity.y > 0f)
+                    animator.Play("PlayerJumpUp");
+                else
+                    animator.Play("PlayerJumpDown");
 
             input.Gameplay.Tether.started += player.tetherAbility.ActivateTether;
             input.Gameplay.Glide.started += player.FastFall;
@@ -45,14 +55,15 @@ public class PlayerMove : IState
         else
         {
             // Use walking animation here
-            verticalMovement = 0f;
-            animator.SetFloat("VerticalMovement", verticalMovement);
+            // verticalMovement = 0f;
+            // animator.SetFloat("VerticalMovement", verticalMovement);
+            animator.Play("PlayerWalk");
         }
     }
 
     public void Exit()
     {
-        animator.SetBool("moving", false);
+        // animator.SetBool("moving", false);
         animator.SetBool("fastfalling", false);
 
         input.Gameplay.Tether.started -= player.tetherAbility.ActivateTether;
@@ -77,8 +88,8 @@ public class PlayerMove : IState
 
     public IState Update()
     {
-        if(isFlying)
-            animator.SetFloat("VerticalMovement", playerBody.velocity.y);
+        // if(isFlying)
+        //     animator.SetFloat("VerticalMovement", playerBody.velocity.y);
 
         // Check input for dodging
         if(input.Gameplay.Dodge.triggered && player.data.numDodges > 0)
@@ -121,12 +132,13 @@ public class PlayerMove : IState
            player.data.maxSpeed == player.data.airSpeed)
         {
             Debug.Log("Left platform");
+            // animator.Play("PlayerJumpDown");
             return new PlayerMove(player, true);
         }
 
         horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();
-        animator.SetFloat("horizontalMovement", horizontalMovement);
-        if(Mathf.Abs(horizontalMovement) > 0)
+        // animator.SetFloat("horizontalMovement", horizontalMovement);
+        if(Mathf.Abs(horizontalMovement) > 0 || isFlying)
         {
             player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
             spriterenderer.flipX = !player.data.isFacingRight;

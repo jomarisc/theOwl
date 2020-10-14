@@ -10,6 +10,7 @@ public class PlayerJump : IState
     private Rigidbody playerBody;
     private PlayerInputs input;
     private float horizontalMovement = 0f;
+    private string myAnimationState;
 
     private Animator animator;
     private SpriteRenderer spriterenderer;
@@ -19,6 +20,7 @@ public class PlayerJump : IState
         player = p;
         jump = p.gameObject.GetComponentInChildren<AudioSource>();
         playerBody = p.gameObject.GetComponent<Rigidbody>();
+        myAnimationState = "PlayerJumpUp";
         //Need to pass references. - Joel
         animator = p.gameObject.GetComponent<Animator>();
         spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
@@ -33,6 +35,7 @@ public class PlayerJump : IState
     	}
         player.Jump();
         // animator.SetBool("jumpup", true);
+        animator.Play(myAnimationState);
 
         input.Gameplay.Tether.started += player.tetherAbility.ActivateTether;
         input.Gameplay.Glide.started += player.FastFall;
@@ -41,7 +44,7 @@ public class PlayerJump : IState
     public void Exit()
     {
         // animator.SetBool("jumpup", false);
-        animator.SetFloat("VerticalMovement", 0f);
+        // animator.SetFloat("VerticalMovement", 0f);
         
         input.Gameplay.Tether.started -= player.tetherAbility.ActivateTether;
         input.Gameplay.Glide.started -= player.FastFall;
@@ -51,7 +54,7 @@ public class PlayerJump : IState
     {
         player.MoveCharacter(horizontalMovement);
         //Also checking Vertical speed.
-        animator.SetFloat("VerticalMovement", playerBody.velocity.y);
+        // animator.SetFloat("VerticalMovement", playerBody.velocity.y);
     }
 
     public IState Update()
@@ -95,10 +98,13 @@ public class PlayerJump : IState
         }
 
         // Check for downwards input
-        if(input.Gameplay.Glide.ReadValue<float>() > 0.975f)
+        if(input.Gameplay.Glide.ReadValue<float>() >= 0.5f)
         {
             if(Mathf.Abs(playerBody.velocity.y) <= 3f)
+            {
+                // animator.Play("PlayerFastFall");
                 return new PlayerMove(player, true);
+            }
 
             return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }
@@ -113,6 +119,12 @@ public class PlayerJump : IState
         {
             player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
             spriterenderer.flipX = !player.data.isFacingRight;
+        }
+
+        if(myAnimationState.Equals("PlayerJumpUp") && playerBody.velocity.y < 0f)
+        {
+            myAnimationState = "PlayerJumpDown";
+            animator.Play(myAnimationState);
         }
         return null;
     }
