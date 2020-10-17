@@ -55,7 +55,7 @@ public class checkpointHandler : MonoBehaviour
                         playerState.healthbar.ResetHealth();
                         playerState.healthbar.Redraw();
                         playerState.isAlive = true;                      // Resets playerControl variable isAlive to true
-                        RespawnEnemies();
+                        //RespawnEnemies();
 
                     }
                     else
@@ -74,7 +74,7 @@ public class checkpointHandler : MonoBehaviour
                 playerState.healthbar.ResetHealth();
                 playerState.healthbar.Redraw();
                 playerState.isAlive = true;                           // Resets playerControl variable isAlive to true
-                RespawnEnemies();
+                //RespawnEnemies();
 
             }
             else

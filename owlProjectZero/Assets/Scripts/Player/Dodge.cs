@@ -25,12 +25,15 @@ public class Dodge : MonoBehaviour
             Physics.IgnoreLayerCollision(9, 12, true); // Player x Enemies' Attacks
             Physics.IgnoreLayerCollision(9, 15, true); // Player x Enemies' Bodu Hitbox
         }
-        // This branch should only be called once as dodgeDuration becomes negative
-        else
-        {
+        
+        
+    }
+
+    public void LeaveDodge() {
+        dodgeDuration = 0.0f;
+        
             Physics.IgnoreLayerCollision(9, 15, false); // Player x Enemies' Body Hitbox
             Physics.IgnoreLayerCollision(9, 12, false); // Player x Enemies' Attacks
             Physics.IgnoreLayerCollision(9, 10, false); // Player x Enemies
-        }
     }
 }
