@@ -6,6 +6,8 @@ public class CharacterDamaged : IState
 {
     private readonly Character character;
     private Color characterColor;
+    private Animator animator;
+    private Rigidbody characterBody;
     private float damageReceived;
     private float knockBackReceived;
     private float hitstunTimer;
@@ -13,6 +15,8 @@ public class CharacterDamaged : IState
     public CharacterDamaged(Character c)
     {
         character = c;
+        animator = c.animator;
+        characterBody = c.GetComponent<Rigidbody>();
         damageReceived = 1f;
         knockBackReceived = 1f;
     }
@@ -20,12 +24,15 @@ public class CharacterDamaged : IState
     public CharacterDamaged(Character c, float dmg, float kb)
     {
         character = c;
+        animator = c.GetComponent<Animator>();
+        characterBody = c.GetComponent<Rigidbody>();
         damageReceived = dmg;
         knockBackReceived = kb;
     }
 
     public void Enter()
     {
+        animator.Play("Hurt");
         hitstunTimer = damageReceived * knockBackReceived / 20;
         if(character.TryGetComponent<SpriteRenderer>(out SpriteRenderer rend))
         {
@@ -60,6 +67,11 @@ public class CharacterDamaged : IState
 
     public IState Update()
     {
+        if(characterBody.velocity.x < 0)
+            character.GetComponent<SpriteRenderer>().flipX = false;
+        else if(characterBody.velocity.x > 0)
+            character.GetComponent<SpriteRenderer>().flipX = true;
+        
         hitstunTimer -= Time.deltaTime;
 
         if(hitstunTimer > 0f)
