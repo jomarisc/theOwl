@@ -61,7 +61,7 @@ public class PlayerDodge : IState
         player.dodgeAbility.dodgeDuration = -1f;
         animator.SetBool("dodging", false);
 
-        player.dodgeAbility.PerformDodge();
+        player.dodgeAbility.LeaveDodge();
         player.input.Gameplay.UseActiveSkill.Enable();
     }
 
