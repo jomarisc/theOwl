@@ -26,8 +26,8 @@ public class PlayerDodge : IState
     public void Enter()
     {
         // use ground dodge animation here:
+        animator.Play("PlayerDodge");
 
-        // playerRenderer.color.SetColor("_Color", Color.black);
         playerColor.a = player.dodgeAbility.alpha;
         playerRenderer.color = playerColor;
         player.dodgeAbility.dodgeDuration = player.dodgeAbility.fullDuration; //  player.DODGE_DURATION;
@@ -46,7 +46,6 @@ public class PlayerDodge : IState
             playerBody.drag = player.dodgeAbility.DRAG;
             playerBody.AddForce(new Vector3(direction * player.dodgeAbility.PUSH_FORCE, 0f, 0f), ForceMode.VelocityChange);
         }
-        animator.SetBool("dodging", true);
 
         player.dodgeAbility.PerformDodge();
         player.input.Gameplay.UseActiveSkill.Disable();
@@ -59,7 +58,6 @@ public class PlayerDodge : IState
         playerBody.useGravity = true;
         playerBody.drag = 1.0f;
         player.dodgeAbility.dodgeDuration = -1f;
-        animator.SetBool("dodging", false);
 
         player.dodgeAbility.LeaveDodge();
         player.input.Gameplay.UseActiveSkill.Enable();
@@ -82,9 +80,7 @@ public class PlayerDodge : IState
 
         // Check for glide input
         if(input.Gameplay.Glide.triggered)
-        {
             return new PlayerGlide(player, PlayerGlide.glideType.Down);
-        }
 
         // If the player has jumped and is still airborne
         // Should be changed to a airborne walk state instead

@@ -12,7 +12,6 @@ public class PlayerTether : IState
     private Vector3 tetherDirection;
     private float tetherLength;
     private float angle;
-    //References to animator and sprite renderer.
     private Animator animator;
     private SpriteRenderer spriterenderer;
 
@@ -23,7 +22,6 @@ public class PlayerTether : IState
         tetherDirection = p.tetherAbility.activeTetherPoint.transform.position - playerRB.position;
         tetherLength = tetherDirection.magnitude;
         angle = Vector3.SignedAngle(tetherDirection, Vector3.up, Vector3.forward) * Mathf.Deg2Rad;
-        //Set those references.
         animator = p.gameObject.GetComponent<Animator>();
         spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
         input = p.input;
@@ -31,14 +29,12 @@ public class PlayerTether : IState
     public void Enter()
     {
         // Enter tether animation code here:
+        animator.Play("PlayerTether");
 
-
-        // player.tetherAbility.gameObject.SetActive(true);
         player.tetherAbility.GetComponent<Renderer>().enabled = true;
         player.tetherAbility.GetComponent<Collider>().enabled = true;
         playerRB.velocity = Vector3.zero;
         playerRB.drag = 0f;
-        animator.SetBool("tethered", true);
 
         input.Gameplay.Tether.started += player.tetherAbility.Untether;
         input.Gameplay.Glide.started += player.tetherAbility.Untether;
@@ -47,10 +43,8 @@ public class PlayerTether : IState
     public void Exit()
     {
         playerRB.drag = 1f;
-        // player.tetherAbility.gameObject.SetActive(false);
         player.tetherAbility.GetComponent<Renderer>().enabled = false;
         player.tetherAbility.GetComponent<Collider>().enabled = false;
-        animator.SetBool("tethered", false);
 
         input.Gameplay.Tether.started -= player.tetherAbility.Untether;
         input.Gameplay.Glide.started -= player.tetherAbility.Untether;
@@ -70,41 +64,26 @@ public class PlayerTether : IState
     {
         //Checking velocity to change sprite direction.
         if (playerRB.velocity.x > 0)
-        {
             spriterenderer.flipX = false;
-        }
         else if (playerRB.velocity.x < 0)
-        {
             spriterenderer.flipX = true;
-        }
-        else
-        {
-
-        }
+        else {}
 
         // Check input for dodging
         if(input.Gameplay.Dodge.triggered && player.data.numDodges > 0)
-        {
             return new PlayerDodge(player);
-        }
 
         // Check input for jumping
         if(input.Gameplay.Jump.triggered)
-        {
             return new PlayerJump(player);
-        }
 
         // Check input for melee attacking
         if(input.Gameplay.Melee.triggered)
-        {
             return new PlayerMelee(player, 0f);
-        }
 
         // Check input for shooting with a projectile
         if(input.Gameplay.ShootProjectile.triggered)
-        {
             return new PlayerShoot(player);
-        }
 
         // Check for glide input
         if(input.Gameplay.Glide.ReadValue<float>() > 0.8f &&

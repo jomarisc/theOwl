@@ -10,6 +10,7 @@ public class PlayerJump : IState
     private Rigidbody playerBody;
     private PlayerInputs input;
     private float horizontalMovement = 0f;
+    private string myAnimationState;
 
     private Animator animator;
     private SpriteRenderer spriterenderer;
@@ -19,20 +20,19 @@ public class PlayerJump : IState
         player = p;
         jump = p.gameObject.GetComponentInChildren<AudioSource>();
         playerBody = p.gameObject.GetComponent<Rigidbody>();
-        //Need to pass references. - Joel
+        myAnimationState = "PlayerJumpUp";
         animator = p.gameObject.GetComponent<Animator>();
         spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
-        
         input = p.input;
     }
     public void Enter()
     {
         // use jump animation here
+        animator.Play(myAnimationState);
     	if(player.data.numJumps > 0){
     		jump.Play();
     	}
         player.Jump();
-        // animator.SetBool("jumpup", true);
 
         input.Gameplay.Tether.started += player.tetherAbility.ActivateTether;
         input.Gameplay.Glide.started += player.FastFall;
@@ -40,9 +40,6 @@ public class PlayerJump : IState
 
     public void Exit()
     {
-        // animator.SetBool("jumpup", false);
-        animator.SetFloat("VerticalMovement", 0f);
-        
         input.Gameplay.Tether.started -= player.tetherAbility.ActivateTether;
         input.Gameplay.Glide.started -= player.FastFall;
     }
@@ -50,35 +47,25 @@ public class PlayerJump : IState
     public void FixedUpdate()
     {
         player.MoveCharacter(horizontalMovement);
-        //Also checking Vertical speed.
-        animator.SetFloat("VerticalMovement", playerBody.velocity.y);
     }
 
     public IState Update()
     {
         // Check input for dodging
         if(input.Gameplay.Dodge.triggered && player.data.numDodges > 0)
-        {
             return new PlayerDodge(player);
-        }
 
         // Check input for double jumping
         if(input.Gameplay.Jump.triggered)
-        {
             return new PlayerJump(player);
-        }
 
         // Check input for melee attacking
         if(input.Gameplay.Melee.triggered)
-        {
             return new PlayerMelee(player, horizontalMovement);
-        }
 
         // Check input for shooting with a projectile
         if(input.Gameplay.ShootProjectile.triggered)
-        {
             return new PlayerShoot(player);
-        }                 
 
         // Check if descending
         if(playerBody.velocity.y <= 0)
@@ -95,10 +82,13 @@ public class PlayerJump : IState
         }
 
         // Check for downwards input
-        if(input.Gameplay.Glide.ReadValue<float>() > 0.975f)
+        if(input.Gameplay.Glide.ReadValue<float>() >= 0.5f)
         {
             if(Mathf.Abs(playerBody.velocity.y) <= 3f)
+            {
+                // animator.Play("PlayerFastFall");
                 return new PlayerMove(player, true);
+            }
 
             return new PlayerGlide(player, PlayerGlide.glideType.Down);
         }
@@ -113,6 +103,12 @@ public class PlayerJump : IState
         {
             player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
             spriterenderer.flipX = !player.data.isFacingRight;
+        }
+
+        if(myAnimationState.Equals("PlayerJumpUp") && playerBody.velocity.y < 0f)
+        {
+            myAnimationState = "PlayerJumpDown";
+            animator.Play(myAnimationState);
         }
         return null;
     }

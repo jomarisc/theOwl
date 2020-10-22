@@ -24,6 +24,7 @@ public class PlayerShoot : IState
     public void Enter()
     {
         // use projectile shooting animation here
+        player.animator.Play("PlayerShoot");
 
         playerCanMove = false;
         int shootingDirection = (player.data.isFacingRight) ? 1 : -1;
@@ -48,24 +49,18 @@ public class PlayerShoot : IState
     public IState Update()
     {
         // Update animation
-        if(player.data.maxSpeed == player.data.airSpeed)
-            player.animator.SetFloat("VerticalMovement", playerBody.velocity.y);
+        // if(player.data.maxSpeed == player.data.airSpeed)
+            // player.animator.SetFloat("VerticalMovement", playerBody.velocity.y);
         if(!projectile.activeInHierarchy)
         {
             // Check for glide input
             if(input.Gameplay.Glide.triggered)
-            {
                 return new PlayerGlide(player, PlayerGlide.glideType.Down);
-            }
 
             if(player.data.maxSpeed == player.data.airSpeed)
-            {
-                return new PlayerMove(player, true); // Change this to specify the airborne version later
-            }
+                return new PlayerMove(player, true);
             else
-            {
                 return new PlayerIdle(player);
-            }
         }
 
         if(projAtk.phase != AttackPhase.Startup)

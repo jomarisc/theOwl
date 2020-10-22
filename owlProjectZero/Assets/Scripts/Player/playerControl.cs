@@ -140,6 +140,7 @@ public class playerControl : Character
         if(Mathf.Abs(rb.velocity.y) <= 3f)
         {
             animator.SetBool("fastfalling", true);
+            animator.Play("PlayerFastFall");
             if(inGuntime)
                 PlayerMove.verticalMovement = FAST_FALL_SPEED * 2;
             else

@@ -23,11 +23,11 @@ public class PlayerMelee : IState
     public void Enter()
     {
         // use melee attack animation here
+        animator.Play("PlayerMelee");
+        player.meleeHit.Play();
 
         meleeAttack.SetActive(true);
         player.Attack();
-        animator.SetBool("meleeing", true);
-        player.meleeHit.Play();
         player.input.Gameplay.UseActiveSkill.Disable();
     }
 
@@ -35,10 +35,7 @@ public class PlayerMelee : IState
     {
         // For assurance that the hitbox gets deactivated
         if(meleeAttack.activeInHierarchy)
-        {
             meleeAttack.SetActive(false);
-        }
-        animator.SetBool("meleeing", false);
         player.input.Gameplay.UseActiveSkill.Enable();
     }
 
@@ -54,19 +51,14 @@ public class PlayerMelee : IState
         {
             // Check input for glide
             if(input.Gameplay.Glide.triggered)
-            {
                 return new PlayerGlide(player, PlayerGlide.glideType.Down);
-            }
             
             if(player.data.maxSpeed == player.data.airSpeed)
-            {
-                return new PlayerMove(player, true); // Specify this to be the airborne version later
-            }
+                return new PlayerMove(player, true);
             else
-            {
                 return new PlayerIdle(player);
-            }
         }
+        
         // No cancels yet
         return null;
     }

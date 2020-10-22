@@ -21,29 +21,24 @@ public class PlayerGlide : IState
         player = p;
         input = p.input;
         method = glideMethod;
-
-        //Assign those references. -Joel
-
         animator = p.gameObject.GetComponent<Animator>();
         spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
     }
     public void Enter()
     {
         // use glide animation here:
-
-        player.GetComponent<Rigidbody>().useGravity = false;
+        animator.Play("PlayerGlide");
 
         // Halt vertical movement
+        player.GetComponent<Rigidbody>().useGravity = false;
         float xMovement = input.Gameplay.MoveX.ReadValue<float>();
         player.GetComponent<Rigidbody>().velocity = new Vector3(xMovement, 0f, 0f);
-        animator.SetBool("gliding", true);
     }
 
     public void Exit()
     {
         // Reset gravity
         player.GetComponent<Rigidbody>().useGravity = true;
-        animator.SetBool("gliding", false);
     }
 
     public void FixedUpdate()
@@ -53,46 +48,29 @@ public class PlayerGlide : IState
     }
 
     public IState Update()
-    {// Check input for exiting glide state while airborne
-        if(method == glideType.Jump)
+    {
+        // Check input for exiting glide state while airborne
+        if((method.Equals(glideType.Jump) && input.Gameplay.Jump.ReadValue<float>() == 0f) ||
+           (method.Equals(glideType.Down) && input.Gameplay.Glide.ReadValue<float>() == 0f))
         {
-            // if(Input.GetButtonUp("Jump"))
-            if(input.Gameplay.Jump.ReadValue<float>() == 0f)
-            {
-                return new PlayerMove(player, true);
-            }
-        }
-        else
-        {
-            if(input.Gameplay.Glide.ReadValue<float>() == 0f)
-            {
-                return new PlayerMove(player, true);
-            }
+            return new PlayerMove(player, true);
         }
 
         // Check input for dodging
         if(input.Gameplay.Dodge.triggered && player.data.numDodges > 0)
-        {
             return new PlayerDodge(player);
-        }
 
         // Check input for jumping
         if(input.Gameplay.Jump.triggered)
-        {
             return new PlayerJump(player);
-        }
 
         // Check input for melee attacking
         if(input.Gameplay.Melee.triggered)
-        {
             return new PlayerMelee(player, horizontalMovement);
-        }
 
         // Check input for shooting with a projectile
         if(input.Gameplay.ShootProjectile.triggered)
-        {
             return new PlayerShoot(player);
-        }
 
         // If jumps get refreshed, i.e. landing on a platform
         if(player.data.maxSpeed == player.data.groundSpeed &&

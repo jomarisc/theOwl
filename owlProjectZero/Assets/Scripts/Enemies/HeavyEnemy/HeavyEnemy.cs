@@ -30,13 +30,15 @@ public class HeavyEnemy : Enemy
     {
         base.Start();
         rb = GetComponent<Rigidbody>();
-        sRenderer = GetComponent<SpriteRenderer>();
+        if(TryGetComponent<SpriteRenderer>(out SpriteRenderer rend)) // This is here bc Mini Boss dun have this component
+            sRenderer = GetComponent<SpriteRenderer>();
     }
 
     new private void Update()
     {
         base.Update();
-        sRenderer.flipX = data.isFacingRight; // WHY IS THIS IN MOVE_CHARACTER
+        if(sRenderer != null) // This is here bc Mini Boss dun have this component
+            sRenderer.flipX = data.isFacingRight;
     }
 
     public override void MoveCharacter(float direction)
