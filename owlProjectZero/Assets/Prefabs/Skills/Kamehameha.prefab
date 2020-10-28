@@ -118,6 +118,9 @@ MonoBehaviour:
     knockback: 0
     knockbackAngle: 0
   isFacingRight: 0
+  startupSFX: {fileID: 2380912721495348086}
+  activeSFX: {fileID: 2380912721495348086}
+  recoverySFX: {fileID: 2380912721495348086}
 --- !u!82 &2380912721495348086
 AudioSource:
   m_ObjectHideFlags: 0
@@ -129,7 +132,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -390,6 +393,9 @@ MonoBehaviour:
     knockback: 10
     knockbackAngle: 45
   isFacingRight: 0
+  startupSFX: {fileID: 3326064899981381954}
+  activeSFX: {fileID: 3326064899981381954}
+  recoverySFX: {fileID: 3326064899981381954}
   rehitRate: 20
 --- !u!82 &3326064899981381954
 AudioSource:
@@ -402,7 +408,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
