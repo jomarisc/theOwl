@@ -95,6 +95,8 @@ public abstract class Attack : MonoBehaviour
         initialLocalPosition = tempLocalPos;
         phase = AttackPhase.Startup;
         initialKnockbackAngle = hitboxes[0].knockbackAngle;
+
+        startupSFX.Play();
     }
 
     protected void OnDisable()
@@ -126,6 +128,7 @@ public abstract class Attack : MonoBehaviour
                 if(phase != AttackPhase.Active)
                 {
                     phase = AttackPhase.Active;
+                    activeSFX.Play();
                     // Debug.Log(phase);
                 }
             }
@@ -137,6 +140,7 @@ public abstract class Attack : MonoBehaviour
             if(phase != AttackPhase.Recovery)
             {
                 phase = AttackPhase.Recovery;
+                recoverySFX.Play();
                 // Debug.Log(phase);
             }
         }
