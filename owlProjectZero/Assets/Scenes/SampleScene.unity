@@ -2759,7 +2759,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330665068}
-  m_LocalRotation: {x: 0.087470785, y: -0.012707574, z: 0.0011159324, w: 0.9960854}
+  m_LocalRotation: {x: 0.08747078, y: -0.012707574, z: 0.0011159324, w: 0.9960854}
   m_LocalPosition: {x: 0, y: 1.5, z: -8.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6714,7 +6714,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.087470785, y: -0.012707574, z: 0.0011159324, w: 0.9960854}
+  m_LocalRotation: {x: 0.08747078, y: -0.012707574, z: 0.0011159324, w: 0.9960854}
   m_LocalPosition: {x: 0, y: 1.5, z: -8.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -11915,8 +11915,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 643.1, y: -300.7}
-  m_SizeDelta: {x: 276.03384, y: 70.141174}
+  m_AnchoredPosition: {x: 683.26, y: -296.42}
+  m_SizeDelta: {x: 195.75131, y: 99.18663}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1854826530
 MonoBehaviour:
@@ -11934,7 +11934,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11943,19 +11943,16 @@ MonoBehaviour:
     m_FontSize: 22
     m_FontStyle: 1
     m_BestFit: 1
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 4
+    m_MinSize: 22
+    m_MaxSize: 22
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pretium
-    mi id consequat imperdiet. Curabitur blandit odio dolor, at pellentesque nibh
-    porttitor sit amet. In fringilla vestibulum felis sed facilisis.
-
-'
+  m_Text: '"Oh yeah no worries, help get the food. Ok.Gonna make a new scene with
+    visuals of the text box. Ok Bye. bye"'
 --- !u!222 &1854826531
 CanvasRenderer:
   m_ObjectHideFlags: 0

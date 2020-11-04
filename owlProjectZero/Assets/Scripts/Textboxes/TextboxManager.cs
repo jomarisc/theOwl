@@ -41,6 +41,7 @@ public class TextboxManager : MonoBehaviour
 
         messageArray = new string[]
         {
+            "Oh yeah no worries, help get the food. Ok. Gonna make a new scene with visuals of the text box. Ok Bye. bye",
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pretium mi id consequat imperdiet. Curabitur blandit odio dolor, at pellentesque nibh porttitor sit amet. In fringilla vestibulum felis sed facilisis.",
             "Hey there!",
             "This is a really cool and useful effect",
