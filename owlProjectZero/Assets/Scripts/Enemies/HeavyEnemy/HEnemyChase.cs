@@ -52,6 +52,9 @@ public class HEnemyChase : IState
     
     public IState Update()
     {
+        if(character.isOnEnvironmentEdge())
+            return new HEnemyIdle(character);
+
         if(playerIsInAttackRange)
             return new HEnemyAttackPrep(character);
 

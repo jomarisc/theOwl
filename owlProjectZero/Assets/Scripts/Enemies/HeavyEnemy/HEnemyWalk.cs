@@ -47,10 +47,11 @@ public class HEnemyWalk : IState
     
     public IState Update()
     {
+        if(character.isOnEnvironmentEdge())
+            return new HEnemyIdle(character);
+
         if(playerFound)
-        {
             return new HEnemyChase(character);
-        }
 
         if(stepsTaken < NUM_STEPS)
         {
