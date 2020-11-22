@@ -45,6 +45,9 @@ public class GEnemyChase : IState
     
     public IState Update()
     {
+        if(character.isOnEnvironmentEdge())
+            return new GEnemyIdle(character);
+        
         if(playerIsInAttackRange || chaseDuration < 0f)
             return new GEnemyAttack(character, horizontalMovement);
 

@@ -8,6 +8,7 @@ public abstract class Enemy : Character
     private Collider myCollider;
     private Vector3 lookingDirection;
     private EnemyDead enemyDeadListener;
+    private bool isNearEdge = true; // 0 = left; 1 = right
 
     [Header("Necessary Attachments")]
     [SerializeField] private GameObject experienceCollectable = null;
@@ -183,5 +184,14 @@ public abstract class Enemy : Character
         enemyClone.transform.position = this.transform.position;
 
         Destroy(this.gameObject);
+    }
+
+    public bool isOnEnvironmentEdge()
+    {
+        float xOffset = data.isFacingRight ? Vector3.Dot(Vector3.right, myCollider.bounds.extents) : Vector3.Dot(-Vector3.right, myCollider.bounds.extents);
+        Vector3 offsetVector = new Vector3(xOffset, 0f, 0f);
+        isNearEdge = !Physics.Raycast(myCollider.bounds.center + offsetVector, Vector3.down, myCollider.bounds.extents.magnitude + 0.01f);
+        Debug.DrawRay(myCollider.bounds.center + offsetVector, Vector3.down * (myCollider.bounds.extents.magnitude + 0.01f), Color.green);
+        return isNearEdge;
     }
 }

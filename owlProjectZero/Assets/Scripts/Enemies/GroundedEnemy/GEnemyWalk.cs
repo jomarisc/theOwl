@@ -41,10 +41,11 @@ public class GEnemyWalk : IState
     
     public IState Update()
     {
+        if(character.isOnEnvironmentEdge())
+            return new GEnemyIdle(character);
+
         if(playerFound)
-        {
             return new GEnemyChase(character);
-        }
 
         if(waitTime >= 0f)
         {

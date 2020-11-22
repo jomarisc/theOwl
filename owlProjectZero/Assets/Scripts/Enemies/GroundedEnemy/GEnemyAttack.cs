@@ -53,11 +53,15 @@ public class GEnemyAttack : IState
     
     public IState Update()
     {
+        if(character.isOnEnvironmentEdge())
+            return new GEnemyIdle(character);
+
         if(hitbox.enabled && animator.GetBool("windingUp"))
         {
             animator.SetBool("windingUp", false);
             animator.SetBool("attacking", true);
         }
+        
         if(!meleeAttack.activeInHierarchy && Mathf.Approximately(characterBody.velocity.magnitude, 0f))
         {
             Debug.Log("Returning to idle");
