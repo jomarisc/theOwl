@@ -30,8 +30,9 @@ public class HeavyEnemy : Enemy
     {
         base.Start();
         rb = GetComponent<Rigidbody>();
-        if(TryGetComponent<SpriteRenderer>(out SpriteRenderer rend)) // This is here bc Mini Boss dun have this component
-            sRenderer = GetComponent<SpriteRenderer>();
+        if(GetComponentInChildren<SpriteRenderer>()) // This is here bc Mini Boss dun have this component
+            sRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     new private void Update()
