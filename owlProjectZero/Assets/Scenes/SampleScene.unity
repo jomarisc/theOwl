@@ -2654,6 +2654,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TetherPoint (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2940613904014915469, guid: 12bdc8a6e2f0d2d4b93055e32bcce84e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12bdc8a6e2f0d2d4b93055e32bcce84e, type: 3}
 --- !u!4 &296804996 stripped
@@ -3110,7 +3115,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330665068}
-  m_LocalRotation: {x: 0.087470695, y: -0.012779784, z: 0.001122275, w: 0.9960845}
+  m_LocalRotation: {x: 0.087472424, y: -0.011144189, z: 0.0009786461, w: 0.9961041}
   m_LocalPosition: {x: 0, y: -5.21, z: -8.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4749,7 +4754,7 @@ PrefabInstance:
     - target: {fileID: 4433203049339731816, guid: fb030aaad8d879b47b3ab0d608bb220c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
         type: 3}
@@ -5544,7 +5549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &619918982
 Transform:
   m_ObjectHideFlags: 0
@@ -8014,6 +8019,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Experience
       objectReference: {fileID: 0}
+    - target: {fileID: 9102680711599866488, guid: 0c7a9e3fe10b9f54595053935f0ef549,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9102680711599866489, guid: 0c7a9e3fe10b9f54595053935f0ef549,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8155,7 +8165,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.087470695, y: -0.012779784, z: 0.001122275, w: 0.9960845}
+  m_LocalRotation: {x: 0.087472424, y: -0.011144189, z: 0.0009786461, w: 0.9961041}
   m_LocalPosition: {x: 0, y: -5.21, z: -8.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -8528,7 +8538,7 @@ PrefabInstance:
     - target: {fileID: 2940613904014915469, guid: 12bdc8a6e2f0d2d4b93055e32bcce84e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12bdc8a6e2f0d2d4b93055e32bcce84e, type: 3}
@@ -9883,7 +9893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1157794946
 Transform:
   m_ObjectHideFlags: 0
@@ -10862,6 +10872,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Experience
       objectReference: {fileID: 0}
+    - target: {fileID: 9102680711599866488, guid: 0c7a9e3fe10b9f54595053935f0ef549,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9102680711599866489, guid: 0c7a9e3fe10b9f54595053935f0ef549,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10940,7 +10955,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1327733762
 Transform:
   m_ObjectHideFlags: 0
@@ -11330,6 +11345,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TetherPoint (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2940613904014915469, guid: 12bdc8a6e2f0d2d4b93055e32bcce84e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12bdc8a6e2f0d2d4b93055e32bcce84e, type: 3}
@@ -11910,7 +11930,7 @@ PrefabInstance:
     - target: {fileID: 4433203049339731816, guid: fb030aaad8d879b47b3ab0d608bb220c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
         type: 3}
@@ -15201,6 +15221,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Experience
+      objectReference: {fileID: 0}
+    - target: {fileID: 9102680711599866488, guid: 0c7a9e3fe10b9f54595053935f0ef549,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9102680711599866489, guid: 0c7a9e3fe10b9f54595053935f0ef549,
         type: 3}

@@ -7,6 +7,8 @@ public class HEnemyAttack : IState
     private readonly HeavyEnemy character;
     private Rigidbody characterBody;
     private GameObject meleeAttack;
+
+    public AudioSource heavyMelee;
     
     public HEnemyAttack(Enemy myself)
     {
@@ -22,6 +24,7 @@ public class HEnemyAttack : IState
         
         meleeAttack.SetActive(true);
         character.Attack();
+        heavyMelee.Play();
     }
 
     public void Exit()

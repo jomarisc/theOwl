@@ -11,7 +11,6 @@ public class HeavyEnemy : Enemy
 
     // public fields
 
-
     // Initializing maxJumps, maxDodges, dodgeDuration, and deadDuration
     public HeavyEnemy() // : base(1, 0, 3f)
     {}
