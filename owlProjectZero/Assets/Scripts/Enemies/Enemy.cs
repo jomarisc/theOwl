@@ -8,6 +8,7 @@ public abstract class Enemy : Character
     private Collider myCollider;
     private Vector3 lookingDirection;
     private EnemyDead enemyDeadListener;
+    private Room myRoom = null;
 
     [Header("Necessary Attachments")]
     [SerializeField] private GameObject experienceCollectable = null;
@@ -20,7 +21,6 @@ public abstract class Enemy : Character
     [SerializeField] private float eyePrescription = 0f;
     public float collectableSpawnRange = 1.0f;
     public LayerMask targetLayer;
-
     public static int totalEnemies = 0;
     public static int numDefeatedEnemies = 0;
 
@@ -33,6 +33,12 @@ public abstract class Enemy : Character
     public Enemy()
     {
         lookingDirection = Vector3.zero;
+    }
+
+    void OnDisable()
+    {
+        if(myRoom != null)
+            myRoom.enemyColliders.Remove(myCollider);
     }
 
     protected void Start()
@@ -51,6 +57,15 @@ public abstract class Enemy : Character
     new protected void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if(col.gameObject.TryGetComponent(out Room room))
+        {
+            myRoom = col.GetComponent<Room>();
+            myRoom.enemyColliders.Add(myCollider);
+        }
     }
 
     public virtual bool SeesPlayer()
