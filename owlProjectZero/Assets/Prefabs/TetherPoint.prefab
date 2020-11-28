@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2940613904014915468}
   - component: {fileID: 2524375320177448868}
   - component: {fileID: 440893125}
+  - component: {fileID: 1213118329187329244}
   m_Layer: 8
   m_Name: TetherPoint
   m_TagString: Untagged
@@ -42,7 +43,7 @@ SphereCollider:
   m_GameObject: {fileID: 2940613904014915469}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
@@ -73,6 +74,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -108,3 +110,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1213118329187329244
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940613904014915469}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 10, z: 0}
+  m_Center: {x: 0, y: -4.5, z: 0}
