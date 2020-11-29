@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,11 +13,17 @@ public class TextboxManager : MonoBehaviour
     private PlayerInputs input;
     public string[] messageArray;
     public string message;
+    private int messageIndex;
+
+    private GameObject textbox;
 
     // Start is called before the first frame update
     void Awake()
     {
         messageText = transform.Find("message").Find("messageText").GetComponent<Text>();
+        // New
+        textbox = GameObject.Find("message");
+        textbox.SetActive(false);
         // Note: When sound is needed, uncomment this code
         talkingAudioSource = transform.Find("messageSound").GetComponent<AudioSource>();
         
@@ -38,7 +45,8 @@ public class TextboxManager : MonoBehaviour
             TextWriter.AddWriter_Static(messageText, message, 0.1f, true);
         };
         */
-
+        
+        /* Old way of loading in a message
         messageArray = new string[]
         {
             "Oh yeah no worries, help get the food. Ok. Gonna make a new scene with visuals of the text box. Ok Bye. bye",
@@ -48,9 +56,15 @@ public class TextboxManager : MonoBehaviour
             "The textbox is typing itself",
             "Did you know that this text is typing itself?",
         };
+        */
 
-        message = messageArray[Random.Range(0, messageArray.Length)];
-
+        // New way of loading in a message
+        messageArray = File.ReadAllLines("../owlProjectZero/Assets/Scripts/Textboxes/Dialogue/text_1.txt");
+        
+        //message = messageArray[Random.Range(0, messageArray.Length)];
+        //messageLastIndex = (messageArray.Length) - 1;
+        messageIndex = 0;
+        message = messageArray[messageIndex];
     }
 
     void Update()
@@ -64,7 +78,29 @@ public class TextboxManager : MonoBehaviour
             }
             else
             {
-                message = messageArray[Random.Range(0, messageArray.Length)];
+                // Upon pressing interact button, set textbox to active
+                textbox.SetActive(true);
+
+                //message = messageArray[Random.Range(0, messageArray.Length)];
+                //Debug.Log("messageArray.Length" + messageArray.Length);
+                //Debug.Log("BEFORE messageIndex: " + messageIndex);
+                //Debug.Log("AFTER messageIndex: " + messageIndex);
+                
+                //Set message to a specific position in the array 
+                message = messageArray[messageIndex];
+                // Check if current message is not the last message
+                if (messageIndex < (messageArray.Length)-1) {
+                    // Increment position in the array to go to the next message
+                    messageIndex++;
+                // If the current message is the last, reset message to the first message
+                } 
+                else if (messageIndex == (messageArray.Length)-1) {
+                    // Reset the message index
+                    messageIndex = 0;
+                    // Set textbox to not active after reaching last line
+                    textbox.SetActive(false);
+                }
+                
                 // Note: When sound is needed uncomment this code
                 //talkingAudioSource.Play();
                 StartTalkingSound();
