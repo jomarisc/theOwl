@@ -24,7 +24,7 @@ public class UnlockCondition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ConditionIsSatisfied(type))
+        if(myRoom.isLocked && ConditionIsSatisfied(type))
             myRoom.Deactivate();
     }
 
@@ -37,6 +37,7 @@ public class UnlockCondition : MonoBehaviour
     // Given the type of unlock condition, check if the condition is satisfied
     bool ConditionIsSatisfied(UnlockType ut)
     {
+
         switch(ut)
         {
             case UnlockType.DefeatAll:
@@ -62,6 +63,13 @@ public class UnlockCondition : MonoBehaviour
     
     bool DefeatAllIsSatisfied()
     {
-        return myRoom.enemyColliders.Count <= 0;
+        // bool noMoreEnemies = false;
+        // foreach (var enemy in myRoom.enemyColliders)
+        // {
+        //     if(enemy != null)
+        //         return false;
+        // }
+        // noMoreEnemies = true;
+        return myRoom.enemyColliders.Count <= 0; // || noMoreEnemies;
     }
 }

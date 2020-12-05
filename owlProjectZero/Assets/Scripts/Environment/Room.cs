@@ -13,6 +13,7 @@ public class Room : MonoBehaviour
     [SerializeField] private Collider rightWall = null;
     public bool isLocked = false;
     public List<Collider> enemyColliders { get; private set; }
+    public List<AIController> enemyAIManagers;
 
     void Awake()
     {
@@ -30,6 +31,10 @@ public class Room : MonoBehaviour
         if(col.gameObject.TryGetComponent(out playerControl player))
         {
             SetLock(true);
+            foreach (var AIComponent in enemyAIManagers)
+            {
+                AIComponent.EnableBehavior();
+            }
         }
         // else if(col.gameObject.TryGetComponent(out Enemy enemy))
         // {
@@ -43,16 +48,16 @@ public class Room : MonoBehaviour
         // }
     }
 
-    // private void OnTriggerExit(Collider col)
-    // {
-    //     if(col.gameObject.TryGetComponent(out Enemy enemy))
-    //     {
-    //         if(!enemyColliders.Contains(col))
-    //         {
-    //             enemyColliders.Remove(col);
-    //         }
-    //     }
-    // }
+    private void OnTriggerExit(Collider col)
+    {
+        if(col.gameObject.TryGetComponent(out playerControl player))
+        {
+            foreach (var AIComponent in enemyAIManagers)
+            {
+                AIComponent.DisableBehavior();
+            }
+        }
+    }
 
     // // Might have performance issues due to calling GetComponent
     // private void OnTriggerStay(Collider col)

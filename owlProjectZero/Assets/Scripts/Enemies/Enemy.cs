@@ -37,7 +37,7 @@ public abstract class Enemy : Character
 
     void OnDisable()
     {
-        if(myRoom != null)
+        if(myRoom == null)
             myRoom.enemyColliders.Remove(myCollider);
     }
 
@@ -65,6 +65,8 @@ public abstract class Enemy : Character
         {
             myRoom = col.GetComponent<Room>();
             myRoom.enemyColliders.Add(myCollider);
+            Debug.Log("Adding me self into the enemy list ye");
+            Debug.Break();
         }
     }
 
