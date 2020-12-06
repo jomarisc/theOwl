@@ -9,6 +9,7 @@ public class Room : MonoBehaviour
     // private int unlockCounter = 0; // This variable is used for
     //                                // counting down certain unlock conditions
     private Collider box;
+    [SerializeField] private NextScene[] Exits = null;
     [SerializeField] private Collider leftWall = null;
     [SerializeField] private Collider rightWall = null;
     public bool isLocked = false;
@@ -75,8 +76,13 @@ public class Room : MonoBehaviour
 
     public void SetLock(bool isLocked)
     {
-        leftWall.enabled = isLocked;
-        rightWall.enabled = isLocked;
+        foreach (var exit in Exits)
+        {
+            // We can assume each NextScene object has a collider bc it requires one
+            exit.GetComponent<Collider>().enabled = !isLocked;
+        }
+        // leftWall.enabled = isLocked;
+        // rightWall.enabled = isLocked;
         this.isLocked = isLocked;
     }
 
@@ -84,8 +90,13 @@ public class Room : MonoBehaviour
     // the unlock condition has already been met
     public void Deactivate()
     {
-        leftWall.enabled = false;
-        rightWall.enabled = false;
+        foreach (var exit in Exits)
+        {
+            // We can assume each NextScene object has a collider bc it requires one
+            exit.GetComponent<Collider>().enabled = true;
+        }
+        // leftWall.enabled = false;
+        // rightWall.enabled = false;
         isLocked = false;
         Debug.Log("Room unlocked!");
         // Debug.Break();
