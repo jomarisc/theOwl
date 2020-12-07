@@ -25,6 +25,15 @@ public class Room : MonoBehaviour
     void Start()
     {
         box = GetComponent<Collider>();
+        // If isLocked has been set to true in the inspector
+        if(isLocked)
+        {
+            SetLock(true);
+            foreach (var AIComponent in enemyAIManagers)
+            {
+                AIComponent.EnableBehavior();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider col)
@@ -55,6 +64,7 @@ public class Room : MonoBehaviour
         {
             foreach (var AIComponent in enemyAIManagers)
             {
+                Debug.Log("Disabling behavior");
                 AIComponent.DisableBehavior();
             }
         }
