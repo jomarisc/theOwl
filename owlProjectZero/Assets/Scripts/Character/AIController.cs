@@ -23,7 +23,7 @@ public class AIController : MonoBehaviour
 
     void OnBecameVisible()
     {
-        if(myRoom == null)
+        if(myRoom == null || myRoom.isLocked)
             myBehavior.enabled = true;
         else
             myBehavior.enabled = false;

@@ -6,13 +6,16 @@ using UnityEngine;
 [RequireComponent(typeof(UnlockCondition))]
 public class Room : MonoBehaviour
 {
-    // private int unlockCounter = 0; // This variable is used for
-    //                                // counting down certain unlock conditions
     private Collider box;
+    [SerializeField] private NextScene[] Exits = null;
+    [Tooltip("Collider that will block the left side of the locked room as the room gets locked")]
     [SerializeField] private Collider leftWall = null;
+    [Tooltip("Collider that will block the right side of the locked room as the room gets locked")]
     [SerializeField] private Collider rightWall = null;
+    [Tooltip("Is the room already locked when the scene starts?")]
     public bool isLocked = false;
     public List<Collider> enemyColliders { get; private set; }
+    [HideInInspector]
     public List<AIController> enemyAIManagers;
 
     void Awake()
@@ -24,6 +27,15 @@ public class Room : MonoBehaviour
     void Start()
     {
         box = GetComponent<Collider>();
+        // If isLocked has been set to true in the inspector
+        if(isLocked)
+        {
+            SetLock(true);
+            foreach (var AIComponent in enemyAIManagers)
+            {
+                AIComponent.EnableBehavior();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider col)
@@ -36,16 +48,6 @@ public class Room : MonoBehaviour
                 AIComponent.EnableBehavior();
             }
         }
-        // else if(col.gameObject.TryGetComponent(out Enemy enemy))
-        // {
-        //     if(!enemyColliders.Contains(col))
-        //     {
-        //         enemyColliders.Add(col);
-        //         Debug.Log("Added enemy to enemy list");
-        //         Debug.Log("Num Enemies in room:" + enemyColliders.Count);
-        //         Debug.Break();
-        //     }
-        // }
     }
 
     private void OnTriggerExit(Collider col)
@@ -54,29 +56,23 @@ public class Room : MonoBehaviour
         {
             foreach (var AIComponent in enemyAIManagers)
             {
+                Debug.Log("Disabling behavior");
                 AIComponent.DisableBehavior();
             }
         }
     }
 
-    // // Might have performance issues due to calling GetComponent
-    // private void OnTriggerStay(Collider col)
-    // {
-    //     // Check if obj has Enemy script attached to it
-    //     if(col.gameObject.TryGetComponent(out Enemy enemy))
-    //     {
-    //         // Check if obj is not in list of enemies
-    //         if(!enemyColliders.Contains(col))
-    //         {
-    //             enemyColliders.Add(col);
-    //         }
-    //     }
-    // }
-
     public void SetLock(bool isLocked)
     {
-        leftWall.enabled = isLocked;
-        rightWall.enabled = isLocked;
+        foreach (var exit in Exits)
+        {
+            // We can assume each NextScene object has a collider bc it requires one
+            exit.GetComponent<Collider>().enabled = !isLocked;
+        }
+        if(leftWall != null)
+            leftWall.enabled = isLocked;
+        if(rightWall != null)
+            rightWall.enabled = isLocked;
         this.isLocked = isLocked;
     }
 
@@ -84,8 +80,15 @@ public class Room : MonoBehaviour
     // the unlock condition has already been met
     public void Deactivate()
     {
-        leftWall.enabled = false;
-        rightWall.enabled = false;
+        foreach (var exit in Exits)
+        {
+            // We can assume each NextScene object has a collider bc it requires one
+            exit.GetComponent<Collider>().enabled = true;
+        }
+        if(leftWall != null)
+            leftWall.enabled = false;
+        if(rightWall != null)
+            rightWall.enabled = false;
         isLocked = false;
         Debug.Log("Room unlocked!");
         // Debug.Break();
