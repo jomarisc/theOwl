@@ -650,12 +650,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 021060f8855f66f41b1cca64d7297505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &101344854 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 7902885689478314626, guid: 4231c323f13b0f04c8f9042d525953dc,
-    type: 3}
-  m_PrefabInstance: {fileID: 509864835}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &123493676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,7 +1021,7 @@ PrefabInstance:
         type: 3}
       propertyPath: leftWall
       value: 
-      objectReference: {fileID: 101344854}
+      objectReference: {fileID: 0}
     - target: {fileID: 5086272362565805085, guid: e994b47b84933094395193c94851186b,
         type: 3}
       propertyPath: Exits.Array.data[0]
