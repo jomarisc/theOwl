@@ -10,10 +10,14 @@ public class Room : MonoBehaviour
     //                                // counting down certain unlock conditions
     private Collider box;
     [SerializeField] private NextScene[] Exits = null;
+    [Tooltip("Collider that will block the left side of the locked room as the room gets locked")]
     [SerializeField] private Collider leftWall = null;
+    [Tooltip("Collider that will block the right side of the locked room as the room gets locked")]
     [SerializeField] private Collider rightWall = null;
+    [Tooltip("Is the room already locked when the scene starts?")]
     public bool isLocked = false;
     public List<Collider> enemyColliders { get; private set; }
+    [HideInInspector]
     public List<AIController> enemyAIManagers;
 
     void Awake()
