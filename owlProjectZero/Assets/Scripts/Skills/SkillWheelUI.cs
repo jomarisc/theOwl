@@ -16,6 +16,7 @@ public class SkillWheelUI : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.Find("player").GetComponent<playerControl>();
         slots = GetComponentsInChildren<Button>(true);
     }
 
