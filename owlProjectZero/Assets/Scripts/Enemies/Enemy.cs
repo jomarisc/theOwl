@@ -36,6 +36,11 @@ public abstract class Enemy : Character
         lookingDirection = Vector3.zero;
     }
 
+    void OnEnable()
+    {
+        enemyCounter = GameObject.Find("GameplayCanvas/EnemyCounter").GetComponent<Text>();
+    }
+
     void OnDisable()
     {
         if(myRoom != null)
@@ -46,6 +51,7 @@ public abstract class Enemy : Character
     {
         totalEnemies++;
         myCollider = GetComponent<Collider>();
+        enemyCounter = GameObject.Find("GameplayCanvas/EnemyCounter").GetComponent<Text>();
     }
 
     // Update is called once per frame
