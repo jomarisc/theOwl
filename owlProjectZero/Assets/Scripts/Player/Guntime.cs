@@ -35,6 +35,11 @@ public class Guntime : MonoBehaviour
         player.input.Gameplay.Guntime.started -= ToggleGuntime;
     }
 
+    void Start()
+    {
+        guntimeMeter = GameObject.Find("GameplayCanvas/UIDiamonds/GuntimeBar/GuntimeMeter").GetComponent<Image>();
+    }
+
     // Update is called once per frame
     void Update()
     {
