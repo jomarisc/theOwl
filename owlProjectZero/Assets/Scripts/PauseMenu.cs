@@ -27,6 +27,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pausemenu.SetActive(false);
+        player = GameObject.Find("player");
         pc = player.GetComponent<playerControl>();
     }
 
