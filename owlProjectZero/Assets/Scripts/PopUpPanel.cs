@@ -9,6 +9,7 @@ public class PopUpPanel : MonoBehaviour
 
     void OnEnable()
     {
+        player = GameObject.Find("player").GetComponent<playerControl>();
         player.input.Gameplay.Disable();
     }
 
