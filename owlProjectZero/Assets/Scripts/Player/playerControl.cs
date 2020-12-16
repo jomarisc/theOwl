@@ -89,6 +89,7 @@ public class playerControl : Character
         animator = GetComponent<Animator>();
         // New line
         levelSystem = new LevelSystem();
+        levelWindow = GameObject.Find("GameplayCanvas/LevelWindow").GetComponent<LevelWindow>();
         levelWindow.SetLevelSystem(levelSystem);
         
         if (myState == null)
@@ -99,6 +100,10 @@ public class playerControl : Character
         rb = GetComponent<Rigidbody>();
         dodgeAbility.dodgeDuration = -1f;
         MAX_STAMANA = data.remainingStamana;
+
+        healthbar = GameObject.Find("GameplayCanvas/HealthBar_BG").GetComponent<HealthbarController>();
+        stamanaMeter = GameObject.Find("GameplayCanvas/UIDiamonds/StamanaBar/StamanaBarForeground").GetComponent<Image>();
+        skillTreeWindow = GameObject.Find("GameplayCanvas").GetComponent<SkillTreeWindow>();
     }
 
     // Update is called once per frame
