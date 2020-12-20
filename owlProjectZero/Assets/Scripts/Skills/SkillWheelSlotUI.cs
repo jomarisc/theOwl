@@ -21,6 +21,7 @@ public class SkillWheelSlotUI : MonoBehaviour
     
     void OnEnable()
     {
+        equippedSkills = GameObject.Find("player/EquippedSkills").GetComponent<EquippedSkills>();
         myIcon.sprite = equippedSkills.skills[slotNumber - 1].GetIcon();
     }
 

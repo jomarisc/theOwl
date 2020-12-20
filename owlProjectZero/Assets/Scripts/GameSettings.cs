@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameSettings : MonoBehaviour
 {
+    private GameObject gameplayCanvas;
     public Text defeatedEnemies;
     public GameObject areaClearScreen;
 
@@ -21,6 +22,8 @@ public class GameSettings : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 144;
+        gameplayCanvas = GameObject.Find("GameplayCanvas");
+        areaClearScreen = gameplayCanvas.transform.Find("AreaClearNotification").gameObject;
     }
 
     // Update is called once per frame
