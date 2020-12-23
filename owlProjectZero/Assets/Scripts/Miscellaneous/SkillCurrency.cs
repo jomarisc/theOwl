@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillCollectable : Collectable
+public class SkillCurrency : Collectable
 {
     void OnTriggerEnter(Collider col)
     {
