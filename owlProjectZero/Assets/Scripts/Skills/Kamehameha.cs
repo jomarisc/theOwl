@@ -17,6 +17,12 @@ public class Kamehameha : Skill
         type = SkillType.Offensive;
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        user = GetComponentInParent<Character>();
+    }
+
     public override bool UseSkill()
     {
         if(cooldown >= maxCooldown)
