@@ -1323,7 +1323,7 @@ MonoBehaviour:
   currentSkill: {fileID: 5925952698634190059}
   skills:
   - {fileID: 5925952698634190059}
-  - {fileID: 0}
+  - {fileID: 3813825858370299877}
   - {fileID: 8839621157108353849}
   - {fileID: 3921424513570868424}
 --- !u!1 &8548501586489388540
@@ -1766,6 +1766,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6397256142586130408}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3813825858370299877 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7794307053854672909, guid: 0084c0bf6f31bcb42969f8dd4d0cf06e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6397256142586130408}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e670938817f1a4b8932fdd5149abb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6503552083574310085
 PrefabInstance:
   m_ObjectHideFlags: 0
