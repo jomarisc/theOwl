@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class TestMenu : MonoBehaviour
 {
+    [SerializeField] private int nextScene;
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(nextScene);
     }
 
     public void QuitGame()
