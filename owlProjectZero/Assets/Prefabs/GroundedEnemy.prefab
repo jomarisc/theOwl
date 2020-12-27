@@ -29,6 +29,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -89,7 +90,7 @@ MonoBehaviour:
     groundSpeed: 2
     airSpeed: 1.5
     jumpDistance: 4
-    isFacingRight: 0
+    isFacingRight: 1
     hasSuperArmor: 0
     remainingStamana: 0
   basicAttack: {fileID: 5606137153869537670}
