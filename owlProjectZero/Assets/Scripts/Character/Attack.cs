@@ -18,6 +18,7 @@ public struct HitboxData
 }
 
 [RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(AudioSource))]
 public abstract class Attack : MonoBehaviour
 {
     // private fields
@@ -36,6 +37,11 @@ public abstract class Attack : MonoBehaviour
     public Vector3 initialLocalPosition { get; private set; }
     public float initialKnockbackAngle { get; private set; }
     public AttackPhase phase { get; private set; }
+
+    [Header("Audio Sources")]
+    public AudioSource startupSFX;
+    public AudioSource activeSFX;
+    public AudioSource recoverySFX;
 
     // Constructors for attack with only 1 hitbox
     public Attack(float dmg, int start, int active, int lag, float kb, float angle)
@@ -89,6 +95,8 @@ public abstract class Attack : MonoBehaviour
         initialLocalPosition = tempLocalPos;
         phase = AttackPhase.Startup;
         initialKnockbackAngle = hitboxes[0].knockbackAngle;
+
+        startupSFX.Play();
     }
 
     protected void OnDisable()
@@ -120,6 +128,7 @@ public abstract class Attack : MonoBehaviour
                 if(phase != AttackPhase.Active)
                 {
                     phase = AttackPhase.Active;
+                    activeSFX.Play();
                     // Debug.Log(phase);
                 }
             }
@@ -131,6 +140,7 @@ public abstract class Attack : MonoBehaviour
             if(phase != AttackPhase.Recovery)
             {
                 phase = AttackPhase.Recovery;
+                recoverySFX.Play();
                 // Debug.Log(phase);
             }
         }
