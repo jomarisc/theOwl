@@ -175,6 +175,8 @@ MonoBehaviour:
   startupSFX: {fileID: 7983162157191192845}
   activeSFX: {fileID: 7983162157191192845}
   recoverySFX: {fileID: 7983162157191192845}
+  onCharacterHitSFX: {fileID: 7983162157191192845}
+  onEnvironmentHitSFX: {fileID: 7983162157191192845}
 --- !u!23 &6647000754721416773
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -421,6 +423,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3685062507063603794, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: onCharacterHitSFX
+      value: 
+      objectReference: {fileID: 8905776026618618206}
+    - target: {fileID: 3685062507063603794, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: onEnvironmentHitSFX
+      value: 
+      objectReference: {fileID: 8905776026618618206}
     - target: {fileID: 4474135542371462771, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: m_Name
@@ -461,6 +473,16 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9041947088031959903, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: onCharacterHitSFX
+      value: 
+      objectReference: {fileID: 1416039698053253030}
+    - target: {fileID: 9041947088031959903, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: onEnvironmentHitSFX
+      value: 
+      objectReference: {fileID: 1416039698053253030}
     m_RemovedComponents:
     - {fileID: 8941075271256628945, guid: a94cdbb1a371e434da94986eea1d80d4, type: 3}
     - {fileID: 5492792926999471545, guid: a94cdbb1a371e434da94986eea1d80d4, type: 3}
@@ -475,6 +497,18 @@ GameObject:
 --- !u!4 &8048465035459543472 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1635083202522667732, guid: a94cdbb1a371e434da94986eea1d80d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8719285318242900836}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &8905776026618618206 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 186534142042667578, guid: a94cdbb1a371e434da94986eea1d80d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8719285318242900836}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1416039698053253030 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7685348055905033410, guid: a94cdbb1a371e434da94986eea1d80d4,
     type: 3}
   m_PrefabInstance: {fileID: 8719285318242900836}
   m_PrefabAsset: {fileID: 0}

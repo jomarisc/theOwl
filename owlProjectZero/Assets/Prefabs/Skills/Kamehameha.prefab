@@ -121,6 +121,8 @@ MonoBehaviour:
   startupSFX: {fileID: 2380912721495348086}
   activeSFX: {fileID: 2380912721495348086}
   recoverySFX: {fileID: 2380912721495348086}
+  onCharacterHitSFX: {fileID: 2380912721495348086}
+  onEnvironmentHitSFX: {fileID: 2380912721495348086}
 --- !u!82 &2380912721495348086
 AudioSource:
   m_ObjectHideFlags: 0
@@ -396,6 +398,8 @@ MonoBehaviour:
   startupSFX: {fileID: 3326064899981381954}
   activeSFX: {fileID: 3326064899981381954}
   recoverySFX: {fileID: 3326064899981381954}
+  onCharacterHitSFX: {fileID: 3326064899981381954}
+  onEnvironmentHitSFX: {fileID: 3326064899981381954}
   rehitRate: 20
 --- !u!82 &3326064899981381954
 AudioSource:
