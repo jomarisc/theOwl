@@ -25,8 +25,7 @@ public abstract class Attack : MonoBehaviour
 
     // protected fields
     [Header("General")]
-    [SerializeField]
-    protected HitboxData[] hitboxes;
+    [SerializeField] protected HitboxData[] hitboxes;
     protected float startupDuration;
     protected float activeDuration;
     protected float recoveryDuration;
@@ -42,6 +41,8 @@ public abstract class Attack : MonoBehaviour
     public AudioSource startupSFX;
     public AudioSource activeSFX;
     public AudioSource recoverySFX;
+    public AudioSource onCharacterHitSFX;
+    public AudioSource onEnvironmentHitSFX;
 
     // Constructors for attack with only 1 hitbox
     public Attack(float dmg, int start, int active, int lag, float kb, float angle)
@@ -159,6 +160,7 @@ public abstract class Attack : MonoBehaviour
     protected void OnTriggerEnter(Collider col)
     {
         ApplyHitboxInteraction(col);
+        PlayOnHitSFX(col);
     }
 
     // Initializes hitbox data for a given attack
@@ -230,6 +232,15 @@ public abstract class Attack : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void PlayOnHitSFX(Collider col)
+    {
+        if(col.TryGetComponent(out Character c))
+            onCharacterHitSFX.Play();
+        
+        if(col.TryGetComponent(out EnvironmentElement ee))
+            onEnvironmentHitSFX.Play();
     }
 
     // Convert a magnitude and direction into a force in the form of a Vector3

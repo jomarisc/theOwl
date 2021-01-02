@@ -250,6 +250,8 @@ MonoBehaviour:
   startupSFX: {fileID: 7266456132269884767}
   activeSFX: {fileID: 7266456132269884767}
   recoverySFX: {fileID: 7266456132269884767}
+  onCharacterHitSFX: {fileID: 7266456132269884767}
+  onEnvironmentHitSFX: {fileID: 7266456132269884767}
   myShooter: {fileID: 2529497728352103109}
   speed: 20
 --- !u!54 &3628072577002676175
@@ -1498,6 +1500,8 @@ MonoBehaviour:
   startupSFX: {fileID: 5055821379980162570}
   activeSFX: {fileID: 5055821379980162570}
   recoverySFX: {fileID: 5055821379980162570}
+  onCharacterHitSFX: {fileID: 5055821379980162570}
+  onEnvironmentHitSFX: {fileID: 5055821379980162570}
 --- !u!23 &8034529978317327705
 MeshRenderer:
   m_ObjectHideFlags: 0

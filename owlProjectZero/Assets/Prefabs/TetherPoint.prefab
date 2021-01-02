@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2940613904014915468}
   - component: {fileID: 2524375320177448868}
   - component: {fileID: 440893125}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: TetherPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,6 +73,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
