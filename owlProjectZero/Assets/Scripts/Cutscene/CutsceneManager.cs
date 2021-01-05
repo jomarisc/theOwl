@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class CutsceneManager : MonoBehaviour
 {
-    private CutsceneCollision localCutsceneCollider;
+    private CutsceneCollider localCutsceneCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         // Continue from here: 12/30/2020
-        localCutsceneCollider = GetComponent<CutsceneCollision>();
+        localCutsceneCollider = GetComponent<CutsceneCollider>();
     }
 
     // Update is called once per frame
