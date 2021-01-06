@@ -7,8 +7,8 @@ public class CutsceneManager : MonoBehaviour
 {
     private CutsceneCollider localCutsceneCollider;
     private Character[] characters;
-    private GameObject gameplayCanvas;
-    private GameObject cutsceneCanvas;
+    private Canvas gameplayCanvas;
+    private Canvas cutsceneCanvas;
 
     void Awake()
     {
@@ -21,8 +21,8 @@ public class CutsceneManager : MonoBehaviour
     {
         // Continue from here: 12/30/2020
         localCutsceneCollider = GetComponent<CutsceneCollider>();
-        gameplayCanvas = GameObject.Find("GameplayCanvas");
-        cutsceneCanvas = GameObject.Find("CutsceneCanvas");
+        gameplayCanvas = GameObject.Find("GameplayCanvas").GetComponent<Canvas>();
+        cutsceneCanvas = GameObject.Find("CutsceneCanvas").GetComponent<Canvas>();
     }
 
     // Update is called once per frame
@@ -32,18 +32,32 @@ public class CutsceneManager : MonoBehaviour
     }
 
     // This freeze/unfreezes Game Object Behaviors
-    void ToggleCharacterBehaviors(bool active)
+    public void ToggleCharacterBehaviors(bool active)
     {
         foreach (Character actor in characters)
             actor.enabled = active;
     }
 
     // This swaps the HUD from GameplayCanvas to CutsceneCanvas and vice-versa
-    void SwapCanvas()
+    public void SwapCanvas()
     {
         // The two canvases should never be active at the same time,
         // so toggling both canvases should funciton the same as a swap
-        gameplayCanvas.SetActive(!gameplayCanvas.activeInHierarchy);
-        cutsceneCanvas.SetActive(!cutsceneCanvas.activeInHierarchy);
+        gameplayCanvas.enabled = !gameplayCanvas.enabled;
+        cutsceneCanvas.enabled = !cutsceneCanvas.enabled;
+    }
+
+    // This enables the CutsceneCanvas and disables the GameplayCanvas
+    public void UseCutsceneCanvas()
+    {
+        gameplayCanvas.enabled = false;
+        cutsceneCanvas.enabled = true;
+    }
+    
+    // This enables the GameplayCanvas and disables the CutsceneCanvas
+    public void UseGameplayCanvas()
+    {
+        cutsceneCanvas.enabled = false;
+        gameplayCanvas.enabled = true;
     }
 }
