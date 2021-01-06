@@ -6,6 +6,13 @@ using UnityEngine;
 public class CutsceneManager : MonoBehaviour
 {
     private CutsceneCollider localCutsceneCollider;
+    private Character[] characters;
+
+    void Awake()
+    {
+        // Get all character objects in the scene
+        characters = GameObject.FindObjectsOfType<Character>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -20,5 +27,12 @@ public class CutsceneManager : MonoBehaviour
         
     }
 
-    
+    // This freezes Game Object Behaviors
+    void StopCharacterBehaviors()
+    {
+        foreach (Character actor in characters)
+        {
+            actor.enabled = false;
+        }
+    }
 }
