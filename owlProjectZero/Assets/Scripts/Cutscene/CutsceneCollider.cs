@@ -20,6 +20,7 @@ public class CutsceneCollider : MonoBehaviour
     void OnTriggerEnter() 
     {
         Debug.Log("Entered CutsceneCollider");
+        manager.enabled = true;
         manager.ToggleCharacterBehaviors(false);
         manager.UseCutsceneCanvas();
     }
