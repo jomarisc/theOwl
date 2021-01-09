@@ -57,7 +57,7 @@ public class PlayerDead : IState
            player.data.maxSpeed == player.data.groundSpeed &&
            playerBody.velocity.y == 0f)
         {
-            myAnimationState = "PlayerDead";
+            myAnimationState = "PlayerDeath";
             animator.Play(myAnimationState);
         }
 
