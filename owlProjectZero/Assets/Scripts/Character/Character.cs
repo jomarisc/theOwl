@@ -62,6 +62,11 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         
     }
+
+    public void Start()
+    {
+    	rb = GetComponent<Rigidbody>();
+    }
     
     public virtual void Update()
     {
