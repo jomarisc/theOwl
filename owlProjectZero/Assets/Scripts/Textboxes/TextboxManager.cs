@@ -26,6 +26,8 @@ public class TextboxManager : MonoBehaviour
         textbox.SetActive(false);
         // Note: When sound is needed, uncomment this code
         talkingAudioSource = transform.Find("messageSound").GetComponent<AudioSource>();
+
+        input = new PlayerInputs();
         
         // Code Monkey Reference Code
         //transform.Find("message").GetComponent<Button_UI>().ClickFunc = () =>
@@ -65,6 +67,16 @@ public class TextboxManager : MonoBehaviour
         //messageLastIndex = (messageArray.Length) - 1;
         messageIndex = 0;
         message = messageArray[messageIndex];
+    }
+
+    void OnEnable()
+    {
+        input.Enable();
+    }
+
+    void OnDisable()
+    {
+        input.Disable();
     }
 
     void Update()
@@ -122,7 +134,7 @@ public class TextboxManager : MonoBehaviour
 
     void Start()
     {
-        input = GameObject.Find("player").GetComponent<playerControl>().input;
+        // input = GameObject.Find("player").GetComponent<playerControl>().input;
         //messageText.text = "Hello world!";
         //textWriter.AddWriter(messageText, "Hello World!", 1f);
         //textWriter.AddWriter(messageText, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pretium mi id consequat imperdiet. Curabitur blandit odio dolor, at pellentesque nibh porttitor sit amet. In fringilla vestibulum felis sed facilisis.", .1f, true);
