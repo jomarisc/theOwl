@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [System.Serializable]
@@ -9,6 +10,7 @@ public struct CutsceneAction
 {
     public Character actor;
     public AnimationClip action;
+    public UnityEvent performThese;
 }
 
 [System.Serializable]
@@ -72,12 +74,13 @@ public class CutsceneManager : MonoBehaviour
         CutsceneAction[] directions = stageDirections[stageDirection].directions;
         foreach (CutsceneAction direction in directions)
         {
-            string myAction = direction.action.name;
-            Animator myAnimator = direction.actor.animator;
-            if(myAnimator == null)
-                Debug.Break();
-            myAnimator.Play(myAction);
-            Debug.Log(myAnimator.gameObject.name + " is performing " + myAction);
+            // string myAction = direction.action.name;
+            // Animator myAnimator = direction.actor.animator;
+            // if(myAnimator == null)
+            //     Debug.Break();
+            // myAnimator.Play(myAction);
+            // Debug.Log(myAnimator.gameObject.name + " is performing " + myAction);
+            direction.performThese.Invoke();
         }
         // for(int i = 0; i < directions.Length; i++)
         // {
