@@ -14,11 +14,23 @@ public struct CutsceneAction
 }
 
 [System.Serializable]
+public struct Jumpcut
+{
+    public Transform obj;
+    public Vector3 coordinates;
+    public bool willRotate;
+    public Vector3 rotation;
+}
+
+[System.Serializable]
 public struct CutsceneSequence
 {
     // public Vector3 cameraPosition;
     // public Vector3 cameraAngle;
-    public CutsceneAction[] directions;
+    // public CutsceneAction[] directions;
+    public UnityEvent performThese;
+    // [Tooltip("This is for when Transform.LookAt() doesn't do the job")]
+    // public Jumpcut[] jumpcuts;
 }
 
 public class CutsceneManager : MonoBehaviour
@@ -60,7 +72,7 @@ public class CutsceneManager : MonoBehaviour
         localCutsceneCollider = GetComponent<CutsceneCollider>();
         gameplayCanvas = GameObject.Find("GameplayCanvas").GetComponent<Canvas>();
         cutsceneCanvas = GameObject.Find("CutsceneCanvas").GetComponent<Canvas>();
-        this.enabled = false;
+        // this.enabled = false;
     }
 
     // Update is called once per frame
@@ -71,17 +83,27 @@ public class CutsceneManager : MonoBehaviour
 
     private void PlaySequence(int stageDirection)
     {
-        CutsceneAction[] directions = stageDirections[stageDirection].directions;
-        foreach (CutsceneAction direction in directions)
-        {
-            // string myAction = direction.action.name;
-            // Animator myAnimator = direction.actor.animator;
-            // if(myAnimator == null)
-            //     Debug.Break();
-            // myAnimator.Play(myAction);
-            // Debug.Log(myAnimator.gameObject.name + " is performing " + myAction);
-            direction.performThese.Invoke();
-        }
+        stageDirections[stageDirection].performThese.Invoke();
+        // Jumpcut[] jumpcuts = stageDirections[stageDirection].jumpcuts;
+        // foreach(Jumpcut jumpcut in jumpcuts)
+        // {
+        //     // Teleport/Jumpcut the object to a specified coordinate
+        //     jumpcut.obj.position = jumpcut.coordinates;
+        //     // Rotate the object if necessary
+        //     if(jumpcut.willRotate)
+        //         jumpcut.obj.eulerAngles = jumpcut.rotation;
+        // }
+        // CutsceneAction[] directions = stageDirections[stageDirection].directions;
+        // foreach (CutsceneAction direction in directions)
+        // {
+        //     // string myAction = direction.action.name;
+        //     // Animator myAnimator = direction.actor.animator;
+        //     // if(myAnimator == null)
+        //     //     Debug.Break();
+        //     // myAnimator.Play(myAction);
+        //     // Debug.Log(myAnimator.gameObject.name + " is performing " + myAction);
+        //     direction.performThese.Invoke();
+        // }
         // for(int i = 0; i < directions.Length; i++)
         // {
         //     string action = directions[i].action.name;
