@@ -7,6 +7,7 @@ using UnityEngine.Playables;
 [RequireComponent(typeof(Collider))]
 public class NextScene : MonoBehaviour
 {
+    private static List<NextScene> sceneTriggers = new List<NextScene>();
     private playerControl player;
     private PlayableDirector myDirector;
     [Tooltip("Timeline asset for entering a new scene")]
@@ -17,6 +18,7 @@ public class NextScene : MonoBehaviour
 
     void Awake()
     {
+        sceneTriggers.Add(this);
         player = GameObject.Find("player").GetComponent<playerControl>();
         player.enabled = false;
 
@@ -43,8 +45,24 @@ public class NextScene : MonoBehaviour
 
     void LoadNextScene(PlayableDirector director)
     {
+        // Remove all other scene triggers from list of scene triggers and destroy them
+        int i = 0;
+        while(i < sceneTriggers.Count)
+        {
+            if(sceneTriggers[i] != this)
+            {
+                Destroy(sceneTriggers[i].gameObject);
+                sceneTriggers.Remove(sceneTriggers[i]);
+            }
+            i++;
+        }
+
+        // Load next scene
         if(director == myDirector)
             SceneManager.LoadSceneAsync(sceneIndex);
+        
+        // Finally, destroy this one
+        sceneTriggers.Remove(this);
         Destroy(this.gameObject);
     }
 
