@@ -58,7 +58,7 @@ public class KamehamehaBlast : IState
         hitbox.height = newHeight;
         beamSprite.transform.localScale = new Vector3(newHeight * 3, 6f, 1f);
         offset = new Vector3(newHeight / 2, 0f, 0f);
-        beamRootSprite.transform.localPosition = (user.data.isFacingRight) ? shiftedCenter + offset : shiftedCenter - offset;
+        beamRootSprite.transform.localPosition = shiftedCenter + offset;
     }
 
     public IState Update()
