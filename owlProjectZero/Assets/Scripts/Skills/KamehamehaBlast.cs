@@ -40,10 +40,10 @@ public class KamehamehaBlast : IState
         beamSprite.transform.localPosition = Vector3.zero;
         beamSprite.transform.localScale = new Vector3(1f, 6f, 1f);
         beamRootSprite.transform.localPosition = Vector3.zero;
+        beamRootSprite.gameObject.SetActive(false);
         if(blast.gameObject.activeInHierarchy)
         {
             blast.gameObject.SetActive(false);
-            beamRootSprite.gameObject.SetActive(false);
         }
     }
 
