@@ -37,10 +37,13 @@ public class NextScene : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        myDirector.playableAsset = endTransition;
-        myDirector.Play();
-        player.enabled = false;
-        myDirector.stopped += LoadNextScene;
+        if(col.TryGetComponent(out playerControl p))
+        {
+            myDirector.playableAsset = endTransition;
+            myDirector.Play();
+            player.enabled = false;
+            myDirector.stopped += LoadNextScene;
+        }
     }
 
     void LoadNextScene(PlayableDirector director)
