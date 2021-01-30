@@ -25,7 +25,7 @@ public class GEnemyAttack : IState
     {
         // Enter grounded enemy walk animation here:
         animator.SetBool("windingUp", true);
-        
+        character.windUp.Play();
         characterBody.velocity = Vector3.zero;
         meleeAttack.SetActive(true);
         character.Attack();
@@ -60,6 +60,7 @@ public class GEnemyAttack : IState
         {
             animator.SetBool("windingUp", false);
             animator.SetBool("attacking", true);
+            character.sfxMelee.Play();
         }
         
         if(!meleeAttack.activeInHierarchy && Mathf.Approximately(characterBody.velocity.magnitude, 0f))
