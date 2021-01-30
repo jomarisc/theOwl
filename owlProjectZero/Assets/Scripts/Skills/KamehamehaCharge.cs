@@ -12,8 +12,9 @@ public class KamehamehaCharge : IState
     private SpriteRenderer beamRootSprite;
     private float initialChargeDuration;
     private float chargeDuration;
+    private float growthRate;
     
-    public KamehamehaCharge(Character c, GameObject ce, Attack b, SpriteRenderer br, float cd)
+    public KamehamehaCharge(Character c, GameObject ce, Attack b, SpriteRenderer br, float cd, float gr)
     {
         user = c;
         chargedEnergy = ce;
@@ -21,6 +22,7 @@ public class KamehamehaCharge : IState
         beamRootSprite = br;
         initialChargeDuration = cd;
         chargeDuration = cd;
+        growthRate = gr;
     }
 
     public void Enter()
@@ -57,6 +59,6 @@ public class KamehamehaCharge : IState
             return null;
         }
         // return new KamehamehaBlast(user);
-        return new KamehamehaBlast(user, beam, beamRootSprite);
+        return new KamehamehaBlast(user, beam, beamRootSprite, growthRate);
     }
 }

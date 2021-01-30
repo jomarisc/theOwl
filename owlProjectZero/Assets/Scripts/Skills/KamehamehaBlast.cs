@@ -9,14 +9,16 @@ public class KamehamehaBlast : IState
     private CapsuleCollider hitbox;
     private SpriteRenderer beamSprite;
     private SpriteRenderer beamRootSprite;
+    private float growthRate;
     
-    public KamehamehaBlast(Character c, Attack b, SpriteRenderer br)
+    public KamehamehaBlast(Character c, Attack b, SpriteRenderer br, float gr)
     {
         user = c;
         blast = b;
         hitbox = b.GetComponent<CapsuleCollider>();
         beamSprite = b.GetComponentInChildren<SpriteRenderer>();
         beamRootSprite = br;
+        growthRate = gr;
     }
 
     public void Enter()
@@ -47,7 +49,7 @@ public class KamehamehaBlast : IState
 
     public void FixedUpdate()
     {
-        Vector3 offset = new Vector3(0.1f, 0f, 0f);
+        Vector3 offset = new Vector3(growthRate, 0f, 0f);
         Vector3 shiftedCenter = (user.data.isFacingRight) ? hitbox.center + offset : hitbox.center - offset;
         hitbox.center = shiftedCenter;
         beamSprite.transform.localPosition = shiftedCenter;
