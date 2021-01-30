@@ -22,6 +22,7 @@ public class playerControl : Character
     public AudioSource projectileShoot;
     public AudioSource projectileHit;
     public AudioSource meleeHit;
+    public AudioSource deathSfx;
     
     [Header("Player-Specific Abilites")]
     public Dodge dodgeAbility;
