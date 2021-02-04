@@ -136,7 +136,8 @@ public class CutsceneManager : MonoBehaviour
     public void ToggleCharacterBehaviors(bool active)
     {
         foreach (Character actor in characters)
-            actor.enabled = active;
+            if(actor != null)
+                actor.enabled = active;
     }
 
     // This swaps the HUD from GameplayCanvas to CutsceneCanvas and vice-versa
