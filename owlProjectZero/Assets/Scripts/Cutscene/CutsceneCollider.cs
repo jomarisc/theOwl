@@ -23,5 +23,6 @@ public class CutsceneCollider : MonoBehaviour
         manager.enabled = true;
         manager.ToggleCharacterBehaviors(false);
         manager.UseCutsceneCanvas();
+        GetComponent<Collider>().enabled = false;
     }
 }
