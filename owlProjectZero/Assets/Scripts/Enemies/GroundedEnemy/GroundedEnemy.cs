@@ -10,7 +10,8 @@ public class GroundedEnemy : Enemy
     // protected fields
 
     // public fields
-
+    public AudioSource sfxMelee;
+    public AudioSource windUp;
 
     // Initializing maxJumps, maxDodges, dodgeDuration
     public GroundedEnemy() // : base(0, 1, 3f)

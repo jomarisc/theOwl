@@ -23,6 +23,7 @@ public class PlayerDead : IState
     {
         myAnimationState = "PlayerHurt";
         animator.Play(myAnimationState);
+        player.deathSfx.Play();
 
         player.GetComponent<SpriteRenderer>().color = Color.red;
         player.data.deadDuration = player.CONSTANTS.DEAD_DURATION;
