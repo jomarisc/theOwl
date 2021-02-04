@@ -41,6 +41,7 @@ public class CutsceneManager : MonoBehaviour
     private Canvas gameplayCanvas;
     private Canvas cutsceneCanvas;
     public PlayerInputs input;
+    [SerializeField] private TextboxManager txtManager;
     public CutsceneSequence[] stageDirections; // The cutscene manager will iterate through this
                                                // array as the player progresses through the text
 
@@ -48,18 +49,20 @@ public class CutsceneManager : MonoBehaviour
     {
         // Get all character objects in the scene
         characters = GameObject.FindObjectsOfType<Character>();
-        input = new PlayerInputs();
+        input = GameObject.Find("player").GetComponent<playerControl>().input;
     }
 
     void OnEnable()
     {
         input.Enable();
-        input.UI.Activate.started += NextSequence;
+        // input.Cutscene.Proceed.started += NextSequence;
+        txtManager.OnNextMessage += NextSequence;
     }
 
     void OnDisable()
     {
-        input.UI.Activate.started -= NextSequence;
+        // input.Cutscene.Proceed.started -= NextSequence;
+        txtManager.OnNextMessage -= NextSequence;
         input.Disable();
         ToggleCharacterBehaviors(true);
         UseGameplayCanvas();
@@ -111,7 +114,7 @@ public class CutsceneManager : MonoBehaviour
         // }
     }
 
-    private void NextSequence(InputAction.CallbackContext context)
+    private void NextSequence()
     {
         if(currentStageDirection == stageDirections.Length)
             this.enabled = false;
@@ -120,6 +123,13 @@ public class CutsceneManager : MonoBehaviour
             PlaySequence(currentStageDirection);
             currentStageDirection++;
         }
+    }
+
+    // Callback function for when you want to proceed to
+    // the next cutscene sequence after detecting player input
+    private void NextSequence(InputAction.CallbackContext context)
+    {
+        NextSequence();
     }
 
     // This freeze/unfreezes Game Object Behaviors
@@ -143,6 +153,7 @@ public class CutsceneManager : MonoBehaviour
     {
         gameplayCanvas.enabled = false;
         cutsceneCanvas.enabled = true;
+        NextSequence();
     }
     
     // This enables the GameplayCanvas and disables the CutsceneCanvas
