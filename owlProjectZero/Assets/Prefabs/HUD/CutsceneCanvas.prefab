@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -790, y: -132}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 195.75131, y: 99.18663}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &343440205712260247
@@ -142,6 +142,9 @@ MonoBehaviour:
   - Did you know that this text is typing itself?
   message: Oh yeah no worries, help get the food. Ok. Gonna make a new scene with
     visuals of the text box. Ok Bye. bye
+  messageFile: {fileID: 4900000, guid: d7802da1ff9b00442a9e41e734aee9ba, type: 3}
+  manualActivation: 0
+  canFireNextMessageEvent: 1
 --- !u!1 &343440206186251534
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +179,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -823, y: -166}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &343440206319815262
@@ -213,7 +216,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -830.16003, y: -131.97995}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 286.28363, y: 112.85028}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &343440206319815259
