@@ -151,15 +151,19 @@ public class CutsceneManager : MonoBehaviour
     // This enables the CutsceneCanvas and disables the GameplayCanvas
     public void UseCutsceneCanvas()
     {
-        gameplayCanvas.enabled = false;
-        cutsceneCanvas.enabled = true;
+        if(gameplayCanvas != null)
+            gameplayCanvas.enabled = false;
+        if(cutsceneCanvas != null)
+            cutsceneCanvas.enabled = true;
         NextSequence();
     }
     
     // This enables the GameplayCanvas and disables the CutsceneCanvas
     public void UseGameplayCanvas()
     {
-        cutsceneCanvas.enabled = false;
-        gameplayCanvas.enabled = true;
+        if(cutsceneCanvas != null)
+            cutsceneCanvas.enabled = false;
+        if(gameplayCanvas != null)
+            gameplayCanvas.enabled = true;
     }
 }
