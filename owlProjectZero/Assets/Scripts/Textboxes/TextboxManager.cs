@@ -28,8 +28,6 @@ public class TextboxManager : MonoBehaviour
         messageText = transform.Find("message").Find("messageText").GetComponent<Text>();
         // New
         textbox = GameObject.Find("message");
-        // if(manualActivation)
-        //     textbox.SetActive(false);
         // Note: When sound is needed, uncomment this code
         talkingAudioSource = transform.Find("messageSound").GetComponent<AudioSource>();
 
@@ -75,11 +73,6 @@ public class TextboxManager : MonoBehaviour
         // Debug.Log(messageFile);
         messageArray = messageFile.text.Split('\n');
         message = messageArray[messageIndex];
-        foreach(string line in messageArray)
-        {
-            Debug.Log(line);
-        }
-        // Debug.Break();
     }
 
     void OnEnable()
