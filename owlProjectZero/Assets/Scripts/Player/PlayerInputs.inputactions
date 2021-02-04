@@ -985,6 +985,66 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Cutscene",
+            "id": "00e99ca9-b0a0-4780-9b53-d0a88332f370",
+            "actions": [
+                {
+                    "name": "Proceed",
+                    "type": "Button",
+                    "id": "12b9d214-59b3-46b7-83fc-9f83a61db333",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "18b837e4-d8d5-45f0-8abd-2a1b283bc941",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Proceed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a8dfb3b-8a64-4937-bb96-c1fe0d1cb268",
+                    "path": "<DualShockGamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Proceed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1d488d88-4f4e-45aa-8538-9d3a72b86a33",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Proceed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5f22b346-58da-4ed9-8b8c-29c989c07f19",
+                    "path": "<SwitchProControllerHID>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Proceed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
