@@ -7,7 +7,7 @@ public class AIController : MonoBehaviour
     private Character myBehavior;
     private Room myRoom = null;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         myBehavior = gameObject.GetComponent<Character>();
     }
