@@ -25,7 +25,13 @@ public class KamehamehaBlast : IState
     {
         blast.gameObject.SetActive(true);
         beamRootSprite.gameObject.SetActive(true);
+        float direction = (user.data.isFacingRight) ? 1 : -1;
+        beamSprite.transform.localPosition = new Vector3(direction * 0.5f, 0, 0);
+        beamSprite.size = new Vector2(direction * 1f, 1.28f);
+        beamRootSprite.transform.localPosition = new Vector3(direction * 1.6f, 0, 0);
+        beamRootSprite.flipX = !user.data.isFacingRight;
         user.Attack(blast.gameObject);
+        hitbox.center = new Vector3(direction * 0.75f, 0, 0);
         // user.Attack(); // Should change attack method to take in
                           // a GameObject to change positions
 
@@ -36,10 +42,11 @@ public class KamehamehaBlast : IState
     public void Exit()
     {
         hitbox.center = Vector3.zero;
-        hitbox.height = 2f;
-        beamSprite.transform.localPosition = Vector3.zero;
-        beamSprite.transform.localScale = new Vector3(1f, 6f, 1f);
-        beamRootSprite.transform.localPosition = Vector3.zero;
+        hitbox.height = 3.5f;
+        // beamSprite.transform.localPosition = Vector3.zero;
+        // beamSprite.transform.localScale = new Vector3(1f, 1.5f, 1f);
+        // beamSprite.size = new Vector2(1f, 1.28f);
+        // beamRootSprite.transform.localPosition = Vector3.zero;
         beamRootSprite.gameObject.SetActive(false);
         if(blast.gameObject.activeInHierarchy)
         {
@@ -52,13 +59,19 @@ public class KamehamehaBlast : IState
         Vector3 offset = new Vector3(growthRate, 0f, 0f);
         Vector3 shiftedCenter = (user.data.isFacingRight) ? hitbox.center + offset : hitbox.center - offset;
         hitbox.center = shiftedCenter;
-        beamSprite.transform.localPosition = shiftedCenter;
+        // beamSprite.transform.localPosition = shiftedCenter;
 
-        float newHeight = (user.data.isFacingRight) ? shiftedCenter.x * 2 + 1 : shiftedCenter.x * 2 - 1;
-        hitbox.height = newHeight;
-        beamSprite.transform.localScale = new Vector3(newHeight * 3, 6f, 1f);
-        offset = new Vector3(newHeight / 2, 0f, 0f);
-        beamRootSprite.transform.localPosition = shiftedCenter + offset;
+        float formula = hitbox.height + 2 * growthRate;
+        hitbox.height = formula;
+        // beamSprite.transform.localScale = new Vector3(formula * 3, 1.5f, 1f);
+        int growthDirection = (user.data.isFacingRight) ? 1 : -1;
+        formula = beamSprite.size[0] + 2 * growthRate * growthDirection;
+        beamSprite.size = new Vector2(formula, 1.28f);
+        shiftedCenter = beamSprite.transform.localPosition + offset * growthDirection;
+        beamSprite.transform.localPosition = shiftedCenter;
+        // offset = new Vector3(formula / 2, 0f, 0f);
+        shiftedCenter = beamRootSprite.transform.localPosition + 2 * offset * growthDirection;
+        beamRootSprite.transform.localPosition = shiftedCenter;
     }
 
     public IState Update()
