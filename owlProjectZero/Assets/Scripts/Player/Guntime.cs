@@ -37,7 +37,7 @@ public class Guntime : MonoBehaviour
 
     void Start()
     {
-        guntimeMeter = GameObject.Find("GameplayCanvas/UIDiamonds/GuntimeBar/GuntimeMeter").GetComponent<Image>();
+        guntimeMeter = GameObject.Find("GameplayCanvas/PlayerInfo/GTBackground/GTFill").GetComponent<Image>();
     }
 
     // Update is called once per frame
