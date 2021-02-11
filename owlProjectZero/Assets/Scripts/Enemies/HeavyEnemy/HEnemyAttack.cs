@@ -19,7 +19,7 @@ public class HEnemyAttack : IState
     {
         // Enter grounded enemy walk animation here:
         character.animator.Play("HeavyAttack");
-        
+        character.heavyMelee.Play();
         meleeAttack.SetActive(true);
         character.Attack();
     }
