@@ -10,7 +10,8 @@ public class HeavyEnemy : Enemy
     // protected fields
 
     // public fields
-
+    public AudioSource heavyJump;
+    public AudioSource heavyMelee;
 
     // Initializing maxJumps, maxDodges, dodgeDuration, and deadDuration
     public HeavyEnemy() // : base(1, 0, 3f)
