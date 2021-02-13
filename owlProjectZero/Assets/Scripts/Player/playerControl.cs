@@ -58,9 +58,9 @@ public class playerControl : Character
     {
         input = new PlayerInputs();
         numCurrency = 0;
-        levelWindow = GameObject.Find("GameplayCanvas/LevelWindow").GetComponent<LevelWindow>();
-        healthbar = GameObject.Find("GameplayCanvas/HealthBar_BG").GetComponent<HealthbarController>();
-        stamanaMeter = GameObject.Find("GameplayCanvas/UIDiamonds/StamanaBar/StamanaBarForeground").GetComponent<Image>();
+        levelWindow = GameObject.Find("GameplayCanvas/PlayerInfo/BottomLeftBars").GetComponent<LevelWindow>();
+        healthbar = GameObject.Find("GameplayCanvas/PlayerInfo/HPBackground").GetComponent<HealthbarController>();
+        stamanaMeter = GameObject.Find("GameplayCanvas/PlayerInfo/SPBackground/SPFill").GetComponent<Image>();
         skillTreeWindow = GameObject.Find("GameplayCanvas").GetComponent<SkillTreeWindow>();
     }
 
