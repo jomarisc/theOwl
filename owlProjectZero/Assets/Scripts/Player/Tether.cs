@@ -33,21 +33,15 @@ public class Tether : MonoBehaviour
     
     public void TetherSwing(float tetherLength, Vector3 tetherDirection, float theta)
     {
-        float playerWeight = rb.mass * Physics.gravity.magnitude;
-        if(player.inGuntime)
-            playerWeight *= 6f;
-        Vector3 tension = Mathf.Cos(theta) * playerWeight * tetherLength * tensionFactor * tetherDirection.normalized;
-        rb.AddForce(tension, forceMode); // Tension
-        Debug.DrawLine(rb.position, rb.position + tension, Color.red);
-
-        Vector3 tempTether = tetherDirection;
-        Vector3 pendulumForce = Vector3.down;
-        Vector3.OrthoNormalize(ref tempTether, ref pendulumForce);
-        pendulumForce *= (Mathf.Cos(theta) * playerWeight);
-        rb.AddForce(pendulumForce, forceMode); // Tangential Force
-        Debug.DrawLine(rb.position, rb.position + pendulumForce, Color.blue);
-
-        Debug.DrawLine(rb.position, rb.position + rb.velocity);
+        switch(activeTetherPoint.tetherType)
+        {
+            case TetherPoint.TetherMethod.Vertical:
+                PerformVerticalTether(tetherLength, tetherDirection, theta);
+                break;
+            default:
+                PerformOriginalTether(tetherLength, tetherDirection, theta);
+                break;
+        }
     }
 
     public void ActivateTether(InputAction.CallbackContext context)
@@ -70,5 +64,44 @@ public class Tether : MonoBehaviour
             IState movingState = new PlayerMove(player, true);
             player.GoToState(movingState);
         }
+    }
+
+    public void PerformOriginalTether(float tetherLength, Vector3 tetherDirection, float theta)
+    {
+        float playerWeight = rb.mass * Physics.gravity.magnitude;
+        if(player.inGuntime)
+            playerWeight *= 6f;
+        Vector3 tension = Mathf.Cos(theta) * playerWeight * tetherLength * tensionFactor * tetherDirection.normalized;
+        rb.AddForce(tension, forceMode); // Tension
+        Debug.DrawLine(rb.position, rb.position + tension, Color.red);
+
+        Vector3 tempTether = tetherDirection;
+        Vector3 pendulumForce = Vector3.down;
+        Vector3.OrthoNormalize(ref tempTether, ref pendulumForce);
+        pendulumForce *= (Mathf.Cos(theta) * playerWeight);
+        rb.AddForce(pendulumForce, forceMode); // Tangential Force
+        Debug.DrawLine(rb.position, rb.position + pendulumForce, Color.blue);
+
+        Debug.DrawLine(rb.position, rb.position + rb.velocity);
+    }
+
+    public void PerformVerticalTether(float tetherLength, Vector3 tetherDirection, float theta)
+    {
+        float playerWeight = rb.mass * Physics.gravity.magnitude;
+        if(player.inGuntime)
+            playerWeight *= 6f;
+        Vector3 tension = (playerWeight * tetherLength * tensionFactor * tetherDirection.normalized) / 2;
+        rb.AddForce(tension, forceMode); // Tension
+        Debug.DrawLine(rb.position, rb.position + tension, Color.red);
+        Debug.DrawLine(rb.position, rb.position + tetherDirection, Color.green);
+
+        // Vector3 tempTether = tetherDirection;
+        // Vector3 pendulumForce = Vector3.down;
+        // Vector3.OrthoNormalize(ref tempTether, ref pendulumForce);
+        // pendulumForce *= (Mathf.Cos(theta) * playerWeight);
+        // rb.AddForce(pendulumForce, forceMode); // Tangential Force
+        // Debug.DrawLine(rb.position, rb.position + pendulumForce, Color.blue);
+
+        // Debug.DrawLine(rb.position, rb.position + rb.velocity);
     }
 }
