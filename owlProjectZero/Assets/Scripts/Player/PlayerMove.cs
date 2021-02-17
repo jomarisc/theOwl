@@ -128,14 +128,23 @@ public class PlayerMove : IState
         }
 
         horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();
-        if(Mathf.Abs(horizontalMovement) > 0 || isFlying)
+        // if(Mathf.Abs(horizontalMovement) > 0 || isFlying)
+        // {
+        //     player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
+        //     spriterenderer.flipX = !player.data.isFacingRight;
+        //     return null;
+        // }
+        // else
+        if(horizontalMovement == 0f && !isFlying)
+            return new PlayerIdle(player);
+        
+        if(Mathf.Abs(horizontalMovement) > 0)
         {
             player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
             spriterenderer.flipX = !player.data.isFacingRight;
-            return null;
         }
-        else
-            return new PlayerIdle(player);
+
+        return null;
     }
 
     public void Glide(InputAction.CallbackContext context)
