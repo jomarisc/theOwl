@@ -502,6 +502,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 8027395720447553460, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9041947088031959903, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: onCharacterHitSFX
