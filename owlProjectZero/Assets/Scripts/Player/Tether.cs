@@ -94,14 +94,5 @@ public class Tether : MonoBehaviour
         rb.AddForce(tension, forceMode); // Tension
         Debug.DrawLine(rb.position, rb.position + tension, Color.red);
         Debug.DrawLine(rb.position, rb.position + tetherDirection, Color.green);
-
-        // Vector3 tempTether = tetherDirection;
-        // Vector3 pendulumForce = Vector3.down;
-        // Vector3.OrthoNormalize(ref tempTether, ref pendulumForce);
-        // pendulumForce *= (Mathf.Cos(theta) * playerWeight);
-        // rb.AddForce(pendulumForce, forceMode); // Tangential Force
-        // Debug.DrawLine(rb.position, rb.position + pendulumForce, Color.blue);
-
-        // Debug.DrawLine(rb.position, rb.position + rb.velocity);
     }
 }
