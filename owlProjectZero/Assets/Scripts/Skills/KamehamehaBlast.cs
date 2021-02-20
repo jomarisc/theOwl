@@ -23,6 +23,7 @@ public class KamehamehaBlast : IState
 
     public void Enter()
     {
+        user.animator.Play("KamehamehaBlast");
         blast.gameObject.SetActive(true);
         beamRootSprite.gameObject.SetActive(true);
         float direction = (user.data.isFacingRight) ? 1 : -1;

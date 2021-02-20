@@ -27,6 +27,7 @@ public class KamehamehaCharge : IState
 
     public void Enter()
     {
+        user.animator.Play("KamehamehaCharge");
         chargedEnergy.SetActive(true);
         user.Attack(chargedEnergy);
         // chargedEnergy.transform.localScale *= chargedEnergyScale;
