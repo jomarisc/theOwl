@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileAttack : Attack
 {
     Rigidbody rb;
+    private SpriteRenderer sp;
     // public const float INITIAL_SPEED = 12f;
     [SerializeField] private Character myShooter = null;
     public float speed;
@@ -18,6 +19,7 @@ public class ProjectileAttack : Attack
     {
         base.Start();
         rb = GetComponent<Rigidbody>();
+        sp = GetComponentInChildren<SpriteRenderer>();
     }
     new void OnEnable()
     {
@@ -63,5 +65,6 @@ public class ProjectileAttack : Attack
 
         speed = myShooter.GetComponent<Rigidbody>().velocity.x + direction * speed;
         isFacingRight = myShooter.data.isFacingRight;
+        sp.flipX = !myShooter.data.isFacingRight;
     }
 }
