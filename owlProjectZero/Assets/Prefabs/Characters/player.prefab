@@ -148,7 +148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3833136570062418944
 Transform:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
   hitboxes:
   - shape: {fileID: 3644888110674613087}
     damage: 1
-    startup: 0
+    startup: 1
     timeActive: 15
     recovery: 1
     knockback: 4
