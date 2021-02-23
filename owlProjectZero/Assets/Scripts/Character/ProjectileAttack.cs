@@ -14,12 +14,16 @@ public class ProjectileAttack : Attack
     ProjectileAttack(float dmg, int start, int active, int lag, float kb, float angle) : base(dmg, start, active, lag, kb, angle)
     {}
 
+    void Awake()
+    {
+        sp = GetComponentInChildren<SpriteRenderer>();
+    }
+
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
         rb = GetComponent<Rigidbody>();
-        sp = GetComponentInChildren<SpriteRenderer>();
     }
     new void OnEnable()
     {
@@ -31,12 +35,21 @@ public class ProjectileAttack : Attack
     {
         base.OnDisable();
         speed = mySpeed;
+        sp.enabled = false;
     }
 
     new void FixedUpdate()
     {
         base.FixedUpdate();
-        rb.velocity = new Vector3(speed, 0f, 0f);
+        if(phase == AttackPhase.Active)
+        {
+            rb.velocity = new Vector3(speed, 0f, 0f);
+            if(!sp.enabled)
+            {
+                int shootingDirection = (myShooter.data.isFacingRight) ? 1 : -1;
+                SpawnProjectile(shootingDirection);
+            }
+        }
     }
 
     new void OnTriggerEnter(Collider col)
@@ -49,22 +62,14 @@ public class ProjectileAttack : Attack
 
     public void SpawnProjectile(int direction) // Direction should be -1 or 1
     {
-        // projectile.SetActive(true);
-        // ProjectileAttack projAtk = projectile.GetComponent<ProjectileAttack>();
-        // Vector3 projPos = projectile.transform.position;
-        // projPos.x = transform.position.x + direction * projAtk.initialLocalPosition;
-        // projPos.y = transform.position.y;
-        // projectile.transform.position = projPos;
-
-        // projAtk.speed = rb.velocity.x + direction * projAtk.mySpeed;
-        // projAtk.isFacingRight = data.isFacingRight;
-
         Vector3 pos = transform.localPosition;
         pos.x = direction * initialLocalPosition.x;
+        pos.y = 0f;
         transform.localPosition = pos;
 
         speed = myShooter.GetComponent<Rigidbody>().velocity.x + direction * speed;
         isFacingRight = myShooter.data.isFacingRight;
         sp.flipX = !myShooter.data.isFacingRight;
+        sp.enabled = true;
     }
 }
