@@ -28,9 +28,14 @@ public class CameraBounds : MonoBehaviour
     //     //     else
     //     //         camera.Priority = 1;
     //     // }
-    //     myVirtualCamera.Follow = col.transform;
-    //     myVirtualCamera.LookAt = col.transform;
-    //     myVirtualCamera.Priority = 1;
+    //     // myVirtualCamera.Follow = col.transform;
+    //     // myVirtualCamera.LookAt = col.transform;
+    //     // myVirtualCamera.Priority = 1;
+
+    //     // Start following and looking at the player with the top camera
+    //     int topCamera = 0;
+    //     myMixingCamera.ChildCameras[topCamera].Follow = col.transform;
+    //     myMixingCamera.ChildCameras[topCamera].LookAt = col.transform;
     // }
 
     void OnTriggerStay(Collider col)
@@ -51,9 +56,14 @@ public class CameraBounds : MonoBehaviour
 
     // void OnTriggerExit(Collider col)
     // {
-    //     myVirtualCamera.Follow = null;
-    //     myVirtualCamera.LookAt = null;
-    //     myVirtualCamera.Priority = 0;
+    //     // myVirtualCamera.Follow = null;
+    //     // myVirtualCamera.LookAt = null;
+    //     // myVirtualCamera.Priority = 0;
+        
+    //     // Stop Following and Looking with the top camera
+    //     int topCamera = 0;
+    //     myMixingCamera.ChildCameras[topCamera].Follow = null;
+    //     myMixingCamera.ChildCameras[topCamera].LookAt = null;
     // }
 }
 
