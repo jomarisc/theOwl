@@ -69,7 +69,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1072018054752160773}
   - component: {fileID: 1072018054752160794}
-  - component: {fileID: 1072018054752160795}
   - component: {fileID: 1072018054752160772}
   m_Layer: 0
   m_Name: Bottom vcam
@@ -128,23 +127,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1072018055160065753}
---- !u!114 &1072018054752160795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072018054752160792}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ConfineMode: 1
-  m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 0}
-  m_ConfineScreenEdges: 1
-  m_Damping: 0
 --- !u!114 &1072018054752160772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +153,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1072018055080777161}
   - component: {fileID: 1072018055080777166}
-  - component: {fileID: 1072018055080777167}
   - component: {fileID: 1072018055080777160}
   m_Layer: 0
   m_Name: Top vcam
@@ -230,23 +211,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1072018055264814057}
---- !u!114 &1072018055080777167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072018055080777164}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ConfineMode: 1
-  m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 0}
-  m_ConfineScreenEdges: 1
-  m_Damping: 0
 --- !u!114 &1072018055080777160
 MonoBehaviour:
   m_ObjectHideFlags: 0
