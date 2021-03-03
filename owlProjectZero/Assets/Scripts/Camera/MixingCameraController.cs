@@ -4,14 +4,15 @@ using UnityEngine;
 using Cinemachine;
 
 [RequireComponent(typeof(BoxCollider))]
-public class CameraBounds : MonoBehaviour
+public class MixingCameraController : MonoBehaviour
 {
     private BoxCollider myBounds;
-    [SerializeField] private CinemachineMixingCamera myMixingCamera;
+    private CinemachineMixingCamera myMixingCamera;
 
     void Awake()
     {
         myBounds = GetComponent<BoxCollider>();
+        myMixingCamera = GameObject.Find("MixingCamera").GetComponent<CinemachineMixingCamera>();
     }
 
     void OnTriggerStay(Collider col)
