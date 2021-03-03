@@ -21,7 +21,7 @@ public class GEnemyWalk : IState
     {
         // Enter grounded enemy walk animation here:
         animator.SetBool("walking", true);
-        Debug.Log("Walking: " + animator.GetBool("walking"));
+        // Debug.Log("Walking: " + animator.GetBool("walking"));
         
         horizontalMovement = (character.data.isFacingRight) ? 1f : -1f;
         waitTime = WALK_TIME;
