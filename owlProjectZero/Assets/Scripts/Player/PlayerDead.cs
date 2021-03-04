@@ -37,6 +37,8 @@ public class PlayerDead : IState
         player.GetComponent<SpriteRenderer>().color = Color.white;
         player.input.Gameplay.Enable();
         player.dodgeAbility.LeaveDodge();
+        player.healthbar.ResetHealth();
+        player.healthbar.Redraw();
         // Old code
         //player.GetRekt();// Nothing so far
         //SceneManager.LoadScene("SampleScene");

@@ -6,6 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public struct CharacterConstants
 {
+    public int MAX_HEALTH;
     public int MAX_JUMPS;
     public int MAX_DODGES;
     public float DEAD_DURATION;
