@@ -31,6 +31,19 @@ public class PlayerMove : IState
         animator = p.gameObject.GetComponent<Animator>();
         spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
     }
+
+    public PlayerMove(playerControl p, bool isAirborne, float hm)
+    {
+        player = p;
+        playerBody = p.gameObject.GetComponent<Rigidbody>();
+        input = p.input;
+        isFlying = isAirborne;
+        
+        //Trying to pass a reference to the Animator/Renderer components here. 
+        animator = p.gameObject.GetComponent<Animator>();
+        spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
+        horizontalMovement = hm;
+    }
     public void Enter()
     {
         if (isFlying)
