@@ -563,7 +563,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""PressAnyButton"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""41a71a18-20ec-4999-aec2-7b78e74dd2c9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

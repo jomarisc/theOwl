@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.InputSystem.Controls;
 
 public class Flash : MonoBehaviour
 {
@@ -22,12 +24,14 @@ public class Flash : MonoBehaviour
     private void OnEnable()
     {
         input.Enable();
-        input.UI.PressAnyButton.performed += SelectButton;
+        // input.UI.PressAnyButton.performed += SelectButton;
+        
+        InputSystem.onEvent += PressAnyButton;
+
     }
 
     private void OnDisable()
     {
-        input.UI.PressAnyButton.performed -= SelectButton;
         input.Disable();
     }
    
@@ -58,6 +62,7 @@ public class Flash : MonoBehaviour
     public void SelectButton()
     {
         EventSystem.current.SetSelectedGameObject(theButton);
+        // input.UI.PressAnyButton.performed -= SelectButton;
     }
 
     public void SelectButton(InputAction.CallbackContext context)
@@ -66,22 +71,23 @@ public class Flash : MonoBehaviour
         GetComponent<Button>().onClick.Invoke();
     }
 
-    public void SetInputModuleLeftClick(InputActionReference action)
+    public void PressAnyButton(InputEventPtr eventPtr, InputDevice device)
     {
-        // ((InputSystemUIInputModule)EventSystem.current.currentInputModule).enabled = false;
-        // ((InputSystemUIInputModule)EventSystem.current.currentInputModule).actionsAsset = regularUIInput;
-        // ((InputSystemUIInputModule)EventSystem.current.currentInputModule).enabled = true;
-        ((InputSystemUIInputModule)EventSystem.current.currentInputModule).leftClick = null;
-        ((InputSystemUIInputModule)EventSystem.current.currentInputModule).leftClick = action; // leftClickAction;
-        ((InputSystemUIInputModule)EventSystem.current.currentInputModule).ActivateModule();
-        // EventSystem.current.currentInputModule.enabled = true;
-    }
-
-    public void SetInputModuleSubmit(InputActionReference action)
-    {
-        ((InputSystemUIInputModule)EventSystem.current.currentInputModule).submit = null;
-        ((InputSystemUIInputModule)EventSystem.current.currentInputModule).submit = action; // submitAction;
-        ((InputSystemUIInputModule)EventSystem.current.currentInputModule).ActivateModule();
-        // EventSystem.current.currentInputModule.enabled = true;
+        if (!eventPtr.IsA<StateEvent>() && !eventPtr.IsA<DeltaStateEvent>())
+            return;
+    
+        var controls = device.allControls;
+        foreach (var control in controls)
+        {
+            if (!(control is ButtonControl button))
+                continue;
+            if (button.ReadValueFromEvent(eventPtr) > 0.5f) // 0.5f = InputSettings.defaultPressPoint
+            {
+                Debug.Log($"Button {button} pressed");
+                GetComponent<Button>().onClick.Invoke();
+                InputSystem.onEvent -= PressAnyButton;
+                break;
+            }
+        }
     }
 }
