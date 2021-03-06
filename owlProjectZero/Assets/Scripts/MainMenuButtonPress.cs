@@ -19,7 +19,7 @@ public class MainMenuButtonPress : MonoBehaviour
 
     private IEnumerator ListenForInput()
     {
-        yield return new WaitForSeconds(1.2f);
+        // yield return new WaitForSeconds(1.3f);
         yield return new WaitForFixedUpdate();
         input.Enable();
         input.UI.Activate.performed += ClickMyButton;
