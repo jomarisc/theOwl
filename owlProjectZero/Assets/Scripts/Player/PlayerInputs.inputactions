@@ -547,6 +547,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "PressAnyButton",
+                    "type": "PassThrough",
+                    "id": "41a71a18-20ec-4999-aec2-7b78e74dd2c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -844,6 +852,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "015ca3ee-812a-46e2-8e95-44747b6ce8ec",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PressAnyButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

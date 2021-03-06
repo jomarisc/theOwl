@@ -560,6 +560,14 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""PressAnyButton"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""41a71a18-20ec-4999-aec2-7b78e74dd2c9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -859,6 +867,17 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""015ca3ee-812a-46e2-8e95-44747b6ce8ec"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressAnyButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1082,6 +1101,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_UI_Activate = m_UI.FindAction("Activate", throwIfNotFound: true);
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
+        m_UI_PressAnyButton = m_UI.FindAction("PressAnyButton", throwIfNotFound: true);
         // SkillWheel
         m_SkillWheel = asset.FindActionMap("SkillWheel", throwIfNotFound: true);
         m_SkillWheel_Navigate = m_SkillWheel.FindAction("Navigate", throwIfNotFound: true);
@@ -1269,6 +1289,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_Activate;
     private readonly InputAction m_UI_Cancel;
     private readonly InputAction m_UI_Navigate;
+    private readonly InputAction m_UI_PressAnyButton;
     public struct UIActions
     {
         private @PlayerInputs m_Wrapper;
@@ -1276,6 +1297,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @Activate => m_Wrapper.m_UI_Activate;
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
         public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
+        public InputAction @PressAnyButton => m_Wrapper.m_UI_PressAnyButton;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1294,6 +1316,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Navigate.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
                 @Navigate.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
                 @Navigate.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                @PressAnyButton.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPressAnyButton;
+                @PressAnyButton.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPressAnyButton;
+                @PressAnyButton.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPressAnyButton;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1307,6 +1332,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Navigate.started += instance.OnNavigate;
                 @Navigate.performed += instance.OnNavigate;
                 @Navigate.canceled += instance.OnNavigate;
+                @PressAnyButton.started += instance.OnPressAnyButton;
+                @PressAnyButton.performed += instance.OnPressAnyButton;
+                @PressAnyButton.canceled += instance.OnPressAnyButton;
             }
         }
     }
@@ -1398,6 +1426,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnActivate(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
+        void OnPressAnyButton(InputAction.CallbackContext context);
     }
     public interface ISkillWheelActions
     {
