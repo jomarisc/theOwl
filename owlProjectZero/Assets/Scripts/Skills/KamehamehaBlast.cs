@@ -27,10 +27,10 @@ public class KamehamehaBlast : IState
         blast.gameObject.SetActive(true);
         beamRootSprite.gameObject.SetActive(true);
         float direction = (user.data.isFacingRight) ? 1 : -1;
-        beamSprite.transform.localPosition = new Vector3(direction * 0.5f, 0, 0);
+        beamSprite.transform.localPosition = new Vector3(direction * 2.4f, 0, 0); // 2.4f comes from the local x position
         beamSprite.size = new Vector2(direction * 1f, 1.28f);
-        beamRootSprite.transform.localPosition = new Vector3(direction * 1.6f, 0, 0);
-        beamRootSprite.flipX = !user.data.isFacingRight;
+        beamRootSprite.transform.localPosition = new Vector3(direction * 1.3f, 0, 0); // 1.3f comes from the local x position
+        beamRootSprite.flipX = user.data.isFacingRight;
         user.Attack(blast.gameObject);
         hitbox.center = new Vector3(direction * 0.75f, 0, 0);
         // user.Attack(); // Should change attack method to take in
@@ -71,8 +71,10 @@ public class KamehamehaBlast : IState
         shiftedCenter = beamSprite.transform.localPosition + offset * growthDirection;
         beamSprite.transform.localPosition = shiftedCenter;
         // offset = new Vector3(formula / 2, 0f, 0f);
-        shiftedCenter = beamRootSprite.transform.localPosition + 2 * offset * growthDirection;
-        beamRootSprite.transform.localPosition = shiftedCenter;
+
+        // Code for the beam tip
+        // shiftedCenter = beamRootSprite.transform.localPosition + 2 * offset * growthDirection;
+        // beamRootSprite.transform.localPosition = shiftedCenter;
     }
 
     public IState Update()
