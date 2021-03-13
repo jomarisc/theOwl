@@ -206,7 +206,7 @@ public abstract class Attack : MonoBehaviour
                     float adjustedKBAngle = (isFacingRight) ? hitboxes[0].knockbackAngle : 180 - hitboxes[0].knockbackAngle;
                     Vector3 knockback = KnockbackForce(hitboxes[0].knockback, adjustedKBAngle);
                     col.attachedRigidbody.velocity = Vector3.zero;
-                    col.attachedRigidbody.AddForce(knockback, ForceMode.VelocityChange);
+                    col.attachedRigidbody.AddForce(knockback, ForceMode.Impulse);
                     
                     // Go to damaged state
                     col.gameObject.GetComponent<Character>().GoToDamagedState(hitboxes[0].damage, hitboxes[0].knockback);
