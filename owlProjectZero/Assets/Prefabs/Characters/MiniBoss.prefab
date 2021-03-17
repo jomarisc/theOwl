@@ -276,8 +276,10 @@ MonoBehaviour:
     startup: 0
     timeActive: 10
     recovery: 30
-    knockback: 20
-    knockbackAngle: 85
+    gKnockback: 20
+    gKnockbackAngle: 85
+    aKnockback: 20
+    aKnockbackAngle: 85
   isFacingRight: 0
   startupSFX: {fileID: 3478352031139200543}
   activeSFX: {fileID: 3478352031139200543}
@@ -550,6 +552,26 @@ PrefabInstance:
       propertyPath: onEnvironmentHitSFX
       value: 
       objectReference: {fileID: 7772116548078020843}
+    - target: {fileID: 3685062507063603794, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: hitboxes.Array.data[0].gKnockback
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685062507063603794, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: hitboxes.Array.data[0].gKnockbackAngle
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685062507063603794, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: hitboxes.Array.data[0].aKnockback
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685062507063603794, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: hitboxes.Array.data[0].aKnockbackAngle
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 4019040549584735083, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: m_Enabled

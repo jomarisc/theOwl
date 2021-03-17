@@ -382,8 +382,10 @@ MonoBehaviour:
     startup: 180
     timeActive: -1
     recovery: 1
-    knockback: 0
-    knockbackAngle: 0
+    gKnockback: 0
+    gKnockbackAngle: 0
+    aKnockback: 0
+    aKnockbackAngle: 0
   isFacingRight: 0
   startupSFX: {fileID: 2380912721495348086}
   activeSFX: {fileID: 2380912721495348086}
@@ -663,8 +665,10 @@ MonoBehaviour:
     startup: 0
     timeActive: 180
     recovery: 60
-    knockback: 10
-    knockbackAngle: 45
+    gKnockback: 10
+    gKnockbackAngle: 45
+    aKnockback: 10
+    aKnockbackAngle: 45
   isFacingRight: 0
   startupSFX: {fileID: 3326064899981381954}
   activeSFX: {fileID: 3326064899981381954}
