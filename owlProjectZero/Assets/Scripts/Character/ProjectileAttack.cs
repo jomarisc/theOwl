@@ -11,7 +11,7 @@ public class ProjectileAttack : Attack
     public float speed;
     public float mySpeed { get; private set; } // This gets set in the editor and should not be modified in code
 
-    ProjectileAttack(float dmg, int start, int active, int lag, float kb, float angle) : base(dmg, start, active, lag, kb, angle)
+    ProjectileAttack(float dmg, int start, int active, int lag, float gkb, float gAngle, float akb, float aAngle) : base(dmg, start, active, lag, gkb, gAngle, akb, aAngle)
     {}
 
     void Awake()

@@ -13,8 +13,10 @@ public struct HitboxData
     public int startup;
     public int timeActive;
     public int recovery;
-    public float knockback;
-    public float knockbackAngle;
+    public float gKnockback;
+    public float gKnockbackAngle;
+    public float aKnockback;
+    public float aKnockbackAngle;
 }
 
 [RequireComponent(typeof(Collider))]
@@ -45,7 +47,7 @@ public abstract class Attack : MonoBehaviour
     public AudioSource onEnvironmentHitSFX;
 
     // Constructors for attack with only 1 hitbox
-    public Attack(float dmg, int start, int active, int lag, float kb, float angle)
+    public Attack(float dmg, int start, int active, int lag, float gkb, float gAngle, float akb, float aAngle)
     {
         hitboxes = new HitboxData[1];
         hitboxes[0].shape = GetComponent<Collider>();
@@ -53,8 +55,10 @@ public abstract class Attack : MonoBehaviour
         hitboxes[0].startup = start;
         hitboxes[0].timeActive = active;
         hitboxes[0].recovery = lag;
-        hitboxes[0].knockback = kb;
-        hitboxes[0].knockbackAngle = angle;
+        hitboxes[0].gKnockback = gkb;
+        hitboxes[0].gKnockbackAngle = gAngle;
+        hitboxes[0].aKnockback = akb;
+        hitboxes[0].aKnockbackAngle = aAngle;
     }
 
     public Attack(HitboxData hitbox)
@@ -82,7 +86,7 @@ public abstract class Attack : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        // transform.eulerAngles = new Vector3(0f, 0f, hitboxes[0].knockbackAngle);
+        // transform.eulerAngles = new Vector3(0f, 0f, hitboxes[0].gKnockbackAngle);
         startupDuration = hitboxes[0].startup * Time.fixedDeltaTime;
         if(hitboxes[0].timeActive == 0)
             activeDuration = Mathf.Infinity;
@@ -95,7 +99,7 @@ public abstract class Attack : MonoBehaviour
         // tempLocalPos.x = Mathf.Abs(tempLocalPos.x);
         initialLocalPosition = tempLocalPos;
         phase = AttackPhase.Startup;
-        initialKnockbackAngle = hitboxes[0].knockbackAngle;
+        initialKnockbackAngle = hitboxes[0].gKnockbackAngle;
 
         startupSFX.Play();
     }
@@ -105,7 +109,7 @@ public abstract class Attack : MonoBehaviour
         Vector3 localPos = transform.localPosition;
         localPos = initialLocalPosition;
         transform.localPosition = localPos;
-        hitboxes[0].knockbackAngle = initialKnockbackAngle;
+        hitboxes[0].gKnockbackAngle = initialKnockbackAngle;
     }
 
     protected virtual void FixedUpdate()
@@ -202,14 +206,14 @@ public abstract class Attack : MonoBehaviour
 
                 if(!col.gameObject.GetComponent<Character>().data.hasSuperArmor)
                 {
-                    // Apply the hitbox's knockback angle if character does not have super armor
-                    float adjustedKBAngle = (isFacingRight) ? hitboxes[0].knockbackAngle : 180 - hitboxes[0].knockbackAngle;
-                    Vector3 knockback = KnockbackForce(hitboxes[0].knockback, adjustedKBAngle);
+                    // Apply the hitbox's gKnockback angle if character does not have super armor
+                    float adjustedKBAngle = (isFacingRight) ? hitboxes[0].gKnockbackAngle : 180 - hitboxes[0].gKnockbackAngle;
+                    Vector3 gKnockback = KnockbackForce(hitboxes[0].gKnockback, adjustedKBAngle);
                     col.attachedRigidbody.velocity = Vector3.zero;
-                    col.attachedRigidbody.AddForce(knockback, ForceMode.Impulse);
+                    col.attachedRigidbody.AddForce(gKnockback, ForceMode.Impulse);
                     
                     // Go to damaged state
-                    col.gameObject.GetComponent<Character>().GoToDamagedState(hitboxes[0].damage, hitboxes[0].knockback);
+                    col.gameObject.GetComponent<Character>().GoToDamagedState(hitboxes[0].damage, hitboxes[0].gKnockback);
                 }
                 else
                 {
