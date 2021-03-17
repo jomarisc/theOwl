@@ -16,6 +16,7 @@ public class ProjectileAttack : Attack
 
     void Awake()
     {
+        base.Awake();
         sp = GetComponentInChildren<SpriteRenderer>();
     }
 

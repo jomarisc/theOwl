@@ -17,6 +17,8 @@ public struct HitboxData
     public float gKnockbackAngle;
     public float aKnockback;
     public float aKnockbackAngle;
+    public float currentKnockback;
+    public float currentKnockbackAngle;
 }
 
 [RequireComponent(typeof(Collider))]
@@ -24,6 +26,7 @@ public struct HitboxData
 public abstract class Attack : MonoBehaviour
 {
     // private fields
+    private Character myCharacter;
 
     // protected fields
     [Header("General")]
@@ -73,6 +76,11 @@ public abstract class Attack : MonoBehaviour
         InitializeHitboxes(hitboxes, hitboxes.Length);
     }
 
+    protected void Awake()
+    {
+        myCharacter = GetComponentInParent<Character>();
+    }
+
     protected void Start()
     {
         // Vector3 tempLocalPos = transform.localPosition;
@@ -86,6 +94,9 @@ public abstract class Attack : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        // Adjust kb values to either grounded or aerial variants
+        hitboxes[0].currentKnockback = (myCharacter.data.maxSpeed == myCharacter.data.groundSpeed) ? hitboxes[0].gKnockback : hitboxes[0].aKnockback;
+        hitboxes[0].currentKnockbackAngle = (myCharacter.data.maxSpeed == myCharacter.data.groundSpeed) ? hitboxes[0].gKnockbackAngle : hitboxes[0].aKnockbackAngle;
         // transform.eulerAngles = new Vector3(0f, 0f, hitboxes[0].gKnockbackAngle);
         startupDuration = hitboxes[0].startup * Time.fixedDeltaTime;
         if(hitboxes[0].timeActive == 0)
@@ -207,13 +218,13 @@ public abstract class Attack : MonoBehaviour
                 if(!col.gameObject.GetComponent<Character>().data.hasSuperArmor)
                 {
                     // Apply the hitbox's gKnockback angle if character does not have super armor
-                    float adjustedKBAngle = (isFacingRight) ? hitboxes[0].gKnockbackAngle : 180 - hitboxes[0].gKnockbackAngle;
-                    Vector3 gKnockback = KnockbackForce(hitboxes[0].gKnockback, adjustedKBAngle);
+                    float adjustedKBAngle = (isFacingRight) ? hitboxes[0].currentKnockbackAngle : 180 - hitboxes[0].currentKnockbackAngle;
+                    Vector3 currentKnockback = KnockbackForce(hitboxes[0].currentKnockback, adjustedKBAngle);
                     col.attachedRigidbody.velocity = Vector3.zero;
-                    col.attachedRigidbody.AddForce(gKnockback, ForceMode.Impulse);
+                    col.attachedRigidbody.AddForce(currentKnockback, ForceMode.Impulse);
                     
                     // Go to damaged state
-                    col.gameObject.GetComponent<Character>().GoToDamagedState(hitboxes[0].damage, hitboxes[0].gKnockback);
+                    col.gameObject.GetComponent<Character>().GoToDamagedState(hitboxes[0].damage, hitboxes[0].currentKnockback);
                 }
                 else
                 {
