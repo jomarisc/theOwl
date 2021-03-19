@@ -41,7 +41,7 @@ public class CutsceneManager : MonoBehaviour
     private Canvas gameplayCanvas;
     private Canvas cutsceneCanvas;
     public PlayerInputs input;
-    [SerializeField] private TextboxManager txtManager;
+    [SerializeField] private TextboxManager txtManager = null;
     public CutsceneSequence[] stageDirections; // The cutscene manager will iterate through this
                                                // array as the player progresses through the text
 

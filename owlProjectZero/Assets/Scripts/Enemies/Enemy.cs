@@ -47,8 +47,9 @@ public abstract class Enemy : Character
             myRoom.enemyColliders.Remove(myCollider);
     }
 
-    protected void Start()
+    protected new void Start()
     {
+        base.Start();
         totalEnemies++;
         myCollider = GetComponent<Collider>();
         enemyCounter = GameObject.Find("GameplayCanvas/EnemyCounter").GetComponent<Text>();

@@ -16,7 +16,7 @@ public class TextboxManager : MonoBehaviour
     private int messageIndex;
 
     private GameObject textbox;
-    [SerializeField] private TextAsset messageFile;
+    [SerializeField] private TextAsset messageFile = null;
     public bool manualActivation;
     public event EventDelegate OnNextMessage;
     public delegate void EventDelegate();
