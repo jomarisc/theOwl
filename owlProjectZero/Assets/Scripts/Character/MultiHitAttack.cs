@@ -9,7 +9,7 @@ public class MultiHitAttack : Attack
     [Header("Level Designer Variables")]
     [Tooltip("Rate (in frames) by which the hitbox redamages things")]
     [SerializeField] private int rehitRate = 0; // Should remain constant and untouched in code
-    MultiHitAttack(float dmg, int start, int active, int lag, float kb, float angle) : base(dmg, start, active, lag, kb, angle)
+    MultiHitAttack(float dmg, int start, int active, int lag, float gkb, float gAngle, float akb, float aAngle) : base(dmg, start, active, lag, gkb, gAngle, akb, aAngle)
     {}
 
     protected override void OnEnable()
