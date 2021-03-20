@@ -14,7 +14,7 @@ public class ProjectileAttack : Attack
     ProjectileAttack(float dmg, int start, int active, int lag, float gkb, float gAngle, float akb, float aAngle) : base(dmg, start, active, lag, gkb, gAngle, akb, aAngle)
     {}
 
-    void Awake()
+    new void Awake()
     {
         base.Awake();
         sp = GetComponentInChildren<SpriteRenderer>();
