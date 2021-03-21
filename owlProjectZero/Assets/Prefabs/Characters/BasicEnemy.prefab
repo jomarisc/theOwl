@@ -115,12 +115,18 @@ MonoBehaviour:
     startup: 0
     timeActive: 0
     recovery: 1
-    knockback: 0
-    knockbackAngle: 0
+    gKnockback: 0
+    gKnockbackAngle: 0
+    aKnockback: 0
+    aKnockbackAngle: 0
+    currentKnockback: 0
+    currentKnockbackAngle: 0
   isFacingRight: 0
   startupSFX: {fileID: 7685348055905033410}
   activeSFX: {fileID: 7685348055905033410}
   recoverySFX: {fileID: 7685348055905033410}
+  onCharacterHitSFX: {fileID: 7685348055905033410}
+  onEnvironmentHitSFX: {fileID: 7685348055905033410}
 --- !u!82 &7685348055905033410
 AudioSource:
   m_ObjectHideFlags: 0
@@ -430,12 +436,18 @@ MonoBehaviour:
     startup: 10
     timeActive: 10
     recovery: 10
-    knockback: 5
-    knockbackAngle: 45
+    gKnockback: 0
+    gKnockbackAngle: 0
+    aKnockback: 0
+    aKnockbackAngle: 0
+    currentKnockback: 0
+    currentKnockbackAngle: 0
   isFacingRight: 0
   startupSFX: {fileID: 186534142042667578}
   activeSFX: {fileID: 186534142042667578}
   recoverySFX: {fileID: 186534142042667578}
+  onCharacterHitSFX: {fileID: 0}
+  onEnvironmentHitSFX: {fileID: 0}
 --- !u!23 &8027395720447553460
 MeshRenderer:
   m_ObjectHideFlags: 0

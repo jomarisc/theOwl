@@ -383,6 +383,8 @@ MonoBehaviour:
     gKnockbackAngle: 75
     aKnockback: 15
     aKnockbackAngle: 75
+    currentKnockback: 0
+    currentKnockbackAngle: 0
   isFacingRight: 0
   startupSFX: {fileID: 7983162157191192845}
   activeSFX: {fileID: 7983162157191192845}
