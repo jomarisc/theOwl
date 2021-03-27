@@ -37,21 +37,17 @@ public class PlayerIdle : IState
 
     public IState Update()
     {
-        // Check if somehow airborne while in idle state
-        if(player.data.maxSpeed == player.data.airSpeed)
-            return new PlayerMove(player, true);
-        
-        // Check input for horizontal movement
-        if(input.Gameplay.MoveX.ReadValue<float>() != 0f)
-            return new PlayerMove(player, false);
 
         // Check input for dodging
         if(input.Gameplay.Dodge.triggered && player.data.numDodges > 0)
             return new PlayerDodge(player);
 
         // Check input for jumping
-        if(input.Gameplay.Jump.triggered)
+        if(input.Gameplay.Jump.ReadValue<float>() >= 1f) // using ReadValue bc .triggered has been unreliable
+        {
+            Debug.Log("Jumping from idle");
             return new PlayerJump(player);
+        }
 
         // Check input for melee attacking
         if(input.Gameplay.Melee.triggered)
@@ -60,6 +56,20 @@ public class PlayerIdle : IState
         // Check input for shooting with a projectile
         if(input.Gameplay.ShootProjectile.triggered)
             return new PlayerShoot(player);
+            
+        // Check if somehow airborne while in idle state
+        if(player.data.maxSpeed == player.data.airSpeed)
+        {
+            Debug.Log("Somehow airborne while in idle state");
+            return new PlayerMove(player, true);
+        }
+        
+        // Check input for horizontal movement
+        if(input.Gameplay.MoveX.ReadValue<float>() != 0f)
+        {
+            Debug.Log("Got input for horizontal movement");
+            return new PlayerMove(player, false);
+        }
 
         // Check idle for a while
         if(waitTime >= 0)
