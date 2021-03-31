@@ -8,11 +8,23 @@ public class NextScene : MonoBehaviour
 {
     public int sceneIndex;
     private GameObject player;
+    public GameObject Camera;
+ 
+    void SetClipPlane() {
+        Camera = GameObject.Find("MainCamera");
+        Camera.GetComponent<Camera>().farClipPlane = 15;
+    }
+
+    void Awake()
+    {
+        SetClipPlane();
+        SceneManager.sceneLoaded += (scene, mode) => SetClipPlane();
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
-        //player = GameObject.Find("player");
-        //DontDestroyOnLoad(player);
+    
     }
 
     // Update is called once per frame
@@ -23,6 +35,8 @@ public class NextScene : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
+        //SetClipPlane();
+        //if (player.position > )
         SceneManager.LoadSceneAsync(sceneIndex);
     }
 }
