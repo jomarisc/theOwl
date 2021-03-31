@@ -87,6 +87,10 @@ public class playerControl : Character
     {
         defaultState = new PlayerIdle(this);
         animator = GetComponent<Animator>();
+
+        // New line - 3/27/2021
+        //transform.position=new Vector3(0.5f,0.5f,0.5f);
+
         // New line
         levelSystem = new LevelSystem();
         levelWindow = GameObject.Find("GameplayCanvas/LevelWindow").GetComponent<LevelWindow>();

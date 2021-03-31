@@ -2094,6 +2094,7 @@ GameObject:
   - component: {fileID: 8871991241897730939}
   - component: {fileID: 8871991241897730938}
   - component: {fileID: 8871991241897730937}
+  - component: {fileID: 145822122}
   m_Layer: 5
   m_Name: GameplayCanvas
   m_TagString: Untagged
@@ -2243,6 +2244,18 @@ MonoBehaviour:
   skillTreeWindow: {fileID: 8871991241325042400}
   resumeButton: {fileID: 8871991240910689790}
   isDisplaying: 0
+--- !u!114 &145822122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8871991241897730880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a8e186015eecd4b8994b0b3b824056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8871991241910241324
 GameObject:
   m_ObjectHideFlags: 0

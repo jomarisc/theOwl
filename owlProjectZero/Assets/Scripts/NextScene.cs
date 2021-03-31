@@ -7,10 +7,12 @@ using UnityEngine.SceneManagement;
 public class NextScene : MonoBehaviour
 {
     public int sceneIndex;
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //player = GameObject.Find("player");
+        //DontDestroyOnLoad(player);
     }
 
     // Update is called once per frame
