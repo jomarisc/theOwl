@@ -7,24 +7,27 @@ using UnityEngine.SceneManagement;
 public class NextScene : MonoBehaviour
 {
     public int sceneIndex;
-    private GameObject player;
+    private playerControl player;
+    //private GameObject player;
     public GameObject Camera;
- 
-    void SetClipPlane() {
-        Camera = GameObject.Find("MainCamera");
-        Camera.GetComponent<Camera>().farClipPlane = 15;
-    }
 
-    void Awake()
-    {
-        SetClipPlane();
-        SceneManager.sceneLoaded += (scene, mode) => SetClipPlane();
-    }
+    public string exitPoint;
+ 
+    // void SetClipPlane() {
+    //     Camera = GameObject.Find("MainCamera");
+    //     Camera.GetComponent<Camera>().farClipPlane = 15;
+    // }
+
+    // void Awake()
+    // {
+    //     SetClipPlane();
+    //     SceneManager.sceneLoaded += (scene, mode) => SetClipPlane();
+    // }
     
     // Start is called before the first frame update
     void Start()
     {
-    
+        player = FindObjectOfType<playerControl>();
     }
 
     // Update is called once per frame
@@ -38,5 +41,6 @@ public class NextScene : MonoBehaviour
         //SetClipPlane();
         //if (player.position > )
         SceneManager.LoadSceneAsync(sceneIndex);
+        player.startPoint = exitPoint;
     }
 }

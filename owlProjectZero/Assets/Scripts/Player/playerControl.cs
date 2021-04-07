@@ -42,6 +42,9 @@ public class playerControl : Character
     public LevelSystem levelSystem;
     public int numCurrency;
     public bool isAlive = true;
+
+    public string startPoint;
+    
     public bool inGuntime { get; private set; } = false;
     private bool UpdateInGuntime()
     {
@@ -57,6 +60,20 @@ public class playerControl : Character
     {
         input = new PlayerInputs();
         numCurrency = 0;
+
+        // New line - 3/27/2021
+        //transform.position=new Vector3(0.5f,0.5f,0.5f);
+        // New line for deleting multiple copies of player when using
+        // DontDestroyOnLoad()
+        // if(!playerExists)
+        // {
+        //     playerExists = true;
+        //     DontDestroyOnLoad(transform.gameObject);
+        // } else {
+        //     Destroy(gameObject);
+        // }
+        DontDestroy dontDestroyScript = gameObject.GetComponent<DontDestroy>();
+        dontDestroyScript.DontDestroyObjects();
     }
 
     private void OnEnable()
@@ -87,9 +104,6 @@ public class playerControl : Character
     {
         defaultState = new PlayerIdle(this);
         animator = GetComponent<Animator>();
-
-        // New line - 3/27/2021
-        //transform.position=new Vector3(0.5f,0.5f,0.5f);
 
         // New line
         levelSystem = new LevelSystem();
