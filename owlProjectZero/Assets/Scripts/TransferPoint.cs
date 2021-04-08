@@ -8,7 +8,7 @@ public class TransferPoint : MonoBehaviour
 
     public string pointName;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         player = FindObjectOfType<playerControl>();
 
