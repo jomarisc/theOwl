@@ -40,7 +40,8 @@ public class NextScene : MonoBehaviour
     {
         //SetClipPlane();
         //if (player.position > )
-        SceneManager.LoadSceneAsync(sceneIndex);
         player.startPoint = exitPoint;
+        Debug.Log("Next Scene - player.startPoint: " + player.startPoint);
+        SceneManager.LoadSceneAsync(sceneIndex);
     }
 }

@@ -11,7 +11,8 @@ public class TransferPoint : MonoBehaviour
     void Awake()
     {
         player = FindObjectOfType<playerControl>();
-
+        Debug.Log("player.startPoint: " + player.startPoint);
+        Debug.Log("pointName: " + pointName);
         if(player.startPoint == pointName) 
         {
             player.transform.position = transform.position;
