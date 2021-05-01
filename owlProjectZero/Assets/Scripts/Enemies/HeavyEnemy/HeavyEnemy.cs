@@ -10,6 +10,7 @@ public class HeavyEnemy : Enemy
     // protected fields
 
     // public fields
+    public SpriteRenderer atkVFXSprite;
     public AudioSource heavyJump;
     public AudioSource heavyMelee;
 
