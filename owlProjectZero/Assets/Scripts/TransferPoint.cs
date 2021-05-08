@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TransferPoint : MonoBehaviour
 {
-    private playerControl player;
+    public playerControl player;
 
     public string pointName;
     // Start is called before the first frame update

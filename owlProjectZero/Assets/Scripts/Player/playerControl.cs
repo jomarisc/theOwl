@@ -104,6 +104,9 @@ public class playerControl : Character
     {
         defaultState = new PlayerIdle(this);
         animator = GetComponent<Animator>();
+        
+        // Intializing start point
+        startPoint = "Alley";
 
         // New line
         levelSystem = new LevelSystem();
