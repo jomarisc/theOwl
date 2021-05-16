@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
+using Cinemachine;
 
 [RequireComponent(typeof(Collider))]
 public class playerControl : Character
@@ -16,6 +17,7 @@ public class playerControl : Character
     [field: SerializeField] public float FAST_FALL_SPEED { get; private set; } = -10f;
     [field:SerializeField] public float GLIDE_GRAVITY { get; private set; } = -2.0f;
     [SerializeField] private float stamanaRegenRate = 1f;
+    public string startPoint;
 
     [Header("Sound Effects")]
     public AudioSource landingSfx;
@@ -36,6 +38,8 @@ public class playerControl : Character
     public PlayerInputs input;
     public HealthbarController healthbar;
     [SerializeField] private Image stamanaMeter = null;
+    //[SerializeField] private CinemachineVirtualCamera virtualCamera;
+    //[SerializeField] private GameObject tPlayer;
 
     // New line
     [SerializeField] private LevelWindow levelWindow = null;
@@ -62,6 +66,15 @@ public class playerControl : Character
         healthbar = GameObject.Find("GameplayCanvas/PlayerInfo/HPBackground").GetComponent<HealthbarController>();
         stamanaMeter = GameObject.Find("GameplayCanvas/PlayerInfo/SPBackground/SPFill").GetComponent<Image>();
         skillTreeWindow = GameObject.Find("GameplayCanvas").GetComponent<SkillTreeWindow>();
+
+        // Re-assign the Cinemachine Camera to look at and follow the player
+        //virtualCamera = GetComponent<CinemachineVirtualCamera>();
+        //virtualCamera.LookAt = this.gameObject.transform;
+        //virtualCamera.Follow = this.gameObject.transform; 
+
+        // DontDestroy functionality for when returning to a room
+        DontDestroy dontDestroyScript = gameObject.GetComponent<DontDestroy>();
+        dontDestroyScript.DontDestroyObjects();
     }
 
     private void OnEnable()
@@ -138,6 +151,18 @@ public class playerControl : Character
         {
             rb.AddForce(4.5f * Physics.gravity);
         }
+
+        // Set Camera to player again
+        // tPlayer = this.gameObject;
+        // if (tPlayer != null)
+        // { 
+        //     if(virtualCamera.LookAt == null)
+        //     {
+        //         Debug.Log(message: $"<size=16> virtualCamera.LookAt is NULL </size>");
+        //     }
+        //     virtualCamera.LookAt = tPlayer.transform;
+        //     virtualCamera.Follow = tPlayer.transform; 
+        // }
     }
 
     public void FastFall(InputAction.CallbackContext context)

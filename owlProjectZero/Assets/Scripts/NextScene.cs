@@ -16,6 +16,13 @@ public class NextScene : MonoBehaviour
     [SerializeField] private PlayableAsset endTransition = null;
     public int sceneIndex;
 
+    public string exitPoint;
+
+    void Start()
+    {
+        //player = FindObjectOfType<playerControl>();
+    }
+
     void Awake()
     {
         sceneTriggers.Add(this);
@@ -27,7 +34,7 @@ public class NextScene : MonoBehaviour
         myDirector.Play();
         myDirector.stopped += ReenablePlayer;
 
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     void OnDisable()
@@ -62,6 +69,8 @@ public class NextScene : MonoBehaviour
 
         // Load next scene
         if(director == myDirector)
+            // Changing player's start point to work with transfer point
+            player.startPoint = exitPoint; //exit point
             SceneManager.LoadSceneAsync(sceneIndex);
         
         // Finally, destroy this one
