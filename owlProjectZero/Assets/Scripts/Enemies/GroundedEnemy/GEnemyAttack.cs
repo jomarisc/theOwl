@@ -47,7 +47,7 @@ public class GEnemyAttack : IState
 
     public void FixedUpdate()
     {
-        if(hitbox.enabled)
+        if(meleeAttack.GetComponent<Attack>().phase == AttackPhase.Active) // hitbox.enabled)
             characterBody.AddForce(new Vector3(horizontalMovement, 0f, 0f), ForceMode.VelocityChange);
     }
     
@@ -63,7 +63,7 @@ public class GEnemyAttack : IState
             character.sfxMelee.Play();
         }
         
-        if(!meleeAttack.activeInHierarchy && Mathf.Approximately(characterBody.velocity.magnitude, 0f))
+        if(!meleeAttack.activeInHierarchy) // && Mathf.Approximately(characterBody.velocity.magnitude, 0f))
         {
             Debug.Log("Returning to idle");
             return new GEnemyIdle(character);

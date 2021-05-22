@@ -480,6 +480,8 @@ PrefabInstance:
       objectReference: {fileID: 73192208835930913}
     - target: {fileID: 3685062507063603794, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
+      propertyPath: hitboxes.Array.data[0].timeActive
+      value: 10
       propertyPath: hitboxes.Array.data[0].gKnockback
       value: 10
       objectReference: {fileID: 0}
