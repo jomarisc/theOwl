@@ -88,8 +88,9 @@ public class playerControl : Character
     }
 
     // Start is called before the first frame update
-    private void Start()
+    private new void Start()
     {
+        base.Start();
         defaultState = new PlayerIdle(this);
         animator = GetComponent<Animator>();
         // New line

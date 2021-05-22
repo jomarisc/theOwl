@@ -8,10 +8,10 @@ using Cinemachine;
 // [AddComponentMenu("")]
 public class CameraLimits : CinemachineExtension
 {
-    [SerializeField] private Vector2 minCoordinates;
-    [SerializeField] private Vector2 maxCoordinates;
-    [SerializeField] private bool lockRotation;
-    [SerializeField] private Vector3 idealRotation;
+    [SerializeField] private Vector2 minCoordinates = Vector2.zero;
+    [SerializeField] private Vector2 maxCoordinates = Vector2.zero;
+    [SerializeField] private bool lockRotation = true;
+    [SerializeField] private Vector3 idealRotation = Vector3.zero;
     protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam,
                                                       CinemachineCore.Stage stage,
                                                       ref CameraState state,

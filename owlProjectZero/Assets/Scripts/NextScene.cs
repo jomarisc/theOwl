@@ -11,9 +11,9 @@ public class NextScene : MonoBehaviour
     private playerControl player;
     private PlayableDirector myDirector;
     [Tooltip("Timeline asset for entering a new scene")]
-    [SerializeField] private PlayableAsset startTransition;
+    [SerializeField] private PlayableAsset startTransition = null;
     [Tooltip("Timeline asset for moving on to a different scene")]
-    [SerializeField] private PlayableAsset endTransition;
+    [SerializeField] private PlayableAsset endTransition = null;
     public int sceneIndex;
 
     void Awake()
