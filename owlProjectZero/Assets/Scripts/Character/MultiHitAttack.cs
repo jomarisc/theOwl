@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MultiHitAttack : Attack
+public class MultiHitAttack : Hitbox
 {
     private int numHits = 0;
     private float rehitTimer;
     [Header("Level Designer Variables")]
     [Tooltip("Rate (in frames) by which the hitbox redamages things")]
     [SerializeField] private int rehitRate = 0; // Should remain constant and untouched in code
-    MultiHitAttack(float dmg, int start, int active, int lag, float gkb, float gAngle, float akb, float aAngle) : base(dmg, start, active, lag, gkb, gAngle, akb, aAngle)
-    {}
+    // MultiHitAttack(float dmg, int start, int active, int lag, float gkb, float gAngle, float akb, float aAngle) : base(dmg, start, active, lag, gkb, gAngle, akb, aAngle)
+    // {}
 
     protected override void OnEnable()
     {
