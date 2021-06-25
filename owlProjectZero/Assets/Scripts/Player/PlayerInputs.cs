@@ -523,7 +523,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""fa86d731-9d81-45c3-968c-4f5d397871fe"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

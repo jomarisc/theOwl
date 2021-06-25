@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 [RequireComponent(typeof(Collider))]
 public class NextScene : MonoBehaviour
 {
-    private static List<NextScene> sceneTriggers = new List<NextScene>();
+    public static List<NextScene> sceneTriggers = new List<NextScene>();
     private playerControl player;
     private PlayableDirector myDirector;
     [Tooltip("Timeline asset for entering a new scene")]
@@ -48,16 +48,28 @@ public class NextScene : MonoBehaviour
 
     void LoadNextScene(PlayableDirector director)
     {
-        // Remove all other scene triggers from list of scene triggers and destroy them
-        int i = 0;
-        while(i < sceneTriggers.Count)
+        Debug.Log("Before deleting scenetriggers");
+        for(int n = 0; n < sceneTriggers.Count; n++)
         {
-            if(sceneTriggers[i] != this)
+            Debug.Log(sceneTriggers[n]);
+        }
+
+        // Remove all other scene triggers from list of scene triggers and destroy them
+        // int i = 0;
+        while(sceneTriggers.Count > 1)
+        {
+            if(sceneTriggers[0] != this)
             {
-                Destroy(sceneTriggers[i].gameObject);
-                sceneTriggers.Remove(sceneTriggers[i]);
+                Destroy(sceneTriggers[0].gameObject);
+                sceneTriggers.Remove(sceneTriggers[0]);
             }
-            i++;
+            // i++;
+        }
+
+        Debug.Log("After deleting scenetriggers");
+        for(int n = 0; n < sceneTriggers.Count; n++)
+        {
+            Debug.Log(sceneTriggers[n]);
         }
 
         // Load next scene
@@ -67,6 +79,24 @@ public class NextScene : MonoBehaviour
         // Finally, destroy this one
         sceneTriggers.Remove(this);
         Destroy(this.gameObject);
+    }
+
+    public static void ClearSceneTriggers()
+    {
+
+        // int i = 0;
+        while(sceneTriggers.Count > 0)
+        {
+            Destroy(sceneTriggers[0].gameObject);
+            sceneTriggers.Remove(sceneTriggers[0]);
+            // i++;
+        }
+
+        for(int n = 0; n < sceneTriggers.Count; n++)
+        {
+            Debug.Log(sceneTriggers.Count);
+            Debug.Log(sceneTriggers[n]);
+        }
     }
 
     void ReenablePlayer(PlayableDirector director)

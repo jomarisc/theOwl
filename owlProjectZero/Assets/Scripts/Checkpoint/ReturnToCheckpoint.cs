@@ -11,16 +11,19 @@ public class ReturnToCheckpoint : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log(CheckpointsHandler.isDead);
         player = this.gameObject;
         playerState = player.GetComponent<playerControl>();
 
         if(CheckpointsHandler.isDead == true)
         {
+            NextScene.ClearSceneTriggers();
             player.transform.position = new Vector3(CheckpointsHandler.playerPosition[0], CheckpointsHandler.playerPosition[1], CheckpointsHandler.playerPosition[2]);
             // playerState.healthbar.ResetHealth();
             // playerState.healthbar.Redraw();
             playerState.isAlive = true;
             CheckpointsHandler.isDead = false;
+            Debug.Log(CheckpointsHandler.isDead);
         }
     }
 
@@ -33,15 +36,19 @@ public class ReturnToCheckpoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerState.isAlive == false)
-        {
+        // if(playerState.isAlive == false)
+        // {
 
-            CheckpointsHandler.isDead = true;
+        //     CheckpointsHandler.isDead = true;
 
-            if(playerState.data.deadDuration <= 1f)
-            {
-                SceneManager.LoadScene(CheckpointsHandler.checkpointScene);
-            }
-        }
+        //     if(playerState.data.deadDuration <= 0f)
+        //     {
+                
+        //     }
+        //     else
+        //     {
+        //         playerState.data.deadDuration -= Time.deltaTime; // 3.0 - The completion time in seconds since the last frame
+        //     }  
+        // }
     }
 }
