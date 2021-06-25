@@ -63,6 +63,11 @@ public class NextScene : MonoBehaviour
                 Destroy(sceneTriggers[0].gameObject);
                 sceneTriggers.Remove(sceneTriggers[0]);
             }
+            else if(sceneTriggers[1] != this)
+            {
+                Destroy(sceneTriggers[0].gameObject);
+                sceneTriggers.Remove(sceneTriggers[0]);
+            }
             // i++;
         }
 
