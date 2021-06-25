@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum AttackPhase {Startup, Active, Recovery}
 
@@ -14,6 +15,8 @@ public enum AttackPhase {Startup, Active, Recovery}
                       // in the Unity inspector
 public struct HitboxData
 {
+    [HideInInspector]
+    public Vector3 initialLocalPosition;
     public Collider shape;
     public float damage;
     public int startup;
@@ -38,6 +41,8 @@ public class Hitbox : MonoBehaviour
     public AudioSource startupSFX;
     public AudioSource activeSFX;
     public AudioSource recoverySFX;
+    public delegate void EventDelegate();
+    public event EventDelegate OnHitboxFinished;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +51,7 @@ public class Hitbox : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        data.initialLocalPosition = transform.localPosition;
         startupDuration = data.startup * Time.fixedDeltaTime;
         if(data.timeActive == 0)
             activeDuration = Mathf.Infinity;
@@ -56,6 +62,13 @@ public class Hitbox : MonoBehaviour
         phase = AttackPhase.Startup;
 
         startupSFX.Play();
+    }
+
+    protected void OnDisable()
+    {
+        transform.localPosition = data.initialLocalPosition;
+        if(OnHitboxFinished != null)
+            OnHitboxFinished();
     }
 
     protected virtual void FixedUpdate()
@@ -102,6 +115,7 @@ public class Hitbox : MonoBehaviour
         if(recoveryDuration <= 0f)
         {
             data.shape.enabled = false;
+            this.enabled = false;
         }
     }
 

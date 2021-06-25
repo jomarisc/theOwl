@@ -1,6 +1,10 @@
 ﻿// This script enables the hitbox(es) associated with this particular
 // attack and reverses the initial position and knockback angles of the
 // hitbox(es) based on the direction the character is facing.
+// 
+// *There must be a parent object with the Character component attached
+// *Hitbox(es) must be attached to children of the game object with this Attack
+//  script attached
 
 using System.Collections;
 using System.Collections.Generic;
@@ -57,6 +61,7 @@ public abstract class Attack : MonoBehaviour
     protected void Awake()
     {
         myCharacter = GetComponentInParent<Character>();
+        hitboxes = new List<Hitbox>(GetComponentsInChildren<Hitbox>());
     }
 
     protected void Start()
@@ -72,10 +77,14 @@ public abstract class Attack : MonoBehaviour
     protected virtual void OnEnable()
     {
         hitboxes = new List<Hitbox>(GetComponentsInChildren<Hitbox>());
+        isFacingRight = myCharacter.data.isFacingRight;
         bool characterIsGrounded = myCharacter.data.maxSpeed == myCharacter.data.groundSpeed;
         /* USE FOR_EACH LOOP */
         foreach (Hitbox hitbox in hitboxes)
         {
+            hitbox.enabled = true;
+            // Subscribe to hitbox deactivation event
+            hitbox.OnHitboxFinished += CheckRemainingHitboxes;
             // Adjust kb values to either grounded or aerial variants
             hitbox.data.currentKnockback = (characterIsGrounded) ? hitbox.data.gKnockback : hitbox.data.aKnockback;
             hitbox.data.currentKnockbackAngle = (characterIsGrounded) ? hitbox.data.gKnockbackAngle : hitbox.data.aKnockbackAngle;
@@ -83,6 +92,12 @@ public abstract class Attack : MonoBehaviour
             // Flip kb angle based off of character facing direction
             initialKnockbackAngle = hitbox.data.gKnockbackAngle;
             hitbox.data.currentKnockbackAngle = (isFacingRight) ? hitbox.data.currentKnockbackAngle : 180 - hitbox.data.currentKnockbackAngle;
+
+            // Mirror the hitbox local positions across the y-axis if isFacingRight
+            Vector3 hitboxPos = hitbox.transform.localPosition;
+            hitboxPos.x = (isFacingRight) ? hitbox.data.initialLocalPosition.x : -hitbox.data.initialLocalPosition.x;
+            hitbox.transform.localPosition = hitboxPos;
+            Debug.Log("Facing Right?" + isFacingRight);
         }
         /* MAKE SURE YOU'VE USED THE FOR_EACH LOOP */
         
@@ -112,7 +127,7 @@ public abstract class Attack : MonoBehaviour
     {
         /* IF LAST HITBOX HAS BECOME INACTIVE */
             // gameObject.SetActive(false);
-        /* MAKE SURE TO FINISH THIS BLOCK OF CODE */
+        /* MAKE SURE TO FINISH THIS BLOCK OF CODE */ // Moved the logic here to CheckRemainingHitboxes method
     }
 
     protected void OnTriggerEnter(Collider col)
@@ -146,5 +161,27 @@ public abstract class Attack : MonoBehaviour
         
         if(col.TryGetComponent(out EnvironmentElement ee))
             onEnvironmentHitSFX.Play();
+    }
+
+    private void CheckRemainingHitboxes()
+    {
+        // Check for deacvitvated hitboxes
+        foreach (Hitbox hitbox in hitboxes)
+        {
+            if(!hitbox.enabled)
+            {
+                hitbox.data.gKnockbackAngle = initialKnockbackAngle;
+                hitbox.OnHitboxFinished -= CheckRemainingHitboxes;
+                hitboxes.Remove(hitbox);
+                break;
+            }
+        }
+        
+        if(hitboxes.Count <= 0)
+        {
+            Debug.Log("Deactivating Hitbox");
+            gameObject.SetActive(false);
+            Debug.Log("Finished Deactivating Hitbox");
+        }
     }
 }
