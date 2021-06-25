@@ -11,7 +11,7 @@ public class ReturnToCheckpoint : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log(CheckpointsHandler.isDead);
+        // Debug.Log(CheckpointsHandler.isDead);
         player = this.gameObject;
         playerState = player.GetComponent<playerControl>();
 
@@ -23,7 +23,7 @@ public class ReturnToCheckpoint : MonoBehaviour
             // playerState.healthbar.Redraw();
             playerState.isAlive = true;
             CheckpointsHandler.isDead = false;
-            Debug.Log(CheckpointsHandler.isDead);
+            // Debug.Log(CheckpointsHandler.isDead);
         }
     }
 

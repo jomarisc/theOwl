@@ -48,11 +48,11 @@ public class NextScene : MonoBehaviour
 
     void LoadNextScene(PlayableDirector director)
     {
-        Debug.Log("Before deleting scenetriggers");
-        for(int n = 0; n < sceneTriggers.Count; n++)
-        {
-            Debug.Log(sceneTriggers[n]);
-        }
+        // Debug.Log("Before deleting scenetriggers");
+        // for(int n = 0; n < sceneTriggers.Count; n++)
+        // {
+        //     Debug.Log(sceneTriggers[n]);
+        // }
 
         // Remove all other scene triggers from list of scene triggers and destroy them
         // int i = 0;
@@ -65,17 +65,17 @@ public class NextScene : MonoBehaviour
             }
             else if(sceneTriggers[1] != this)
             {
-                Destroy(sceneTriggers[0].gameObject);
-                sceneTriggers.Remove(sceneTriggers[0]);
+                Destroy(sceneTriggers[1].gameObject);
+                sceneTriggers.Remove(sceneTriggers[1]);
             }
             // i++;
         }
 
-        Debug.Log("After deleting scenetriggers");
-        for(int n = 0; n < sceneTriggers.Count; n++)
-        {
-            Debug.Log(sceneTriggers[n]);
-        }
+        // Debug.Log("After deleting scenetriggers");
+        // for(int n = 0; n < sceneTriggers.Count; n++)
+        // {
+        //     Debug.Log(sceneTriggers[n]);
+        // }
 
         // Load next scene
         if(director == myDirector)
