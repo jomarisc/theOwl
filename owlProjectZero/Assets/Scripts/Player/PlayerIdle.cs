@@ -45,7 +45,7 @@ public class PlayerIdle : IState
         // Check input for jumping
         if(input.Gameplay.Jump.ReadValue<float>() >= 1f) // using ReadValue bc .triggered has been unreliable
         {
-            Debug.Log("Jumping from idle");
+            // Debug.Log("Jumping from idle");
             return new PlayerJump(player);
         }
 
@@ -60,14 +60,14 @@ public class PlayerIdle : IState
         // Check if somehow airborne while in idle state
         if(player.data.maxSpeed == player.data.airSpeed)
         {
-            Debug.Log("Somehow airborne while in idle state");
+            // Debug.Log("Somehow airborne while in idle state");
             return new PlayerMove(player, true);
         }
         
         // Check input for horizontal movement
         if(input.Gameplay.MoveX.ReadValue<float>() != 0f)
         {
-            Debug.Log("Got input for horizontal movement");
+            // Debug.Log("Got input for horizontal movement");
             return new PlayerMove(player, false);
         }
 

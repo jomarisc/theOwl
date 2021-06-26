@@ -249,6 +249,8 @@ MonoBehaviour:
     gKnockbackAngle: 0
     aKnockback: 4
     aKnockbackAngle: 0
+    currentKnockback: 0
+    currentKnockbackAngle: 0
   isFacingRight: 0
   startupSFX: {fileID: 7266456132269884767}
   activeSFX: {fileID: 7266456132269884767}
@@ -858,9 +860,10 @@ GameObject:
   - component: {fileID: 1050675499}
   - component: {fileID: 1050675498}
   - component: {fileID: 1050675500}
+  - component: {fileID: 5937395770293955713}
   m_Layer: 9
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1055,6 +1058,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 0}
+--- !u!114 &5937395770293955713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2529497728352103115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117484c8260a671488ce3ae4f29cf310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerState: {fileID: 0}
 --- !u!1 &3719444796070121471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,6 +1751,8 @@ MonoBehaviour:
     gKnockbackAngle: 30
     aKnockback: 10
     aKnockbackAngle: 30
+    currentKnockback: 0
+    currentKnockbackAngle: 0
   isFacingRight: 0
   startupSFX: {fileID: 5055821379980162570}
   activeSFX: {fileID: 5055821379980162570}
@@ -2289,6 +2308,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0084c0bf6f31bcb42969f8dd4d0cf06e, type: 3}
+--- !u!4 &6397846835334519031 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 182666149019409458, guid: 0084c0bf6f31bcb42969f8dd4d0cf06e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6503552083574310085}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3921424513570868424 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7794307053854672909, guid: 0084c0bf6f31bcb42969f8dd4d0cf06e,
@@ -2301,9 +2326,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e670938817f1a4b8932fdd5149abb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &6397846835334519031 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 182666149019409458, guid: 0084c0bf6f31bcb42969f8dd4d0cf06e,
-    type: 3}
-  m_PrefabInstance: {fileID: 6503552083574310085}
-  m_PrefabAsset: {fileID: 0}
