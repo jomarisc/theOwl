@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MultiHitAttack : Hitbox
+public class MultiHitHitbox : Hitbox
 {
     private int numHits = 0;
     private float rehitTimer;
