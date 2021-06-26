@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro; //must be imported to use textmeshpro
 using UnityEngine.EventSystems;
-using Sirenix.OdinInspector;
+//using Sirenix.OdinInspector;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
@@ -18,25 +18,26 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] int frameRateLimit = 400; //limit is 300
 
     [Header("Main")]
-    [ReadOnly] [SerializeField] string[] messageArrayRaw;
-    [ReadOnly] public string[] messageArrayFull;                                                   // Array that holds all the lines of message (complete)
-    [ReadOnly] public string[] messageArraySeg;                                                    // Array that holds all the lines of message (segmented)
-    [ReadOnly] public int messageIndex;                                                           // messageArray's index
-    [ReadOnly] public string messageCurrent;                                                       // Sting that holds onto the current line of messageArray
-    [ReadOnly] public List<string> storyTags;
+    [SerializeField] string[] messageArrayRaw;
+    public string[] messageArrayFull;                                                   // Array that holds all the lines of message (complete)
+    public string[] messageArraySeg;                                                    // Array that holds all the lines of message (segmented)
+    public int messageIndex;                                                           // messageArray's index
+    public string messageCurrent;                                                       // Sting that holds onto the current line of messageArray
+    public List<string> storyTags;
     private TextWriter.TextWriterSingle textWriterSingle;
-    public CharacterDatabase storyCharacters;
-
+    
+    // MOCHA MAGIC CODE 
+    //public CharacterDatabase storyCharacters;
     public BackgroundDatabase backgroundDatabase;
-
     public VNVariables variableDatabase;
-
+    
+    // MOCHA MAGIC CODE
     private Dictionary<string, CharacterObject> activeCharacters;
     [Header("Dialogue Timing")]
 
     [SerializeField] float startMessageWait =  0.3f; //how many seconds player needs to wait before they can confirm
     [SerializeField] float endMessageWait =  0.2f; //how long the end message lingers before they confirm button can occur
-    [ReadOnly] public float timePerCharacter = 0.025f;
+    public float timePerCharacter = 0.025f;
     private string currentTextSpeed = "normal";
 
     [SerializeField] float fastTextSpeed = 0.00f;
@@ -49,7 +50,11 @@ public class DialogueManager : MonoBehaviour
 
     private bool startMessageTimerActive = false;
     private bool endMessageTimerActive = false;
-    
+
+    public event EventDelegate OnNextMessage;
+    public delegate void EventDelegate();
+    [SerializeField] private bool canFireNextMessageEvent = true;
+
     [Header("UI Objects")]
     //changed  textbox, message text and message name to public to avoid null error exceptions 
     [SerializeField] GameObject mainObject;
@@ -60,7 +65,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject backgroundPrefab; //stores prefab for background images
     public GameObject floatingMarker;  //stores GameObject for end of message marker
 
-    private BacklogView backlogView; //script for backlog
+    // MOCHA MAGIC CODE
+    //private BacklogView backlogView; //script for backlog
     [SerializeField] GameObject settingsMenu;
 
     [SerializeField] Sprite blankImage;
@@ -71,7 +77,8 @@ public class DialogueManager : MonoBehaviour
     private GameObject currentBackground;
     private GameObject currentCG;
 
-    [ReadOnly] public Dictionary<string, GameObject> npcsInScene = new Dictionary<string, GameObject>();
+    // MOCHA MAGIC CODE
+    public Dictionary<string, GameObject> npcsInScene = new Dictionary<string, GameObject>();
     
     private List<GameObject> npcsInSceneList = new List<GameObject>();
 
@@ -88,7 +95,9 @@ public class DialogueManager : MonoBehaviour
     //[SerializeField] Dictionary<string, AudioClip> dialogueAudio;
 
     public SoundLibrary soundLibrary;
-    private CraftingMusic musicController;
+    
+    // MOCHA MAGIC CODE
+    //private CraftingMusic musicController;
 
     //other
     private string currentSpeaker;
@@ -110,19 +119,25 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] string commentLead = "//";
 
-    [ReadOnly] [SerializeField] private string jumpToLabel = "";
-    [ReadOnly] public static bool isTextFrozen;
+    [SerializeField] private string jumpToLabel = "";
+    public static bool isTextFrozen;
 
     private bool willJumpLabel = false;
     private bool willMakeOrder = false;
+    
+    // MOCHA MAGIC BEHAVIOR
     //[ReadOnly] [SerializeField] List<ActivatedFlagsDay> storyFlagsActivated; 
-    private StoryActivator storyActivator;
-    private DaySystem daySystem;
-    private MCBehavior mcBehavior;
+    //private StoryActivator storyActivator;
+    //private DaySystem daySystem;
+    
+    // Reference to player script
+    //private MCBehavior mcBehavior;
+    private playerControl playerBehavior;
 
     private string endingType;
 
-    [ReadOnly] [SerializeField] List<GameObject> overworldNPCs;
+    // MOCHA MAGIC CODE
+    [SerializeField] List<GameObject> overworldNPCs;
 
     void Awake()
     {
@@ -134,12 +149,18 @@ public class DialogueManager : MonoBehaviour
         timePerCharacter = normalTextSpeed;
         // Load in sound file for playing 
         talkingAudioSource = this.GetComponent<AudioSource>();
-        backlogView = transform.Find("backlogHolder/MainPanel").GetComponent<BacklogView>();
+        
+        // MOCHA MAGIC CODE
+        //backlogView = transform.Find("backlogHolder/MainPanel").GetComponent<BacklogView>();
+        
         messageIndex = 0;
 
-        activeCharacters = storyCharacters.CharacterNameDict(); //get active characters
+        // MOCHA MAGIC CODE
+        //activeCharacters = storyCharacters.CharacterNameDict(); //get active characters
 
 
+        // MOCHA MAGIC CODE
+        /*
         GameObject.Find("DaySystem").GetComponent<DaySystem>().TurnUIOff(); //return ui elements
         if(GameObject.Find("MusicGameObject") == null){
             Debug.LogError("No music controller object prefab! Add it please uwu");
@@ -150,11 +171,14 @@ public class DialogueManager : MonoBehaviour
         storyActivator = GameObject.Find("DaySystem").GetComponent<StoryActivator>();
         daySystem = GameObject.Find("DaySystem").GetComponent<DaySystem>();
         mcBehavior = GameObject.Find("MCGameObjectScene").transform.GetChild(0).GetComponent<MCBehavior>();
+        */
 
         /*for(int i = 0; i < GameObject.Find("NPCGameObjectScene").transform.childCount; i++){
             overworldNPCs.Add(GameObject.Find("NPCGameObjectScene").transform.GetChild(i).gameObject);
         }*/
-        overworldNPCs = GetAllActiveNPCS();
+        
+        // MOCHA MAGIC CODE
+        //overworldNPCs = GetAllActiveNPCS();
         
         //limit framerate if working in debug mode
         if(DebugMode){
@@ -211,7 +235,10 @@ public class DialogueManager : MonoBehaviour
 
         // Format for Unity New Input System: input.Gameplay.Interact.triggered
         //the click was removed to tie it to the button attached to the textbox, which is why progress story is now its own function
-        if(!CreateSettingsMenu.VNFreeze){
+        
+        // MOCHA MAGIC CODE. Until CreateSettingsMenu is sorted out, comment this check out - 6/26/2021
+        // VNBacklog is commented out until further notice.
+        //if(!CreateSettingsMenu.VNFreeze){
             if (Input.GetKeyDown("space") && textboxVisible)
             {
                 //EventSystem.current.SetSelectedGameObject(null); //unselect all buttons?
@@ -229,28 +256,28 @@ public class DialogueManager : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.H) && canChangeHide){ //hide from button
                 if(textboxVisible){
                     HideDialogue();
-                }else if(!textboxVisible && canUseTextboxKeys && !backlogView.BacklogOpen()){
+                }else if(!textboxVisible && canUseTextboxKeys){ //&& !backlogView.BacklogOpen()){ 
                     UnhideDialogue();
                 }
             }
-            if(Input.GetKeyDown(KeyCode.N) && canUseTextboxKeys && textboxVisible && !backlogView.BacklogOpen()){
+            if(Input.GetKeyDown(KeyCode.N) && canUseTextboxKeys && textboxVisible ){ //&& !backlogView.BacklogOpen()){
                 CharaVoiceSwitch();
             }
             if(Input.GetKeyDown(KeyCode.B) && canUseTextboxKeys && textboxVisible){
-                ToggleBacklog();
+                //ToggleBacklog();
             }
-            if(Input.GetKeyDown(KeyCode.A) && canUseTextboxKeys && textboxVisible && !backlogView.BacklogOpen()){
+            if(Input.GetKeyDown(KeyCode.A) && canUseTextboxKeys && textboxVisible){ //&& !backlogView.BacklogOpen()){
                 AutoTextSwitch();
             }
             /*if(Input.GetKeyDown(KeyCode.S) && canUseTextboxKeys && textboxVisible && !backlogView.BacklogOpen()){
                 InstantiateSettingsMenu();
             }*/
             if(Input.GetMouseButtonDown(0) && canChangeHide){ //unhide with just mouse
-                if(!textboxVisible && canUseTextboxKeys && !backlogView.BacklogOpen()){
+                if(!textboxVisible && canUseTextboxKeys){ // && !backlogView.BacklogOpen()){
                     UnhideDialogue();
                 }
             }
-        }
+        //}
 
         //auto mode
 
@@ -292,6 +319,8 @@ public class DialogueManager : MonoBehaviour
                 // Starts a new textbox
                 if(!endMessageTimerActive){
                     StartCoroutine(SetMessageAndPlay());
+                    if(canFireNextMessageEvent)
+                        OnNextMessage?.Invoke();
                 }
             }
         }
@@ -327,17 +356,21 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(playStorySoundEffect(audioReference, waitTime));
     }
 
+    // MOCHA MAGIC CODE. Until settings menu is resolved this is commented out.
     private IEnumerator playStorySoundEffect(string audioReference, float waitTime){
         yield return new WaitForSeconds(waitTime);
-        PlaySoundEffect(audioReference, PlayerSettings.SFXVolume);
+        PlaySoundEffect(audioReference, 0); // Making this a fixed number till PlayerSettings is resolved. Previously: PlayerSettings.SFXVolume
     }
-
+    
+    // MOCHA MAGIC CODE. 
+    // Return to when music controller is resolved.
     public void UpdateMusicInVN(string newSong){
-        musicController.UpdateSong(newSong);
+        //musicController.UpdateSong(newSong);
     }
 
+    // MOCHA MAGIC CODE. 
     public void StopMusicInVN(){
-        musicController.StopSong();
+        //musicController.StopSong();
     }
 
     //new function for playing specific sound
@@ -509,15 +542,16 @@ public class DialogueManager : MonoBehaviour
     }*/
 
     IEnumerator DestroyingDialoguePrefab(){
-        if(daySystem.currentDay.dayNumber > storyCharacters.FinalDay){
-            if(daySystem.endingType == "CG"){
-                Destroy(textbox);
-                yield return new WaitForSeconds(7);
-                currentCG.GetComponent<Image>().DOColor(Color.black, 2);
-                yield return new WaitForSeconds(3);
+        // MOCHA MAGIC CODE, ISOLATED CHUNK PT.1
+        // if(daySystem.currentDay.dayNumber > storyCharacters.FinalDay){
+        //     if(daySystem.endingType == "CG"){
+        //         Destroy(textbox);
+        //         yield return new WaitForSeconds(7);
+        //         currentCG.GetComponent<Image>().DOColor(Color.black, 2);
+        //         yield return new WaitForSeconds(3);
                 
-            }else{
-                //yield return new WaitForSeconds(1);
+        //     }else{
+        //         //yield return new WaitForSeconds(1);
                 Destroy(textbox);
                 yield return new WaitForSeconds(2);
                 foreach(var vnCharacter in npcsInScene){
@@ -525,30 +559,33 @@ public class DialogueManager : MonoBehaviour
                 }
                 currentBackground.GetComponent<Image>().DOColor(Color.black, 2);
                 yield return new WaitForSeconds(3);
-            }
-            SceneManager.LoadScene("KillScene");
-            /*Destroy(textbox);
-            yield return new WaitForSeconds(7);
-            currentCG.GetComponent<Image>().DOColor(Color.black, 2);
-            yield return new WaitForSeconds(3);
-            SceneManager.LoadScene("KillScene");*/
-        }else{
-            if(currentBackground != null){
-                DestroyBackground();
-            }
+
+        // MOCHA MAGIC CODE, ISOLATED CHUNK PT.2
+        //     }
+        //     SceneManager.LoadScene("KillScene");
+        //     /*Destroy(textbox);
+        //     yield return new WaitForSeconds(7);
+        //     currentCG.GetComponent<Image>().DOColor(Color.black, 2);
+        //     yield return new WaitForSeconds(3);
+        //     SceneManager.LoadScene("KillScene");*/
+        // }else{
+        //     if(currentBackground != null){
+        //         DestroyBackground();
+        //     }
             
-            GameObject.Find("DaySystem").GetComponent<DaySystem>().TurnUIOn(); //return ui elements
+        //     GameObject.Find("DaySystem").GetComponent<DaySystem>().TurnUIOn(); //return ui elements
 
-            //put flag in 
+        //     //put flag in 
 
-            if(willMakeOrder){
-                Debug.Log("Order up!");
-                mcBehavior.activateDrinkPanel();
-            }
-            Destroy(transform.parent.gameObject); //destroy parent of dialogue manager
-            MCMove.movementUnfreeze();
-            yield return new WaitForSeconds(0);
-        }
+        //     if(willMakeOrder){
+        //         Debug.Log("Order up!");
+        //         mcBehavior.activateDrinkPanel();
+        //     }
+        //     Destroy(transform.parent.gameObject); //destroy parent of dialogue manager
+        //     MCMove.movementUnfreeze();
+        //     yield return new WaitForSeconds(0);
+        // }
+
         /*
         if(currentBackground != null){
             DestroyBackground();
@@ -573,19 +610,25 @@ public class DialogueManager : MonoBehaviour
             yield return StartCoroutine(FadeBackground());
         }
         
-        GameObject.Find("DaySystem").GetComponent<DaySystem>().TurnUIOn(); //return ui elements
+        // MOCHA MAGIC CODE
+        //GameObject.Find("DaySystem").GetComponent<DaySystem>().TurnUIOn(); //return ui elements
 
         //put flag in 
 
         if(willMakeOrder){
             Debug.Log("Order up!");
-            mcBehavior.activateDrinkPanel();
+
+            //MOCHA MAGIC CODE
+            //mcBehavior.activateDrinkPanel();
+
             //willMakeOrder = false;
             //messageIndex++;
             //Destroy(mainObject);
         }
         Destroy(transform.parent.gameObject); //destroy parent of dialogue manager
-        MCMove.movementUnfreeze();
+        
+        //MOCHA MAGIC CODE
+        //MCMove.movementUnfreeze();
     }
 
     private int AttemptToChangeMessageIndex(int index, bool waitCommand = false)
@@ -654,27 +697,28 @@ public class DialogueManager : MonoBehaviour
                     //Debug.Log($"{npcsInScene[moveArguments[0]]} moves to {posToMove}");
                     MoveCharacterPos(npcsInScene[moveArguments[0]], posToMove, 0.3f);
                     break;
-                case "orderDrink":
-                    string[] drinkArguments = commandLines[1].Trim().Split(',');
-                    string charName = drinkArguments[0];
-                    List<string> drinkTraits = drinkArguments.OfType<string>().ToList(); // this isn't going to be fast.
-                    drinkTraits.RemoveAt(0);
-                    //remove nulls
-                    drinkTraits  = drinkTraits.Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToList();
-                    //Debug.Log($"List of size {drinkTraits.Count}");
-                    mcBehavior.AddOrder(charName, drinkTraits);
-                    break;
-                case "serveDrink":
-                    Debug.Log("Serving Drink!");
-                    //mcBehavior.activateDrinkPanel();
-                    willMakeOrder = true;
-                    //return index;
-                    //return ++index;
-                    break;
-                case "drinkStory":
-                    string newDrinkStoryLine = commandLines[1];
-                    AddToDrinkStory(newDrinkStoryLine);
-                    break;
+                //MOCHA MAGIC CODE
+                // case "orderDrink":
+                //     string[] drinkArguments = commandLines[1].Trim().Split(',');
+                //     string charName = drinkArguments[0];
+                //     List<string> drinkTraits = drinkArguments.OfType<string>().ToList(); // this isn't going to be fast.
+                //     drinkTraits.RemoveAt(0);
+                //     //remove nulls
+                //     drinkTraits  = drinkTraits.Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToList();
+                //     //Debug.Log($"List of size {drinkTraits.Count}");
+                //     mcBehavior.AddOrder(charName, drinkTraits);
+                //     break;
+                // case "serveDrink":
+                //     Debug.Log("Serving Drink!");
+                //     //mcBehavior.activateDrinkPanel();
+                //     willMakeOrder = true;
+                //     //return index;
+                //     //return ++index;
+                //     break;
+                // case "drinkStory":
+                //     string newDrinkStoryLine = commandLines[1];
+                //     AddToDrinkStory(newDrinkStoryLine);
+                //     break;
                 case "leave":
                     string charToDelete = commandLines[1].Trim();
                     /*if(!npcsInScene.ContainsKey(charToDelete)){
@@ -726,18 +770,20 @@ public class DialogueManager : MonoBehaviour
                     string[] visitorsToSpawn = commandLines[1].Trim().Split(',');
                     SpawnNPCs(visitorsToSpawn, NPCStatus.Visitor);
                     break;
-                case "endDay":
-                    EndDay();
-                    break;
-                case "flag":
-                    Debug.Log("Forcing Flag");
-                    ForceFlag(commandLines[1].Trim());
-                    break;
+                //MOCHA MAGIC CODE
+                // case "endDay":
+                //     EndDay();
+                //     break;
+                // case "flag":
+                //     Debug.Log("Forcing Flag");
+                //     ForceFlag(commandLines[1].Trim());
+                //     break;
                 case "incrementArc":
-                    string[] arcsToIncrement = commandLines[1].Trim().Split(',');
-                    foreach(string character in arcsToIncrement){
-                        daySystem.arcChanges[character]++;
-                    } 
+                    //MOCHA MAGIC CODE
+                    // string[] arcsToIncrement = commandLines[1].Trim().Split(',');
+                    // foreach(string character in arcsToIncrement){
+                    //     daySystem.arcChanges[character]++;
+                    // } 
                     
                     break;
                 default:
@@ -765,6 +811,8 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    /* MOCHA MAGIC EXLUSIVE CODE
+
     public void EndDay(){
         storyActivator.activateFlag("giveDrink");
     }
@@ -773,6 +821,7 @@ public class DialogueManager : MonoBehaviour
         Debug.Log($"Force Flag - {flag}");
         storyActivator.addToActivatedFlags(flag);
     }
+    */
 
     public void NewCG(string[] bgArgument, string fadeStatus){
         if(currentCG == null){
@@ -806,8 +855,8 @@ public class DialogueManager : MonoBehaviour
 
     public void DestroyCG(){
         StartCoroutine(FadeCG());
-        /*Destroy(currentCG);
-        currentCG = null;*/
+        //Destroy(currentCG);
+        //currentCG = null;
     }
 
     IEnumerator FadeCG(){
@@ -828,10 +877,11 @@ public class DialogueManager : MonoBehaviour
         canChangeHide = true;
     }
 
-
+    /* MOCHA MAGIC EXLUSIVE CODE
     public void AddToDrinkStory(string newStory){
         //mcBehavior.
     }
+    */
 
     public void UpdateBackground(string[] bgArgument, string fadeStatus){
         if(currentBackground == null){
@@ -872,7 +922,9 @@ public class DialogueManager : MonoBehaviour
                 if(NPC.GetComponent<NPCBehavior>().character.CharName == npcToDelete){
                     //overworldNPCs.Remove(NPC);
                     //NPC.GetComponent<NPCBehavior>().visitingStatus = VisitingStatus.Absent;
-                    NPC.GetComponent<NPCBehavior>().character.schedule[daySystem.currentDay.dayNumber] = NPCStatus.Absent;
+                    
+                    // MOCHA MAGIC CODE
+                    //NPC.GetComponent<NPCBehavior>().character.schedule[daySystem.currentDay.dayNumber] = NPCStatus.Absent;
                     Destroy(NPC);
                     break;
                 }
@@ -887,7 +939,9 @@ public class DialogueManager : MonoBehaviour
             //Debug.Log($"Despawining {NPC.GetComponent<NPCBehavior>().character.CharName}");
             //allNPCs.Add(NPC.GetComponent<NPCBehavior>().character.CharName);
             //NPC.GetComponent<NPCBehavior>().visitingStatus = VisitingStatus.Absent;
-            NPC.GetComponent<NPCBehavior>().character.schedule[daySystem.currentDay.dayNumber] = NPCStatus.Absent;
+            
+            // MOCHA MAGIC CODE
+            //NPC.GetComponent<NPCBehavior>().character.schedule[daySystem.currentDay.dayNumber] = NPCStatus.Absent;
             Destroy(NPC);
         }
         //DespawnNPCs(allNPCs.ToArray());
@@ -900,12 +954,15 @@ public class DialogueManager : MonoBehaviour
 
                 //CharacterObject currentNPC = gameDatabase.CharacterList[i];
                 CharacterObject currentNPC;
-                if(storyCharacters.NPCList.Exists(x => x.CharName == chara )){
-                    currentNPC = storyCharacters.npcNamed(chara);
-                }else{
-                    Debug.LogWarning($"No NPC Named {chara}!");
-                    break;
-                }
+                
+                // MOCHA MAGIC CODE
+                // if(storyCharacters.NPCList.Exists(x => x.CharName == chara )){
+                //     currentNPC = storyCharacters.npcNamed(chara);
+                // }else{
+                //     Debug.LogWarning($"No NPC Named {chara}!");
+                //     break;
+                // }
+                
                 //if(isNPCAvailable){ //if npc is available that day
 
                     //does this day have a locked position?
@@ -913,64 +970,71 @@ public class DialogueManager : MonoBehaviour
                     spriteDirection npcDirection;
 
                     //choose random position from character's pool (CHANGE THIS)
-                    int randomPick = UnityEngine.Random.Range(0, storyCharacters.SpawnPositionPool.Count);
-                    npcPosition = storyCharacters.SpawnPositionPool[randomPick].randPos;
-                    npcDirection = storyCharacters.SpawnPositionPool[randomPick].direction;
+                    
+                    // MOCHA MAGIC CODE
+                    //int randomPick = UnityEngine.Random.Range(0, storyCharacters.SpawnPositionPool.Count);
+                    //npcPosition = storyCharacters.SpawnPositionPool[randomPick].randPos;
+                    //npcDirection = storyCharacters.SpawnPositionPool[randomPick].direction;
 
                     //overwrite random with base (wont proc if day isn't a lock day)
-                    foreach(LockPosition lockPos in currentNPC.lockedPositions){
-                        if(lockPos.positionDay == daySystem.currentDay.dayNumber ||
-                        (lockPos.repeatWeekly && lockPos.positionDay == daySystem.currentDay.dayNumber % 7)){
-                            npcPosition = lockPos.basePos;
-                            npcDirection = lockPos.direction;
-                        }
-                    }
-
-                    //set quarternion according to sprite direction enum
-                    Quaternion objectDirection = new Quaternion();
-                    if(npcDirection == spriteDirection.Left){
-                        objectDirection.Set(0,0,0,1);
-                    }else if(npcDirection == spriteDirection.Right){
-                        objectDirection.Set(0,180,0,1);
-                    }
-
-                    GameObject newNPC = Instantiate(daySystem.baseNPC, npcPosition, objectDirection);
-                    newNPC.transform.parent = GameObject.Find("NPCGameObjectScene").transform;
-                    newNPC.name = "NPC (" +chara + ")";
-                    newNPC.GetComponent<NPCBehavior>().character = currentNPC;
-                    newNPC.GetComponent<NPCBehavior>().Setup();
-                    //newNPC.GetComponent<NPCBehavior>().visitingStatus = VisitingStatus.Visitor; //new npcs cannot be custmers yet
-                    //newNPC.GetComponent<NPCBehavior>().character.schedule[daySystem.currentDay.dayNumber] = NPCStatus.Visitor;
-
-                    storyActivator.RemoveFlagToday("giveDrink", daySystem.currentDay.dayNumber);
-                    newNPC.GetComponent<NPCBehavior>().character.schedule[daySystem.currentDay.dayNumber] = NPCStatus.Customer;
                     
-                    if(state == NPCStatus.Customer){
-                        newNPC.GetComponent<NPCBehavior>().visitingStatus = VisitingStatus.Customer;
-                    }else{
-                        newNPC.GetComponent<NPCBehavior>().visitingStatus = VisitingStatus.Visitor;
-                    }
+                    // MOCHA MAGIC CODE
+                    // foreach(LockPosition lockPos in currentNPC.lockedPositions){
+                    //     if(lockPos.positionDay == daySystem.currentDay.dayNumber ||
+                    //     (lockPos.repeatWeekly && lockPos.positionDay == daySystem.currentDay.dayNumber % 7)){
+                    //         npcPosition = lockPos.basePos;
+                    //         npcDirection = lockPos.direction;
+                    //     }
+                    // }
 
-                    //newNPC.GetComponent<NPCBehavior>().visitingStatus = VisitingStatus.Customer;
+                    // MOCHA MAGIC CODE
+                    // //set quarternion according to sprite direction enum
+                    // Quaternion objectDirection = new Quaternion();
+                    // if(npcDirection == spriteDirection.Left){
+                    //     objectDirection.Set(0,0,0,1);
+                    // }else if(npcDirection == spriteDirection.Right){
+                    //     objectDirection.Set(0,180,0,1);
+                    // }
 
-                    if(currentNPC.arcProgression <= currentNPC.arcLength){
-                        daySystem.LoadStoryScene(currentNPC);
-                    }else{
-                        daySystem.LoadRandomScene(currentNPC);
-                    }
-                    //Debug.Log($"{isNPCCustomer}, {npcAvailability[(int)currentDay.dayOfWeek]} && {diceRoll}");
+                    // MOCHA MAGIC CODE
+                    // GameObject newNPC = Instantiate(daySystem.baseNPC, npcPosition, objectDirection);
+                    // newNPC.transform.parent = GameObject.Find("NPCGameObjectScene").transform;
+                    // newNPC.name = "NPC (" +chara + ")";
+                    // newNPC.GetComponent<NPCBehavior>().character = currentNPC;
+                    // newNPC.GetComponent<NPCBehavior>().Setup();
+                    // //newNPC.GetComponent<NPCBehavior>().visitingStatus = VisitingStatus.Visitor; //new npcs cannot be custmers yet
+                    // //newNPC.GetComponent<NPCBehavior>().character.schedule[daySystem.currentDay.dayNumber] = NPCStatus.Visitor;
 
-                    /*if(isNPCCustomer){
-                        newNPC.GetComponent<NPCBehavior>().visitingStatus = VisitingStatus.Customer;
-                    }else if(isNPCVisitor){
-                        newNPC.GetComponent<NPCBehavior>().visitingStatus = VisitingStatus.Visitor;
-                    }*/
+                    // storyActivator.RemoveFlagToday("giveDrink", daySystem.currentDay.dayNumber);
+                    // newNPC.GetComponent<NPCBehavior>().character.schedule[daySystem.currentDay.dayNumber] = NPCStatus.Customer;
+                    
+                    // if(state == NPCStatus.Customer){
+                    //     newNPC.GetComponent<NPCBehavior>().visitingStatus = VisitingStatus.Customer;
+                    // }else{
+                    //     newNPC.GetComponent<NPCBehavior>().visitingStatus = VisitingStatus.Visitor;
+                    // }
+
+                    // MOCHA MAGIC CODE
+                    // //newNPC.GetComponent<NPCBehavior>().visitingStatus = VisitingStatus.Customer;
+
+                    // if(currentNPC.arcProgression <= currentNPC.arcLength){
+                    //     daySystem.LoadStoryScene(currentNPC);
+                    // }else{
+                    //     daySystem.LoadRandomScene(currentNPC);
+                    // }
+                    // //Debug.Log($"{isNPCCustomer}, {npcAvailability[(int)currentDay.dayOfWeek]} && {diceRoll}");
+
+                    //if(isNPCCustomer){
+                    //    newNPC.GetComponent<NPCBehavior>().visitingStatus = VisitingStatus.Customer;
+                    //}else if(isNPCVisitor){
+                    //    newNPC.GetComponent<NPCBehavior>().visitingStatus = VisitingStatus.Visitor;
+                    //}
                 //}
 
             //}
         }
     }
-
+    
     public void CreateOrUpdateCharacter(string[] charArguments){
         //char arguments - char = Aidyn.Disappointed, 0, 0
         //Debug.Log($"charArguments - {charArguments[1]}");
@@ -1125,6 +1189,7 @@ public class DialogueManager : MonoBehaviour
         }
         objectToMove.transform.localPosition = newPos;
     }
+    
 
     public void UpdateTextSpeed(string textSpeed){
         switch(textSpeed){
@@ -1157,18 +1222,18 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        /*
-        npcsInScene[charToDelete].GetComponent<Image>().DOFade(0f, 0.3f);
-
-        npcsInSceneList.Remove(npcsInScene[charToDelete]);
-        Destroy(npcsInScene[charToDelete]); //delete npc prefab
-        npcsInScene.Remove(charToDelete); //remove npc from scene dictionary
         
-        float[] newXPos = BuildNewVNXPos(npcsInScene.Count);
-        for(int i = 0; i < newXPos.Length; i++){
-            StartCoroutine(MoveSprite(npcsInSceneList[i], new Vector3(newXPos[i] ,0, 0), 0.2f ));
-        }
-        */
+        //npcsInScene[charToDelete].GetComponent<Image>().DOFade(0f, 0.3f);
+
+        //npcsInSceneList.Remove(npcsInScene[charToDelete]);
+        //Destroy(npcsInScene[charToDelete]); //delete npc prefab
+        //npcsInScene.Remove(charToDelete); //remove npc from scene dictionary
+        
+        //float[] newXPos = BuildNewVNXPos(npcsInScene.Count);
+        //for(int i = 0; i < newXPos.Length; i++){
+        //    StartCoroutine(MoveSprite(npcsInSceneList[i], new Vector3(newXPos[i] ,0, 0), 0.2f ));
+        //}
+        
         StartCoroutine(FadeOutCharacter(charToDelete));
     }
 
@@ -1191,11 +1256,11 @@ public class DialogueManager : MonoBehaviour
         //npcsInScene.Remove(charToDelete); //remove npc from scene dictionary
         
         //float[] newXPos = BuildNewVNXPos(npcsInScene.Count);
-        /*
-        for(int i = 0; i < newXPos.Length; i++){
-            StartCoroutine(MoveSprite(npcsInSceneList[i], new Vector3(newXPos[i] ,0, 0), 0.2f ));
-        }
-        */
+        
+        //for(int i = 0; i < newXPos.Length; i++){
+        //    StartCoroutine(MoveSprite(npcsInSceneList[i], new Vector3(newXPos[i] ,0, 0), 0.2f ));
+        //}
+        
     }
 
     public void changeMCPortrait(string newIcon){
@@ -1331,7 +1396,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(){
         StartCoroutine(SetMessageAndPlay());
-        MCMove.movementFreeze();
+        // MOCHA MAGIC CODE
+        //MCMove.movementFreeze();
     }
     
     public void LoadNewDialogueText(TextAsset newText, string startArgument = "start"){
@@ -1571,91 +1637,94 @@ public class DialogueManager : MonoBehaviour
                                     }
                                 }
                                 break;
-                            case "flag": //if flag is present
-                                string[] flagArguments = flagCommand[1].Trim().Split(',');;
-                                layer++;
-                                flagHasOccured = hasFlagOccured(flagArguments);
-                                if(flagHasOccured && truthLayers[layer-1]){ //if a layer above this one is false, it can never be true
-                                    truthLayers.Add(true);
-                                }else{
-                                    truthLayers.Add(false);
-                                }
-                                break;
-                            case "noflag": //if flag is not present
-                                string[] noflagArguments = flagCommand[1].Trim().Split(',');;
-                                layer++;
-                                flagHasOccured = hasFlagOccured(noflagArguments);
-                                if(!flagHasOccured && truthLayers[layer-1]){ //if a layer above this one is false, it can never be true
-                                    truthLayers.Add(true);
-                                }else{
-                                    truthLayers.Add(false);
-                                }
-                                break;
-                            case "present":
-                                string[] presentArguments = flagCommand[1].Trim().Split(',');
-                                layer++;
+                            // MOCHA MAGIC CODE
+                            // case "flag": //if flag is present
+                            //     string[] flagArguments = flagCommand[1].Trim().Split(',');;
+                            //     layer++;
+                            //     flagHasOccured = hasFlagOccured(flagArguments);
+                            //     if(flagHasOccured && truthLayers[layer-1]){ //if a layer above this one is false, it can never be true
+                            //         truthLayers.Add(true);
+                            //     }else{
+                            //         truthLayers.Add(false);
+                            //     }
+                            //     break;
+                            // case "noflag": //if flag is not present
+                            //     string[] noflagArguments = flagCommand[1].Trim().Split(',');;
+                            //     layer++;
+                            //     flagHasOccured = hasFlagOccured(noflagArguments);
+                            //     if(!flagHasOccured && truthLayers[layer-1]){ //if a layer above this one is false, it can never be true
+                            //         truthLayers.Add(true);
+                            //     }else{
+                            //         truthLayers.Add(false);
+                            //     }
+                            //     break;
+                            // case "present":
+                            //     string[] presentArguments = flagCommand[1].Trim().Split(',');
+                            //     layer++;
 
-                                bool areAllCharsInScene = true;
-                                foreach(string argument in presentArguments){
-                                    if(!isCharInScene(argument)){ //if char is not in scene
-                                        areAllCharsInScene = false;
-                                    }
-                                }
-                                if(areAllCharsInScene){
-                                    truthLayers.Add(true);
-                                }else{
-                                    truthLayers.Add(false);
-                                }
-                                break;
-                            case "notpresent":
-                                string[] notPresentArguments = flagCommand[1].Trim().Split(',');
-                                layer++;
+                            //     bool areAllCharsInScene = true;
+                            //     foreach(string argument in presentArguments){
+                            //         if(!isCharInScene(argument)){ //if char is not in scene
+                            //             areAllCharsInScene = false;
+                            //         }
+                            //     }
+                            //     if(areAllCharsInScene){
+                            //         truthLayers.Add(true);
+                            //     }else{
+                            //         truthLayers.Add(false);
+                            //     }
+                            //     break;
+                            // case "notpresent":
+                            //     string[] notPresentArguments = flagCommand[1].Trim().Split(',');
+                            //     layer++;
 
-                                bool areAllCharsAbsent = true;
-                                foreach(string argument in notPresentArguments){
-                                    if(isCharInScene(argument)){
-                                        areAllCharsAbsent = false;
-                                    }
-                                }
-                                if(areAllCharsAbsent){
-                                    truthLayers.Add(true);
-                                }else{
-                                    truthLayers.Add(false);
-                                }
-                                break;
-                            case "drinkis":
-                                string[] drinkIsArguments = flagCommand[1].Trim().Split(',');
-                                layer++;
+                            //     bool areAllCharsAbsent = true;
+                            //     foreach(string argument in notPresentArguments){
+                            //         if(isCharInScene(argument)){
+                            //             areAllCharsAbsent = false;
+                            //         }
+                            //     }
+                            //     if(areAllCharsAbsent){
+                            //         truthLayers.Add(true);
+                            //     }else{
+                            //         truthLayers.Add(false);
+                            //     }
+                            //     break;
 
-                                bool drinkHasQualities = true;
-                                foreach(string quality in drinkIsArguments){
-                                    if(!mcBehavior.drinkYouServed.Contains(quality)){
-                                        drinkHasQualities = false;
-                                    }
-                                }
-                                if(drinkHasQualities){
-                                    truthLayers.Add(true);
-                                }else{
-                                    truthLayers.Add(false);
-                                }
+                            // MOCHA MAGIC CODE
+                            // case "drinkis":
+                            //     string[] drinkIsArguments = flagCommand[1].Trim().Split(',');
+                            //     layer++;
 
-                                break;
-                            case "drinkisnt":
-                                string[] drinkIsntArguments = flagCommand[1].Trim().Split(',');
-                                layer++;
+                            //     bool drinkHasQualities = true;
+                            //     foreach(string quality in drinkIsArguments){
+                            //         if(!mcBehavior.drinkYouServed.Contains(quality)){
+                            //             drinkHasQualities = false;
+                            //         }
+                            //     }
+                            //     if(drinkHasQualities){
+                            //         truthLayers.Add(true);
+                            //     }else{
+                            //         truthLayers.Add(false);
+                            //     }
 
-                                bool drinkLacksQualities = true;
-                                foreach(string quality in drinkIsntArguments){
-                                    if(mcBehavior.drinkYouServed.Contains(quality)){
-                                        drinkLacksQualities = false;
-                                    }
-                                }
-                                if(drinkLacksQualities){
-                                    truthLayers.Add(true);
-                                }else{
-                                    truthLayers.Add(false);
-                                }
-                                break;
+                            //     break;
+                            // case "drinkisnt":
+                            //     string[] drinkIsntArguments = flagCommand[1].Trim().Split(',');
+                            //     layer++;
+
+                            //     bool drinkLacksQualities = true;
+                            //     foreach(string quality in drinkIsntArguments){
+                            //         if(mcBehavior.drinkYouServed.Contains(quality)){
+                            //             drinkLacksQualities = false;
+                            //         }
+                            //     }
+                            //     if(drinkLacksQualities){
+                            //         truthLayers.Add(true);
+                            //     }else{
+                            //         truthLayers.Add(false);
+                            //     }
+                            //     break;
                             case "rand":
                                 int randomRange = 1;
                                 int randomPool = 1;
@@ -1751,20 +1820,20 @@ public class DialogueManager : MonoBehaviour
         return appendedList.ToArray();
     }
 
-
-    private bool hasFlagOccured(string[] flagArguments){
-        List<string> allFlags = new List<string>();
-        if(flagArguments.Length > 1){
-            int currentDay = int.Parse(flagArguments[1].Trim());
-            if(storyActivator.activatedFlagsAt(currentDay) != null){
-                allFlags = storyActivator.storyFlagStringList(storyActivator.activatedFlagsAt(currentDay));
-            }                            
-        }else{
-            allFlags = storyActivator.storyFlagStringList(storyActivator.allActivatedFlags());
-        }
-        bool flagHasOccured = allFlags.Contains(flagArguments[0].ToLower().Trim());
-        return flagHasOccured;
-    }
+    // MOCHA MAGIC CODE
+    // private bool hasFlagOccured(string[] flagArguments){
+    //     List<string> allFlags = new List<string>();
+    //     if(flagArguments.Length > 1){
+    //         int currentDay = int.Parse(flagArguments[1].Trim());
+    //         if(storyActivator.activatedFlagsAt(currentDay) != null){
+    //             allFlags = storyActivator.storyFlagStringList(storyActivator.activatedFlagsAt(currentDay));
+    //         }                            
+    //     }else{
+    //         allFlags = storyActivator.storyFlagStringList(storyActivator.allActivatedFlags());
+    //     }
+    //     bool flagHasOccured = allFlags.Contains(flagArguments[0].ToLower().Trim());
+    //     return flagHasOccured;
+    // }
 
     private bool isCharInScene(string charName){
         foreach(GameObject npc in overworldNPCs){
@@ -1826,18 +1895,19 @@ public class DialogueManager : MonoBehaviour
         return newString;
     }
 
-    public void ToggleBacklog(){
-        AutoTextOff(); //input detected
-        Debug.Log("Open Backlog!");
-        if(backlogView.BacklogOpen()){
-            backlogView.HideBacklog();
-            isTextFrozen = false;
-        }else{ 
-            backlogView.ShowBacklog();
-            isTextFrozen = true;
-        }
+    // MOCHA MAGIC CODE
+    // public void ToggleBacklog(){
+    //     AutoTextOff(); //input detected
+    //     Debug.Log("Open Backlog!");
+    //     if(backlogView.BacklogOpen()){
+    //         backlogView.HideBacklog();
+    //         isTextFrozen = false;
+    //     }else{ 
+    //         backlogView.ShowBacklog();
+    //         isTextFrozen = true;
+    //     }
         
-    }
+    // }
 
     public void HideDialogue(){
         
@@ -1868,28 +1938,35 @@ public class DialogueManager : MonoBehaviour
         GameObject newMenuObject = Instantiate(settingsMenu, new Vector3(0,0,0), Quaternion.identity);
         newMenuObject.transform.parent = GameObject.Find("SettingsMenuScene").transform;
         newMenuObject.transform.position = new Vector3(0,0,0);
-        CreateSettingsMenu.VNFreeze = true;
+        // MOCHA MAGIC CODE
+        //CreateSettingsMenu.VNFreeze = true;
         isTextFrozen = true;
     }
 
     public void CharaVoiceSwitch(){
         //AutoTextOff(); //this one is a toggle so i won't count it
-        PlayerSettings.characterVoices = !PlayerSettings.characterVoices;
+        // MOCHA MAGIC CODE
+        //PlayerSettings.characterVoices = !PlayerSettings.characterVoices;
         UpdateVoiceSwitch();
         
     }
 
     public void UpdateVoiceSwitch(){
-        if(PlayerSettings.characterVoices){
-            noVoiceButtonText.color = optionsWhite;
-        }else{
-            noVoiceButtonText.color = optionsBlack;
-        }
+        // MOCHA MAGIC CODE
+        // if(PlayerSettings.characterVoices){
+        //     noVoiceButtonText.color = optionsWhite;
+        // }else{
+        //     noVoiceButtonText.color = optionsBlack;
+        // }
     }
 
     public bool CharaVoicesOn(){
         //return charaVoicesOn;
-        return PlayerSettings.characterVoices;
+        // MOCHA MAGIC CODE
+        // return PlayerSettings.characterVoices;
+
+        // Temp
+        return true;
     }
 
     public void AutoTextSwitch(){
@@ -1913,9 +1990,11 @@ public class DialogueManager : MonoBehaviour
         return autoText;
     }
 
+    // EXCLUSIVE MOCHA MAGIC CODE
     public Dictionary<string, CharacterObject> ActiveCharacters(){
         return activeCharacters;
     }
+    
 
     public void HighlightSpeaker(string mainSpeaker){ //ungrey the active speaker in scene if one exists
         if(mainSpeaker == MCName){
@@ -1934,7 +2013,8 @@ public class DialogueManager : MonoBehaviour
             for(int i = 0; i < npcsInSceneList.Count; i++){
                 if(npcsInSceneList[i] == npcsInScene[mainSpeaker]){
                     UngreySprite(npcsInSceneList[i]);
-                    npcsInSceneList[i].GetComponent<NPCBehaviorVN>().blinkOnCommand();
+                    // MOCHA MAGIC CODE
+                    //npcsInSceneList[i].GetComponent<NPCBehaviorVN>().blinkOnCommand();
                     npcsInSceneList[i].transform.SetAsLastSibling();
                 }else{
                     GreyOutSprite(npcsInSceneList[i]);

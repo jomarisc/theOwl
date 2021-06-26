@@ -352,7 +352,7 @@ public class TextWriter : MonoBehaviour
                     }
                     if(voiceInterval == 0){
                         Camera.main.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.95f, 1.03f);
-                        Camera.main.GetComponent<AudioSource>().PlayOneShot(speakingVoice.VoiceClip(soundLibrary), PlayerSettings.SFXVolume*0.4f);
+                        Camera.main.GetComponent<AudioSource>().PlayOneShot(speakingVoice.VoiceClip(soundLibrary), 1*0.4f); // Previously: PlayerSettings.SFXVolume*0.4f
                     }
                     voiceInterval++;
                 }
@@ -494,7 +494,8 @@ public class TextWriter : MonoBehaviour
                             dialogueManager.SpawnNPCs(visitorsToSpawn, NPCStatus.Visitor);
                             break;
                         case "endDay":
-                            dialogueManager.EndDay();
+                            //MOCHA MAGIC CODE
+                            //dialogueManager.EndDay();
                             break;
                         default:
                             Debug.LogWarning("Invalid Script Command!");
