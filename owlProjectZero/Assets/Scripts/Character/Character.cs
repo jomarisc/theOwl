@@ -133,6 +133,8 @@ public abstract class Character : MonoBehaviour, ICharacter
     // Character attack for other kinds of attacks
     public void Attack(GameObject attack)
     {
+        if(attack == null) Debug.Log("Attack is null");
+        else Debug.Log(attack.gameObject.name);
         Vector3 atkPos = attack.transform.localPosition;
         int direction = (data.isFacingRight) ? 1 : -1;
         atkPos.x = direction * attack.GetComponent<Attack>().initialLocalPosition.x;
