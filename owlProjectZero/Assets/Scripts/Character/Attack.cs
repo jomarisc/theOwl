@@ -16,9 +16,9 @@ public abstract class Attack : MonoBehaviour
 {
     // private fields
     private Character myCharacter;
-    private List<Hitbox> hitboxes;
 
     // protected fields
+    protected List<Hitbox> hitboxes;
     [Header("General")]
 
     // public fields
