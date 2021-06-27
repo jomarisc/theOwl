@@ -108,13 +108,16 @@ public class Hitbox : MonoBehaviour
                 // Debug.Log(phase);
             }
         }
-        if(startupDuration <= 0f && activeDuration > 0f)
+        if(phase == AttackPhase.Active && !data.shape.enabled) // (startupDuration <= 0f && activeDuration > 0f)
         {
             data.shape.enabled = true;
         }
-        if(recoveryDuration <= 0f)
+        else if(phase == AttackPhase.Recovery && data.shape.enabled)
         {
             data.shape.enabled = false;
+        }
+        if(recoveryDuration <= 0f)
+        {
             this.enabled = false;
         }
     }
