@@ -94,6 +94,7 @@ public abstract class Attack : MonoBehaviour
 
             // Mirror the hitbox local positions across the y-axis if isFacingRight
             Vector3 hitboxPos = hitbox.transform.localPosition;
+            hitbox.data.initialLocalPosition = hitboxPos; // Required in this script bc this runs before Hitbox.cs's Awake/OnEnable for some reason despite attempts to change script execution order
             hitboxPos.x = (isFacingRight) ? hitbox.data.initialLocalPosition.x : -hitbox.data.initialLocalPosition.x;
             hitbox.transform.localPosition = hitboxPos;
             Debug.Log("Facing Right?" + isFacingRight);

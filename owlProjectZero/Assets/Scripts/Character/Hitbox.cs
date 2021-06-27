@@ -16,7 +16,7 @@ public enum AttackPhase {Startup, Active, Recovery}
 public struct HitboxData
 {
     [HideInInspector]
-    public Vector3 initialLocalPosition;
+    public Vector3 initialLocalPosition; // Attack scripts are in charge of initializing this field, whereas this script is in charge of returning this value to its original value
     public Collider shape;
     public float damage;
     public int startup;
@@ -51,7 +51,7 @@ public class Hitbox : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        data.initialLocalPosition = transform.localPosition;
+        // data.initialLocalPosition = transform.localPosition;
         startupDuration = data.startup * Time.fixedDeltaTime;
         if(data.timeActive == 0)
             activeDuration = Mathf.Infinity;
