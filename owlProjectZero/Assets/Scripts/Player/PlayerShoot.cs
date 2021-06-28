@@ -8,7 +8,7 @@ public class PlayerShoot : IState
     private readonly playerControl player;
     private Rigidbody playerBody;
     private GameObject projectile;
-    private ProjectileAttack projAtk;
+    private Hitbox hitbox;
     private PlayerInputs input;
     private bool playerCanMove;
     private float horizontalMovement = 0f;
@@ -18,7 +18,7 @@ public class PlayerShoot : IState
         player = p;
         playerBody = p.GetComponent<Rigidbody>();
         projectile = p.projectile.gameObject;
-        projAtk = projectile.GetComponent<ProjectileAttack>();
+        hitbox = projectile.GetComponentInChildren<Hitbox>();
         input = p.input;
     }
     public void Enter()
@@ -58,7 +58,7 @@ public class PlayerShoot : IState
                 return new PlayerIdle(player);
         }
 
-        if(projAtk.phase != AttackPhase.Startup)
+        if(hitbox.phase != AttackPhase.Startup)
             playerCanMove = true;
         if(playerCanMove)
             horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();

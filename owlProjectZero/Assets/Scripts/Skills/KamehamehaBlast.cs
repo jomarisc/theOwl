@@ -15,7 +15,7 @@ public class KamehamehaBlast : IState
     {
         user = c;
         blast = b;
-        hitbox = b.GetComponent<CapsuleCollider>();
+        hitbox = b.GetComponentInChildren<CapsuleCollider>();
         beamSprite = b.GetComponentInChildren<SpriteRenderer>();
         beamRootSprite = br;
         growthRate = gr;

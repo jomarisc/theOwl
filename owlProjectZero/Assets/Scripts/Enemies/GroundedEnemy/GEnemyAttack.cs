@@ -17,7 +17,7 @@ public class GEnemyAttack : IState
         animator = myself.GetComponent<Animator>();
         characterBody = myself.GetComponent<Rigidbody>();
         meleeAttack = myself.basicAttack.gameObject;
-        hitbox = meleeAttack.GetComponent<Collider>();
+        hitbox = meleeAttack.GetComponentInChildren<Collider>();
         horizontalMovement = hm;
     }
 
@@ -41,6 +41,7 @@ public class GEnemyAttack : IState
 
         if(meleeAttack.activeInHierarchy)
         {
+            hitbox.enabled = false;
             meleeAttack.SetActive(false);
         }
     }

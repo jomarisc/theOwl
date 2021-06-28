@@ -18,6 +18,7 @@ public class HEnemyAttack : IState
     public void Enter()
     {
         // Enter grounded enemy walk animation here:
+        character.atkVFXSprite.flipX = character.data.isFacingRight;
         character.animator.Play("HeavyAttack");
         character.heavyMelee.Play();
         meleeAttack.SetActive(true);

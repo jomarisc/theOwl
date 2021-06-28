@@ -42,13 +42,16 @@ public class ProjectileAttack : Attack
     new void FixedUpdate()
     {
         base.FixedUpdate();
-        if(phase == AttackPhase.Active)
+        foreach (Hitbox hitbox in hitboxes)
         {
-            rb.velocity = new Vector3(speed, 0f, 0f);
-            if(!sp.enabled)
+            if(hitbox.phase == AttackPhase.Active)
             {
-                int shootingDirection = (myShooter.data.isFacingRight) ? 1 : -1;
-                SpawnProjectile(shootingDirection);
+                rb.velocity = new Vector3(speed, 0f, 0f);
+                if(!sp.enabled)
+                {
+                    int shootingDirection = (myShooter.data.isFacingRight) ? 1 : -1;
+                    SpawnProjectile(shootingDirection);
+                }
             }
         }
     }
