@@ -25,7 +25,8 @@ public class GEnemyAttack : IState
     {
         // Enter grounded enemy walk animation here:
         animator.SetBool("windingUp", true);
-        character.windUp.volume = 0.45f; // This is the current value in the inspector
+        if(character.windUp.mute)
+            character.windUp.mute = false;
         character.windUp.Play();
         characterBody.velocity = Vector3.zero;
         meleeAttack.SetActive(true);
@@ -40,8 +41,8 @@ public class GEnemyAttack : IState
         if(animator.GetBool("attacking"))
             animator.SetBool("attacking", false);
 
-        if(character.windUp.isPlaying)
-            character.StartCoroutine(character.FadeOutAudio(character.windUp));
+        if(!character.windUp.mute)
+            character.windUp.mute = true;
 
         if(meleeAttack.activeInHierarchy)
         {

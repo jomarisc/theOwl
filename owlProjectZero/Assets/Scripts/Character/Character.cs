@@ -190,19 +190,4 @@ public abstract class Character : MonoBehaviour, ICharacter
         }
             
     }
-
-    // Quickly fades out volume of an audio source
-    // This is meant to prevent audio popping from
-    // calling AudioSource.Stop()
-    public IEnumerator FadeOutAudio(AudioSource source)
-    {
-        while(source.volume > 0f)
-        {
-            source.volume -= 0.02f;
-            yield return new WaitForEndOfFrame();
-        }
-
-        source.Stop();
-        yield return null;
-    }
 }
