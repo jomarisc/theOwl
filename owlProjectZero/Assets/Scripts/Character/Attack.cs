@@ -97,7 +97,7 @@ public abstract class Attack : MonoBehaviour
             hitbox.data.initialLocalPosition = hitboxPos; // Required in this script bc this runs before Hitbox.cs's Awake/OnEnable for some reason despite attempts to change script execution order
             hitboxPos.x = (isFacingRight) ? hitbox.data.initialLocalPosition.x : -hitbox.data.initialLocalPosition.x;
             hitbox.transform.localPosition = hitboxPos;
-            Debug.Log("Facing Right?" + isFacingRight);
+            // Debug.Log("Facing Right?" + isFacingRight);
         }
         /* MAKE SURE YOU'VE USED THE FOR_EACH LOOP */
         
@@ -179,9 +179,9 @@ public abstract class Attack : MonoBehaviour
         
         if(hitboxes.Count <= 0)
         {
-            Debug.Log("Deactivating Hitbox");
+            // Debug.Log("Deactivating Hitbox");
             gameObject.SetActive(false);
-            Debug.Log("Finished Deactivating Hitbox");
+            // Debug.Log("Finished Deactivating Hitbox");
         }
     }
 }
