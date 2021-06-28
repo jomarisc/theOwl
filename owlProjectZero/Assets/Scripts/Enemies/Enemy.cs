@@ -182,7 +182,7 @@ public abstract class Enemy : Character
 
         enemyDeadListener = (EnemyDead) myState;
         enemyDeadListener.OnEnemyDead += SpawnExperience; // Subscribes to publisher
-        Debug.Log(myState);
+        // Debug.Log(myState);
         myState.Enter();
     }
 
