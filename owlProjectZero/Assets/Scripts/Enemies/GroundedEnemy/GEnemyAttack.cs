@@ -39,6 +39,9 @@ public class GEnemyAttack : IState
         if(animator.GetBool("attacking"))
             animator.SetBool("attacking", false);
 
+        if(character.windUp.isPlaying)
+            character.windUp.Stop();
+
         if(meleeAttack.activeInHierarchy)
         {
             hitbox.enabled = false;
