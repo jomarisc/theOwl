@@ -167,7 +167,11 @@ public class Hitbox : MonoBehaviour
             {
                 // Debug.Log("Player Damaged by Hitbox!");
                 // col.gameObject.GetComponent<playerControl>().healthbar.Damage(data.damage);
-                col.gameObject.GetComponent<playerControl>().healthbar.Redraw();
+                player.healthbar.Redraw();
+                float playerPosX = player.transform.position.x;
+                float myPosX = GetComponentInParent<Character>().transform.position.x;
+                player.data.isFacingRight = (playerPosX < myPosX) ? true : false;
+                player.GetComponent<SpriteRenderer>().flipX = !player.data.isFacingRight;
             }
             if(col.gameObject.TryGetComponent(out Enemy enemy))
             {
