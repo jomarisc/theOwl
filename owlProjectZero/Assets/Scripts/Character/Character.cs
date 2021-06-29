@@ -145,7 +145,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     public void GetRekt()
     {
         // New lines
-        Debug.Log("Got rekt");
+        // Debug.Log("Got rekt");
         //Destroy(this.gameObject);
         // this.gameObject.active = false;
         gameObject.SetActive(false);

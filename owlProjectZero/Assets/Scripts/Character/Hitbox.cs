@@ -165,7 +165,7 @@ public class Hitbox : MonoBehaviour
             }
             if(col.gameObject.TryGetComponent(out playerControl player))
             {
-                Debug.Log("Player Damaged by Hitbox!");
+                // Debug.Log("Player Damaged by Hitbox!");
                 // col.gameObject.GetComponent<playerControl>().healthbar.Damage(data.damage);
                 col.gameObject.GetComponent<playerControl>().healthbar.Redraw();
             }
