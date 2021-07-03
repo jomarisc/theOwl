@@ -51,6 +51,8 @@ public class DialogueManager : MonoBehaviour
     private bool startMessageTimerActive = false;
     private bool endMessageTimerActive = false;
 
+    // OWL LONG DAY EXCLUSIVE CODE
+    public bool manualActivation;
     public event EventDelegate OnNextMessage;
     public delegate void EventDelegate();
     [SerializeField] private bool canFireNextMessageEvent = true;
@@ -132,7 +134,7 @@ public class DialogueManager : MonoBehaviour
     
     // Reference to player script
     //private MCBehavior mcBehavior;
-    private playerControl playerBehavior;
+    private PlayerInputs input;
 
     private string endingType;
 
@@ -150,6 +152,8 @@ public class DialogueManager : MonoBehaviour
         // Load in sound file for playing 
         talkingAudioSource = this.GetComponent<AudioSource>();
         
+        input = new PlayerInputs();
+
         // MOCHA MAGIC CODE
         //backlogView = transform.Find("backlogHolder/MainPanel").GetComponent<BacklogView>();
         
@@ -227,6 +231,20 @@ public class DialogueManager : MonoBehaviour
         }
         //Debug.Log($"Framerate: {Application.targetFrameRate}");
     }
+    void OnEnable()
+    {
+        input.Enable();
+        if(!manualActivation)
+        {
+            SetMessageAndPlay();
+        }
+    }
+
+    void OnDisable()
+    {
+        input.Disable();
+    }
+
 
     public void Update()
     {
