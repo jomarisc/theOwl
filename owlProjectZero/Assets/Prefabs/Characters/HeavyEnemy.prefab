@@ -431,7 +431,7 @@ SpriteRenderer:
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 5.12, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1188,6 +1188,7 @@ MonoBehaviour:
     remainingStamana: 0
   basicAttack: {fileID: 5476406654723804732}
   animator: {fileID: 0}
+  sRenderer: {fileID: 0}
   experienceCollectable: {fileID: 9102680711599866488, guid: 0c7a9e3fe10b9f54595053935f0ef549,
     type: 3}
   currencyCollectable: {fileID: 5746714417445567809, guid: 85e4f296b8750dc439593c06c751a528,
