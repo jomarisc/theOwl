@@ -178,10 +178,13 @@ public class Hitbox : MonoBehaviour
             }
             if(col.gameObject.TryGetComponent(out Enemy enemy))
             {
-                float enemyPosX = enemy.transform.position.x;
-                float myPosX = GetComponentInParent<Character>().transform.position.x;
-                enemy.data.isFacingRight = (enemyPosX < myPosX) ? true : false;
-                enemy.GetComponent<SpriteRenderer>().flipX = enemy.data.isFacingRight;
+                if(!enemy.data.hasSuperArmor)
+                {
+                    float enemyPosX = enemy.transform.position.x;
+                    float myPosX = GetComponentInParent<Character>().transform.position.x;
+                    enemy.data.isFacingRight = (enemyPosX < myPosX) ? true : false;
+                    enemy.sRenderer.flipX = enemy.data.isFacingRight;
+                }
                 if (col.gameObject.GetComponent<Enemy>().data.health <= 0)
                 {
                     // Have enemy go to dead state.
