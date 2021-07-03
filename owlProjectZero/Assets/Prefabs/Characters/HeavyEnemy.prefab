@@ -456,6 +456,51 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &130933156598669477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122366696482780439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495a84bf54c13b14dbfa5d568f2f6aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CONSTANTS>k__BackingField:
+    MAX_HEALTH: 15
+    MAX_JUMPS: 1
+    MAX_DODGES: 0
+    DEAD_DURATION: 0
+  data:
+    numJumps: 1
+    numDodges: 0
+    deadDuration: 0
+    health: 15
+    maxSpeed: 0
+    groundSpeed: 2
+    airSpeed: 1
+    jumpDistance: 2
+    isFacingRight: 0
+    hasSuperArmor: 1
+    remainingStamana: 0
+  basicAttack: {fileID: 5476406654723804732}
+  animator: {fileID: 0}
+  sRenderer: {fileID: 0}
+  experienceCollectable: {fileID: 9102680711599866488, guid: 0c7a9e3fe10b9f54595053935f0ef549,
+    type: 3}
+  currencyCollectable: {fileID: 5746714417445567809, guid: 85e4f296b8750dc439593c06c751a528,
+    type: 3}
+  enemyCounter: {fileID: 0}
+  eyePrescription: 15
+  collectableSpawnRange: 1
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  atkVFXSprite: {fileID: 9132328428355403843}
+  heavyJump: {fileID: 6395611362550189956}
+  heavyMelee: {fileID: 3077303067879387038}
 --- !u!1 &5476406654723804732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,7 +1192,7 @@ MonoBehaviour:
     damage: 2
     startup: 9
     timeActive: 1
-    recovery: 20
+    recovery: 60
     gKnockback: 15
     gKnockbackAngle: 75
     aKnockback: 15
@@ -1157,50 +1202,6 @@ MonoBehaviour:
   startupSFX: {fileID: 7983162157191192845}
   activeSFX: {fileID: 7983162157191192845}
   recoverySFX: {fileID: 7983162157191192845}
---- !u!114 &130933156598669477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5122366696482780439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 495a84bf54c13b14dbfa5d568f2f6aeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <CONSTANTS>k__BackingField:
-    MAX_HEALTH: 15
-    MAX_JUMPS: 1
-    MAX_DODGES: 0
-    DEAD_DURATION: 0
-  data:
-    numJumps: 1
-    numDodges: 0
-    deadDuration: 0
-    health: 15
-    maxSpeed: 0
-    groundSpeed: 2
-    airSpeed: 1
-    jumpDistance: 2
-    isFacingRight: 0
-    hasSuperArmor: 1
-    remainingStamana: 0
-  basicAttack: {fileID: 5476406654723804732}
-  animator: {fileID: 0}
-  experienceCollectable: {fileID: 9102680711599866488, guid: 0c7a9e3fe10b9f54595053935f0ef549,
-    type: 3}
-  currencyCollectable: {fileID: 5746714417445567809, guid: 85e4f296b8750dc439593c06c751a528,
-    type: 3}
-  enemyCounter: {fileID: 0}
-  eyePrescription: 15
-  collectableSpawnRange: 1
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  atkVFXSprite: {fileID: 9132328428355403843}
-  heavyJump: {fileID: 6395611362550189956}
-  heavyMelee: {fileID: 3077303067879387038}
 --- !u!1 &9152647458466102666
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,7 +1433,7 @@ PrefabInstance:
     - target: {fileID: 1635083202522667732, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1635083202522667732, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
@@ -1554,18 +1555,6 @@ PrefabInstance:
     - {fileID: 5492792926999471545, guid: a94cdbb1a371e434da94986eea1d80d4, type: 3}
     - {fileID: 5260203863440350989, guid: a94cdbb1a371e434da94986eea1d80d4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a94cdbb1a371e434da94986eea1d80d4, type: 3}
---- !u!4 &8048465035459543472 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1635083202522667732, guid: a94cdbb1a371e434da94986eea1d80d4,
-    type: 3}
-  m_PrefabInstance: {fileID: 8719285318242900836}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5122366696482780439 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4474135542371462771, guid: a94cdbb1a371e434da94986eea1d80d4,
-    type: 3}
-  m_PrefabInstance: {fileID: 8719285318242900836}
-  m_PrefabAsset: {fileID: 0}
 --- !u!82 &1416039698053253030 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 7685348055905033410, guid: a94cdbb1a371e434da94986eea1d80d4,
@@ -1581,6 +1570,18 @@ Transform:
 --- !u!82 &8905776026618618206 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 186534142042667578, guid: a94cdbb1a371e434da94986eea1d80d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8719285318242900836}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8048465035459543472 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1635083202522667732, guid: a94cdbb1a371e434da94986eea1d80d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8719285318242900836}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5122366696482780439 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4474135542371462771, guid: a94cdbb1a371e434da94986eea1d80d4,
     type: 3}
   m_PrefabInstance: {fileID: 8719285318242900836}
   m_PrefabAsset: {fileID: 0}
