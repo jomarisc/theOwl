@@ -5,7 +5,6 @@ using UnityEngine;
 public class HeavyEnemy : Enemy
 {
     // private fields
-    private SpriteRenderer sRenderer;
 
     // protected fields
 

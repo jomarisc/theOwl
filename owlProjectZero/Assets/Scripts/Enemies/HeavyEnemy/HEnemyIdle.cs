@@ -49,7 +49,7 @@ public class HEnemyIdle : IState
         {
             // Turn around and walk
             character.data.isFacingRight = !character.data.isFacingRight;
-            Vector3 spritePos = character.GetComponentInChildren<SpriteRenderer>().transform.localPosition;
+            Vector3 spritePos = character.sRenderer.transform.localPosition;
             spritePos.x = -spritePos.x;
             character.GetComponentInChildren<SpriteRenderer>().transform.localPosition = spritePos;
             return new HEnemyWalk(character);

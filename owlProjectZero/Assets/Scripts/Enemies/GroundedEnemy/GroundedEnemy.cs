@@ -5,7 +5,6 @@ using UnityEngine;
 public class GroundedEnemy : Enemy
 {
     // private fields
-    private SpriteRenderer sRenderer;
 
     // protected fields
 

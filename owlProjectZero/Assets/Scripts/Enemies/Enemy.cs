@@ -12,6 +12,7 @@ public abstract class Enemy : Character
     private Room myRoom = null;
 
     [Header("Necessary Attachments")]
+    [HideInInspector] public SpriteRenderer sRenderer;
     [SerializeField] private GameObject experienceCollectable = null;
     public GameObject currencyCollectable = null;
     public Text enemyCounter;
