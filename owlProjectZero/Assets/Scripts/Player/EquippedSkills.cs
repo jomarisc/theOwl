@@ -17,7 +17,22 @@ public class EquippedSkills : MonoBehaviour
     private void OnEnable()
     {
         player.input.Gameplay.UseActiveSkill.started += UseCurrentSkill;
+
+        switch(GlobalVars.currentSkill)
+        {
+            case 0:
+                currentSkill = transform.parent.GetComponentInChildren<AllSkills>().AllSkillsList[0].GetComponent<Skill>();
+                break;
+            case 1: 
+                currentSkill = transform.parent.GetComponentInChildren<AllSkills>().AllSkillsList[1].GetComponent<Skill>();
+                break;
+            default:
+                currentSkill = transform.parent.GetComponentInChildren<AllSkills>().AllSkillsList[2].GetComponent<Skill>();
+                break;
+        }
+
         SkillWheelUI.OnSkillEquip += UpdateCurrentSkill;
+
     }
 
     private void OnDisable()
@@ -30,6 +45,21 @@ public class EquippedSkills : MonoBehaviour
     {
         Debug.Log("Updating current skill...");
         currentSkill = skills[EventSystem.current.currentSelectedGameObject.GetComponentInChildren<SkillWheelSlotUI>().slotNumber - 1];
+
+        switch(currentSkill)
+        {
+            case Shield s1:
+                GlobalVars.currentSkill = 0;
+                break;
+            case Kamehameha s2:
+                GlobalVars.currentSkill = 1;
+                break;
+            default:
+                // 2 is null for now
+                GlobalVars.currentSkill = 2;;
+                break;
+        }
+
         OnCurrentSkillChanged?.Invoke();
     }
 

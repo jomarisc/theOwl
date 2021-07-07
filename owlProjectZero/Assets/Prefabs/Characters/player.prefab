@@ -1158,7 +1158,7 @@ MonoBehaviour:
     groundSpeed: 3
     airSpeed: 10
     jumpDistance: 8
-    isFacingRight: 1
+    isFacingRight: 0
     hasSuperArmor: 0
     remainingStamana: 100
   basicAttack: {fileID: 8548501586489388540}
@@ -1225,7 +1225,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 67ea5bd58a85d7e449471d7f1efe5dfe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.28, y: 1.28}
@@ -1340,6 +1340,7 @@ MonoBehaviour:
   AllSkillsList:
   - {fileID: 3849327204251050522, guid: 5ac0a6abd7abba64aa8962dc7596fb84, type: 3}
   - {fileID: 7009423683530938167, guid: e4db8532b18bb4a468046e5cb0012cb0, type: 3}
+  - {fileID: 175758254064318168, guid: 0084c0bf6f31bcb42969f8dd4d0cf06e, type: 3}
 --- !u!1 &5370420138850324902
 GameObject:
   m_ObjectHideFlags: 0
