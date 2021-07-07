@@ -8,7 +8,19 @@ public class PlayerSkills : MonoBehaviour
     //private readonly playerControl player;
 
     public List<Skill> unlockedSkillTypeList;
+
+    void Awake()
+    {
+
+    }
     
+    void Update()
+    {
+        // for(int i = 0; i < unlockedSkillTypeList.Count; i++){
+        //     Debug.Log(unlockedSkillTypeList[i]);
+        // }
+    }
+
     public PlayerSkills()
     {
         unlockedSkillTypeList = new List<Skill>();
@@ -19,6 +31,10 @@ public class PlayerSkills : MonoBehaviour
         if (!IsSkillUnlocked(skillType))
         {
             unlockedSkillTypeList.Add(skillType);
+            GlobalVars.unlockedSkills.Add(skillType);
+            for(int i = 0; i < GlobalVars.unlockedSkills.Count; i++){
+            Debug.Log(GlobalVars.unlockedSkills[i]);
+        }
         }
         else
         {
