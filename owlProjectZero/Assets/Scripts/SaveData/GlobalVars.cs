@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GlobalVars : MonoBehaviour
 {
-    
-    public static List<Skill> unlockedSkills;
+
+    public static bool[] unlockedSkills = new bool[2];
 
 }

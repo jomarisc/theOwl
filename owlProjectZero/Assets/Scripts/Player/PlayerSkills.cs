@@ -11,15 +11,10 @@ public class PlayerSkills : MonoBehaviour
 
     void Awake()
     {
-
+        // Temporary, until we turn off shield until he gets the suit.
+        GlobalVars.unlockedSkills[0] = true;
     }
     
-    void Update()
-    {
-        // for(int i = 0; i < unlockedSkillTypeList.Count; i++){
-        //     Debug.Log(unlockedSkillTypeList[i]);
-        // }
-    }
 
     public PlayerSkills()
     {
@@ -31,10 +26,24 @@ public class PlayerSkills : MonoBehaviour
         if (!IsSkillUnlocked(skillType))
         {
             unlockedSkillTypeList.Add(skillType);
-            GlobalVars.unlockedSkills.Add(skillType);
-            for(int i = 0; i < GlobalVars.unlockedSkills.Count; i++){
-            Debug.Log(GlobalVars.unlockedSkills[i]);
-        }
+            switch(skillType)
+            {
+                case Shield s1:
+                    GlobalVars.unlockedSkills[0] = true;
+                    break;
+
+                case Kamehameha s2:
+                    GlobalVars.unlockedSkills[1] = true;
+                    break;
+                default:
+                    Debug.Log("Skill not implemented yet. Sorry.");
+                    break;
+            }
+
+            for(int i = 0; i < GlobalVars.unlockedSkills.Length; i++)
+            {
+                Debug.Log("Skill " + i + " " + GlobalVars.unlockedSkills[i]);
+            }
         }
         else
         {
