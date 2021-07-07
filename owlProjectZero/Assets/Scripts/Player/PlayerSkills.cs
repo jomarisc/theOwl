@@ -17,6 +17,18 @@ public class PlayerSkills : MonoBehaviour
         playerControl player = GetComponentInParent<playerControl>();
         equippedSkills = player.GetComponentInChildren<EquippedSkills>();
 
+        // for(int i = 0; i < GlobalVars.unlockedSkills.Length; i++)
+        // {
+        //     if(GlobalVars.unlockedSkills[i] == true)
+        //     {
+        //         ReplaceEquippedSkill(GetComponent<AllSkills>().AllSkillsList[i]);
+        //     }
+        // }
+
+        if(GlobalVars.unlockedSkills[1] == true)
+        {
+            ReplaceEquippedSkill(GetComponent<AllSkills>().AllSkillsList[1]);
+        }
 
     }
     
@@ -63,10 +75,10 @@ public class PlayerSkills : MonoBehaviour
         switch(skillType)
         {
             case Shield s1:
-                return true;
+                return GlobalVars.unlockedSkills[0];
 
             case Kamehameha s2:
-                return true;
+                return GlobalVars.unlockedSkills[1];
             default:
                 Debug.Log("Skill hasn't been unlocked yet. Boo you.");
                 return false;

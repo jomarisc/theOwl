@@ -1290,6 +1290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8126547436629862513}
   - component: {fileID: 1662708261558932915}
+  - component: {fileID: 4040589987461981289}
   m_Layer: 0
   m_Name: UnlockedSkills
   m_TagString: Untagged
@@ -1324,8 +1325,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60205ecbda91c8479ce75e924406fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlockedSkillTypeList:
-  - {fileID: 5957651919911647662}
+--- !u!114 &4040589987461981289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3719444796070121471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a5dcf50ba7678542981c60652d3d1ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllSkillsList:
+  - {fileID: 3849327204251050522, guid: 5ac0a6abd7abba64aa8962dc7596fb84, type: 3}
+  - {fileID: 7009423683530938167, guid: e4db8532b18bb4a468046e5cb0012cb0, type: 3}
 --- !u!1 &5370420138850324902
 GameObject:
   m_ObjectHideFlags: 0
