@@ -20,11 +20,19 @@ public class SkillCollectable : Collectable
     {
         // Add the skill to the player's list of unlocked skills
         unlockedSkills.UnlockSkill(skillToUnlock.GetComponent<Skill>());
-        GameObject newUnlock = Instantiate(skillToUnlock, unlockedSkills.transform);
+
+        replaceEquippedSkill(skillToUnlock.GetComponent<Skill>());
+
+        Destroy(this.gameObject);
+    }
+
+    public static void replaceEquippedSkill(Skill skillType)
+    {
+        GameObject newUnlock = Instantiate(skillType, unlockedSkills.transform);
         newUnlock.SetActive(false);
 
         // If the player hasn't unlocked 4 skills yet
-        if(unlockedSkills.unlockedSkillTypeList.Count < 4)
+        if(GlobalVars.unlockedSkills.Length < 4)
         {
             for(int i = 0; i < equippedSkills.skills.Length; i++)
             {
@@ -33,7 +41,7 @@ public class SkillCollectable : Collectable
                     // Replace the EmptySkill prefab with the new skill
                     Skill[] slots = equippedSkills.gameObject.GetComponentsInChildren<Skill>();
                     Destroy(slots[i].gameObject);
-                    GameObject newSkill = Instantiate(skillToUnlock, equippedSkills.transform);
+                    GameObject newSkill = Instantiate(skillType, equippedSkills.transform);
 
                     // Add the skill to the first empty skill slot
                     equippedSkills.skills[i] = newSkill.GetComponent<Skill>();
@@ -41,7 +49,5 @@ public class SkillCollectable : Collectable
                 }
             }
         }
-
-        Destroy(this.gameObject);
     }
 }
