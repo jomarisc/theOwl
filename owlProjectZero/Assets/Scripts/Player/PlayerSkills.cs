@@ -6,6 +6,7 @@ public class PlayerSkills : MonoBehaviour
 {
     
     //private readonly playerControl player;
+    private EquippedSkills equippedSkills;
 
     // public List<Skill> unlockedSkillTypeList;
 
@@ -13,6 +14,8 @@ public class PlayerSkills : MonoBehaviour
     {
         // Temporary, until we turn off shield until he gets the suit.
         GlobalVars.unlockedSkills[0] = true;
+        playerControl player = GetComponentInParent<playerControl>();
+        equippedSkills = player.GetComponentInChildren<EquippedSkills>();
 
 
     }
@@ -58,19 +61,42 @@ public class PlayerSkills : MonoBehaviour
         // return unlockedSkillTypeList.Contains(skillType);
 
         switch(skillType)
+        {
+            case Shield s1:
+                return true;
+
+            case Kamehameha s2:
+                return true;
+            default:
+                Debug.Log("Skill hasn't been unlocked yet. Boo you.");
+                return false;
+        }
+
+    }
+
+    public void ReplaceEquippedSkill(GameObject skillType)
+    {
+        GameObject newUnlock = Instantiate(skillType, gameObject.transform);
+        newUnlock.SetActive(false);
+
+        // If the player hasn't unlocked 4 skills yet
+        if(GlobalVars.unlockedSkills.Length < 4)
+        {
+            for(int i = 0; i < equippedSkills.skills.Length; i++)
             {
-                case Shield s1:
-                    return true;
-                    break;
+                if(equippedSkills.skills[i] is EmptySkill)
+                {
+                    // Replace the EmptySkill prefab with the new skill
+                    Skill[] slots = equippedSkills.gameObject.GetComponentsInChildren<Skill>();
+                    Destroy(slots[i].gameObject);
+                    GameObject newSkill = Instantiate(skillType, equippedSkills.transform);
 
-                case Kamehameha s2:
-                    return true;
+                    // Add the skill to the first empty skill slot
+                    equippedSkills.skills[i] = newSkill.GetComponent<Skill>();
                     break;
-                default:
-                    Debug.Log("Skill hasn't been unlocked yet. Boo you.");
-                    break;
+                }
             }
-
+        }
     }
     
 }
