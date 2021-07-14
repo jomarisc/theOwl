@@ -88,10 +88,12 @@ public class playerControl : Character
 
         if(GlobalVars.playerHasUnlockedSuit)
         {
-            guntimeAbility.OnInGuntimeChanged += UpdateInGuntime;
+            // guntimeAbility.OnInGuntimeChanged += UpdateInGuntime;
+            SuitUp();
         }
         else
         {
+            UnlockSuit.OnSuitUnlocked += SuitUp;
             input.Gameplay.Guntime.Disable();
             input.Gameplay.OpenSkillWheel.Disable();
             input.Gameplay.OpenSkillWheel2.Disable();
@@ -105,7 +107,11 @@ public class playerControl : Character
     {
         // Unsubscribe from events
         input.Disable();
-        guntimeAbility.OnInGuntimeChanged -= UpdateInGuntime;
+        if(GlobalVars.playerHasUnlockedSuit)
+        {
+            guntimeAbility.OnInGuntimeChanged -= UpdateInGuntime;
+            UnlockSuit.OnSuitUnlocked -= SuitUp;
+        }
     }
 
     // Start is called before the first frame update
@@ -227,4 +233,17 @@ public class playerControl : Character
         // return playerSkills.IsSkillUnlocked(PlayerSkills.SkillType.Shield);
     }
 
+    void SuitUp()
+    {
+        input.Gameplay.Guntime.Enable();
+        guntimeAbility.OnInGuntimeChanged += UpdateInGuntime;
+        unlockedSkills.gameObject.SetActive(true);
+        equippedSkills.gameObject.SetActive(true);
+        input.Gameplay.OpenSkillWheel.Enable();
+        input.Gameplay.OpenSkillWheel2.Enable();
+        input.Gameplay.UseActiveSkill.Enable();
+        input.Gameplay.ShootProjectile.Enable();
+        tetherAbility.gameObject.SetActive(true);
+        input.Gameplay.Tether.Enable();
+    }
 }

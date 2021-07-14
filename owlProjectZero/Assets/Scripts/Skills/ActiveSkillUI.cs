@@ -41,6 +41,8 @@ public class ActiveSkillUI : MonoBehaviour
 
     private void SetSkillIcon()
     {
+        if(equippedSkills == null)
+            equippedSkills = GameObject.Find("player/EquippedSkills")?.GetComponent<EquippedSkills>();
         currentSkillIcon.sprite = equippedSkills.currentSkill.GetIcon();
     }
 }
