@@ -683,7 +683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1360803457037873398
 Transform:
   m_ObjectHideFlags: 0
@@ -1297,7 +1297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8126547436629862513
 Transform:
   m_ObjectHideFlags: 0
@@ -1865,7 +1865,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6162673067311339498
 Transform:
   m_ObjectHideFlags: 0
@@ -1898,7 +1898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2529497728352103109}
   skillWheel: {fileID: 0}
-  currentSkill: {fileID: 5925952698634190059}
+  currentSkill: {fileID: 3813825858370299877}
   skills:
   - {fileID: 5925952698634190059}
   - {fileID: 3813825858370299877}

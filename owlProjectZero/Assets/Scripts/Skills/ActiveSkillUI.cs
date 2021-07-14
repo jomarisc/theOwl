@@ -28,8 +28,9 @@ public class ActiveSkillUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        equippedSkills = GameObject.Find("player/EquippedSkills").GetComponent<EquippedSkills>();
-        currentSkillIcon.sprite = equippedSkills.currentSkill.GetIcon();
+        equippedSkills = GameObject.Find("player/EquippedSkills")?.GetComponent<EquippedSkills>();
+        if(equippedSkills != null)
+            currentSkillIcon.sprite = equippedSkills.currentSkill.GetIcon();
     }
 
     // Update is called once per frame
