@@ -10,7 +10,7 @@ public class PlayerSkills : MonoBehaviour
 
     // public List<Skill> unlockedSkillTypeList;
 
-    void Awake()
+    void Start()
     {
         // Temporary, until we turn off shield until he gets the suit.
         GlobalVars.unlockedSkills[0] = true;
