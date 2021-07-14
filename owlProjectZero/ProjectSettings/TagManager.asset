@@ -43,6 +43,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BehindPlayer
+    uniqueID: 3514653435
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: FrontOfPlayer
+    uniqueID: 3989099887
     locked: 0

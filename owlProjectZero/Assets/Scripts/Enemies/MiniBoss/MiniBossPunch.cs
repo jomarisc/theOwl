@@ -15,7 +15,7 @@ public class MiniBossPunch : IState
         character = (MiniBoss)myself;
         characterBody = myself.GetComponent<Rigidbody>();
         meleeAttack = myself.basicAttack.gameObject;
-        hitbox = meleeAttack.GetComponent<Collider>();
+        hitbox = meleeAttack.GetComponentInChildren<Collider>();
         horizontalMovement = hm;
     }
 

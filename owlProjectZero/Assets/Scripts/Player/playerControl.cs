@@ -22,6 +22,7 @@ public class playerControl : Character
     public AudioSource projectileShoot;
     public AudioSource projectileHit;
     public AudioSource meleeHit;
+    public AudioSource deathSfx;
     
     [Header("Player-Specific Abilites")]
     public Dodge dodgeAbility;
@@ -57,6 +58,10 @@ public class playerControl : Character
     {
         input = new PlayerInputs();
         numCurrency = 0;
+        levelWindow = GameObject.Find("GameplayCanvas/PlayerInfo/BottomLeftBars").GetComponent<LevelWindow>();
+        healthbar = GameObject.Find("GameplayCanvas/PlayerInfo/HPBackground").GetComponent<HealthbarController>();
+        stamanaMeter = GameObject.Find("GameplayCanvas/PlayerInfo/SPBackground/SPFill").GetComponent<Image>();
+        skillTreeWindow = GameObject.Find("GameplayCanvas").GetComponent<SkillTreeWindow>();
     }
 
     private void OnEnable()
@@ -83,13 +88,13 @@ public class playerControl : Character
     }
 
     // Start is called before the first frame update
-    private void Start()
+    private new void Start()
     {
+        base.Start();
         defaultState = new PlayerIdle(this);
         animator = GetComponent<Animator>();
         // New line
         levelSystem = new LevelSystem();
-        levelWindow = GameObject.Find("GameplayCanvas/LevelWindow").GetComponent<LevelWindow>();
         levelWindow.SetLevelSystem(levelSystem);
         
         if (myState == null)
@@ -100,10 +105,6 @@ public class playerControl : Character
         rb = GetComponent<Rigidbody>();
         dodgeAbility.dodgeDuration = -1f;
         MAX_STAMANA = data.remainingStamana;
-
-        healthbar = GameObject.Find("GameplayCanvas/HealthBar_BG").GetComponent<HealthbarController>();
-        stamanaMeter = GameObject.Find("GameplayCanvas/UIDiamonds/StamanaBar/StamanaBarForeground").GetComponent<Image>();
-        skillTreeWindow = GameObject.Find("GameplayCanvas").GetComponent<SkillTreeWindow>();
     }
 
     // Update is called once per frame

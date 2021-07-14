@@ -37,7 +37,7 @@ public class Guntime : MonoBehaviour
 
     void Start()
     {
-        guntimeMeter = GameObject.Find("GameplayCanvas/UIDiamonds/GuntimeBar/GuntimeMeter").GetComponent<Image>();
+        guntimeMeter = GameObject.Find("GameplayCanvas/PlayerInfo/GTBackground/GTFill").GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -87,6 +87,9 @@ public class Guntime : MonoBehaviour
             player.data.groundSpeed /= GUNTIME_SLOWDOWN_FACTOR;
         }
         player.data.jumpDistance /= GUNTIME_SLOWDOWN_FACTOR;
+
+        ProjectileAttack projAtk = player.projectile.GetComponent<ProjectileAttack>();
+        projAtk.speed /= GUNTIME_SLOWDOWN_FACTOR;
         
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.016f * Time.timeScale;
@@ -124,6 +127,9 @@ public class Guntime : MonoBehaviour
                 player.data.groundSpeed *= GUNTIME_SLOWDOWN_FACTOR;
             }
             player.data.jumpDistance *= GUNTIME_SLOWDOWN_FACTOR;
+
+            ProjectileAttack projAtk = player.projectile.GetComponent<ProjectileAttack>();
+            projAtk.speed *= GUNTIME_SLOWDOWN_FACTOR;
         }
         else
         {

@@ -523,7 +523,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""fa86d731-9d81-45c3-968c-4f5d397871fe"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -558,6 +558,14 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""b6ca588b-c2ae-455d-9750-d68eec160385"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""PressAnyButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""41a71a18-20ec-4999-aec2-7b78e74dd2c9"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -859,6 +867,17 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""015ca3ee-812a-46e2-8e95-44747b6ce8ec"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressAnyButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -998,6 +1017,66 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Cutscene"",
+            ""id"": ""00e99ca9-b0a0-4780-9b53-d0a88332f370"",
+            ""actions"": [
+                {
+                    ""name"": ""Proceed"",
+                    ""type"": ""Button"",
+                    ""id"": ""12b9d214-59b3-46b7-83fc-9f83a61db333"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""18b837e4-d8d5-45f0-8abd-2a1b283bc941"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Proceed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a8dfb3b-8a64-4937-bb96-c1fe0d1cb268"",
+                    ""path"": ""<DualShockGamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Proceed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d488d88-4f4e-45aa-8538-9d3a72b86a33"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Proceed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5f22b346-58da-4ed9-8b8c-29c989c07f19"",
+                    ""path"": ""<SwitchProControllerHID>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Proceed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -1022,9 +1101,13 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_UI_Activate = m_UI.FindAction("Activate", throwIfNotFound: true);
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
+        m_UI_PressAnyButton = m_UI.FindAction("PressAnyButton", throwIfNotFound: true);
         // SkillWheel
         m_SkillWheel = asset.FindActionMap("SkillWheel", throwIfNotFound: true);
         m_SkillWheel_Navigate = m_SkillWheel.FindAction("Navigate", throwIfNotFound: true);
+        // Cutscene
+        m_Cutscene = asset.FindActionMap("Cutscene", throwIfNotFound: true);
+        m_Cutscene_Proceed = m_Cutscene.FindAction("Proceed", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1206,6 +1289,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_Activate;
     private readonly InputAction m_UI_Cancel;
     private readonly InputAction m_UI_Navigate;
+    private readonly InputAction m_UI_PressAnyButton;
     public struct UIActions
     {
         private @PlayerInputs m_Wrapper;
@@ -1213,6 +1297,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @Activate => m_Wrapper.m_UI_Activate;
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
         public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
+        public InputAction @PressAnyButton => m_Wrapper.m_UI_PressAnyButton;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1231,6 +1316,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Navigate.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
                 @Navigate.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
                 @Navigate.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                @PressAnyButton.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPressAnyButton;
+                @PressAnyButton.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPressAnyButton;
+                @PressAnyButton.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPressAnyButton;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1244,6 +1332,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Navigate.started += instance.OnNavigate;
                 @Navigate.performed += instance.OnNavigate;
                 @Navigate.canceled += instance.OnNavigate;
+                @PressAnyButton.started += instance.OnPressAnyButton;
+                @PressAnyButton.performed += instance.OnPressAnyButton;
+                @PressAnyButton.canceled += instance.OnPressAnyButton;
             }
         }
     }
@@ -1281,6 +1372,39 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         }
     }
     public SkillWheelActions @SkillWheel => new SkillWheelActions(this);
+
+    // Cutscene
+    private readonly InputActionMap m_Cutscene;
+    private ICutsceneActions m_CutsceneActionsCallbackInterface;
+    private readonly InputAction m_Cutscene_Proceed;
+    public struct CutsceneActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public CutsceneActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Proceed => m_Wrapper.m_Cutscene_Proceed;
+        public InputActionMap Get() { return m_Wrapper.m_Cutscene; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CutsceneActions set) { return set.Get(); }
+        public void SetCallbacks(ICutsceneActions instance)
+        {
+            if (m_Wrapper.m_CutsceneActionsCallbackInterface != null)
+            {
+                @Proceed.started -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnProceed;
+                @Proceed.performed -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnProceed;
+                @Proceed.canceled -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnProceed;
+            }
+            m_Wrapper.m_CutsceneActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Proceed.started += instance.OnProceed;
+                @Proceed.performed += instance.OnProceed;
+                @Proceed.canceled += instance.OnProceed;
+            }
+        }
+    }
+    public CutsceneActions @Cutscene => new CutsceneActions(this);
     public interface IGameplayActions
     {
         void OnMoveX(InputAction.CallbackContext context);
@@ -1302,9 +1426,14 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnActivate(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
+        void OnPressAnyButton(InputAction.CallbackContext context);
     }
     public interface ISkillWheelActions
     {
         void OnNavigate(InputAction.CallbackContext context);
+    }
+    public interface ICutsceneActions
+    {
+        void OnProceed(InputAction.CallbackContext context);
     }
 }

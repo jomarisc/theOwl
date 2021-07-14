@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelWindow : MonoBehaviour
 {
-    private Text levelText;
+    private TextMeshProUGUI levelText;
     private Image experienceBarImage;
     private LevelSystem levelSystem;
 
     private void Awake()
     {
-        levelText = transform.Find("LevelText").GetComponent<Text>();
-        experienceBarImage = transform.Find("ExperienceBar_BG").Find("ExperienceBar_FG").GetComponent<Image>();
+        levelText = transform.Find("LevelText").GetComponent<TextMeshProUGUI>();
+        experienceBarImage = transform.Find("EXPBar").GetComponent<Image>();
         //SetExperienceBarSize(0.0f);
         //SetLevelNumber(0);
     }

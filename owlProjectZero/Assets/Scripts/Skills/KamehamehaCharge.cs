@@ -8,21 +8,26 @@ public class KamehamehaCharge : IState
     private GameObject chargedEnergy;
     private float initialChargedEnergyScale;
     private float chargedEnergyScaleDelta;
-    private Attack blast;
+    private Attack beam;
+    private SpriteRenderer beamRootSprite;
     private float initialChargeDuration;
     private float chargeDuration;
+    private float growthRate;
     
-    public KamehamehaCharge(Character c, GameObject ce, Attack b, float cd)
+    public KamehamehaCharge(Character c, GameObject ce, Attack b, SpriteRenderer br, float cd, float gr)
     {
         user = c;
         chargedEnergy = ce;
-        blast = b;
+        beam = b;
+        beamRootSprite = br;
         initialChargeDuration = cd;
         chargeDuration = cd;
+        growthRate = gr;
     }
 
     public void Enter()
     {
+        user.animator.Play("KamehamehaCharge");
         chargedEnergy.SetActive(true);
         user.Attack(chargedEnergy);
         // chargedEnergy.transform.localScale *= chargedEnergyScale;
@@ -55,6 +60,6 @@ public class KamehamehaCharge : IState
             return null;
         }
         // return new KamehamehaBlast(user);
-        return new KamehamehaBlast(user, blast);
+        return new KamehamehaBlast(user, beam, beamRootSprite, growthRate);
     }
 }
