@@ -31,19 +31,6 @@ public class PlayerMove : IState
         animator = p.gameObject.GetComponent<Animator>();
         spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
     }
-
-    public PlayerMove(playerControl p, bool isAirborne, float hm)
-    {
-        player = p;
-        playerBody = p.gameObject.GetComponent<Rigidbody>();
-        input = p.input;
-        isFlying = isAirborne;
-        
-        //Trying to pass a reference to the Animator/Renderer components here. 
-        animator = p.gameObject.GetComponent<Animator>();
-        spriterenderer = p.gameObject.GetComponent<SpriteRenderer>();
-        horizontalMovement = hm;
-    }
     public void Enter()
     {
         if (isFlying)
@@ -141,23 +128,14 @@ public class PlayerMove : IState
         }
 
         horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();
-        // if(Mathf.Abs(horizontalMovement) > 0 || isFlying)
-        // {
-        //     player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
-        //     spriterenderer.flipX = !player.data.isFacingRight;
-        //     return null;
-        // }
-        // else
-        if(horizontalMovement == 0f && !isFlying)
-            return new PlayerIdle(player);
-        
-        if(Mathf.Abs(horizontalMovement) > 0)
+        if(Mathf.Abs(horizontalMovement) > 0 || isFlying)
         {
             player.data.isFacingRight = (horizontalMovement < 0) ? false : true;
             spriterenderer.flipX = !player.data.isFacingRight;
+            return null;
         }
-
-        return null;
+        else
+            return new PlayerIdle(player);
     }
 
     public void Glide(InputAction.CallbackContext context)

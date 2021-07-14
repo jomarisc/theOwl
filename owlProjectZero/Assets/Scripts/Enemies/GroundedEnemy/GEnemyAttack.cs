@@ -17,7 +17,7 @@ public class GEnemyAttack : IState
         animator = myself.GetComponent<Animator>();
         characterBody = myself.GetComponent<Rigidbody>();
         meleeAttack = myself.basicAttack.gameObject;
-        hitbox = meleeAttack.GetComponentInChildren<Collider>();
+        hitbox = meleeAttack.GetComponent<Collider>();
         horizontalMovement = hm;
     }
 
@@ -25,9 +25,7 @@ public class GEnemyAttack : IState
     {
         // Enter grounded enemy walk animation here:
         animator.SetBool("windingUp", true);
-        if(character.windUp.mute)
-            character.windUp.mute = false;
-        character.windUp.Play();
+        
         characterBody.velocity = Vector3.zero;
         meleeAttack.SetActive(true);
         character.Attack();
@@ -41,19 +39,15 @@ public class GEnemyAttack : IState
         if(animator.GetBool("attacking"))
             animator.SetBool("attacking", false);
 
-        if(!character.windUp.mute)
-            character.windUp.mute = true;
-
         if(meleeAttack.activeInHierarchy)
         {
-            hitbox.enabled = false;
             meleeAttack.SetActive(false);
         }
     }
 
     public void FixedUpdate()
     {
-        if(meleeAttack.GetComponentInChildren<Hitbox>().phase == AttackPhase.Active) // hitbox.enabled)
+        if(hitbox.enabled)
             characterBody.AddForce(new Vector3(horizontalMovement, 0f, 0f), ForceMode.VelocityChange);
     }
     
@@ -66,12 +60,11 @@ public class GEnemyAttack : IState
         {
             animator.SetBool("windingUp", false);
             animator.SetBool("attacking", true);
-            character.sfxMelee.Play();
         }
         
-        if(!meleeAttack.activeInHierarchy) // && Mathf.Approximately(characterBody.velocity.magnitude, 0f))
+        if(!meleeAttack.activeInHierarchy && Mathf.Approximately(characterBody.velocity.magnitude, 0f))
         {
-            // Debug.Log("Returning to idle");
+            Debug.Log("Returning to idle");
             return new GEnemyIdle(character);
         }
         

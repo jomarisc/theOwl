@@ -32,7 +32,7 @@ public class SkillTreeWindow : MonoBehaviour
         playerScript = player.GetComponent<playerControl>();
         playerSkills = playerScript.GetPlayerSkills();
         currency = GameObject.Find("collectables").transform.Find("currency").gameObject.GetComponent<Collectable>();
-        levelWindow = GameObject.Find("PlayerInfo/BottomLeftBars").GetComponent<LevelWindow>();
+        levelWindow = GameObject.Find("LevelWindow").GetComponent<LevelWindow>();
 
         // Old code
         //skillButton = GameObject.Find("Canvas").transform.Find("ShieldButton").gameObject.GetComponent<>();

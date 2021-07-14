@@ -12,7 +12,6 @@ public abstract class Enemy : Character
     private Room myRoom = null;
 
     [Header("Necessary Attachments")]
-    [HideInInspector] public SpriteRenderer sRenderer;
     [SerializeField] private GameObject experienceCollectable = null;
     public GameObject currencyCollectable = null;
     public Text enemyCounter;
@@ -48,9 +47,8 @@ public abstract class Enemy : Character
             myRoom.enemyColliders.Remove(myCollider);
     }
 
-    protected new void Start()
+    protected void Start()
     {
-        base.Start();
         totalEnemies++;
         myCollider = GetComponent<Collider>();
         enemyCounter = GameObject.Find("GameplayCanvas/EnemyCounter").GetComponent<Text>();
@@ -183,7 +181,7 @@ public abstract class Enemy : Character
 
         enemyDeadListener = (EnemyDead) myState;
         enemyDeadListener.OnEnemyDead += SpawnExperience; // Subscribes to publisher
-        // Debug.Log(myState);
+        Debug.Log(myState);
         myState.Enter();
     }
 

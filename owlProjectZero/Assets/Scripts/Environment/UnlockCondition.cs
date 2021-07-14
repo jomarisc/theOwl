@@ -8,7 +8,7 @@ public class UnlockCondition : MonoBehaviour
     enum UnlockType {DefeatAll, DefeatSpecific, CollectAll, CollectSpecific, InteractAll, InteractSpecific}
 
     private Room myRoom;
-    [SerializeField] private UnlockType type = UnlockType.DefeatAll;
+    [SerializeField] private UnlockType type;
 
     void Awake()
     {
