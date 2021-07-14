@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class SkillCollectable : Collectable
 {
+    // private GameObject player;
     private PlayerSkills unlockedSkills;
     private EquippedSkills equippedSkills;
     // [SerializeField] private Skill skillToUnlock;
     [SerializeField] private GameObject skillToUnlock = null;
 
-    void Awake()
+    protected override void Start()
     {
-        GameObject player = GameObject.Find("player");
+        base.Start();
         unlockedSkills = player.GetComponentInChildren<PlayerSkills>();
         equippedSkills = player.GetComponentInChildren<EquippedSkills>();
     }

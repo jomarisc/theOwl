@@ -7,16 +7,20 @@ public class Collectable : MonoBehaviour
 {
     private float heightOffset;
 
-    private GameObject player;
+    protected GameObject player;
     protected playerControl playerScript;
     public Text currencyText;
 
+    void Awake()
+    {
+        player = GameObject.Find("player");
+    }
+
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         Transform prnt = transform.parent;
         heightOffset = transform.position.y;
-        player = GameObject.Find("player");
         playerScript = player.GetComponent<playerControl>();
     }
 
