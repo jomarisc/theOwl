@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class TetherPoint : EnvironmentElement
 {
-    public enum TetherMethod {Original, Vertical}
-
-    public TetherMethod tetherType;
     private void OnTriggerStay(Collider col)
     {
         if(col.gameObject.TryGetComponent(out playerControl player))

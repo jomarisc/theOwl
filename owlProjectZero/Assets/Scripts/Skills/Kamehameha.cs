@@ -8,13 +8,9 @@ public class Kamehameha : Skill
     [SerializeField] private Character user = null;
     [SerializeField] private GameObject beamCharge = null;
     [SerializeField] private Attack beamAttack = null;
-    [SerializeField] private SpriteRenderer beamRootSprite = null;
     [Header("Level Designer Variables")]
     [Tooltip("The number of frames it takes to charge a Kamehameha")]
     [SerializeField] private float chargeDuration = 0f;
-    [Tooltip("The rate at which the beam grows in length")]
-    [Min(0f)]
-    [SerializeField] private float growthRate = 0.1f;
 
     Kamehameha()
     {
@@ -31,7 +27,7 @@ public class Kamehameha : Skill
     {
         if(cooldown >= maxCooldown)
         {
-            IState kamehamehaCharge = new KamehamehaCharge(user, beamCharge, beamAttack, beamRootSprite, chargeDuration, growthRate);
+            IState kamehamehaCharge = new KamehamehaCharge(user, beamCharge, beamAttack, chargeDuration);
             user.GoToState(kamehamehaCharge);
             // isActive = true;
             return true;

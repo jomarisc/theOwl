@@ -10,7 +10,6 @@ public class PlayerDead : IState
     private Rigidbody playerBody;
     private SpriteRenderer spriteRenderer;
     private string myAnimationState;
-    private string defaultScene = "Alley";
     
     public PlayerDead(playerControl p)
     {
@@ -22,10 +21,8 @@ public class PlayerDead : IState
 
     public void Enter()
     {
-        CheckpointsHandler.isDead = true;
         myAnimationState = "PlayerHurt";
         animator.Play(myAnimationState);
-        player.deathSfx.Play();
 
         player.GetComponent<SpriteRenderer>().color = Color.red;
         player.data.deadDuration = player.CONSTANTS.DEAD_DURATION;
@@ -39,20 +36,9 @@ public class PlayerDead : IState
         player.GetComponent<SpriteRenderer>().color = Color.white;
         player.input.Gameplay.Enable();
         player.dodgeAbility.LeaveDodge();
-        Debug.Log("Left Dodge");
-        // player.healthbar.ResetHealth();
-        // player.healthbar.Redraw();
         // Old code
         //player.GetRekt();// Nothing so far
         //SceneManager.LoadScene("SampleScene");
-
-        if(CheckpointsHandler.checkpointScene != null){
-            SceneManager.LoadScene(CheckpointsHandler.checkpointScene);
-        }
-        else
-        {
-            SceneManager.LoadScene(defaultScene);
-        }
     }
 
     public void FixedUpdate()
@@ -71,7 +57,7 @@ public class PlayerDead : IState
            player.data.maxSpeed == player.data.groundSpeed &&
            playerBody.velocity.y == 0f)
         {
-            myAnimationState = "PlayerDeath";
+            myAnimationState = "PlayerDead";
             animator.Play(myAnimationState);
         }
 
@@ -80,9 +66,9 @@ public class PlayerDead : IState
             player.data.deadDuration -= Time.deltaTime; // 3.0 - The completion time in seconds since the last frame
             return null;
         }
-        // if(player.data.maxSpeed == player.data.airSpeed)
-        //     return new PlayerMove(player, true);
-        return new PlayerLimbo(player);
+        if(player.data.maxSpeed == player.data.airSpeed)
+            return new PlayerMove(player, true);
+        return new PlayerIdle(player);
     }
 
         // Remember to handle collision between player and enemy

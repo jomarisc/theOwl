@@ -6,7 +6,6 @@ using UnityEngine;
 [System.Serializable]
 public struct CharacterConstants
 {
-    public int MAX_HEALTH;
     public int MAX_JUMPS;
     public int MAX_DODGES;
     public float DEAD_DURATION;
@@ -63,11 +62,6 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         
     }
-
-    public void Start()
-    {
-    	rb = GetComponent<Rigidbody>();
-    }
     
     public virtual void Update()
     {
@@ -81,7 +75,7 @@ public abstract class Character : MonoBehaviour, ICharacter
         {
             myState.Exit();
             myState = currentState;
-            // Debug.Log(myState);
+            Debug.Log(myState);
             myState.Enter();
         }
     }
@@ -127,14 +121,12 @@ public abstract class Character : MonoBehaviour, ICharacter
         int direction = (data.isFacingRight) ? 1 : -1;
         atkPos.x = direction * basicAttack.GetComponent<Attack>().initialLocalPosition.x;
         basicAttack.transform.localPosition = atkPos;
-        // basicAttack.GetComponent<Attack>().isFacingRight = data.isFacingRight;
+        basicAttack.GetComponent<Attack>().isFacingRight = data.isFacingRight;
     }
 
     // Character attack for other kinds of attacks
     public void Attack(GameObject attack)
     {
-        if(attack == null) Debug.Log("Attack is null");
-        else Debug.Log(attack.gameObject.name);
         Vector3 atkPos = attack.transform.localPosition;
         int direction = (data.isFacingRight) ? 1 : -1;
         atkPos.x = direction * attack.GetComponent<Attack>().initialLocalPosition.x;
@@ -145,7 +137,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     public void GetRekt()
     {
         // New lines
-        // Debug.Log("Got rekt");
+        Debug.Log("Got rekt");
         //Destroy(this.gameObject);
         // this.gameObject.active = false;
         gameObject.SetActive(false);
@@ -155,14 +147,14 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         myState.Exit();
         myState = new CharacterDamaged(this, damageAmount, knockback);
-        // Debug.Log(myState);
+        Debug.Log(myState);
         myState.Enter();
     }
     public void GoToState(IState state)
     {
         myState.Exit();
         myState = state;
-        // Debug.Log(myState);
+        Debug.Log(myState);
         myState.Enter();
     }
 

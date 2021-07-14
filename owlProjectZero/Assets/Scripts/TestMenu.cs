@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class TestMenu : MonoBehaviour
 {
-    [SerializeField] private int nextScene = 0;
+    [SerializeField] private int nextScene;
     public void PlayGame()
     {
         SceneManager.LoadScene(nextScene);

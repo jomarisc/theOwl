@@ -14,7 +14,6 @@ public class PlayerJump : IState
 
     private Animator animator;
     private SpriteRenderer spriterenderer;
-    private bool canHoldGlide = false;
 
     public PlayerJump(playerControl p)
     {
@@ -28,7 +27,6 @@ public class PlayerJump : IState
     }
     public void Enter()
     {
-        canHoldGlide = false;
         // use jump animation here
         animator.Play(myAnimationState);
     	if(player.data.numJumps > 0){
@@ -49,8 +47,6 @@ public class PlayerJump : IState
     public void FixedUpdate()
     {
         player.MoveCharacter(horizontalMovement);
-        if(!canHoldGlide)
-            canHoldGlide = true;
     }
 
     public IState Update()
@@ -71,15 +67,11 @@ public class PlayerJump : IState
         if(input.Gameplay.ShootProjectile.triggered)
             return new PlayerShoot(player);
 
-        // Debug.Log(playerBody.velocity.y);
         // Check if descending
         if(playerBody.velocity.y <= 0)
         {
-            if(input.Gameplay.Jump.ReadValue<float>() == 1f && canHoldGlide)
-            {
-                // Debug.Break();
+            if(input.Gameplay.Jump.ReadValue<float>() == 1f)
                 return new PlayerGlide(player, PlayerGlide.glideType.Jump);
-            }
                 
             // If jumps get refreshed, i.e. landing on a platform
             if(player.data.maxSpeed == player.data.groundSpeed &&

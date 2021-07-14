@@ -54,7 +54,7 @@ public class PlayerMelee : IState
                 return new PlayerGlide(player, PlayerGlide.glideType.Down);
             
             if(player.data.maxSpeed == player.data.airSpeed)
-                return new PlayerMove(player, true, horizontalMovement);
+                return new PlayerMove(player, true);
             else
                 return new PlayerIdle(player);
         }
