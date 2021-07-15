@@ -21,7 +21,8 @@ public class PlayerIdle : IState
     public void Enter()
     {
         // Enter idle animation code here:
-        animator.Play("PlayerIdle");
+        int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
+        animator.Play("PlayerIdle", animationLayer);
     }
 
     public void Exit()

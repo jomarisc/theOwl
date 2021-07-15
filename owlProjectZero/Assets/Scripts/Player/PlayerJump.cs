@@ -30,7 +30,8 @@ public class PlayerJump : IState
     {
         canHoldGlide = false;
         // use jump animation here
-        animator.Play(myAnimationState);
+        int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
+        animator.Play(myAnimationState, animationLayer);
     	if(player.data.numJumps > 0){
     		jump.Play();
     	}
@@ -116,7 +117,8 @@ public class PlayerJump : IState
         if(myAnimationState.Equals("PlayerJumpUp") && playerBody.velocity.y < 0f)
         {
             myAnimationState = "PlayerJumpDown";
-            animator.Play(myAnimationState);
+            int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
+            animator.Play(myAnimationState, animationLayer);
         }
         return null;
     }

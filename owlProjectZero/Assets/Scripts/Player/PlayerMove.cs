@@ -46,6 +46,7 @@ public class PlayerMove : IState
     }
     public void Enter()
     {
+        int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
         if (isFlying)
         {
             // Player the appropriate animation here:
@@ -55,7 +56,7 @@ public class PlayerMove : IState
                     myAnimationState = "PlayerJumpUp";
                 else
                     myAnimationState = "PlayerJumpDown";
-                animator.Play(myAnimationState);
+                animator.Play(myAnimationState, animationLayer);
             }
             else
                 myAnimationState = "Probably Fastfalling";
@@ -67,7 +68,7 @@ public class PlayerMove : IState
         else
         {
             // Use walking animation here
-            animator.Play("PlayerWalk");
+            animator.Play("PlayerWalk", animationLayer);
         }
     }
 
@@ -137,7 +138,8 @@ public class PlayerMove : IState
            playerBody.velocity.y < 0f)
         {
             myAnimationState = "PlayerJumpDown";
-            animator.Play(myAnimationState);
+            int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
+            animator.Play(myAnimationState, animationLayer);
         }
 
         horizontalMovement = input.Gameplay.MoveX.ReadValue<float>();

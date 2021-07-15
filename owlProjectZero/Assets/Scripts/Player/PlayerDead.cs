@@ -24,7 +24,8 @@ public class PlayerDead : IState
     {
         CheckpointsHandler.isDead = true;
         myAnimationState = "PlayerHurt";
-        animator.Play(myAnimationState);
+        int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
+        animator.Play(myAnimationState, animationLayer);
         player.deathSfx.Play();
 
         player.GetComponent<SpriteRenderer>().color = Color.red;
@@ -72,7 +73,8 @@ public class PlayerDead : IState
            playerBody.velocity.y == 0f)
         {
             myAnimationState = "PlayerDeath";
-            animator.Play(myAnimationState);
+            int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
+            animator.Play(myAnimationState, animationLayer);
         }
 
         if (player.data.deadDuration >= 0f)

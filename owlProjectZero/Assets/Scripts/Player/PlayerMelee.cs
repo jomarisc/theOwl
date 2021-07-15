@@ -23,7 +23,8 @@ public class PlayerMelee : IState
     public void Enter()
     {
         // use melee attack animation here
-        animator.Play("PlayerMelee");
+        int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
+        animator.Play("PlayerMelee", animationLayer);
         player.meleeHit.Play();
 
         meleeAttack.SetActive(true);

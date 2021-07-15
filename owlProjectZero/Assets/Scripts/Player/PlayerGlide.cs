@@ -27,7 +27,8 @@ public class PlayerGlide : IState
     public void Enter()
     {
         // use glide animation here:
-        animator.Play("PlayerGlide");
+        int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
+        animator.Play("PlayerGlide",  animationLayer);
 
         // Halt vertical movement
         player.GetComponent<Rigidbody>().useGravity = false;

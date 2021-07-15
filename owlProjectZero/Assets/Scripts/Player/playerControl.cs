@@ -110,6 +110,9 @@ public class playerControl : Character
         if(GlobalVars.playerHasUnlockedSuit)
         {
             guntimeAbility.OnInGuntimeChanged -= UpdateInGuntime;
+        }
+        else
+        {
             UnlockSuit.OnSuitUnlocked -= SuitUp;
         }
     }
@@ -173,7 +176,8 @@ public class playerControl : Character
         if(Mathf.Abs(rb.velocity.y) <= 3f)
         {
             animator.SetBool("fastfalling", true);
-            animator.Play("PlayerFastFall");
+            int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
+            animator.Play("PlayerFastFall", animationLayer);
             if(inGuntime)
                 PlayerMove.verticalMovement = FAST_FALL_SPEED * 2;
             else
@@ -245,5 +249,6 @@ public class playerControl : Character
         input.Gameplay.ShootProjectile.Enable();
         tetherAbility.gameObject.SetActive(true);
         input.Gameplay.Tether.Enable();
+        animator.SetLayerWeight(1, 1f);
     }
 }

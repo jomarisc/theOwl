@@ -24,7 +24,8 @@ public class PlayerShoot : IState
     public void Enter()
     {
         // use projectile shooting animation here
-        player.animator.Play("PlayerShoot");
+        int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
+        player.animator.Play("PlayerShoot", animationLayer);
 
         playerCanMove = false;
         player.projectile.SetActive(true);

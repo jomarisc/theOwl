@@ -26,7 +26,8 @@ public class PlayerDodge : IState
     public void Enter()
     {
         // use ground dodge animation here:
-        animator.Play("PlayerDodge");
+        int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
+        animator.Play("PlayerDodge", animationLayer);
 
         playerColor.a = player.dodgeAbility.alpha;
         playerRenderer.color = playerColor;

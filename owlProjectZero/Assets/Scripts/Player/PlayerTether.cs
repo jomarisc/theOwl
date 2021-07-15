@@ -29,7 +29,8 @@ public class PlayerTether : IState
     public void Enter()
     {
         // Enter tether animation code here:
-        animator.Play("PlayerTether");
+        int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
+        animator.Play("PlayerTether", animationLayer);
 
         player.tetherAbility.GetComponent<Renderer>().enabled = true;
         player.tetherAbility.GetComponent<Collider>().enabled = true;

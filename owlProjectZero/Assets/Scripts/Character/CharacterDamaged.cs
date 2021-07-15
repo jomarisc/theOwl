@@ -32,7 +32,10 @@ public class CharacterDamaged : IState
 
     public void Enter()
     {
-        animator.Play("Hurt");
+        int animationLayer = -1;
+        if(character is playerControl)
+            animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
+        animator.Play("Hurt", animationLayer);
         hitstunTimer = damageReceived * knockBackReceived / 20;
         if(character.TryGetComponent<SpriteRenderer>(out SpriteRenderer rend))
         {
