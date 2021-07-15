@@ -10,7 +10,7 @@ public class UnlockSuit : MonoBehaviour
 
     void Update()
     {
-        if(player != null && player.input.Gameplay.Interact.triggered)
+        if(player != null && player.input.Gameplay.Interact.triggered && player.data.maxSpeed == player.data.groundSpeed)
         {
             if(GlobalVars.playerHasUnlockedSuit)
                 Debug.Log("Already unlocked the suit, dummy");
