@@ -27,7 +27,8 @@ public class KamehamehaCharge : IState
 
     public void Enter()
     {
-        user.animator.Play("KamehamehaCharge");
+        int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
+        user.animator.Play("KamehamehaCharge", animationLayer);
         chargedEnergy.SetActive(true);
         user.Attack(chargedEnergy);
         // chargedEnergy.transform.localScale *= chargedEnergyScale;
