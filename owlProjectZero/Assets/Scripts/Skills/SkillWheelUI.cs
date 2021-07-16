@@ -30,7 +30,7 @@ public class SkillWheelUI : MonoBehaviour
                 if(player.input.Gameplay.OpenSkillWheel.ReadValue<Vector2>().magnitude < 0.125f)
                 {
                     CloseSkillWheel();
-                    Debug.Log(player.input.Gameplay.OpenSkillWheel.phase);
+                    // Debug.Log(player.input.Gameplay.OpenSkillWheel.phase);
                     player.input.Gameplay.Melee.Enable();
                     player.input.Gameplay.Guntime.Enable();
                     player.input.Gameplay.ShootProjectile.Enable();
@@ -60,7 +60,7 @@ public class SkillWheelUI : MonoBehaviour
             {
                 usingFastSkillWheel = true;
                 OpenSkillWheel();
-                Debug.Log(player.input.Gameplay.OpenSkillWheel.phase);
+                // Debug.Log(player.input.Gameplay.OpenSkillWheel.phase);
                 player.input.Gameplay.Melee.Disable();
                 player.input.Gameplay.Guntime.Disable();
                 player.input.Gameplay.ShootProjectile.Disable();
@@ -94,7 +94,7 @@ public class SkillWheelUI : MonoBehaviour
 
     private void ToggleSlots(bool onOrOff)
     {
-        Debug.Log($"Enabling all slots? {onOrOff}");
+        // Debug.Log($"Enabling all slots? {onOrOff}");
         foreach(var slot in slots)
             slot.gameObject.SetActive(onOrOff);
     }
@@ -143,8 +143,8 @@ public class SkillWheelUI : MonoBehaviour
 
         // skillSlots[index].Select();
         // skillSlots[index].OnSelect(null);
-        Debug.Log($"Index: {index}");
-        Debug.Log($"Num slots: {slots.Length}");
+        // Debug.Log($"Index: {index}");
+        // Debug.Log($"Num slots: {slots.Length}");
         slots[index].Select();
         slots[index].OnSelect(null);
     }
@@ -156,7 +156,7 @@ public class SkillWheelUI : MonoBehaviour
         if(OnSkillEquip != null)
         {
             OnSkillEquip();
-            Debug.Log("Equipped Skill");
+            // Debug.Log("Equipped Skill");
         }
         // this.enabled = false;
         ToggleSlots(false);

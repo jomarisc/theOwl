@@ -83,7 +83,7 @@ public class Flash : MonoBehaviour
                 continue;
             if (button.ReadValueFromEvent(eventPtr) > 0.5f) // 0.5f = InputSettings.defaultPressPoint
             {
-                Debug.Log($"Button {button} pressed");
+                // Debug.Log($"Button {button} pressed");
                 GetComponent<Button>().onClick.Invoke();
                 InputSystem.onEvent -= PressAnyButton;
                 break;
