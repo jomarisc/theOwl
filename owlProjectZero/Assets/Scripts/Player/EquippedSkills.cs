@@ -43,7 +43,7 @@ public class EquippedSkills : MonoBehaviour
 
     private void UpdateCurrentSkill()
     {
-        Debug.Log("Updating current skill...");
+        // Debug.Log("Updating current skill...");
         currentSkill = skills[EventSystem.current.currentSelectedGameObject.GetComponentInChildren<SkillWheelSlotUI>().slotNumber - 1];
 
         switch(currentSkill)
