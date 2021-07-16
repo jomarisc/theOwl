@@ -15,6 +15,7 @@ public class Tether : MonoBehaviour
     [SerializeField] private ForceMode forceMode = ForceMode.Acceleration;
     [Min(0)] [SerializeField] private float tensionFactor = 1;
     [Min(0)] [SerializeField] private float verticalTetherSpeed = 1.2f;
+    [Range(0, 100)] [SerializeField] private float stamanaCost;
 
     void OnEnable()
     {
@@ -49,6 +50,12 @@ public class Tether : MonoBehaviour
     {
         if(activeTetherPoint != null)
         {
+            if(player.data.remainingStamana < stamanaCost)
+            {
+                Debug.Log("Not enough stamana");
+                return;
+            }
+            player.data.remainingStamana -= stamanaCost;
             if(rb.position.y < activeTetherPoint.transform.position.y)
             {
                 IState tetherState = new PlayerTether(player);
