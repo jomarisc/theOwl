@@ -15,7 +15,7 @@ public class Tether : MonoBehaviour
     [SerializeField] private ForceMode forceMode = ForceMode.Acceleration;
     [Min(0)] [SerializeField] private float tensionFactor = 1;
     [Min(0)] [SerializeField] private float verticalTetherSpeed = 1.2f;
-    [Range(0, 100)] [SerializeField] private float stamanaCost;
+    [Range(0, 100)] [SerializeField] private float stamanaCost = 0f;
 
     void OnEnable()
     {
