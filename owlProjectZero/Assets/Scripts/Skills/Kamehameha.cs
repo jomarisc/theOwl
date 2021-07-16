@@ -28,12 +28,12 @@ public class Kamehameha : Skill
     }
 
     public override bool UseSkill()
-    {
+    { 
         if(cooldown >= maxCooldown)
         {
             IState kamehamehaCharge = new KamehamehaCharge(user, beamCharge, beamAttack, beamRootSprite, chargeDuration, growthRate);
             user.GoToState(kamehamehaCharge);
-            // isActive = true;
+            isActive = true;
             return true;
         }
         // else
