@@ -23,7 +23,7 @@ public class PlayerDead : IState
     public void Enter()
     {
         CheckpointsHandler.isDead = true;
-        myAnimationState = "PlayerHurt";
+        myAnimationState = "Hurt";
         int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
         animator.Play(myAnimationState, animationLayer);
         player.deathSfx.Play();
@@ -68,7 +68,7 @@ public class PlayerDead : IState
         else if(playerBody.velocity.x > 0)
             spriteRenderer.flipX = true;
 
-        if(myAnimationState.Equals("PlayerHurt") &&
+        if(myAnimationState.Equals("Hurt") &&
            player.data.maxSpeed == player.data.groundSpeed &&
            playerBody.velocity.y == 0f)
         {
