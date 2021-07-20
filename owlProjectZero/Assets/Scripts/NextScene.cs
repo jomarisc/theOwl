@@ -15,12 +15,20 @@ public class NextScene : MonoBehaviour
     [Tooltip("Timeline asset for moving on to a different scene")]
     [SerializeField] private PlayableAsset endTransition = null;
     public int sceneIndex;
+    public static int previousSceneIndex;
+    public Transform spawnPoint;
 
     void Awake()
     {
         sceneTriggers.Add(this);
         player = GameObject.Find("player").GetComponent<playerControl>();
         player.enabled = false;
+
+
+        if(previousSceneIndex == sceneIndex)
+        {
+            SpawnAtMyPointInstead();
+        }
 
         myDirector = GetComponent<PlayableDirector>();
         myDirector.playableAsset = startTransition;
@@ -39,6 +47,7 @@ public class NextScene : MonoBehaviour
     {
         if(col.TryGetComponent(out playerControl p))
         {
+            previousSceneIndex = SceneManager.GetActiveScene().buildIndex;
             myDirector.playableAsset = endTransition;
             myDirector.Play();
             player.enabled = false;
@@ -111,5 +120,10 @@ public class NextScene : MonoBehaviour
             player.enabled = true;
             myDirector.stopped -= ReenablePlayer;
         }
+    }
+
+    void SpawnAtMyPointInstead()
+    {
+        player.transform.position = spawnPoint.position;
     }
 }
