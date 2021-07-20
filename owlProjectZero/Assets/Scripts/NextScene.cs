@@ -24,6 +24,7 @@ public class NextScene : MonoBehaviour
         player = GameObject.Find("player").GetComponent<playerControl>();
         player.enabled = false;
 
+        Debug.Log("previousSceneIndex is " + previousSceneIndex);
 
         if(previousSceneIndex == sceneIndex)
         {
@@ -47,6 +48,7 @@ public class NextScene : MonoBehaviour
     {
         if(col.TryGetComponent(out playerControl p))
         {
+            Debug.Log("this is scene index " + sceneIndex);
             previousSceneIndex = SceneManager.GetActiveScene().buildIndex;
             myDirector.playableAsset = endTransition;
             myDirector.Play();
@@ -124,6 +126,10 @@ public class NextScene : MonoBehaviour
 
     void SpawnAtMyPointInstead()
     {
-        player.transform.position = spawnPoint.position;
+        // if the player is dead, let the ReturnToCheckpoint script handle the player spawn position
+        if(CheckpointsHandler.isDead == false)
+        {
+            player.transform.position = spawnPoint.position;
+        }
     }
 }

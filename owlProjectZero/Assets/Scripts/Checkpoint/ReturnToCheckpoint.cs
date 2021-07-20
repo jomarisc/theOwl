@@ -22,7 +22,9 @@ public class ReturnToCheckpoint : MonoBehaviour
             // playerState.healthbar.ResetHealth();
             // playerState.healthbar.Redraw();
             playerState.isAlive = true;
-            CheckpointsHandler.isDead = false;
+
+            // commented out and put in start
+            // CheckpointsHandler.isDead = false;
             // Debug.Log(CheckpointsHandler.isDead);
         }
     }
@@ -30,7 +32,11 @@ public class ReturnToCheckpoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // we put this in start because the awake function in NextScene.cs messes with this script's awake
+        if(CheckpointsHandler.isDead == true)
+        {
+            CheckpointsHandler.isDead = false;
+        }
     }
 
     // Update is called once per frame
