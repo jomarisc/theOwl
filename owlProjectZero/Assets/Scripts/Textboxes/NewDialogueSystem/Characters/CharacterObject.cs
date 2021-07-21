@@ -28,7 +28,8 @@ public class CharacterObject : ScriptableObject
     public string displayName;
 
     [Header("Arc Progression")]
-    public Dictionary<string, TextAsset> filesForDay;
+    //[SerializeField] public Dictionary<string, TextAsset> filesForDay; // Until you can find a more sustainable way to store multiple TextAssets, for now just use one TextAsset
+    public TextAsset dialogueFile; 
     public int RandomSceneCount = 3;
 
     //[HorizontalGroup("Active Days", 300)]

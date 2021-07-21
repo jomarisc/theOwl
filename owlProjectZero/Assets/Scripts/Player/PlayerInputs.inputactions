@@ -1064,6 +1064,155 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Developer",
+            "id": "a5419a72-c687-4f31-b752-16e3786587c7",
+            "actions": [
+                {
+                    "name": "Debug",
+                    "type": "Button",
+                    "id": "986fd1ab-d6d2-4e55-989b-53cd4ded35c3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ed5e5652-e6d7-4b65-8116-8d20f9ac858d",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Debug",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Dialogue",
+            "id": "3819307f-8948-4dd6-8504-2b7396eb8611",
+            "actions": [
+                {
+                    "name": "ProgressStory",
+                    "type": "Button",
+                    "id": "1f62dbee-447b-44a7-b34d-46eb85ddd3d8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "HideTextbox",
+                    "type": "Button",
+                    "id": "58037ae8-b4c8-4043-ab24-114182f97461",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "UnhideWithMouse",
+                    "type": "Button",
+                    "id": "de1dc6a5-8aee-4017-be0b-8a0d96c6b3b9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ToggleVoice",
+                    "type": "Button",
+                    "id": "6c4b730c-ddce-409f-96d6-bd009da584fe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ToggleAutotext",
+                    "type": "Button",
+                    "id": "cf07e95f-c201-4f54-bbaf-33c0a307fe8b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ToggleBacklog",
+                    "type": "Button",
+                    "id": "282f83be-2bc6-40ef-89c9-bd074e98f56d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8c653346-fd98-4503-8f9c-65079f27a949",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ProgressStory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "526daa79-b286-4ad5-85f9-c658915467ed",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HideTextbox",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2189e32-374e-4f59-a918-32996f249534",
+                    "path": "<Keyboard>/n",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleVoice",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d712ed67-d91e-487d-a0cb-8464289c27b3",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleAutotext",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ce4764d-b8ac-45e9-89d2-d9cd5d2c7c20",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleBacklog",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "763e3ea5-7fd5-4411-9ffa-9b660526f33b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnhideWithMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

@@ -257,13 +257,13 @@ public class DialogueManager : MonoBehaviour
         // MOCHA MAGIC CODE. Until CreateSettingsMenu is sorted out, comment this check out - 6/26/2021
         // VNBacklog is commented out until further notice.
         //if(!CreateSettingsMenu.VNFreeze){
-            if (Input.GetKeyDown("space") && textboxVisible)
+            if (input.Dialogue.ProgressStory.triggered && textboxVisible) // Old input: Input.GetKeyDown("space") && textboxVisible, Continue working on testing the new input system
             {
                 //EventSystem.current.SetSelectedGameObject(null); //unselect all buttons?
                 ProgressStory();
             }
             //DEBUG
-            if (Input.GetKey("y") && DebugMode)
+            if (input.Developer.Debug.triggered && DebugMode) // Input.GetKey("y")
             {
                 //StartCoroutine(DestroyingDialoguePrefab());
                
@@ -271,26 +271,26 @@ public class DialogueManager : MonoBehaviour
                
                 //StartCoroutine(DestroyDialogueObject());
             }
-            if(Input.GetKeyDown(KeyCode.H) && canChangeHide){ //hide from button
+            if(input.Dialogue.HideTextbox.triggered && canChangeHide){ //hide from button, Input.GetKeyDown(KeyCode.H)
                 if(textboxVisible){
                     HideDialogue();
                 }else if(!textboxVisible && canUseTextboxKeys){ //&& !backlogView.BacklogOpen()){ 
                     UnhideDialogue();
                 }
             }
-            if(Input.GetKeyDown(KeyCode.N) && canUseTextboxKeys && textboxVisible ){ //&& !backlogView.BacklogOpen()){
+            if(input.Dialogue.ToggleVoice.triggered && canUseTextboxKeys && textboxVisible ){ //&& !backlogView.BacklogOpen()){ , Input.GetKeyDown(KeyCode.N)
                 CharaVoiceSwitch();
             }
-            if(Input.GetKeyDown(KeyCode.B) && canUseTextboxKeys && textboxVisible){
+            if(input.Dialogue.ToggleBacklog.triggered && canUseTextboxKeys && textboxVisible){ // Input.GetKeyDown(KeyCode.B)
                 //ToggleBacklog();
             }
-            if(Input.GetKeyDown(KeyCode.A) && canUseTextboxKeys && textboxVisible){ //&& !backlogView.BacklogOpen()){
+            if(input.Dialogue.ToggleAutotext.triggered && canUseTextboxKeys && textboxVisible){ //&& !backlogView.BacklogOpen()){ // Input.GetKeyDown(KeyCode.A)
                 AutoTextSwitch();
             }
             /*if(Input.GetKeyDown(KeyCode.S) && canUseTextboxKeys && textboxVisible && !backlogView.BacklogOpen()){
                 InstantiateSettingsMenu();
             }*/
-            if(Input.GetMouseButtonDown(0) && canChangeHide){ //unhide with just mouse
+            if(input.Dialogue.UnhideWithMouse.triggered && canChangeHide){ //unhide with just mouse, Input.GetMouseButtonDown(0)
                 if(!textboxVisible && canUseTextboxKeys){ // && !backlogView.BacklogOpen()){
                     UnhideDialogue();
                 }
