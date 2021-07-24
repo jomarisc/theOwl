@@ -22,7 +22,7 @@ public class NextScene : MonoBehaviour
     {
         sceneTriggers.Add(this);
         player = GameObject.Find("player").GetComponent<playerControl>();
-        player.enabled = false;
+        // player.enabled = false;
 
         Debug.Log("previousSceneIndex is " + previousSceneIndex);
 
@@ -52,6 +52,7 @@ public class NextScene : MonoBehaviour
             previousSceneIndex = SceneManager.GetActiveScene().buildIndex;
             myDirector.playableAsset = endTransition;
             myDirector.Play();
+            player.Freeze();
             player.enabled = false;
             myDirector.stopped += LoadNextScene;
         }
