@@ -59,7 +59,7 @@ public class PlayerIdle : IState
             return new PlayerShoot(player);
             
         // Check if somehow airborne while in idle state
-        if(player.data.maxSpeed == player.data.airSpeed)
+        if(player.data.maxSpeed == player.data.airSpeed || player.data.maxSpeed == 0f)
         {
             // Debug.Log("Somehow airborne while in idle state");
             return new PlayerMove(player, true);
