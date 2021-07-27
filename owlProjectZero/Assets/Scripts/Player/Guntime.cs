@@ -89,7 +89,7 @@ public class Guntime : MonoBehaviour
         player.data.jumpDistance /= GUNTIME_SLOWDOWN_FACTOR;
 
         ProjectileAttack projAtk = player.projectile.GetComponent<ProjectileAttack>();
-        projAtk.speed /= GUNTIME_SLOWDOWN_FACTOR;
+        projAtk.properSpeed /= GUNTIME_SLOWDOWN_FACTOR;
         
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.016f * Time.timeScale;
@@ -129,7 +129,7 @@ public class Guntime : MonoBehaviour
             player.data.jumpDistance *= GUNTIME_SLOWDOWN_FACTOR;
 
             ProjectileAttack projAtk = player.projectile.GetComponent<ProjectileAttack>();
-            projAtk.speed *= GUNTIME_SLOWDOWN_FACTOR;
+            projAtk.properSpeed *= GUNTIME_SLOWDOWN_FACTOR;
         }
         else
         {

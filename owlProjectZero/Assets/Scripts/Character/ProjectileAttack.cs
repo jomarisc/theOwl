@@ -9,7 +9,8 @@ public class ProjectileAttack : Attack
     // public const float INITIAL_SPEED = 12f;
     [SerializeField] private Character myShooter = null;
     public float speed;
-    public float mySpeed { get; private set; } // This gets set in the editor and should not be modified in code
+    [Tooltip("properSpeed is the value that the above speed should return to OnEnable and OnDisable()")]
+    [HideInInspector] public float properSpeed;
 
     ProjectileAttack(float dmg, int start, int active, int lag, float gkb, float gAngle, float akb, float aAngle) : base(dmg, start, active, lag, gkb, gAngle, akb, aAngle)
     {}
@@ -18,6 +19,7 @@ public class ProjectileAttack : Attack
     {
         base.Awake();
         sp = GetComponentInChildren<SpriteRenderer>();
+        properSpeed = speed;
     }
 
     // Start is called before the first frame update
@@ -29,13 +31,13 @@ public class ProjectileAttack : Attack
     new void OnEnable()
     {
         base.OnEnable();
-        mySpeed = speed;
+        speed = properSpeed;
     }
 
     new void OnDisable()
     {
         base.OnDisable();
-        speed = mySpeed;
+        speed = properSpeed;
         sp.enabled = false;
     }
 
