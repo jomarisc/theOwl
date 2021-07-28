@@ -80,7 +80,7 @@ public class PauseMenu : MonoBehaviour
     {
         pc.enabled = true;
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu2");
 
     
     }
