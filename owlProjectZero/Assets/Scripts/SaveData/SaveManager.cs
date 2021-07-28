@@ -81,4 +81,9 @@ public class SaveManager : MonoBehaviour
     {
         SceneManager.LoadScene(newGameScene);
     }
+
+    public void loadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu2");
+    }
 }
