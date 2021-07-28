@@ -38,23 +38,4 @@ public class ReturnToCheckpoint : MonoBehaviour
             CheckpointsHandler.isDead = false;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // if(playerState.isAlive == false)
-        // {
-
-        //     CheckpointsHandler.isDead = true;
-
-        //     if(playerState.data.deadDuration <= 0f)
-        //     {
-                
-        //     }
-        //     else
-        //     {
-        //         playerState.data.deadDuration -= Time.deltaTime; // 3.0 - The completion time in seconds since the last frame
-        //     }  
-        // }
-    }
 }
