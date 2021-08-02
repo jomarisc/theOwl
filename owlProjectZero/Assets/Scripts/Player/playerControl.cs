@@ -121,7 +121,7 @@ public class playerControl : Character
     private new void Start()
     {
         base.Start();
-        defaultState = new PlayerIdle(this);
+        defaultState = new PlayerMove(this, true);
         animator = GetComponent<Animator>();
         // New line
         levelSystem = new LevelSystem();
@@ -235,6 +235,20 @@ public class playerControl : Character
     {
         return true; 
         // return playerSkills.IsSkillUnlocked(PlayerSkills.SkillType.Shield);
+    }
+
+    // This function stops the player from moving
+    public void Freeze()
+    {
+        rb.velocity = Vector3.zero;
+        rb.useGravity = false;
+        animator.speed = 0f;
+    }
+
+    public void UnFreeze()
+    {
+        rb.useGravity = true;
+        animator.speed = 1f;
     }
 
     void SuitUp()

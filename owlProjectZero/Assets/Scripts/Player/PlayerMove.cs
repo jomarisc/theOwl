@@ -50,16 +50,22 @@ public class PlayerMove : IState
         if (isFlying)
         {
             // Player the appropriate animation here:
-            if(!animator.GetBool("fastfalling"))
+            bool isFastfalling = (player.inGuntime && verticalMovement == player.FAST_FALL_SPEED * 2) ||
+                                 (!player.inGuntime && verticalMovement == player.FAST_FALL_SPEED);
+            if(!animator.GetBool("fastfalling") && !isFastfalling)
             {
                 if(playerBody.velocity.y > 0f)
                     myAnimationState = "PlayerJumpUp";
                 else
                     myAnimationState = "PlayerJumpDown";
-                animator.Play(myAnimationState, animationLayer);
             }
             else
-                myAnimationState = "Probably Fastfalling";
+                myAnimationState = "PlayerFastFall";
+            animator.Play(myAnimationState, animationLayer);
+
+            // If player's data.maxSpeed == 0 (Ex: Start of a scene)
+            if(player.data.maxSpeed == 0f)
+                player.data.maxSpeed = player.data.airSpeed;
 
             input.Gameplay.Tether.started += player.tetherAbility.ActivateTether;
             input.Gameplay.Glide.started += player.FastFall;
@@ -85,14 +91,15 @@ public class PlayerMove : IState
 
     public void FixedUpdate()
     {
-        if(isFlying)
-        {
-            if((player.inGuntime && verticalMovement != player.FAST_FALL_SPEED * 2) ||
-               (!player.inGuntime && verticalMovement != player.FAST_FALL_SPEED))
+        // if(isFlying)
+        // {
+            bool isFastfalling = (player.inGuntime && verticalMovement == player.FAST_FALL_SPEED * 2) ||
+                                 (!player.inGuntime && verticalMovement == player.FAST_FALL_SPEED);
+            if(!isFastfalling)
                     verticalMovement = playerBody.velocity.y;
-        }
-        else
-            verticalMovement = playerBody.velocity.y;
+        // }
+        // else
+        //     verticalMovement = playerBody.velocity.y;
         player.MoveCharacter(horizontalMovement, verticalMovement);
     }
 
