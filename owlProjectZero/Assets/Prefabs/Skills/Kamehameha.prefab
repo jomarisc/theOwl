@@ -280,7 +280,7 @@ MonoBehaviour:
     damage: 1
     startup: 0
     timeActive: 180
-    recovery: 60
+    recovery: 1
     gKnockback: 10
     gKnockbackAngle: 45
     aKnockback: 10
@@ -290,7 +290,7 @@ MonoBehaviour:
   startupSFX: {fileID: 1888456143681224513}
   activeSFX: {fileID: 1888456143681224513}
   recoverySFX: {fileID: 1888456143681224513}
-  rehitRate: 20
+  rehitRate: 3
 --- !u!82 &1888456143681224513
 AudioSource:
   m_ObjectHideFlags: 0
