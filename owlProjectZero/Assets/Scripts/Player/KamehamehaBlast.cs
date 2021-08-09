@@ -50,7 +50,6 @@ public class KamehamehaBlast : IState
         // beamSprite.size = new Vector2(1f, 1.28f);
         // beamRootSprite.transform.localPosition = Vector3.zero;
         beamRootSprite.gameObject.SetActive(false);
-        blast.gameObject.GetComponentInParent<Kamehameha>().DeactivateSkill();
         if(blast.gameObject.activeInHierarchy)
         {
             blast.gameObject.SetActive(false);

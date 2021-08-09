@@ -51,5 +51,6 @@ public class Kamehameha : Skill
         // Play Kamehameha cancelled animation?
         isActive = false;
         cooldown = 0f;
+        user.GoToState(user.defaultState);
     }
 }
