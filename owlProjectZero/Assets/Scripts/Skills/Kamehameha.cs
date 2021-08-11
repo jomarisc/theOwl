@@ -48,9 +48,12 @@ public class Kamehameha : Skill
 
     public override void DeactivateSkill()
     {
-        // Play Kamehameha cancelled animation?
-        isActive = false;
-        cooldown = 0f;
-        user.GoToState(user.defaultState);
+        if(isActive)
+        {
+            // Play Kamehameha cancelled animation?
+            isActive = false;
+            cooldown = 0f;
+            user.GoToState(user.defaultState);
+        }
     }
 }
