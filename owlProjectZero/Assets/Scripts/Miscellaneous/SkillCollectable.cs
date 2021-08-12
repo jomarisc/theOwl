@@ -20,6 +20,8 @@ public class SkillCollectable : Collectable
     void OnTriggerEnter(Collider col)
     {
         // Add the skill to the player's list of unlocked skills
+        if(unlockedSkills == null)
+            unlockedSkills = player.GetComponentInChildren<PlayerSkills>();
         unlockedSkills.UnlockSkill(skillToUnlock.GetComponent<Skill>());
 
         unlockedSkills.ReplaceEquippedSkill(skillToUnlock);
