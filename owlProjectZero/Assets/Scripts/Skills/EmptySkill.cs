@@ -8,6 +8,10 @@ public class EmptySkill : Skill
     {
         type = SkillType.None;
     }
-    public override bool UseSkill() { return false; }
+    public override bool UseSkill()
+    {
+        Debug.Log("Using Empty Skill");
+        return false;
+    }
     public override void DeactivateSkill() {}
 }
