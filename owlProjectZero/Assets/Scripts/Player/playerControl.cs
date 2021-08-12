@@ -257,6 +257,7 @@ public class playerControl : Character
         guntimeAbility.OnInGuntimeChanged += UpdateInGuntime;
         unlockedSkills.gameObject.SetActive(true);
         equippedSkills.gameObject.SetActive(true);
+        equippedSkills.UpdateCurrentSkill();
         input.Gameplay.OpenSkillWheel.Enable();
         input.Gameplay.OpenSkillWheel2.Enable();
         input.Gameplay.UseActiveSkill.Enable();
