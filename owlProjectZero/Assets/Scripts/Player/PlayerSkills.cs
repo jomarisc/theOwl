@@ -28,6 +28,7 @@ public class PlayerSkills : MonoBehaviour
         if(GlobalVars.unlockedSkills[1] == true)
         {
             ReplaceEquippedSkill(GetComponent<AllSkills>().AllSkillsList[1]);
+            equippedSkills.UpdateCurrentSkill();
         }
 
     }

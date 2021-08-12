@@ -18,18 +18,20 @@ public class EquippedSkills : MonoBehaviour
     {
         player.input.Gameplay.UseActiveSkill.started += UseCurrentSkill;
 
-        switch(GlobalVars.currentSkill)
-        {
-            case 0:
-                currentSkill = transform.parent.GetComponentInChildren<AllSkills>().AllSkillsList[0].GetComponent<Skill>();
-                break;
-            case 1: 
-                currentSkill = transform.parent.GetComponentInChildren<AllSkills>().AllSkillsList[1].GetComponent<Skill>();
-                break;
-            default:
-                currentSkill = transform.parent.GetComponentInChildren<AllSkills>().AllSkillsList[2].GetComponent<Skill>();
-                break;
-        }
+        // switch(GlobalVars.currentSkill)
+        // {
+        //     case 0:
+        //         currentSkill = transform.parent.GetComponentInChildren<AllSkills>().AllSkillsList[0].GetComponent<Skill>();
+        //         break;
+        //     case 1: 
+        //         currentSkill = transform.parent.GetComponentInChildren<AllSkills>().AllSkillsList[1].GetComponent<Skill>();
+        //         break;
+        //     default:
+        //         currentSkill = transform.parent.GetComponentInChildren<AllSkills>().AllSkillsList[2].GetComponent<Skill>();
+        //         break;
+        // }
+        int activeSkillSlot = GlobalVars.currentSkill;
+        currentSkill = skills[activeSkillSlot];
 
         SkillWheelUI.OnSkillEquip += UpdateCurrentSkill;
 
@@ -41,24 +43,27 @@ public class EquippedSkills : MonoBehaviour
         SkillWheelUI.OnSkillEquip -= UpdateCurrentSkill;
     }
 
-    private void UpdateCurrentSkill()
+    public void UpdateCurrentSkill()
     {
         // Debug.Log("Updating current skill...");
-        currentSkill = skills[EventSystem.current.currentSelectedGameObject.GetComponentInChildren<SkillWheelSlotUI>().slotNumber - 1];
+        int activeSkillSlot = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<SkillWheelSlotUI>().slotNumber - 1;
+        currentSkill = skills[activeSkillSlot];
 
-        switch(currentSkill)
-        {
-            case Shield s1:
-                GlobalVars.currentSkill = 0;
-                break;
-            case Kamehameha s2:
-                GlobalVars.currentSkill = 1;
-                break;
-            default:
-                // 2 is null for now
-                GlobalVars.currentSkill = 2;;
-                break;
-        }
+        // switch(activeSkillSlot)
+        // {
+        //     case Shield s1:
+        //         GlobalVars.currentSkill = 0;
+        //         break;
+        //     case Kamehameha s2:
+        //         GlobalVars.currentSkill = 1;
+        //         break;
+        //     default:
+        //         // 2 is null for now
+        //         GlobalVars.currentSkill = 2;;
+        //         break;
+        // }
+
+        GlobalVars.currentSkill = activeSkillSlot;
 
         OnCurrentSkillChanged?.Invoke();
     }

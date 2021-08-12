@@ -14,10 +14,11 @@ public class SkillWheelUI : MonoBehaviour
     public static event SkillEquip OnSkillEquip;
     public delegate void SkillEquip();
 
-    private void Start()
+    private void Awake()
     {
         player = GameObject.Find("player").GetComponent<playerControl>();
         slots = GetComponentsInChildren<Button>(true);
+        EventSystem.current.SetSelectedGameObject(slots[GlobalVars.currentSkill].gameObject);
     }
 
     // Update is called once per frame
