@@ -25,8 +25,8 @@ public class CharacterDatabase : ScriptableObject
     public Dictionary<CharacterObject, int> characterDict = new Dictionary<CharacterObject, int>(); // CharacterArcPoints
     //public Dictionary<SerializableDictionary> testDictionary; 
     // Test dictionary
-    [SerializeField] public List<CharacterObject> _Keys;
-    [SerializeField] public List<int> _Values;
+    [SerializeField] public List<CharacterObject> _characterDictKeys;
+    [SerializeField] public List<int> _characterDictValues;
 
     // Manually adding character because we cannot drag and drop without Odin
     [SerializeField] public CharacterObject SampleCharacter; 
@@ -66,7 +66,7 @@ public class CharacterDatabase : ScriptableObject
 
     public void CreateActiveCharsList(){
         //List<CharacterObject> characterObjectList = new List<CharacterObject>(characterDict.Keys); // this. // Figure out why this list is not being created properly - 7/21/2021
-        List<CharacterObject> characterObjectList = new List<CharacterObject>(_Keys);
+        List<CharacterObject> characterObjectList = new List<CharacterObject>(_characterDictKeys);
         var allChars = characterObjectList.Union(npcList).ToList();
         activeCharactersList = allChars;
     }
@@ -74,7 +74,7 @@ public class CharacterDatabase : ScriptableObject
     //returns dict with character names as keys instead
     public Dictionary<string, CharacterObject> CharacterNameDict(){
         Dictionary<string, CharacterObject> returnDict = new Dictionary<string, CharacterObject>();
-        foreach(CharacterObject chara in _Keys){ // CharacterList()
+        foreach(CharacterObject chara in _characterDictKeys){ // CharacterList()
             returnDict.Add(chara.CharName, chara);
             Debug.Log(returnDict);
         }

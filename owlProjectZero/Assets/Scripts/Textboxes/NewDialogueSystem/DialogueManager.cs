@@ -162,12 +162,12 @@ public class DialogueManager : MonoBehaviour
         
         messageIndex = 0;
 
-        storyCharacters = (CharacterDatabase) ScriptableObject.CreateInstance("CharacterDatabase");
+        //storyCharacters = (CharacterDatabase) ScriptableObject.CreateInstance("CharacterDatabase");
         // MOCHA MAGIC CODE
-        //activeCharacters = storyCharacters.CharacterNameDict(); //get active characters, CharacterNameDict() // Continue from here - 7/23/2021
+        activeCharacters = storyCharacters.CharacterNameDict(); //get active characters, CharacterNameDict() // Continue from here - 7/23/2021
         
         //Dictionary<string, CharacterObject>.KeyCollection keys = activeCharacters.Keys;
-        if(storyCharacters._Keys.Contains(storyCharacters.SampleCharacter)) // storyCharacters._Keys activeCharacters.ContainsKey("Pigeon Dude")
+        if(activeCharacters.ContainsKey("Pigeon Dude")) // storyCharacters._Keys activeCharacters.ContainsKey("Pigeon Dude"), storyCharacters._Keys.Contains(storyCharacters.SampleCharacter)
         {
             Debug.Log("Pigeon Dude key found in dictionary");
         } else {
