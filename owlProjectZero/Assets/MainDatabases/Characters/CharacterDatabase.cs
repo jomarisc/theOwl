@@ -20,12 +20,22 @@ public class CharacterDatabase : ScriptableObject
     //[SerializeField] List<DayFlags> dayScripts;
     //[BoxGroup("Characters")]
     //[LabelWidth(100)]
-    [SerializeField] Dictionary<CharacterObject, CharacterArcPoints> characterDict;
+    
+    // Separating the character dictionary
+    public Dictionary<CharacterObject, int> characterDict = new Dictionary<CharacterObject, int>(); // CharacterArcPoints
+    //public Dictionary<SerializableDictionary> testDictionary; 
+    // Test dictionary
+    [SerializeField] public List<CharacterObject> _Keys;
+    [SerializeField] public List<int> _Values;
+
+    // Manually adding character because we cannot drag and drop without Odin
+    [SerializeField] public CharacterObject SampleCharacter; 
+
     [SerializeField] List<CharacterObject> npcList;
     //[SerializeField] Dictionary<CharacterObject, Vector2> characterArcRange;
     [SerializeField] List<RandomPosition> spawnPositionPool;
-    private List<CharacterObject> activeCharactersList; //characterList + npcList
-    public Dictionary<CharacterObject,  CharacterArcPoints> CharacterDict{
+    private List<CharacterObject> activeCharactersList; //characterList + npcList, made public
+    public Dictionary<CharacterObject, int> CharacterDict{ // CharacterArcPoints
         get{ return characterDict;}
     }
     public List<CharacterObject> NPCList{
@@ -55,7 +65,8 @@ public class CharacterDatabase : ScriptableObject
     // }
 
     public void CreateActiveCharsList(){
-        List<CharacterObject> characterObjectList = new List<CharacterObject>(this.characterDict.Keys);
+        //List<CharacterObject> characterObjectList = new List<CharacterObject>(characterDict.Keys); // this. // Figure out why this list is not being created properly - 7/21/2021
+        List<CharacterObject> characterObjectList = new List<CharacterObject>(_Keys);
         var allChars = characterObjectList.Union(npcList).ToList();
         activeCharactersList = allChars;
     }
@@ -63,7 +74,7 @@ public class CharacterDatabase : ScriptableObject
     //returns dict with character names as keys instead
     public Dictionary<string, CharacterObject> CharacterNameDict(){
         Dictionary<string, CharacterObject> returnDict = new Dictionary<string, CharacterObject>();
-        foreach(CharacterObject chara in CharacterList()){
+        foreach(CharacterObject chara in _Keys){ // CharacterList()
             returnDict.Add(chara.CharName, chara);
             Debug.Log(returnDict);
         }
@@ -71,7 +82,7 @@ public class CharacterDatabase : ScriptableObject
     }
 
     public CharacterObject GetCharacterObject(string characterObject){
-        foreach(KeyValuePair<CharacterObject, CharacterArcPoints> characterSlot in characterDict){
+        foreach(KeyValuePair<CharacterObject, int> characterSlot in characterDict){ //CharacterArcPoints
             if(characterSlot.Key.CharName == characterObject){
                 return characterSlot.Key;
             }
@@ -81,8 +92,39 @@ public class CharacterDatabase : ScriptableObject
     }
 
     public List<CharacterObject> CharacterList(){
+        // foreach (KeyValuePair<CharacterObject, CharacterArcPoints> pair in characterDict)  
+        // {  
+        //     Debug.Log(message:$"<color=green> <size=16> Key: {pair.Key} , Value: {pair.Value} </size> </color>");  
+        // }
+
+        // Dictionary<CharacterObject, int> characterDict
+        //Dictionary<CharacterObject, int>.KeyCollection keys = characterDict.Keys;  
+        Dictionary<CharacterObject, int> testDictionary = characterDict;        
+        /*
+        foreach (CharacterObject key in keys)  
+        {  
+            Debug.Log(message:$"<size=16><color=green> Key: {key.charName} </color></size>");  
+        } 
+        */
+
         List<CharacterObject> returnList = new List<CharacterObject>(this.characterDict.Keys);
+        // foreach(CharacterObject i in returnList)
+        // {
+        //     Debug.Log(message:$"<color=yellow><size=16> i.charName: </size></color> <size=16> {i.charName} </size>");
+        // }
         return returnList;
+        /*
+        int searchValueTarget = 1;
+        if(characterDict.TryGetValue(SampleCharacter, out searchValueTarget))
+        {
+            List<CharacterObject> returnList = characterDict.Keys.ToList();
+            return returnList;
+
+        } else {
+            Debug.Log("Key is " +  SampleCharacter.charName + " in characterDict");
+        }
+        return null;
+        */
     }
     public Dictionary<string, CharacterObject> NPCDict(){
         Dictionary<string, CharacterObject> returnDict = new Dictionary<string, CharacterObject>();
@@ -95,11 +137,11 @@ public class CharacterDatabase : ScriptableObject
 
     //check if at least one arc is complete
     public bool IsAnArcComplete(){
-        foreach(KeyValuePair<CharacterObject, CharacterArcPoints> vnChar in characterDict){
+        foreach(KeyValuePair<CharacterObject, int> vnChar in characterDict){ // CharacterArcPoints
             //if the character's arc is at a state where it's done
             //arc progression = arcProgression + pending
             int arcState = vnChar.Key.arcProgression;
-            if(arcState > vnChar.Value.arcEndPoint){
+            if(arcState > vnChar.Value){ // .arcEndPoint
                 return true;
             }
         }
@@ -117,9 +159,9 @@ public class CharacterDatabase : ScriptableObject
     }
 
     public void AssignCharValues(){
-        foreach(KeyValuePair<CharacterObject, CharacterArcPoints> slot in characterDict){
-            slot.Key.arcProgressionStart = slot.Value.arcStartPoint;
-            slot.Key.arcEndPoint = slot.Value.arcEndPoint;
+        foreach(KeyValuePair<CharacterObject, int> slot in characterDict){ // CharacterArcPoints
+            slot.Key.arcProgressionStart = slot.Value; // .arcStartPoint
+            slot.Key.arcEndPoint = slot.Value; // .arcEndPoint
         }
     }
 
@@ -162,6 +204,22 @@ public class CharacterDatabase : ScriptableObject
         }
         
     }
+
+    public void Awake()
+    {
+        //CharacterObject sampleCharacter = (CharacterObject) ScriptableObject.CreateInstance("CharacterObject");
+        //this.characterDict.Add(SampleCharacter, 1); // Testing pigeon character
+        
+        // if(characterDict.ContainsKey(SampleCharacter))
+        // {
+        //     Debug.Log("Character in Dictionary, CharacterDatabase");
+        // } 
+        // else
+        // {
+        //     Debug.Log("Character not in Dictionary, CharacterDatabase");
+        // }
+    }
+    
     
 }
 
@@ -174,3 +232,11 @@ public class CharacterArcPoints{
     //[LabelWidth(100)]
     public int arcEndPoint = 1;
 }
+
+/*
+public class SerializableDictionary<CharacterObject, int> : ISerializationCallbackReceiver
+{
+    [SerializeField] List<CharacterObject> _Keys;
+    [SerializeField] List<int> _Values;
+}
+*/

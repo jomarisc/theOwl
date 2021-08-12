@@ -27,7 +27,8 @@ public class DialogueManager : MonoBehaviour
     private TextWriter.TextWriterSingle textWriterSingle;
     
     // MOCHA MAGIC CODE 
-    //public CharacterDatabase storyCharacters;
+    public CharacterDatabase storyCharacters;
+    [SerializeField] public CharacterObject testPigeon;
     public BackgroundDatabase backgroundDatabase;
     public VNVariables variableDatabase;
     
@@ -95,6 +96,7 @@ public class DialogueManager : MonoBehaviour
     //[SerializeField] AudioSource talkingAudioSource;
     private AudioSource talkingAudioSource; //audio source is now attached to the object
     //[SerializeField] Dictionary<string, AudioClip> dialogueAudio;
+    //public AudioClip soundClip1;
 
     public SoundLibrary soundLibrary;
     
@@ -143,9 +145,10 @@ public class DialogueManager : MonoBehaviour
 
     void Awake()
     {
-
+        //Debug.Log(message: $"<color=blue><size=16>From DIALOGUE MANAGER.CS souncClip1 name: {soundClip1.name} </size></color>");
+        
         //textbox.SetActive(false);
-        HideDialogue();
+        HideDialogue(); // Commented out recently - 7/28/2021
         // Sets variables for interacting with textbox
         //set time per character to mid text speed
         timePerCharacter = normalTextSpeed;
@@ -159,9 +162,21 @@ public class DialogueManager : MonoBehaviour
         
         messageIndex = 0;
 
+        storyCharacters = (CharacterDatabase) ScriptableObject.CreateInstance("CharacterDatabase");
         // MOCHA MAGIC CODE
-        //activeCharacters = storyCharacters.CharacterNameDict(); //get active characters
-
+        //activeCharacters = storyCharacters.CharacterNameDict(); //get active characters, CharacterNameDict() // Continue from here - 7/23/2021
+        
+        //Dictionary<string, CharacterObject>.KeyCollection keys = activeCharacters.Keys;
+        if(storyCharacters._Keys.Contains(storyCharacters.SampleCharacter)) // storyCharacters._Keys activeCharacters.ContainsKey("Pigeon Dude")
+        {
+            Debug.Log("Pigeon Dude key found in dictionary");
+        } else {
+            Debug.Log("Pigeon Dude key NOT found");
+        }
+        // foreach(string key in keys)
+        // {
+        //     Debug.Log(message:$"<color=green><size=16> Key: {key} </size></color>");
+        // }
 
         // MOCHA MAGIC CODE
         /*
@@ -319,6 +334,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void ProgressStory(){
+        Debug.Log(message:$"<color=yellow><size=16> Entered here!: </size></color>");
         //UpdateTextSpeedForFramerate();
         AutoTextOff();
         //StartTalkingSound();
@@ -418,9 +434,9 @@ public class DialogueManager : MonoBehaviour
         //make the exit condition up here
         if(messageIndex > (messageArraySeg.Length-1)){
             messageIndex = 0;                                           // Reset the message index
-            //StartCoroutine(DestroyDialogueObject());                                                              
+            StartCoroutine(DestroyDialogueObject());                                                              
             //this.gameObject.SetActive(false);  //i think this is what we need? since we activate this on a trigger we need to deactivate it as well
-            StartCoroutine(DestroyingDialoguePrefab()); //-matt
+            // StartCoroutine(DestroyingDialoguePrefab()); //-matt
             
         }else{
 
@@ -1368,22 +1384,29 @@ public class DialogueManager : MonoBehaviour
                 //urrentSpeaker = line[0];
             }
             
+            //Debug.Log(message: $"Current Speaker: {currentSpeaker}");
+            
             if(activeCharacters.ContainsKey(currentSpeaker)){
-                messageName.text = "<color=#" + ColorUtility.ToHtmlStringRGBA(activeCharacters[currentSpeaker].characterColor)+ ">" + currentSpeaker + "</color>"; //uses rich text
+                //messageName.text = "<color=#" + ColorUtility.ToHtmlStringRGBA(activeCharacters[currentSpeaker].characterColor)+ ">" + currentSpeaker + "</color>"; //uses rich text
+                Debug.Log(message:$"<color=green><size=16> Entered messageName.text modification </size></color>");
+                messageName.text = currentSpeaker;
             }else{
-                //string testString = line[0].Substring(1, line[0].Length-2);
-                bool containsCustomVar = line[0].Length >=2 && variableDatabase.stringVariables.ContainsKey(line[0].Substring(1, line[0].Length-2));
-                bool isCustomVariable = line[0].Length >=2 && line[0][0] == '{' && line[0][line[0].Length-1] == '}' && containsCustomVar;
-                
-                //Debug.Log($"boolean check {testString}: {containsCustomVar} && {isCustomVariable}");
 
-                if(containsCustomVar && isCustomVariable){
-                    currentSpeaker = variableDatabase.stringVariables[line[0].Substring(1, line[0].Length-2)];
-                    //Debug.Log(currentSpeaker);
-                    messageName.text = "<color=#" + ColorUtility.ToHtmlStringRGBA(activeCharacters[currentSpeaker].characterColor)+ ">" + currentSpeaker + "</color>"; //uses rich text
-                }else{
-                    messageName.text = findAndReplaceVariables(line[0]); //uses vanilla text
-                }
+                // Disabled custom colors of name text
+
+                // string testString = line[0].Substring(1, line[0].Length-2);
+                // bool containsCustomVar = line[0].Length >=2 && variableDatabase.stringVariables.ContainsKey(line[0].Substring(1, line[0].Length-2));
+                // bool isCustomVariable = line[0].Length >=2 && line[0][0] == '{' && line[0][line[0].Length-1] == '}' && containsCustomVar;
+                
+                // Debug.Log($"boolean check {testString}: {containsCustomVar} && {isCustomVariable}");
+
+                // if(containsCustomVar && isCustomVariable){
+                //     currentSpeaker = variableDatabase.stringVariables[line[0].Substring(1, line[0].Length-2)];
+                //     //Debug.Log(currentSpeaker);
+                //     messageName.text = "<color=#" + ColorUtility.ToHtmlStringRGBA(activeCharacters[currentSpeaker].characterColor)+ ">" + currentSpeaker + "</color>"; //uses rich text
+                // }else{
+                //     messageName.text = findAndReplaceVariables(line[0]); //uses vanilla text
+                // }
                 
             }
             return line[1];
@@ -1553,7 +1576,7 @@ public class DialogueManager : MonoBehaviour
                 }
                 
                 startFound = true;
-                //Debug.Log($"<color=blue>found start at {startingIndex} - {messageArray[startingIndex]}!</color>");
+                Debug.Log($"<color=blue>found start at {startingIndex} - {messageArray[startingIndex]}!</color>");
                 break;
             }
         }
@@ -2048,7 +2071,7 @@ public class DialogueManager : MonoBehaviour
                 greyOutColor.b,
                 gameSprite.GetComponent<Image>().color.a
             );
-        gameSprite.transform.Find("BlinkOverlay").GetComponent<Image>().color = greyOutColor;
+        //gameSprite.transform.Find("BlinkOverlay").GetComponent<Image>().color = greyOutColor; // Disabled trying to find blink overlay
         
         
     }

@@ -34,8 +34,8 @@ public class playerControl : Character
     [Header("NPCs")]
     private GameObject currentGameObjectCollider; // A place to store the GameObject that is being collided with
 
-    private GameObject temp;
-    public GameObject DialogueCanvas;
+    [SerializeField] private GameObject temp;
+    public GameObject Dialogue;
     public bool isBeingCollidedWith = false;
     public bool canInteract = false;
 
@@ -158,14 +158,15 @@ public class playerControl : Character
     {
         if(temp.tag == "NPC") // Continue from here 7/15/2021
         {
+            Debug.Log(message:$"<color=green> <size=16> Entered playerInteract! </size> </color>");
             CharacterObject npcTouched = temp.GetComponent<NPCBehavior>().character;
             //lastNPCTouched = npcTouched;
-            TextAsset dialogue = npcTouched.dialogueFile;
+            TextAsset dialogue = npcTouched.dialogueFile; // Fixed dialogue file at the moment
             string startArgument = "start";
 
-            GameObject newDialogue = Instantiate(DialogueCanvas);
+            GameObject newDialogue = Instantiate(Dialogue);
             newDialogue.transform.SetParent(GameObject.Find("DialogueCanvas").transform);
-            
+            newDialogue.name = "Dialogue (" + dialogue.name + ")";
             DialogueManager dialogueManager = newDialogue.GetComponentInChildren<DialogueManager>();
             newDialogue.SetActive(true);
             dialogueManager.LoadNewDialogueText(dialogue, startArgument);
@@ -176,13 +177,14 @@ public class playerControl : Character
 
     public void OnTriggerEnter(Collider collisionObject)
     {
+        Debug.Log(message:$"<color=green> <size=16> Entered trigger </size> </color>");
         isBeingCollidedWith = true;
         GameObject temp = GameObject.Find(collisionObject.name);
     }
     public void OnTriggerExit(Collider collisionObject)
     {
         canInteract = false;
-        
+        Debug.Log(message:$"<color=red> <size=16> Exit trigger </size> </color>");
         GameObject temp = GameObject.Find(collisionObject.name);
         isBeingCollidedWith = false;
         currentGameObjectCollider = null;
@@ -191,6 +193,8 @@ public class playerControl : Character
     {
         currentGameObjectCollider = GameObject.Find(collisionObject.name);
         temp = GameObject.Find(collisionObject.name);
+        Debug.Log(message:$"<color=orange> <size=16> currentGameObjectCollider: </size> </color> <size=16> {currentGameObjectCollider} </size>");
+        Debug.Log(message:$"<color=purple> <size=16> temp: </size> </color> <size=16> {temp} </size>");
         canInteract = true;
     }
 

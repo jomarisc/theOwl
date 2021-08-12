@@ -78,6 +78,7 @@ public class TextWriter : MonoBehaviour
             //StartCoroutine(textWriterSingleList[i].PrintChars());
             //bool destroyInstance = textWriterSingleList[i].PrintChars();
             if(!textWriterSingleList[i].IsPrintingCharsActive()){
+                Debug.Log(message: $"<color=green><size=16> Inside TextWriterUpdate! </size></color>");
                 StartCoroutine(textWriterSingleList[i].PrintChars());
             }
 
@@ -137,15 +138,15 @@ public class TextWriter : MonoBehaviour
         {
             this.interrupted = false;
             isPrintingCharsActive = true;
-            //timer -= Time.deltaTime;
+            timer -= Time.deltaTime;
             dialogueManager.floatingMarker.SetActive(false);
-            //string endTag = "";
+            string endTag = "";
             //Debug.LogError("End tag has been reset!");
             
             //decide how many chars to print
             int charsToPrint = 1;
-            //int frameRate = Application.targetFrameRate;
-            float frameRate = 1.0f/Time.deltaTime;
+            int frameRate = Application.targetFrameRate;
+            //float frameRate = 1.0f/Time.deltaTime;
             if(frameRate < start2char && frameRate >= start3char){
                 charsToPrint = 2;
                 intervalModifier = 1;
@@ -316,8 +317,18 @@ public class TextWriter : MonoBehaviour
                 uiText.text = text;
 
                 
+                //Debug.Log(message: $"Current Speaker in Text Writer: {currentSpeaker}");
+                
+                if(dialogueManager.ActiveCharacters().ContainsKey(currentSpeaker))
+                {
+                    Debug.Log(message: $"<color=green><size=16> CurrentSpeaker is IN ActiveCharacters() </size></color>");
+                } else {
+                    Debug.Log(message: $"<color=green><size=16> CurrentSpeaker is NOT IN ActiveCharacters() </size></color>");
+                }
+
                 //get character talking
                 if(!dialogueManager.ActiveCharacters().ContainsKey(currentSpeaker)){
+                    Debug.Log(message: $"<color=green><size=16> Inside speaking voice chunk part0! </size></color>");
                     if(currentSpeaker != "Narration"){
                         //Debug.LogWarning($"No character '{currentSpeaker}' speaking this line of dialouge exists. Is there a typo?");
                     }
@@ -325,34 +336,40 @@ public class TextWriter : MonoBehaviour
                     
                     //this is a bad place to put this
                     //dialogueManager.HighlightSpeaker(currentSpeaker);
-                    
+                    Debug.Log(message: $"<color=green><size=16> Inside speaking voice chunk part1! </size></color>");
                     
                     CharacterVoice speakingVoice = dialogueManager.ActiveCharacters()[currentSpeaker].characterVoice;
                     float toSpeakVoice = speakingVoice.Interval / intervalModifier;
-                    //toSpeakVoice = 8;
+                    toSpeakVoice = 8;
                     if(voiceInterval >= toSpeakVoice && dialogueManager.CharaVoicesOn()){
+
+                        Debug.Log(message: $"<color=green><size=16> Inside speaking voice chunk part2! </size></color>");
+
                         //AudioSource.PlayClipAtPoint(speakingVoice.VoiceClip(soundLibrary), Camera.main.transform.position, PlayerSettings.SFXVolume*0.3f);
-                        //audioSource.clip = speakingVoice.VoiceClip(soundLibrary);
+                        AudioSource.PlayClipAtPoint(speakingVoice.VoiceClip(soundLibrary), Camera.main.transform.position, 10*0.3f);
+                        audioSource.clip = speakingVoice.VoiceClip(soundLibrary);
                         //audioSource.volume = PlayerSettings.SFXVolume*0.6f;
+                        audioSource.volume = 100*0.6f;
 
                         //alternating
-                        /*if(Camera.main.GetComponent<AudioSource>().pitch == 1.03f){
+                        if(Camera.main.GetComponent<AudioSource>().pitch == 1.03f){
                             Camera.main.GetComponent<AudioSource>().pitch = 0.95f;
                         }else if(Camera.main.GetComponent<AudioSource>().pitch == 0.95f){
                             Camera.main.GetComponent<AudioSource>().pitch = 1.03f;
-                        }*/
+                        }
 
                         //random
-                        /*
                         Camera.main.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.95f, 1.03f);
-                        Camera.main.GetComponent<AudioSource>().PlayOneShot(speakingVoice.VoiceClip(soundLibrary), PlayerSettings.SFXVolume*0.4f);
-                        */
+                        //Camera.main.GetComponent<AudioSource>().PlayOneShot(speakingVoice.VoiceClip(soundLibrary), PlayerSettings.SFXVolume*0.4f);
+                        Camera.main.GetComponent<AudioSource>().PlayOneShot(speakingVoice.VoiceClip(soundLibrary), 10*0.4f);
+                        
                         //audioSource.PlayOneShot(speakingVoice.VoiceClip(soundLibrary), PlayerSettings.SFXVolume*0.6f);
+                        audioSource.PlayOneShot(speakingVoice.VoiceClip(soundLibrary), 10*0.6f);
                         voiceInterval = 0;
                     }
                     if(voiceInterval == 0){
                         Camera.main.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.95f, 1.03f);
-                        Camera.main.GetComponent<AudioSource>().PlayOneShot(speakingVoice.VoiceClip(soundLibrary), 1*0.4f); // Previously: PlayerSettings.SFXVolume*0.4f
+                        Camera.main.GetComponent<AudioSource>().PlayOneShot(speakingVoice.VoiceClip(soundLibrary), 10*0.4f); // Previously: PlayerSettings.SFXVolume*0.4f
                     }
                     voiceInterval++;
                 }

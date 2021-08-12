@@ -16,7 +16,7 @@ public class VNVariables : ScriptableObject
 
     private void Awake(){
         Setup();
-        //stringVariables.Add("a", "b");
+        
     }  
 
     public void Setup(){
@@ -32,6 +32,9 @@ public class VNVariables : ScriptableObject
     private void AddUserVariables(){
         Dictionary<string, string> newDict = 
             stringVariables.Union(userVariables.Where(k => !stringVariables.ContainsKey(k.Key))).ToDictionary(k => k.Key, v => v.Value);
+        // Manual addition - 8/3/2021, Re-factor this
+        userVariables.Add("c", "d");
+        newDict.Add("a", "b");
         stringVariables = newDict;
     }
 

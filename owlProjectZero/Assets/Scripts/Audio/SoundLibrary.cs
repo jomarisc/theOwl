@@ -11,12 +11,14 @@ public class SoundLibrary : ScriptableObject
 
     public void AddSoundClip(AudioClip s1)
     {
+        //Debug.Log(message: $"<color=blue><size=16> s1 name: {s1.name} </size></color>");
         audioDict.Add(s1.name, s1);
     }
 
     // Designed to work with one sound clip at the moment - 7/3/2021
     public void Start()
     {
+        Debug.Log(message: $"<color=blue><size=16> souncClip1 name: {soundClip1.name} </size></color>");
         AddSoundClip(soundClip1);
     }
 

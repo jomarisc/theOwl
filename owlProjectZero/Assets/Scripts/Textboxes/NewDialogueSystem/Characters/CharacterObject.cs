@@ -162,7 +162,7 @@ public class RandomPosition
 public class CharacterVoice
 {
     [SerializeField] string voiceClipString;
-    //private SoundLibrary soundLibrary;
+    private SoundLibrary soundLibrary;
     [SerializeField] float interval;
 
     public string VoiceClipString{
