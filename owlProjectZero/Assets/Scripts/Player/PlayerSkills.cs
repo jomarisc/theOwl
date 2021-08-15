@@ -32,12 +32,6 @@ public class PlayerSkills : MonoBehaviour
         }
 
     }
-    
-
-    // public PlayerSkills()
-    // {
-    //     unlockedSkillTypeList = new List<Skill>();
-    // }
 
     public void UnlockSkill(Skill skillType)
     {
