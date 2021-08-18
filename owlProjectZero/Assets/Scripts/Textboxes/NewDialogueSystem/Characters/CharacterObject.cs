@@ -169,7 +169,17 @@ public class CharacterVoice
         get{return voiceClipString;}
     }
     public AudioClip VoiceClip(SoundLibrary soundLibrary){
-        return soundLibrary.AudioDict[voiceClipString];
+        AudioClip data;
+        if (!soundLibrary.AudioDict.TryGetValue(voiceClipString, out data)) {
+            Debug.LogError(message: $"<size=16><color=orange> soundLibrary.AudioDict doesn't have the value: {voiceClipString} </color></size>");
+        }
+        else
+        {
+            //do whatever you were planning to do
+            return soundLibrary.AudioDict[voiceClipString];
+        }
+        Debug.LogError(message: $"<size=16><color=orange> soundLibrary.AudioDict[voiceClipString] ended as NULL </color></size>");
+        return null;
     }
     public float Interval{
         get{ return interval;}

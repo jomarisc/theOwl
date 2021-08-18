@@ -138,15 +138,15 @@ public class TextWriter : MonoBehaviour
         {
             this.interrupted = false;
             isPrintingCharsActive = true;
-            timer -= Time.deltaTime;
+            //timer -= Time.deltaTime;
             dialogueManager.floatingMarker.SetActive(false);
-            string endTag = "";
+            //string endTag = "";
             //Debug.LogError("End tag has been reset!");
             
             //decide how many chars to print
             int charsToPrint = 1;
-            int frameRate = Application.targetFrameRate;
-            //float frameRate = 1.0f/Time.deltaTime;
+            //int frameRate = Application.targetFrameRate;
+            float frameRate = 1.0f/Time.deltaTime;
             if(frameRate < start2char && frameRate >= start3char){
                 charsToPrint = 2;
                 intervalModifier = 1;
@@ -340,38 +340,43 @@ public class TextWriter : MonoBehaviour
                     
                     CharacterVoice speakingVoice = dialogueManager.ActiveCharacters()[currentSpeaker].characterVoice;
                     float toSpeakVoice = speakingVoice.Interval / intervalModifier;
-                    toSpeakVoice = 8;
+                    //toSpeakVoice = 8;
+
+                    Debug.Log(message: $"<color=blue><size=16> voiceInterval BEFORE == {voiceInterval} </size></color>");
+                    Debug.Log(message: $"<color=blue><size=16> toSpeakVoice == {toSpeakVoice} </size></color>");
+                    Debug.Log(message: $"<color=blue><size=16> dialogueManager.CharaVoicesOn() == {dialogueManager.CharaVoicesOn()} </size></color>");
                     if(voiceInterval >= toSpeakVoice && dialogueManager.CharaVoicesOn()){
 
                         Debug.Log(message: $"<color=green><size=16> Inside speaking voice chunk part2! </size></color>");
 
                         //AudioSource.PlayClipAtPoint(speakingVoice.VoiceClip(soundLibrary), Camera.main.transform.position, PlayerSettings.SFXVolume*0.3f);
-                        AudioSource.PlayClipAtPoint(speakingVoice.VoiceClip(soundLibrary), Camera.main.transform.position, 10*0.3f);
-                        audioSource.clip = speakingVoice.VoiceClip(soundLibrary);
-                        //audioSource.volume = PlayerSettings.SFXVolume*0.6f;
-                        audioSource.volume = 100*0.6f;
+                        // AudioSource.PlayClipAtPoint(speakingVoice.VoiceClip(soundLibrary), Camera.main.transform.position, 10*0.3f);
+                        // audioSource.clip = speakingVoice.VoiceClip(soundLibrary);
+                        // //audioSource.volume = PlayerSettings.SFXVolume*0.6f;
+                        // audioSource.volume = 100*0.6f;
 
-                        //alternating
-                        if(Camera.main.GetComponent<AudioSource>().pitch == 1.03f){
-                            Camera.main.GetComponent<AudioSource>().pitch = 0.95f;
-                        }else if(Camera.main.GetComponent<AudioSource>().pitch == 0.95f){
-                            Camera.main.GetComponent<AudioSource>().pitch = 1.03f;
-                        }
+                        // //alternating
+                        // if(Camera.main.GetComponent<AudioSource>().pitch == 1.03f){
+                        //     Camera.main.GetComponent<AudioSource>().pitch = 0.95f;
+                        // }else if(Camera.main.GetComponent<AudioSource>().pitch == 0.95f){
+                        //     Camera.main.GetComponent<AudioSource>().pitch = 1.03f;
+                        // }
 
-                        //random
-                        Camera.main.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.95f, 1.03f);
-                        //Camera.main.GetComponent<AudioSource>().PlayOneShot(speakingVoice.VoiceClip(soundLibrary), PlayerSettings.SFXVolume*0.4f);
-                        Camera.main.GetComponent<AudioSource>().PlayOneShot(speakingVoice.VoiceClip(soundLibrary), 10*0.4f);
+                        // //random
+                        // Camera.main.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.95f, 1.03f);
+                        // //Camera.main.GetComponent<AudioSource>().PlayOneShot(speakingVoice.VoiceClip(soundLibrary), PlayerSettings.SFXVolume*0.4f);
+                        // Camera.main.GetComponent<AudioSource>().PlayOneShot(speakingVoice.VoiceClip(soundLibrary), 10*0.4f);
                         
-                        //audioSource.PlayOneShot(speakingVoice.VoiceClip(soundLibrary), PlayerSettings.SFXVolume*0.6f);
-                        audioSource.PlayOneShot(speakingVoice.VoiceClip(soundLibrary), 10*0.6f);
+                        // //audioSource.PlayOneShot(speakingVoice.VoiceClip(soundLibrary), PlayerSettings.SFXVolume*0.6f);
+                        // audioSource.PlayOneShot(speakingVoice.VoiceClip(soundLibrary), 10*0.6f);
                         voiceInterval = 0;
                     }
                     if(voiceInterval == 0){
                         Camera.main.GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.95f, 1.03f);
-                        Camera.main.GetComponent<AudioSource>().PlayOneShot(speakingVoice.VoiceClip(soundLibrary), 10*0.4f); // Previously: PlayerSettings.SFXVolume*0.4f
+                        Camera.main.GetComponent<AudioSource>().PlayOneShot(speakingVoice.VoiceClip(soundLibrary), 1.5f*0.4f); // Previously: PlayerSettings.SFXVolume*0.4f
                     }
                     voiceInterval++;
+                    Debug.Log(message: $"<color=blue><size=16> voiceInterval AFTER == {voiceInterval} </size></color>");
                 }
                 yield return new WaitForSeconds(timePerCharacter * Time.deltaTime);
 
