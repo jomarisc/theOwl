@@ -6,24 +6,20 @@ using UnityEngine.SceneManagement;
 public class Checkpoints : MonoBehaviour
 {
 
-    public string currScene;
+    public int currScene;
     public GameObject player;
     public PlayerInputs input;
     playerControl pControl;
+    SaveManager saveManager;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         pControl = player.GetComponent<playerControl>();
-        currScene = SceneManager.GetActiveScene().name;
+        currScene = SceneManager.GetActiveScene().buildIndex;
         input = pControl.input;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        saveManager = this.GetComponent<SaveManager>();
     }
 
     void OnTriggerStay(Collider other)
@@ -38,9 +34,9 @@ public class Checkpoints : MonoBehaviour
                 CheckpointsHandler.playerPosition[0] = this.transform.position.x;
                 CheckpointsHandler.playerPosition[1] = this.transform.position.y;
                 CheckpointsHandler.playerPosition[2] = 0.0f;
+                saveManager.saveGame();
             }
         }
-
     }
 
     // void OnTriggerExit(Collider other)

@@ -9,12 +9,14 @@ public class SaveManager : MonoBehaviour
 
     public string filePath;
     public string newGameScene;
+    public int newGameSceneIndex;
 
     // Start is called before the first frame update
     void Start()
     {
         filePath = Application.persistentDataPath + "/saveFile.owl";
         newGameScene = "Alley";
+        newGameSceneIndex = CheckpointsHandler.checkpointScene;
     }
 
     public void saveGame()
@@ -37,7 +39,7 @@ public class SaveManager : MonoBehaviour
         GlobalVars.currentSkill = 0;
         GlobalVars.playerHasUnlockedSuit = false;
 
-        CheckpointsHandler.checkpointScene = "";
+        CheckpointsHandler.checkpointScene = 2;
         for(int i = 0; i < CheckpointsHandler.playerPosition.Length; i++)
         {
             CheckpointsHandler.playerPosition[i] = 0f;
@@ -70,20 +72,12 @@ public class SaveManager : MonoBehaviour
                 CheckpointsHandler.playerPosition = newData.playerPosition;
             }
             CheckpointsHandler.isDead = newData.isDead;
+            SceneManager.LoadScene(CheckpointsHandler.checkpointScene);
         }
-        else
-        {
-            clearGame();
-        }
-    }
-
-    public void loadScene()
-    {
-        SceneManager.LoadScene(newGameScene);
-    }
-
-    public void loadMainMenu()
-    {
-        SceneManager.LoadScene("MainMenu2");
+        // else
+        // {
+        //     clearGame();
+        //     SceneManager.LoadScene(newGameScene);
+        // }
     }
 }

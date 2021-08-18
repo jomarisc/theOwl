@@ -8,7 +8,7 @@ public class SaveClass
     public bool[] unlockedSkills;
     public int currentSkill;
     public bool playerHasUnlockedSuit;
-    public string checkpointScene;
+    public int checkpointScene;
     public float[] playerPosition;
     public bool isDead;
 
@@ -31,6 +31,7 @@ public class SaveClass
         {
             playerPosition = CheckpointsHandler.playerPosition;
         }
+
         isDead = CheckpointsHandler.isDead;
 
     }
