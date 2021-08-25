@@ -11,6 +11,7 @@ public class SaveClass
     public int checkpointScene;
     public float[] playerPosition;
     public bool isDead;
+    public bool hasPressMainMenu;
 
     public SaveClass()
     {
@@ -33,6 +34,7 @@ public class SaveClass
         }
 
         isDead = CheckpointsHandler.isDead;
+        hasPressMainMenu = GlobalVars.hasPressMainMenu;
 
     }
 }

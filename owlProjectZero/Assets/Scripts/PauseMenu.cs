@@ -78,6 +78,8 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu()
     {
+        GlobalVars.hasPressMainMenu = true;
+        Debug.Log("GlobalVars.hasPressMainMenu is " + GlobalVars.hasPressMainMenu);
         pc.enabled = true;
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu2");
