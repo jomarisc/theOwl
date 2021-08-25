@@ -22,7 +22,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] string[] messageArrayRaw;
     public string[] messageArrayFull;                                                   // Array that holds all the lines of message (complete)
     public string[] messageArraySeg;                                                    // Array that holds all the lines of message (segmented)
-    public int messageIndex;                                                           // messageArray's index
+    public int messageIndex;                                                            // messageArray's index
     public string messageCurrent;                                                       // Sting that holds onto the current line of messageArray
     public List<string> storyTags;
     private TextWriter.TextWriterSingle textWriterSingle;
@@ -37,8 +37,8 @@ public class DialogueManager : MonoBehaviour
     private Dictionary<string, CharacterObject> activeCharacters;
     [Header("Dialogue Timing")]
 
-    [SerializeField] float startMessageWait =  0.3f; //how many seconds player needs to wait before they can confirm
-    [SerializeField] float endMessageWait =  0.2f; //how long the end message lingers before they confirm button can occur
+    [SerializeField] float startMessageWait =  0.3f;                                    //how many seconds player needs to wait before they can confirm
+    [SerializeField] float endMessageWait =  0.2f;                                      //how long the end message lingers before they confirm button can occur
     public float timePerCharacter = 0.025f;
     private string currentTextSpeed = "normal";
 
@@ -62,15 +62,17 @@ public class DialogueManager : MonoBehaviour
     [Header("UI Objects")]
     //changed  textbox, message text and message name to public to avoid null error exceptions 
     [SerializeField] GameObject mainObject;
-    [SerializeField] GameObject textbox;     // Stores game object called message
+    [SerializeField] GameObject textbox;                                                // Stores game object called message
 
-    [SerializeField] GameObject MCImage;      // Game object that holds the MC image
-    [SerializeField] GameObject npcPrefab;    // stores prefab for npc sprites
-    [SerializeField] GameObject backgroundPrefab; //stores prefab for background images
-    public GameObject floatingMarker;  //stores GameObject for end of message marker
+    [SerializeField] GameObject MCImage;                                                // Game object that holds the MC image
+    [SerializeField] GameObject npcPrefab;                                              // stores prefab for npc sprites
+    [SerializeField] GameObject backgroundPrefab;                                       //stores prefab for background images
+    public GameObject floatingMarker;                                                   //stores GameObject for end of message marker
 
     // MOCHA MAGIC CODE
-    //private BacklogView backlogView; //script for backlog
+    // OLD CODE:
+    // Used for implementing a backlog
+    // private BacklogView backlogView; //script for backlog
     [SerializeField] GameObject settingsMenu;
 
     [SerializeField] Sprite blankImage;
@@ -94,6 +96,8 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Audio")]
 
+    // OLD CODE:
+    // Storing audio files
     //[SerializeField] AudioSource talkingAudioSource;
     private AudioSource talkingAudioSource; //audio source is now attached to the object
     //[SerializeField] Dictionary<string, AudioClip> dialogueAudio;
@@ -149,7 +153,8 @@ public class DialogueManager : MonoBehaviour
         //Debug.Log(message: $"<color=blue><size=16>From DIALOGUE MANAGER.CS souncClip1 name: {soundClip1.name} </size></color>");
         
         //textbox.SetActive(false);
-        HideDialogue(); // Commented out recently - 7/28/2021
+        // Commented out recently - 7/28/2021
+        HideDialogue(); 
         // Sets variables for interacting with textbox
         //set time per character to mid text speed
         timePerCharacter = normalTextSpeed;
@@ -163,22 +168,33 @@ public class DialogueManager : MonoBehaviour
         
         messageIndex = 0;
 
-        //storyCharacters = (CharacterDatabase) ScriptableObject.CreateInstance("CharacterDatabase");
+        // OLD CODE:
+        // Testing out CreateInstance with a ScriptableObject
+        // storyCharacters = (CharacterDatabase) ScriptableObject.CreateInstance("CharacterDatabase");
+        
+        // OLD CODE:
         // Setting up soundLibrary
         // soundLibrary.AddingAudioIntoNewDict();
-        soundLibrary.SettingAudioIntoLocalDict();
         // soundLibrary.TestAddingAudioIntoNewDict();
-        
+        soundLibrary.SettingAudioIntoLocalDict();
+
         // MOCHA MAGIC CODE
-        activeCharacters = storyCharacters.CharacterNameDict(); //get active characters, CharacterNameDict() // Continue from here - 7/23/2021
+        // get active characters through the dictionary retrieval function CharacterNameDict() // Continue from here - 7/23/2021
+        // this is of type Dictionary<string,CharacterObject>
+        activeCharacters = storyCharacters.CharacterNameDict();
         
+        // OLD CODE:
+        // Testing if key exists in dictionary
         //Dictionary<string, CharacterObject>.KeyCollection keys = activeCharacters.Keys;
-        if(activeCharacters.ContainsKey("Pigeon Dude")) // storyCharacters._Keys activeCharacters.ContainsKey("Pigeon Dude"), storyCharacters._Keys.Contains(storyCharacters.SampleCharacter)
-        {
-            Debug.Log("Pigeon Dude key found in dictionary");
-        } else {
-            Debug.Log("Pigeon Dude key NOT found");
-        }
+        // if(activeCharacters.ContainsKey("Pigeon Dude")) // storyCharacters._Keys activeCharacters.ContainsKey("Pigeon Dude"), storyCharacters._Keys.Contains(storyCharacters.SampleCharacter)
+        // {
+        //     Debug.Log("Pigeon Dude key found in dictionary");
+        // } else {
+        //     Debug.Log("Pigeon Dude key NOT found");
+        // }
+
+        // OLD CODE:
+        // Trying to print out each string key in a dictionary
         // foreach(string key in keys)
         // {
         //     Debug.Log(message:$"<color=green><size=16> Key: {key} </size></color>");
@@ -252,6 +268,10 @@ public class DialogueManager : MonoBehaviour
         }
         //Debug.Log($"Framerate: {Application.targetFrameRate}");
     }
+
+    // OWL LONG DAY CODE
+    // OnEnable() and OnDisable() are potentially used in managing
+    // textboxes in Cutscenes
     void OnEnable()
     {
         input.Enable();
@@ -275,7 +295,8 @@ public class DialogueManager : MonoBehaviour
         // Format for Unity New Input System: input.Gameplay.Interact.triggered
         //the click was removed to tie it to the button attached to the textbox, which is why progress story is now its own function
         
-        // MOCHA MAGIC CODE. Until CreateSettingsMenu is sorted out, comment this check out - 6/26/2021
+        // MOCHA MAGIC CODE
+        // Until CreateSettingsMenu is sorted out, comment this check out - 6/26/2021
         // VNBacklog is commented out until further notice.
         //if(!CreateSettingsMenu.VNFreeze){
             if (input.Dialogue.ProgressStory.triggered && textboxVisible) // Old input: Input.GetKeyDown("space") && textboxVisible, Continue working on testing the new input system
@@ -303,6 +324,7 @@ public class DialogueManager : MonoBehaviour
                 CharaVoiceSwitch();
             }
             if(input.Dialogue.ToggleBacklog.triggered && canUseTextboxKeys && textboxVisible){ // Input.GetKeyDown(KeyCode.B)
+                // Disabled until Backlog is implemented
                 //ToggleBacklog();
             }
             if(input.Dialogue.ToggleAutotext.triggered && canUseTextboxKeys && textboxVisible){ //&& !backlogView.BacklogOpen()){ // Input.GetKeyDown(KeyCode.A)
@@ -316,7 +338,7 @@ public class DialogueManager : MonoBehaviour
                     UnhideDialogue();
                 }
             }
-        //}
+        //} // This is from the first if statement check
 
         //auto mode
 
@@ -338,9 +360,11 @@ public class DialogueManager : MonoBehaviour
         }
         autoTextTimerOn = false;
     }
-
+    // Creates a text writer to type out text from CSV
+    // Automatically sets AutoText to off
     public void ProgressStory(){
-        Debug.Log(message:$"<color=yellow><size=16> Entered here!: </size></color>");
+        // DEBUG:
+        // Debug.Log(message:$"<color=yellow><size=16> Entered here!: </size></color>");
         //UpdateTextSpeedForFramerate();
         AutoTextOff();
         //StartTalkingSound();
@@ -366,6 +390,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    // Completes a text message and destroys the textWriterSingle
     public void InterruptMessage(){
         if (textWriterSingle != null && textWriterSingle.IsActive()){
             textWriterSingle.JustDestroy();
@@ -373,7 +398,8 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(SetMessageAndPlay());
     }
 
-    // Functions to use once a sound file has been loaded
+    // Plays a sound when textbox starts up
+    // Currently commented out until it is needed
     private void StartTalkingSound()
     {
         //talkingAudioSource.Play();
@@ -396,7 +422,8 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(playStorySoundEffect(audioReference, waitTime));
     }
 
-    // MOCHA MAGIC CODE. Until settings menu is resolved this is commented out.
+    // MOCHA MAGIC CODE.
+    // Until settings menu is resolved this is commented out.
     private IEnumerator playStorySoundEffect(string audioReference, float waitTime){
         yield return new WaitForSeconds(waitTime);
         PlaySoundEffect(audioReference, 0); // Making this a fixed number till PlayerSettings is resolved. Previously: PlayerSettings.SFXVolume
@@ -409,11 +436,12 @@ public class DialogueManager : MonoBehaviour
     }
 
     // MOCHA MAGIC CODE. 
+    // Return to when music controller is resolved.
     public void StopMusicInVN(){
         //musicController.StopSong();
     }
 
-    //new function for playing specific sound
+    // Function for playing specific sound
     private void PlaySoundEffect(string soundToPlay, float volume){
         if(soundLibrary.AudioDict.ContainsKey(soundToPlay)){
             AudioSource.PlayClipAtPoint(soundLibrary.AudioDict[soundToPlay], Camera.main.transform.position, volume);
@@ -440,9 +468,11 @@ public class DialogueManager : MonoBehaviour
         //make the exit condition up here
         if(messageIndex > (messageArraySeg.Length-1)){
             messageIndex = 0;                                           // Reset the message index
+            // This destroys the DialogueObject upon completing CSV
+            // Watch this carefully to determine if dialogue arc progression is maintained
             StartCoroutine(DestroyDialogueObject());                                                              
             //this.gameObject.SetActive(false);  //i think this is what we need? since we activate this on a trigger we need to deactivate it as well
-            // StartCoroutine(DestroyingDialoguePrefab()); //-matt
+            //StartCoroutine(DestroyingDialoguePrefab()); //-matt
             
         }else{
 
@@ -518,6 +548,7 @@ public class DialogueManager : MonoBehaviour
 
             messageIndex++;
 
+            // Change the colors of the sprites
             HighlightSpeaker(currentSpeaker);
 
             //test
@@ -669,6 +700,8 @@ public class DialogueManager : MonoBehaviour
         
         //MOCHA MAGIC CODE
         //MCMove.movementUnfreeze();
+
+        // Location for code to unfreeze player movement
     }
 
     private int AttemptToChangeMessageIndex(int index, bool waitCommand = false)
@@ -737,7 +770,7 @@ public class DialogueManager : MonoBehaviour
                     //Debug.Log($"{npcsInScene[moveArguments[0]]} moves to {posToMove}");
                     MoveCharacterPos(npcsInScene[moveArguments[0]], posToMove, 0.3f);
                     break;
-                //MOCHA MAGIC CODE
+                // MOCHA MAGIC CODE
                 // case "orderDrink":
                 //     string[] drinkArguments = commandLines[1].Trim().Split(',');
                 //     string charName = drinkArguments[0];
@@ -851,7 +884,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    /* MOCHA MAGIC EXLUSIVE CODE
+    /* MOCHA MAGIC CODE
 
     public void EndDay(){
         storyActivator.activateFlag("giveDrink");
@@ -917,7 +950,7 @@ public class DialogueManager : MonoBehaviour
         canChangeHide = true;
     }
 
-    /* MOCHA MAGIC EXLUSIVE CODE
+    /* MOCHA MAGIC CODE
     public void AddToDrinkStory(string newStory){
         //mcBehavior.
     }
@@ -956,6 +989,7 @@ public class DialogueManager : MonoBehaviour
         
     }
 
+    // Function relevant for the overworld
     public void DespawnNPCs(string[] charsToDespawn){
         foreach(GameObject NPC in overworldNPCs){
             foreach(string npcToDelete in charsToDespawn){
@@ -973,6 +1007,7 @@ public class DialogueManager : MonoBehaviour
         overworldNPCs = GetAllActiveNPCS();
     }
 
+    // Function relevant for the overworld
     public void DespawnAllNPCs(){
         List<string> allNPCs = new List<string>();
         foreach(GameObject NPC in overworldNPCs){
@@ -987,6 +1022,7 @@ public class DialogueManager : MonoBehaviour
         //DespawnNPCs(allNPCs.ToArray());
     }
 
+    // Function relevant for the overworld
     public void SpawnNPCs(string[] charsToSpawn, NPCStatus state){
         foreach(string chara in charsToSpawn){
             //int npcCount = gameDatabase.NPCList.Count;
@@ -1075,6 +1111,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
     
+    // Function relevant for the overworld
     public void CreateOrUpdateCharacter(string[] charArguments){
         //char arguments - char = Aidyn.Disappointed, 0, 0
         //Debug.Log($"charArguments - {charArguments[1]}");
@@ -1110,14 +1147,19 @@ public class DialogueManager : MonoBehaviour
             //Debug.Log($"new position - {xPos},{yPos}");
         }
 
-        if( !npcsInScene.ContainsKey(expressionCommand[0]) ){ //if npc isnt already in scene, instantiate it
-            //Debug.Log($"instantiating {expressionCommand[0]}");
-            InstantiateNPC(expressionCommand[0], changePos, new Vector3(xPos, yPos, 0));
+        // *** Commenting this out so that an NPC is not instantiated
+        // if( !npcsInScene.ContainsKey(expressionCommand[0]) ){ //if npc isnt already in scene, instantiate it
+        //     //Debug.Log($"instantiating {expressionCommand[0]}");
+        //     InstantiateNPC(expressionCommand[0], changePos, new Vector3(xPos, yPos, 0));
             
-        }//else just change the sprite
+        // }//else just change the sprite
 
         //npc in scene with character name, character name, assigned expression
-        AttemptToChangeCharacterPortrait(npcsInScene[expressionCommand[0]], expressionCommand[0], expression);
+        // OLD CODE: AttemptToChangeCharacterPortrait(npcsInScene[expressionCommand[0]], expressionCommand[0], expression);
+        // NEW CODE: Attempting to change the MCImage instead to display both the main character and npcs
+        Debug.Log(message: $"<size=16><color=green>expressionCommand[0]: {expressionCommand[0]}</color></size>");
+        Debug.Log(message: $"<size=16><color=green>expression: {expression}</color></size>");
+        AttemptToChangeCharacterPortrait(MCImage, expressionCommand[0], expression);
     }
 
     public void DestroyBackground(){
@@ -1135,11 +1177,13 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(0);
     }
 
-
+    // Function relevant for the overworld
     public void MoveCharacterPos(GameObject objectToMove, Vector3 newPos, float seconds){
         StartCoroutine(MoveSprite(objectToMove, newPos, seconds));
     }
     
+    // Function relevant for creating additional sprites above textbox
+    // Currently no longer instantiating NPC because only the MCImage portrait is being used
     public void InstantiateNPC(string npcKey, bool customPos, Vector3 newPos){
         //move existing npcs
         
@@ -1255,6 +1299,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    // Function relevant for creating additional sprites above textbox
     public void DeleteCharacterFromScene(string charToDelete){
         //npcsInSceneList = npcInXOrderList(npcsInSceneList);
         if(!npcsInScene.ContainsKey(charToDelete)){
@@ -1277,6 +1322,7 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(FadeOutCharacter(charToDelete));
     }
 
+    // Function relevant for creating additional sprites above textbox
     IEnumerator FadeOutCharacter(string charToDelete){
         npcsInScene[charToDelete].GetComponent<Image>().DOFade(0f, 0.3f);
 
@@ -1303,6 +1349,7 @@ public class DialogueManager : MonoBehaviour
         
     }
 
+    // Function for changing the top left portrait of textbox
     public void changeMCPortrait(string newIcon){
         MCImage.SetActive(true);
         AttemptToChangeCharacterPortrait(MCImage, MCName, newIcon);
@@ -1318,19 +1365,31 @@ public class DialogueManager : MonoBehaviour
         return templist;
     }
 
+    // Main function for changing the sprite of a game object
     private void AttemptToChangeCharacterPortrait(GameObject charPrefab, string characterName, string expression){
         expression = expression.Trim();
         //break loop early if character or character's sprite doesn't exist
         if(!activeCharacters.ContainsKey(characterName)){
             //Debug.LogError($"Character {characterName} not registered in the Database Object!");
             return;
-        }else if(!activeCharacters[characterName].SpritesVN.ContainsKey(expression)){
+        }else if(Array.Exists(activeCharacters[characterName].spriteKeys, element => element == expression) == true){ // !activeCharacters[characterName].SpritesVN.ContainsKey(expression)
             //Debug.LogError($"Sprite {expression} not registered to character!");
+            // Debug.Log(message: $"<size=16><color=blue>Here PT1</color></size>");
+            charPrefab.GetComponent<Image>().sprite = activeCharacters[characterName].spriteValues[Array.IndexOf(activeCharacters[characterName].spriteKeys, expression)];
             return;
+            // ***After returning the rest of the code is not executed!
         }
         
         //set npc image to assigned sprite
-        charPrefab.GetComponent<Image>().sprite = activeCharacters[characterName].SpritesVN[expression].spriteImage;
+        //charPrefab.GetComponent<Image>().sprite = activeCharacters[characterName].SpritesVN[expression].spriteImage;
+        //Array.IndexOf(activeCharacters[characterName].spriteKeys, expression) == true)
+        if(Array.Exists(activeCharacters[characterName].spriteKeys, element => element == expression) == true) // Checks if the expression exists in the spriteKeys array
+        {
+            // Attempts to get the index of the sprite for the specific character
+            //Debug.Log(message: $"<size=16><color=blue>Here PT2</color></size>");
+            //charPrefab.GetComponent<Image>().sprite = activeCharacters[characterName].spriteValues[Array.IndexOf(activeCharacters[characterName].spriteKeys, expression)];
+        }
+
         Image blinkOverlay = charPrefab.transform.Find("BlinkOverlay").GetComponent<Image>();
         
         //disable blinking on specific sprites
@@ -1372,6 +1431,7 @@ public class DialogueManager : MonoBehaviour
         return newlineIsNonspeaking;
     }
 
+    // Function related to interpreting CSV files
     private string AttemptToUpdateCharacterName(string messageCur, string potenCharName)
     {
         // Checks if the message has a colon
@@ -1393,12 +1453,12 @@ public class DialogueManager : MonoBehaviour
             //Debug.Log(message: $"Current Speaker: {currentSpeaker}");
             
             if(activeCharacters.ContainsKey(currentSpeaker)){
-                //messageName.text = "<color=#" + ColorUtility.ToHtmlStringRGBA(activeCharacters[currentSpeaker].characterColor)+ ">" + currentSpeaker + "</color>"; //uses rich text
+                messageName.text = "<color=#" + ColorUtility.ToHtmlStringRGBA(activeCharacters[currentSpeaker].characterColor)+ ">" + currentSpeaker + "</color>"; //uses rich text
                 Debug.Log(message:$"<color=green><size=16> Entered messageName.text modification </size></color>");
-                messageName.text = currentSpeaker;
+                //messageName.text = currentSpeaker;
             }else{
 
-                // Disabled custom colors of name text
+                // Disabled custom names text
 
                 // string testString = line[0].Substring(1, line[0].Length-2);
                 // bool containsCustomVar = line[0].Length >=2 && variableDatabase.stringVariables.ContainsKey(line[0].Substring(1, line[0].Length-2));
@@ -1441,12 +1501,15 @@ public class DialogueManager : MonoBehaviour
         return true;
     }
 
+    // Originates from StoryActivator.cs
     public void StartDialogue(){
         StartCoroutine(SetMessageAndPlay());
         // MOCHA MAGIC CODE
         //MCMove.movementFreeze();
+        // ***Location for freezing player movement
     }
     
+    // Main function for inputting new CSVs
     public void LoadNewDialogueText(TextAsset newText, string startArgument = "start"){
         //Debug.Log("loading " + newText.name);
         messageIndex = 0;
@@ -2042,32 +2105,42 @@ public class DialogueManager : MonoBehaviour
         return activeCharacters;
     }
     
-
+    // Main function for changing color of speaker
+    // Currently mainSpeaker is not utilized as we're not searching for a
+    // character from an container or collection
     public void HighlightSpeaker(string mainSpeaker){ //ungrey the active speaker in scene if one exists
-        if(mainSpeaker == MCName){
-            UngreySprite(MCImage);
-            for(int i=0;i<npcsInSceneList.Count;i++){
-                GreyOutSprite(npcsInSceneList[i]);
-            }
-        }else if(!npcsInScene.ContainsKey(mainSpeaker)){
-            //grey out everyone
-            GreyOutSprite(MCImage);
-            for(int i=0;i<npcsInSceneList.Count;i++){
-                GreyOutSprite(npcsInSceneList[i]);
-            }
-        }else {
-            GreyOutSprite(MCImage);
-            for(int i = 0; i < npcsInSceneList.Count; i++){
-                if(npcsInSceneList[i] == npcsInScene[mainSpeaker]){
-                    UngreySprite(npcsInSceneList[i]);
-                    // MOCHA MAGIC CODE
-                    //npcsInSceneList[i].GetComponent<NPCBehaviorVN>().blinkOnCommand();
-                    npcsInSceneList[i].transform.SetAsLastSibling();
-                }else{
-                    GreyOutSprite(npcsInSceneList[i]);
-                }
-            }
-        }
+        
+        UngreySprite(MCImage);
+
+        // OLD CODE:
+        // Based on existing instantiate NPCs, each of the sprites are greyed out or ungreyed out
+        // if(mainSpeaker == MCName){
+        //     Debug.Log(message: $"<size=16><color=blue>Here PT1</color></size>");
+        //     UngreySprite(MCImage);
+        //     for(int i=0;i<npcsInSceneList.Count;i++){
+        //         GreyOutSprite(npcsInSceneList[i]);
+        //     }
+        // }else if(!npcsInScene.ContainsKey(mainSpeaker)){
+        //     //grey out everyone
+        //     Debug.Log(message: $"<size=16><color=blue>Here PT2</color></size>");
+        //     GreyOutSprite(MCImage);
+        //     for(int i=0;i<npcsInSceneList.Count;i++){
+        //         GreyOutSprite(npcsInSceneList[i]);
+        //     }
+        // }else {
+        //     Debug.Log(message: $"<size=16><color=blue>Here PT3</color></size>");
+        //     GreyOutSprite(MCImage);
+        //     for(int i = 0; i < npcsInSceneList.Count; i++){
+        //         if(npcsInSceneList[i] == npcsInScene[mainSpeaker]){
+        //             UngreySprite(npcsInSceneList[i]);
+        //             // MOCHA MAGIC CODE
+        //             //npcsInSceneList[i].GetComponent<NPCBehaviorVN>().blinkOnCommand();
+        //             npcsInSceneList[i].transform.SetAsLastSibling();
+        //         }else{
+        //             GreyOutSprite(npcsInSceneList[i]);
+        //         }
+        //     }
+        // }
     }
 
     public void GreyOutSprite(GameObject gameSprite){ //grey out sprite in scene view
@@ -2077,6 +2150,9 @@ public class DialogueManager : MonoBehaviour
                 greyOutColor.b,
                 gameSprite.GetComponent<Image>().color.a
             );
+
+        // OLD CODE:
+        // Greying out the BlinkOverlay on characters    
         //gameSprite.transform.Find("BlinkOverlay").GetComponent<Image>().color = greyOutColor; // Disabled trying to find blink overlay
         
         
@@ -2084,9 +2160,13 @@ public class DialogueManager : MonoBehaviour
     
     public void UngreySprite(GameObject gameSprite){ //ungrey out sprite in game view
         gameSprite.GetComponent<Image>().color =  Color.white;
-        gameSprite.transform.Find("BlinkOverlay").GetComponent<Image>().color = new Color(
-            1,1,1, gameSprite.GetComponent<Image>().color.a
-        );
+
+        // OLD CODE:
+        // Setting color of BlinkOvelay
+        // gameSprite.transform.Find("BlinkOverlay").GetComponent<Image>().color = new Color(
+        //     1,1,1, gameSprite.GetComponent<Image>().color.a
+        // );
+        
         //cause them to blink instantly when they wake
         //if(gameSprite.activeSelf){
         //    Debug.Log("Image not active!");

@@ -48,8 +48,11 @@ public class CharacterObject : ScriptableObject
     public Dictionary<int, NPCStatus> schedule =  new Dictionary<int, NPCStatus>();
 
     [Header("VN")]
-
+    // Discontinuing with not being able to serialize Dictionaries w/o Odin Inspector
     public Dictionary<string, SpriteVN> spritesVN;
+    // Alternative route
+    public string[] spriteKeys;
+    public Sprite[] spriteValues;
 
     public Sprite blinkOverlaySprite;
     public CharacterVoice characterVoice;
@@ -132,15 +135,28 @@ public class CharacterObject : ScriptableObject
 }
 
 
-
+// Replacing SprintVn structure system
 [System.Serializable]
 public class SpriteVN
 {
     public Sprite spriteImage;
     public bool canBlink = true;
 }
-//this is currently unused after dict so commenting it out
 
+/* 
+public class SpriteOverworldKeys
+{
+    public string characterName;
+}
+
+public class SpriteOverworldValues
+{
+    public Sprite characterSprite;
+    public bool ableBlink = true;
+}
+*/
+
+//this is currently unused after dict so commenting it out
 [System.Serializable]
 public class LockPosition
 {

@@ -1553,8 +1553,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -308.68, y: 62.19}
-  m_SizeDelta: {x: 127.48476, y: 48.581734}
+  m_AnchoredPosition: {x: -258, y: 64}
+  m_SizeDelta: {x: 214.96686, y: 46.6997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8795573525024206981
 CanvasRenderer:
@@ -1743,8 +1743,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000031352, y: -0.000015269}
-  m_SizeDelta: {x: 110.95174, y: 42.28134}
+  m_AnchoredPosition: {x: 0.000026464, y: 0.000028133}
+  m_SizeDelta: {x: 214.96681, y: 46.699745}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8795573525313293628
 CanvasRenderer:
@@ -1776,8 +1776,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5298ae2fff3cb7c44a3cd174d1033c96, type: 2}
+  m_sharedMaterial: {fileID: 6185589381113118691, guid: 5298ae2fff3cb7c44a3cd174d1033c96,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1796,13 +1797,13 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
+  m_TextStyleHashCode: 97690656
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1877,7 +1878,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -361.82, y: 137}
+  m_AnchoredPosition: {x: -361.82, y: 127}
   m_SizeDelta: {x: 601.1203, y: 168.88605}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8795573525875161472
@@ -1911,8 +1912,9 @@ MonoBehaviour:
   m_text: Oh yeah no worries, help get the food. Ok. Gonna make a new scene with
     visuals of the text box. Ok Bye. bye
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5298ae2fff3cb7c44a3cd174d1033c96, type: 2}
+  m_sharedMaterial: {fileID: 6185589381113118691, guid: 5298ae2fff3cb7c44a3cd174d1033c96,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1936,7 +1938,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.95
+  m_fontSize: 49.15
   m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2067,7 +2069,7 @@ MonoBehaviour:
   noVoiceButtonText: {fileID: 1334301681764656260}
   autoButtonText: {fileID: 5633116444608226497}
   soundLibrary: {fileID: 11400000, guid: 42e23fb8f64960645bf4402ac0b29f7c, type: 2}
-  MCName: Machi
+  MCName: Bartowlmew
   commentLead: //
   jumpToLabel: 
   overworldNPCs: []

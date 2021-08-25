@@ -10,16 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfcb5652d072e0f49bc984909012405e, type: 3}
-  m_Name: Pigeon Dude
+  m_Name: PigeonDude
   m_EditorClassIdentifier: 
-  charName: Pigeon Dude
+  charName: PigeonDude
   displayName: Pigeon Dude
-  dialogueFile: {fileID: 4900000, guid: 60d397de1aca5b347858ada5e589f48b, type: 3}
+  dialogueFile: {fileID: 4900000, guid: fd92abaf34a4f1642b882625982f6c49, type: 3}
   RandomSceneCount: 3
   arcProgressionStart: 1
   arcProgression: 0
   arcEndPoint: 4
   arcLength: 0
+  spriteKeys:
+  - Neutral
+  spriteValues:
+  - {fileID: 21300000, guid: d93bbda959be75a4ab8bc1c1c84bf9dc, type: 3}
   blinkOverlaySprite: {fileID: 0}
   characterVoice:
     voiceClipString: sfx_menu_skim_3
