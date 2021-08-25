@@ -7,5 +7,6 @@ public class GlobalVars : MonoBehaviour
 
     public static bool[] unlockedSkills = new bool[3];
     public static int currentSkill;
+    public static bool hasReachedTheElevator;
     public static bool playerHasUnlockedSuit;
 }

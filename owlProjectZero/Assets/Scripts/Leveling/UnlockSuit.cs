@@ -8,6 +8,11 @@ public class UnlockSuit : MonoBehaviour
     public static event SuitUnlocked OnSuitUnlocked;
     public delegate void SuitUnlocked();
 
+    void Start()
+    {
+        this.enabled = GlobalVars.hasReachedTheElevator;
+    }
+
     void Update()
     {
         if(player != null && player.input.Gameplay.Interact.triggered && player.data.maxSpeed == player.data.groundSpeed)
