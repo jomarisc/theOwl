@@ -28,6 +28,7 @@ public class EnemyDead : IState
     public void Exit()
     {
         enemy.IncrementDefeatedEnemies();
+        enemy.RemoveFromListOfEnemies();
         if (OnEnemyDead != null) OnEnemyDead(true);
         if(Enemy.numDefeatedEnemies >= Enemy.totalEnemies)
             OnEnemiesCleared?.Invoke();

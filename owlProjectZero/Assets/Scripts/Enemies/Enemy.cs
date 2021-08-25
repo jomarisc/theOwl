@@ -42,12 +42,6 @@ public abstract class Enemy : Character
         enemyCounter = GameObject.Find("GameplayCanvas/EnemyCounter").GetComponent<Text>();
     }
 
-    void OnDisable()
-    {
-        if(myRoom != null)
-            myRoom.enemyColliders.Remove(myCollider);
-    }
-
     protected new void Start()
     {
         base.Start();
@@ -218,5 +212,11 @@ public abstract class Enemy : Character
         isNearEdge = !Physics.Raycast(myCollider.bounds.center + offsetVector, Vector3.down, myCollider.bounds.extents.magnitude + 0.01f);
         Debug.DrawRay(myCollider.bounds.center + offsetVector, Vector3.down * (myCollider.bounds.extents.magnitude + 0.01f), Color.green);
         return isNearEdge;
+    }
+
+    public void RemoveFromListOfEnemies()
+    {
+        if(myRoom != null)
+            myRoom.enemyColliders.Remove(myCollider);
     }
 }
