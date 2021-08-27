@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckpointsHandler : MonoBehaviour
 {
-    public static string checkpointScene;
+    public static int checkpointScene;
     public static float[] playerPosition = new float[3];
     public static bool isDead;
 }
