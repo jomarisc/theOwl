@@ -51,15 +51,7 @@ public class ReturnToCheckpoint : MonoBehaviour
 
         if(GlobalVars.hasPressMainMenu == true)
         {
-            StartCoroutine(delay_spawn());
+            GlobalVars.hasPressMainMenu = false;
         }
-    }
-
-    IEnumerator delay_spawn()
-    {
-        yield return new WaitForSecondsRealtime(1.0f);
-
-        Debug.Log("hasPressMainMenu is now false");
-        GlobalVars.hasPressMainMenu = false;
     }
 }
