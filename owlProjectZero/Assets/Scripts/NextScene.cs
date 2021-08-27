@@ -127,8 +127,9 @@ public class NextScene : MonoBehaviour
     void SpawnAtMyPointInstead()
     {
         // if the player is dead, let the ReturnToCheckpoint script handle the player spawn position
-        if(CheckpointsHandler.isDead == false)
+        if(CheckpointsHandler.isDead == false && GlobalVars.hasPressMainMenu == false)
         {
+            Debug.Log("here in SpawnAtMyPointInstead bc player is dead");
             player.transform.position = spawnPoint.position;
         }
     }

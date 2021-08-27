@@ -17,7 +17,7 @@ public class SaveManager : MonoBehaviour
         filePath = Application.persistentDataPath + "/saveFile.owl";
         newGameScene = "Alley";
         newGameSceneIndex = CheckpointsHandler.checkpointScene;
-        Debug.Log("GlobalVars.hasPressMainMenu is " + GlobalVars.hasPressMainMenu);
+        // Debug.Log("GlobalVars.hasPressMainMenu is " + GlobalVars.hasPressMainMenu);
     }
 
     public void saveGame()
@@ -56,7 +56,7 @@ public class SaveManager : MonoBehaviour
         {
             Debug.Log("LOADING DATA...");
             SaveClass newData = SaveSystem.loadData();
-            Debug.Log("newData.hasPressMainMenu is " + newData.hasPressMainMenu);
+            // Debug.Log("newData.hasPressMainMenu is " + newData.hasPressMainMenu);
             GlobalVars.unlockedSkills = newData.unlockedSkills;
             for(int i = 0; i < GlobalVars.unlockedSkills.Length; i++)
             {

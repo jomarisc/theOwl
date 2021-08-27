@@ -13,6 +13,8 @@ public class ReturnToCheckpoint : MonoBehaviour
     {
         // Debug.Log("here");
         // Debug.Log(CheckpointsHandler.isDead);
+        Debug.Log("Scene is " +  System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(CheckpointsHandler.checkpointScene)));
+        Debug.Log("Coords are " + CheckpointsHandler.playerPosition[0] + ", "+ CheckpointsHandler.playerPosition[1] + ", " + CheckpointsHandler.playerPosition[2]);
         player = this.gameObject;
         playerState = player.GetComponent<playerControl>();
 
@@ -29,10 +31,10 @@ public class ReturnToCheckpoint : MonoBehaviour
             // Debug.Log(CheckpointsHandler.isDead);
         }
 
-        Debug.Log("GlobalVars.hasPressMainMenu is " + GlobalVars.hasPressMainMenu);
+        // Debug.Log("GlobalVars.hasPressMainMenu is " + GlobalVars.hasPressMainMenu);
         if(GlobalVars.hasPressMainMenu == true)
         {
-            Debug.Log("GlobalVars.hasPressMainMenu == true");
+            Debug.Log("GlobalVars.hasPressMainMenu" + GlobalVars.hasPressMainMenu);
             NextScene.ClearSceneTriggers();
             player.transform.position = new Vector3(CheckpointsHandler.playerPosition[0], CheckpointsHandler.playerPosition[1], CheckpointsHandler.playerPosition[2]);
         }
@@ -49,7 +51,15 @@ public class ReturnToCheckpoint : MonoBehaviour
 
         if(GlobalVars.hasPressMainMenu == true)
         {
-            GlobalVars.hasPressMainMenu = false;
+            StartCoroutine(delay_spawn());
         }
+    }
+
+    IEnumerator delay_spawn()
+    {
+        yield return new WaitForSecondsRealtime(1.0f);
+
+        Debug.Log("hasPressMainMenu is now false");
+        GlobalVars.hasPressMainMenu = false;
     }
 }
