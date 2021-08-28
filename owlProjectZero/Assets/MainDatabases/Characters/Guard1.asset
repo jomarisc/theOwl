@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfcb5652d072e0f49bc984909012405e, type: 3}
-  m_Name: PigeonDude
+  m_Name: Guard1
   m_EditorClassIdentifier: 
-  charName: PigeonDude
-  displayName: Pigeon Dude
-  dialogueFile: {fileID: 4900000, guid: dc8e83ec0cfda054db1e5ee710a97b0a, type: 3}
+  charName: Guard1
+  displayName: Guard1
+  dialogueFile: {fileID: 4900000, guid: fd92abaf34a4f1642b882625982f6c49, type: 3}
   RandomSceneCount: 3
   arcProgressionStart: 1
   arcProgression: 0
@@ -23,12 +23,12 @@ MonoBehaviour:
   spriteKeys:
   - Neutral
   spriteValues:
-  - {fileID: 21300000, guid: d93bbda959be75a4ab8bc1c1c84bf9dc, type: 3}
+  - {fileID: 21300000, guid: 0442f4aa330967c44ab8d58c753fb414, type: 3}
   blinkOverlaySprite: {fileID: 0}
   characterVoice:
-    voiceClipString: sfx_menu_skim_3
-    interval: 2
-  characterColor: {r: 0.06132126, g: 1, b: 0, a: 1}
+    voiceClipString: player_melee_2
+    interval: 0
+  characterColor: {r: 1, g: 0, b: 0, a: 1}
   spritesOverworld: []
   lockedPositions: []
   characterDatabase: {fileID: 0}
