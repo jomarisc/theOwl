@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b615d18124e9b5047ab5ce7780e0d48f, type: 3}
+  m_Name: CharacterDatabase
+  m_EditorClassIdentifier: 
+  gameVariables: {fileID: 11400000, guid: c75f6cbeac8d42941b9678969641ab53, type: 2}
+  startDay: 0
+  week1End: 0
+  finalDay: 0
+  _characterDictKeys:
+  - {fileID: 11400000, guid: 9c562a82055cd9b48bb0678d1826b1c9, type: 2}
+  - {fileID: 11400000, guid: b3c528491ade1be4491bf706a7241ea6, type: 2}
+  - {fileID: 11400000, guid: 602492e480e67f648a54195cf482a870, type: 2}
+  _characterDictValues: 
+  SampleCharacter: {fileID: 11400000, guid: 9c562a82055cd9b48bb0678d1826b1c9, type: 2}
+  npcList: []
+  spawnPositionPool: []

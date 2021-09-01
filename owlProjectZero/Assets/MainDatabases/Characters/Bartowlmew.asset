@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfcb5652d072e0f49bc984909012405e, type: 3}
+  m_Name: Bartowlmew
+  m_EditorClassIdentifier: 
+  charName: Bartowlmew
+  displayName: Bartowlmew
+  dialogueFile: {fileID: 0}
+  RandomSceneCount: 3
+  arcProgressionStart: 1
+  arcProgression: 0
+  arcEndPoint: 4
+  arcLength: 0
+  spriteKeys:
+  - Neutral
+  spriteValues:
+  - {fileID: 21300000, guid: a964d3ff732895f41906696d9335de48, type: 3}
+  blinkOverlaySprite: {fileID: 0}
+  characterVoice:
+    voiceClipString: sfx_menu_skim_1
+    interval: 3
+  characterColor: {r: 0, g: 1, b: 0.90920496, a: 1}
+  spritesOverworld: []
+  lockedPositions: []
+  characterDatabase: {fileID: 0}

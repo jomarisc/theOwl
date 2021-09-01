@@ -1099,6 +1099,155 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Developer"",
+            ""id"": ""a5419a72-c687-4f31-b752-16e3786587c7"",
+            ""actions"": [
+                {
+                    ""name"": ""Debug"",
+                    ""type"": ""Button"",
+                    ""id"": ""986fd1ab-d6d2-4e55-989b-53cd4ded35c3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ed5e5652-e6d7-4b65-8116-8d20f9ac858d"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Debug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Dialogue"",
+            ""id"": ""3819307f-8948-4dd6-8504-2b7396eb8611"",
+            ""actions"": [
+                {
+                    ""name"": ""ProgressStory"",
+                    ""type"": ""Button"",
+                    ""id"": ""1f62dbee-447b-44a7-b34d-46eb85ddd3d8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""HideTextbox"",
+                    ""type"": ""Button"",
+                    ""id"": ""58037ae8-b4c8-4043-ab24-114182f97461"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""UnhideWithMouse"",
+                    ""type"": ""Button"",
+                    ""id"": ""de1dc6a5-8aee-4017-be0b-8a0d96c6b3b9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ToggleVoice"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c4b730c-ddce-409f-96d6-bd009da584fe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ToggleAutotext"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf07e95f-c201-4f54-bbaf-33c0a307fe8b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ToggleBacklog"",
+                    ""type"": ""Button"",
+                    ""id"": ""282f83be-2bc6-40ef-89c9-bd074e98f56d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8c653346-fd98-4503-8f9c-65079f27a949"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ProgressStory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""526daa79-b286-4ad5-85f9-c658915467ed"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HideTextbox"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2189e32-374e-4f59-a918-32996f249534"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleVoice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d712ed67-d91e-487d-a0cb-8464289c27b3"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleAutotext"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ce4764d-b8ac-45e9-89d2-d9cd5d2c7c20"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleBacklog"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""763e3ea5-7fd5-4411-9ffa-9b660526f33b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UnhideWithMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -1130,6 +1279,17 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         // Cutscene
         m_Cutscene = asset.FindActionMap("Cutscene", throwIfNotFound: true);
         m_Cutscene_Proceed = m_Cutscene.FindAction("Proceed", throwIfNotFound: true);
+        // Developer
+        m_Developer = asset.FindActionMap("Developer", throwIfNotFound: true);
+        m_Developer_Debug = m_Developer.FindAction("Debug", throwIfNotFound: true);
+        // Dialogue
+        m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
+        m_Dialogue_ProgressStory = m_Dialogue.FindAction("ProgressStory", throwIfNotFound: true);
+        m_Dialogue_HideTextbox = m_Dialogue.FindAction("HideTextbox", throwIfNotFound: true);
+        m_Dialogue_UnhideWithMouse = m_Dialogue.FindAction("UnhideWithMouse", throwIfNotFound: true);
+        m_Dialogue_ToggleVoice = m_Dialogue.FindAction("ToggleVoice", throwIfNotFound: true);
+        m_Dialogue_ToggleAutotext = m_Dialogue.FindAction("ToggleAutotext", throwIfNotFound: true);
+        m_Dialogue_ToggleBacklog = m_Dialogue.FindAction("ToggleBacklog", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1427,6 +1587,112 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         }
     }
     public CutsceneActions @Cutscene => new CutsceneActions(this);
+
+    // Developer
+    private readonly InputActionMap m_Developer;
+    private IDeveloperActions m_DeveloperActionsCallbackInterface;
+    private readonly InputAction m_Developer_Debug;
+    public struct DeveloperActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public DeveloperActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Debug => m_Wrapper.m_Developer_Debug;
+        public InputActionMap Get() { return m_Wrapper.m_Developer; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DeveloperActions set) { return set.Get(); }
+        public void SetCallbacks(IDeveloperActions instance)
+        {
+            if (m_Wrapper.m_DeveloperActionsCallbackInterface != null)
+            {
+                @Debug.started -= m_Wrapper.m_DeveloperActionsCallbackInterface.OnDebug;
+                @Debug.performed -= m_Wrapper.m_DeveloperActionsCallbackInterface.OnDebug;
+                @Debug.canceled -= m_Wrapper.m_DeveloperActionsCallbackInterface.OnDebug;
+            }
+            m_Wrapper.m_DeveloperActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Debug.started += instance.OnDebug;
+                @Debug.performed += instance.OnDebug;
+                @Debug.canceled += instance.OnDebug;
+            }
+        }
+    }
+    public DeveloperActions @Developer => new DeveloperActions(this);
+
+    // Dialogue
+    private readonly InputActionMap m_Dialogue;
+    private IDialogueActions m_DialogueActionsCallbackInterface;
+    private readonly InputAction m_Dialogue_ProgressStory;
+    private readonly InputAction m_Dialogue_HideTextbox;
+    private readonly InputAction m_Dialogue_UnhideWithMouse;
+    private readonly InputAction m_Dialogue_ToggleVoice;
+    private readonly InputAction m_Dialogue_ToggleAutotext;
+    private readonly InputAction m_Dialogue_ToggleBacklog;
+    public struct DialogueActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public DialogueActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ProgressStory => m_Wrapper.m_Dialogue_ProgressStory;
+        public InputAction @HideTextbox => m_Wrapper.m_Dialogue_HideTextbox;
+        public InputAction @UnhideWithMouse => m_Wrapper.m_Dialogue_UnhideWithMouse;
+        public InputAction @ToggleVoice => m_Wrapper.m_Dialogue_ToggleVoice;
+        public InputAction @ToggleAutotext => m_Wrapper.m_Dialogue_ToggleAutotext;
+        public InputAction @ToggleBacklog => m_Wrapper.m_Dialogue_ToggleBacklog;
+        public InputActionMap Get() { return m_Wrapper.m_Dialogue; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DialogueActions set) { return set.Get(); }
+        public void SetCallbacks(IDialogueActions instance)
+        {
+            if (m_Wrapper.m_DialogueActionsCallbackInterface != null)
+            {
+                @ProgressStory.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnProgressStory;
+                @ProgressStory.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnProgressStory;
+                @ProgressStory.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnProgressStory;
+                @HideTextbox.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnHideTextbox;
+                @HideTextbox.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnHideTextbox;
+                @HideTextbox.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnHideTextbox;
+                @UnhideWithMouse.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnUnhideWithMouse;
+                @UnhideWithMouse.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnUnhideWithMouse;
+                @UnhideWithMouse.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnUnhideWithMouse;
+                @ToggleVoice.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnToggleVoice;
+                @ToggleVoice.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnToggleVoice;
+                @ToggleVoice.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnToggleVoice;
+                @ToggleAutotext.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnToggleAutotext;
+                @ToggleAutotext.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnToggleAutotext;
+                @ToggleAutotext.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnToggleAutotext;
+                @ToggleBacklog.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnToggleBacklog;
+                @ToggleBacklog.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnToggleBacklog;
+                @ToggleBacklog.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnToggleBacklog;
+            }
+            m_Wrapper.m_DialogueActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ProgressStory.started += instance.OnProgressStory;
+                @ProgressStory.performed += instance.OnProgressStory;
+                @ProgressStory.canceled += instance.OnProgressStory;
+                @HideTextbox.started += instance.OnHideTextbox;
+                @HideTextbox.performed += instance.OnHideTextbox;
+                @HideTextbox.canceled += instance.OnHideTextbox;
+                @UnhideWithMouse.started += instance.OnUnhideWithMouse;
+                @UnhideWithMouse.performed += instance.OnUnhideWithMouse;
+                @UnhideWithMouse.canceled += instance.OnUnhideWithMouse;
+                @ToggleVoice.started += instance.OnToggleVoice;
+                @ToggleVoice.performed += instance.OnToggleVoice;
+                @ToggleVoice.canceled += instance.OnToggleVoice;
+                @ToggleAutotext.started += instance.OnToggleAutotext;
+                @ToggleAutotext.performed += instance.OnToggleAutotext;
+                @ToggleAutotext.canceled += instance.OnToggleAutotext;
+                @ToggleBacklog.started += instance.OnToggleBacklog;
+                @ToggleBacklog.performed += instance.OnToggleBacklog;
+                @ToggleBacklog.canceled += instance.OnToggleBacklog;
+            }
+        }
+    }
+    public DialogueActions @Dialogue => new DialogueActions(this);
     public interface IGameplayActions
     {
         void OnMoveX(InputAction.CallbackContext context);
@@ -1457,5 +1723,18 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     public interface ICutsceneActions
     {
         void OnProceed(InputAction.CallbackContext context);
+    }
+    public interface IDeveloperActions
+    {
+        void OnDebug(InputAction.CallbackContext context);
+    }
+    public interface IDialogueActions
+    {
+        void OnProgressStory(InputAction.CallbackContext context);
+        void OnHideTextbox(InputAction.CallbackContext context);
+        void OnUnhideWithMouse(InputAction.CallbackContext context);
+        void OnToggleVoice(InputAction.CallbackContext context);
+        void OnToggleAutotext(InputAction.CallbackContext context);
+        void OnToggleBacklog(InputAction.CallbackContext context);
     }
 }

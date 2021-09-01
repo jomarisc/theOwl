@@ -31,6 +31,14 @@ public class playerControl : Character
     public PlayerSkills unlockedSkills;
     public EquippedSkills equippedSkills;
 
+    [Header("NPCs")]
+    private GameObject currentGameObjectCollider; // A place to store the GameObject that is being collided with
+
+    [SerializeField] private GameObject temp;
+    public GameObject Dialogue;
+    public bool isBeingCollidedWith = false;
+    public bool canInteract = false;
+
     [Header("Other")]
     public GameObject projectile;
     public PlayerInputs input;
@@ -154,6 +162,12 @@ public class playerControl : Character
 
         // Update the stamana bar
         stamanaMeter.fillAmount = data.remainingStamana / MAX_STAMANA;
+
+        // Check for input when interacting with NPC
+        if (input.Gameplay.Interact.triggered)
+        {
+            playerInteract(temp);
+        }
     }
 
     public override void FixedUpdate()
@@ -168,6 +182,59 @@ public class playerControl : Character
         {
             rb.AddForce(4.5f * Physics.gravity);
         }
+    }
+
+    public void playerInteract(GameObject temp)
+    {
+        if(temp.tag == "NPC") // Continue from here 7/15/2021
+        {
+            Debug.Log(message:$"<color=green> <size=16> Entered playerInteract! </size> </color>");
+            CharacterObject npcTouched = temp.GetComponent<NPCBehavior>().character;
+            //lastNPCTouched = npcTouched;
+            TextAsset dialogue = npcTouched.dialogueFile; // Fixed dialogue file at the moment
+            string startArgument = "start";
+
+            GameObject newDialogue = Instantiate(Dialogue);
+            newDialogue.transform.SetParent(GameObject.Find("DialogueCanvas").transform);
+            newDialogue.name = "Dialogue (" + dialogue.name + ")";
+            DialogueManager dialogueManager = newDialogue.GetComponentInChildren<DialogueManager>();
+            newDialogue.SetActive(true);
+            dialogueManager.LoadNewDialogueText(dialogue, startArgument);
+            dialogueManager.SetMessageIndex(0);
+            dialogueManager.StartDialogue();
+        }
+    }
+
+    public void OnTriggerEnter(Collider collisionObject)
+    {
+        Debug.Log(message:$"<color=green> <size=16> Entered trigger </size> </color>");
+        isBeingCollidedWith = true;
+        GameObject temp = GameObject.Find(collisionObject.name);
+    }
+    public void OnTriggerExit(Collider collisionObject)
+    {
+        canInteract = false;
+        Debug.Log(message:$"<color=red> <size=16> Exit trigger </size> </color>");
+        GameObject temp = GameObject.Find(collisionObject.name);
+        isBeingCollidedWith = false;
+        currentGameObjectCollider = null;
+    }
+    public void OnTriggerStay(Collider collisionObject)
+    {
+        currentGameObjectCollider = GameObject.Find(collisionObject.name);
+        temp = GameObject.Find(collisionObject.name);
+        Debug.Log(message:$"<color=orange> <size=16> currentGameObjectCollider: </size> </color> <size=16> {currentGameObjectCollider} </size>");
+        Debug.Log(message:$"<color=purple> <size=16> temp: </size> </color> <size=16> {temp} </size>");
+        canInteract = true;
+    }
+
+    public bool isInteractable(GameObject tempObject)
+    {
+        if(tempObject.tag == "NPC")
+        {
+            return true;
+        }
+        return false;
     }
 
     public void FastFall(InputAction.CallbackContext context)
