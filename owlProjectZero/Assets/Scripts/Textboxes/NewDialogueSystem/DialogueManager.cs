@@ -579,12 +579,15 @@ public class DialogueManager : MonoBehaviour
                     //Debug.Log($"from {findFront} to {findBack}...");
                     //Debug.Log($"variable caught! {messageCur.Substring(findFront, findBack-findFront+1)}");
                     string varString = messageCur.Substring(findFront+1, findBack-findFront-1);
+                    /*************************************************
+                        DISABLED UNTIL WE CAN USE VNVariables
+                    *************************************************/
                     //Debug.Log($"variable caught! {varString}");
-                    if(variableDatabase.stringVariables.ContainsKey(varString)){
-                        Debug.Log("in variable database!");
-                        string replaceText = variableDatabase.stringVariables[varString];
-                        messageCur = messageCur.Replace(messageCur.Substring(findFront, findBack-findFront+1), replaceText);
-                    }
+                    // if(variableDatabase.stringVariables.ContainsKey(varString)){
+                    //     Debug.Log("in variable database!");
+                    //     string replaceText = variableDatabase.stringVariables[varString];
+                    //     messageCur = messageCur.Replace(messageCur.Substring(findFront, findBack-findFront+1), replaceText);
+                    // }
                     pointer = findBack+1;
                 }
             }
