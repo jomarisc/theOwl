@@ -86,7 +86,7 @@ MonoBehaviour:
     numJumps: 1
     numDodges: 1
     deadDuration: 0
-    health: 100
+    health: 5
     maxSpeed: 0
     groundSpeed: 2
     airSpeed: 1.5
@@ -96,6 +96,7 @@ MonoBehaviour:
     remainingStamana: 0
   basicAttack: {fileID: 5606137153869537670}
   animator: {fileID: 5435083570553900566}
+  sRenderer: {fileID: 0}
   experienceCollectable: {fileID: 198094913682120957, guid: 3f2a4850f14f43347a2bee6ba7577ca1,
     type: 3}
   currencyCollectable: {fileID: 5746714417445567809, guid: 85e4f296b8750dc439593c06c751a528,
@@ -924,8 +925,6 @@ PrefabInstance:
     - target: {fileID: 3685062507063603794, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: hitboxes.Array.data[0].timeActive
-      value: 10
-      propertyPath: hitboxes.Array.data[0].gKnockback
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3685062507063603794, guid: a94cdbb1a371e434da94986eea1d80d4,
