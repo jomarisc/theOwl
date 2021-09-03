@@ -13,9 +13,11 @@ public class HeartsHealthVisual : MonoBehaviour
     [SerializeField] private Sprite heart2Sprite;
     [SerializeField] private Sprite heart3Sprite;
     [SerializeField] private Sprite heart4Sprite;
+    [SerializeField] private AnimationClip heartFullAnimationClip;
 
     private List<HeartImage> heartImageList;
     private HeartsHealthSystem heartsHealthSystem;
+    private bool isHealing;
 
     private void Awake() 
     {
@@ -24,8 +26,10 @@ public class HeartsHealthVisual : MonoBehaviour
 
     private void Start() 
     {
-        FunctionPeriodic.Create(HealingAnimatedPeriodic, 0.5f);
-        HeartsHealthSystem heartsHealthSystem = new HeartsHealthSystem(4);
+        // Important note: this is affected by any changes to the Time variable in the game
+        // EX: This animation will not show when trying to heal and the Time variable is set to 0f when pressing the Pause button
+        FunctionPeriodic.Create(HealingAnimatedPeriodic, 0.05f);
+        HeartsHealthSystem heartsHealthSystem = new HeartsHealthSystem(20);
         SetHeartsHealthSystem(heartsHealthSystem);
     }
 
@@ -54,15 +58,36 @@ public class HeartsHealthVisual : MonoBehaviour
         this.heartsHealthSystem = heartsHealthSystem;
 
         List<HeartsHealthSystem.Heart> heartList = heartsHealthSystem.GetHeartList();
-        Vector2 heartAnchoredPosition = new Vector2(0, 0);
+        // Singular row
+        // Vector2 heartAnchoredPosition = new Vector2(0, 0);
+
+        // Multiple rows
+        int row = 0;
+        int col = 0;
+        int colMax = 10;
+        float rowColSize = 20f; // Distance between each column
 
         // New way of creating heart images
         for(int i = 0; i < heartList.Count; i++)
         {
         
             HeartsHealthSystem.Heart heart = heartList[i];
+            // Multiple row support
+            Vector2 heartAnchoredPosition = new Vector2(col * rowColSize, -row * rowColSize);
+            
+            // Original code
             CreateHeartImage(heartAnchoredPosition).SetHeartFragments(heart.GetFragmentAmount());
-            heartAnchoredPosition += new Vector2(30, 0);
+            
+            // Singular row
+            //heartAnchoredPosition += new Vector2(20, 0);
+            
+            // Multiple row support
+            col++;
+            if (col >= colMax)
+            {
+                row++;
+                col = 0;
+            }
         }
 
         // Firing off function when this event occurs in HeartsHealthSystem
@@ -86,6 +111,7 @@ public class HeartsHealthVisual : MonoBehaviour
     {
         // Hearts health system was healed
         //RefreshAllHearts();
+        isHealing = true;
     }
 
     private void HeartsHealthSystem_OnDamaged(object sender, System.EventArgs e)
@@ -109,16 +135,37 @@ public class HeartsHealthVisual : MonoBehaviour
 
     private void HealingAnimatedPeriodic()
     {
-        List<HeartsHealthSystem.Heart> heartList = heartsHealthSystem.GetHeartList();
-        for (int i = 0; i < heartList.Count; i++)
+
+        //Debug.Log(message: $"<size=16><color=green> Entered HealingAnimatedPeriodic! </color></size>");
+        if (isHealing)
         {
-            HeartImage heartImage = heartImageList[i];
-            HeartsHealthSystem.Heart heart = heartList[i];
-            if(heartImage.GetFragmentAmount() != heart.GetFragmentAmount())
+            bool fullyHealed = true;
+            List<HeartsHealthSystem.Heart> heartList = heartsHealthSystem.GetHeartList();
+            for (int i = 0; i < heartList.Count; i++)
             {
-                // Visual is different from logic
-                heartImage.AddHeartVisualFragment();
-                break;
+                HeartImage heartImage = heartImageList[i];
+                HeartsHealthSystem.Heart heart = heartList[i];
+
+                // Debug.Log(message: $"<size=16><color=orange> Before IF statement Adding Heart Visual Fragment! </color></size>");
+
+                if(heartImage.GetFragmentAmount() != heart.GetFragmentAmount())
+                {
+                    // Debug.Log(message: $"<size=16><color=orange> Before Adding Heart Visual Fragment! </color></size>");
+                    
+                    // Visual is different from logic
+                    heartImage.AddHeartVisualFragment();
+                    if (heartImage.GetFragmentAmount() == HeartsHealthSystem.MAX_FRAGMENT_AMOUNT)
+                    {
+                        // This heart was fully healed
+                        heartImage.PlayHeartRestoredAnimation();
+                    }
+                    fullyHealed = false;
+                    break;
+                }
+            }
+            if (fullyHealed)
+            {
+                isHealing = false;
             }
         }
     }
@@ -126,7 +173,7 @@ public class HeartsHealthVisual : MonoBehaviour
     private HeartImage CreateHeartImage(Vector2 anchoredPosition) 
     {
         // Create Game Object
-        GameObject heartGameObject = new GameObject("Heart", typeof(Image));
+        GameObject heartGameObject = new GameObject("Heart", typeof(Image), typeof(Animation));
         
         // Set as child of this transform
         heartGameObject.transform.parent = transform;
@@ -136,11 +183,13 @@ public class HeartsHealthVisual : MonoBehaviour
         heartGameObject.GetComponent<RectTransform>().anchoredPosition = anchoredPosition;
         heartGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(10, 10);
 
+        heartGameObject.GetComponent<Animation>().AddClip(heartFullAnimationClip, "HeartRestored");
+
         // Set heart sprite
         Image heartImageUI = heartGameObject.GetComponent<Image>();
         heartImageUI.sprite = heart4Sprite;
 
-        HeartImage heartImage = new HeartImage(this, heartImageUI);
+        HeartImage heartImage = new HeartImage(this, heartImageUI, heartGameObject.GetComponent<Animation>());
         heartImageList.Add(heartImage);
 
         return heartImage;
@@ -152,15 +201,20 @@ public class HeartsHealthVisual : MonoBehaviour
         public int fragments;
         private Image heartImage;
         private HeartsHealthVisual heartsHealthVisual;
+        private Animation animation;
 
-        public HeartImage(HeartsHealthVisual heartsHealthVisual, Image heartImage) 
+        public HeartImage(HeartsHealthVisual heartsHealthVisual, Image heartImage, Animation animation) 
         {
             this.heartsHealthVisual =  heartsHealthVisual;
             this.heartImage = heartImage;
+            this.animation = animation;
         }
 
         public void SetHeartFragments(int fragments)
         {
+
+            Debug.Log(message: $"<size=16><color=green> Withing SetHeartFragments! </color></size>");
+
             this.fragments = fragments;
             switch (fragments)
             {
@@ -189,7 +243,13 @@ public class HeartsHealthVisual : MonoBehaviour
 
         public void AddHeartVisualFragment()
         {
+            Debug.Log(message: $"<size=16><color=red> Within Adding Heart Visual Fragment! </color></size>");
             SetHeartFragments(fragments + 1);
+        }
+
+        public void PlayHeartRestoredAnimation()
+        {
+            animation.Play("HeartRestored", PlayMode.StopAll);
         }
     }
 }
