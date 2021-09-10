@@ -15,6 +15,12 @@ MonoBehaviour:
   charName: PigeonDude
   displayName: Pigeon Dude
   dialogueFile: {fileID: 4900000, guid: dc8e83ec0cfda054db1e5ee710a97b0a, type: 3}
+  dialogues:
+  - {fileID: 4900000, guid: 4ac3c3e8b5464d5489fea04fcdf0dd70, type: 3}
+  - {fileID: 4900000, guid: 92242e932ab9d124f8348f2b8fe09ca4, type: 3}
+  - {fileID: 4900000, guid: 47275507972242a419c00c7666410091, type: 3}
+  - {fileID: 4900000, guid: 1c81df804b4650749bb55bec04615b5d, type: 3}
+  - {fileID: 4900000, guid: dc8e83ec0cfda054db1e5ee710a97b0a, type: 3}
   RandomSceneCount: 3
   arcProgressionStart: 1
   arcProgression: 0

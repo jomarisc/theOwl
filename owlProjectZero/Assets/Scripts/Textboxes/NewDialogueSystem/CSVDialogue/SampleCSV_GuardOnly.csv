@@ -1,0 +1,14 @@
+CSV,,,,
+Speaker,"""",Line,"""",Text count
+,,#start,,
+,,@char=Guard1.Neutral,,
+Guard1,,im hungry,,
+Guard1,,hey what's that owl guy doing here,,34
+Guard1,,@wait=0.7,,
+,,@char=Guard1.Neutral,,
+Guard1,,i think the boss told us to get this guy,,
+Guard1,,//testing commenting out functionality,,
+Guard1,,get this guy,,40
+,,@char=Guard1.Neutral,,
+Guard1,,*makes bock bock sounds,,
+,,#end,,
