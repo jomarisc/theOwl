@@ -46,7 +46,7 @@ public class SaveManager : MonoBehaviour
             CheckpointsHandler.playerPosition[i] = 0f;
         }
         CheckpointsHandler.isDead = false;
-
+        startGame();
     }
 
     // If there's a file, load it. Otherwise, start a new game.
@@ -73,7 +73,12 @@ public class SaveManager : MonoBehaviour
                 CheckpointsHandler.playerPosition = newData.playerPosition;
             }
             CheckpointsHandler.isDead = newData.isDead;
-            SceneManager.LoadScene(CheckpointsHandler.checkpointScene);
+            startGame();
         }
+    }
+
+    public void startGame()
+    {
+        SceneManager.LoadScene(CheckpointsHandler.checkpointScene);
     }
 }
