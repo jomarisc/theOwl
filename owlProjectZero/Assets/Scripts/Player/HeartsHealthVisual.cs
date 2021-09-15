@@ -44,6 +44,7 @@ public class HeartsHealthVisual : MonoBehaviour
         // EX: This animation will not show when trying to heal and the Time variable is set to 0f when pressing the Pause button
         FunctionPeriodic.Create(HealingAnimatedPeriodic, 0.05f);
         HeartsHealthSystem heartsHealthSystem = new HeartsHealthSystem(pcHealth); // Test number was 20
+        heartsHealthSystem.pc = this.pc;
         SetHeartsHealthSystem(heartsHealthSystem);
 
         

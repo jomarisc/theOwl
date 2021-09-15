@@ -225,8 +225,8 @@ public class playerControl : Character
     {
         currentGameObjectCollider = GameObject.Find(collisionObject.name);
         temp = GameObject.Find(collisionObject.name);
-        Debug.Log(message:$"<color=orange> <size=16> currentGameObjectCollider: </size> </color> <size=16> {currentGameObjectCollider} </size>");
-        Debug.Log(message:$"<color=purple> <size=16> temp: </size> </color> <size=16> {temp} </size>");
+        // Debug.Log(message:$"<color=orange> <size=16> currentGameObjectCollider: </size> </color> <size=16> {currentGameObjectCollider} </size>");
+        // Debug.Log(message:$"<color=purple> <size=16> temp: </size> </color> <size=16> {temp} </size>");
         canInteract = true;
     }
 

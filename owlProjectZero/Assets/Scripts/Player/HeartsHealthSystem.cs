@@ -12,6 +12,8 @@ public class HeartsHealthSystem
 
     private List<Heart> heartList;
 
+    public playerControl pc;
+
     public HeartsHealthSystem(int heartAmount) 
     {
         heartList = new List<Heart>();
@@ -56,7 +58,10 @@ public class HeartsHealthSystem
         // If dead, fires OnDead event
         if(IsDead())
         {
+            Debug.Log(message:$"<size=16><color=green> Entered IsDead() </color></size>");
             if (OnDead != null) OnDead(this, EventArgs.Empty); 
+        } else {
+            Debug.Log(message:$"<size=16><color=red> Did not enter IsDead() with health: {pc.data.health} </color></size>");
         }
     }
 
@@ -84,7 +89,14 @@ public class HeartsHealthSystem
 
     public bool IsDead()
     {
-        return heartList[0].GetFragmentAmount() == 0;
+        //return heartList[0].GetFragmentAmount() == 0;
+        if (pc.data.health <= 0)
+        {
+            pc.data.health = 0;
+
+            return true;
+        }
+        return false;
     }
 
     // Represents a Single Heart
@@ -108,15 +120,22 @@ public class HeartsHealthSystem
             this.fragments = fragments;
         }
 
-        public void Damage(int damageAmount)
+        public void Damage(int damageAmount) // Setting health visuals with a specific amount
         {
+
+            Debug.Log(message: $"<size=16><color=purple> fragments: {fragments} </color></size>");
+
             if(damageAmount >= fragments)
             {
                 fragments = 0;
             } 
             else 
             {
-                fragments -= damageAmount;
+                //fragments -= damageAmount;
+
+                // Set fragments to player's data.health
+                fragments = damageAmount; 
+                Debug.Log(message: $"<size=16><color=purple> Fragments: {fragments} </color></size>");
             }
         }
 
