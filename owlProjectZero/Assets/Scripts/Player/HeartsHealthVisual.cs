@@ -23,7 +23,7 @@ public class HeartsHealthVisual : MonoBehaviour
     private bool isHealing;
 
     [Header("Player")]
-    [SerializeField] private GameObject playerGameObject;
+    private GameObject playerGameObject;
     private playerControl pc;
     int pcHealth;
 
@@ -37,13 +37,14 @@ public class HeartsHealthVisual : MonoBehaviour
 
         // Find player to access the playerControl script within Game Object
         // This is used to trigger certain states within the player
+        playerGameObject = GameObject.Find("player"); // So that we don't need to attach the player in each individual scene
         pc = playerGameObject.GetComponent<playerControl>();
-        pcHealth = (int) pc.data.health;
+        pcHealth = (int) pc.CONSTANTS.MAX_HEALTH;
 
         // Important note: this is affected by any changes to the Time variable in the game
         // EX: This animation will not show when trying to heal and the Time variable is set to 0f when pressing the Pause button
         FunctionPeriodic.Create(HealingAnimatedPeriodic, 0.05f);
-        HeartsHealthSystem heartsHealthSystem = new HeartsHealthSystem(pcHealth); // Test number was 20
+        HeartsHealthSystem heartsHealthSystem = new HeartsHealthSystem(pcHealth / 2); // Test number was 20
         heartsHealthSystem.pc = this.pc;
         SetHeartsHealthSystem(heartsHealthSystem);
 

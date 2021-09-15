@@ -32,23 +32,24 @@ public class HeartsHealthSystem
 
     public void Damage(int damageAmount)
     {
+        int damagedFragments = damageAmount * 2;
         // Cycle through all hearts starting from the end
         for (int i = heartList.Count - 1; i >= 0; i--)
         {
             Heart heart = heartList[i];
 
             // Test if this heart can absorb damageAmount
-            if (damageAmount > heart.GetFragmentAmount())
+            if (damagedFragments > heart.GetFragmentAmount())
             {
 
                 // Heart cannot absorb full damageAmount, damage heart and
                 // keep going to next heart
-                damageAmount -= heart.GetFragmentAmount();
+                damagedFragments -= heart.GetFragmentAmount();
                 heart.Damage(heart.GetFragmentAmount());
             } else {
 
                 // Heart can absorb full damage amount, absorb and break out of the cycle
-                heart.Damage(damageAmount);
+                heart.Damage(damagedFragments);
                 break;
             }
         }
