@@ -426,6 +426,10 @@ MonoBehaviour:
   heart2Sprite: {fileID: 21300000, guid: fe5b49824b4deef40a8debf318f77279, type: 3}
   heart3Sprite: {fileID: 21300000, guid: b6d2d6186794177449bf23dfa6cf8f4f, type: 3}
   heart4Sprite: {fileID: 21300000, guid: ca12109f1bf1e4f41bc0ddc095ad0bb2, type: 3}
+  heartFullAnimationClip: {fileID: 7400000, guid: 54bbe1bee6c419543bed67107110f500,
+    type: 2}
+  playerGameObject: {fileID: 2529497728352103115, guid: 8b768704a9719d3408f4b19946d302e4,
+    type: 3}
 --- !u!1 &5246906594926758012
 GameObject:
   m_ObjectHideFlags: 0

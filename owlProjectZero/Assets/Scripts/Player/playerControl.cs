@@ -43,6 +43,7 @@ public class playerControl : Character
     public GameObject projectile;
     public PlayerInputs input;
     public HealthbarController healthbar;
+    public HeartsHealthVisual heartbar;
     [SerializeField] private Image stamanaMeter = null;
 
     // New line
@@ -68,6 +69,7 @@ public class playerControl : Character
         numCurrency = 0;
         levelWindow = GameObject.Find("GameplayCanvas/PlayerInfo/BottomLeftBars").GetComponent<LevelWindow>();
         healthbar = GameObject.Find("GameplayCanvas/PlayerInfo/HPBackground").GetComponent<HealthbarController>();
+        heartbar = GameObject.Find("GameplayCanvas/PlayerInfo/HeartsHealthVisual").GetComponent<HeartsHealthVisual>();
         stamanaMeter = GameObject.Find("GameplayCanvas/PlayerInfo/SPBackground/SPFill").GetComponent<Image>();
         skillTreeWindow = GameObject.Find("GameplayCanvas").GetComponent<SkillTreeWindow>();
     }
@@ -256,6 +258,7 @@ public class playerControl : Character
     public void GoToDeadState()
     {
         isAlive = false;
+        Debug.Log(message:$"<size=16><color=purple>myState: {myState}</color></size>");
         myState.Exit();
         myState = new PlayerDead(this);
         Debug.Log(myState);

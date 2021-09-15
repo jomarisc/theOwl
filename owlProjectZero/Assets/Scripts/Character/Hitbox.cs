@@ -167,7 +167,11 @@ public class Hitbox : MonoBehaviour
             {
                 // Debug.Log("Player Damaged by Hitbox!");
                 // col.gameObject.GetComponent<playerControl>().healthbar.Damage(data.damage);
-                player.healthbar.Redraw();
+                //player.healthbar.Redraw();
+
+                // Attempting to update heart bar
+                player.heartbar.heartsHealthSystem.Damage((int) data.damage); // heartsHealthSystem GetHeartsHealthSystem()
+
                 player.equippedSkills.currentSkill.isActive = false;
                 if(activeDuration != Mathf.Infinity) // Exclude enemy hurtboxes from flipping the player
                 {

@@ -245,6 +245,7 @@ MonoBehaviour:
   onEnvironmentHitSFX: {fileID: 7266456132269884767}
   myShooter: {fileID: 2529497728352103109}
   speed: 20
+  properSpeed: 0
 --- !u!54 &3628072577002676175
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1153,7 +1154,7 @@ MonoBehaviour:
   data:
     numJumps: 3
     numDodges: 1
-    deadDuration: 0
+    deadDuration: 3
     health: 10
     maxSpeed: 0
     groundSpeed: 6
@@ -1177,13 +1178,18 @@ MonoBehaviour:
   tetherAbility: {fileID: 8353569691159498766}
   unlockedSkills: {fileID: 1662708261558932915}
   equippedSkills: {fileID: 3817331622950344475}
+  temp: {fileID: 0}
+  Dialogue: {fileID: 0}
+  isBeingCollidedWith: 0
+  canInteract: 0
   projectile: {fileID: 377738018264958676}
   healthbar: {fileID: 0}
+  heartbar: {fileID: 0}
   stamanaMeter: {fileID: 0}
   levelWindow: {fileID: 0}
   skillTreeWindow: {fileID: 0}
   numCurrency: 0
-  isAlive: 1
+  isAlive: 0
 --- !u!212 &1050675499
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2380,7 +2386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alpha: 0.5
   fullDuration: 1
-  dodgeDuration: 1
+  dodgeDuration: 3
   <USING_GRAVITY>k__BackingField: 0
   <PUSH_FORCE>k__BackingField: 10
   <DRAG>k__BackingField: 1

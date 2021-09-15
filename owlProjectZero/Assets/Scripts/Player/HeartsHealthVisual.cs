@@ -7,17 +7,25 @@ using CodeMonkey.Utils;
 
 public class HeartsHealthVisual : MonoBehaviour
 {
-
+    [Header("Healthbar Images")]
     [SerializeField] private Sprite heart0Sprite;
     [SerializeField] private Sprite heart1Sprite;
     [SerializeField] private Sprite heart2Sprite;
     [SerializeField] private Sprite heart3Sprite;
     [SerializeField] private Sprite heart4Sprite;
+    
+    [Header("Healthbar Animation")]
     [SerializeField] private AnimationClip heartFullAnimationClip;
 
+    [Header("Healthbar State Management")]
     private List<HeartImage> heartImageList;
-    private HeartsHealthSystem heartsHealthSystem;
+    public HeartsHealthSystem heartsHealthSystem; // private
     private bool isHealing;
+
+    [Header("Player")]
+    [SerializeField] private GameObject playerGameObject;
+    private playerControl pc;
+    int pcHealth;
 
     private void Awake() 
     {
@@ -26,11 +34,19 @@ public class HeartsHealthVisual : MonoBehaviour
 
     private void Start() 
     {
+
+        // Find player to access the playerControl script within Game Object
+        // This is used to trigger certain states within the player
+        pc = playerGameObject.GetComponent<playerControl>();
+        pcHealth = (int) pc.data.health;
+
         // Important note: this is affected by any changes to the Time variable in the game
         // EX: This animation will not show when trying to heal and the Time variable is set to 0f when pressing the Pause button
         FunctionPeriodic.Create(HealingAnimatedPeriodic, 0.05f);
-        HeartsHealthSystem heartsHealthSystem = new HeartsHealthSystem(20);
+        HeartsHealthSystem heartsHealthSystem = new HeartsHealthSystem(pcHealth); // Test number was 20
         SetHeartsHealthSystem(heartsHealthSystem);
+
+        
     }
 
     public void TestDamage1()
@@ -51,6 +67,11 @@ public class HeartsHealthVisual : MonoBehaviour
     public void TestHeal4()
     {
         heartsHealthSystem.Heal(4);
+    }
+
+    public HeartsHealthSystem GetHeartsHealthSystem()
+    {
+        return heartsHealthSystem;
     }
 
     public void SetHeartsHealthSystem(HeartsHealthSystem heartsHealthSystem)
@@ -105,6 +126,7 @@ public class HeartsHealthVisual : MonoBehaviour
     private void HeartsHealthSystem_OnDead(object sender, System.EventArgs e)
     {
         Debug.Log(message:$"<size=16><color=red> Player out of hearts </color></size>");
+        pc.GoToDeadState();
     }
 
     private void HeartsHealthSystem_OnHealed(object sender, System.EventArgs e)
