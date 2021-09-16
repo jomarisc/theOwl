@@ -14,6 +14,7 @@ public abstract class Enemy : Character
     [Header("Necessary Attachments")]
     [HideInInspector] public SpriteRenderer sRenderer;
     [SerializeField] private GameObject experienceCollectable = null;
+    [SerializeField] private GameObject healthCollectable = null;
     public GameObject currencyCollectable = null;
     public Text enemyCounter;
 
@@ -177,21 +178,34 @@ public abstract class Enemy : Character
 
         enemyDeadListener = (EnemyDead) myState;
         enemyDeadListener.OnEnemyDead += SpawnExperience; // Subscribes to publisher
+        enemyDeadListener.OnEnemyDead += SpawnHealth; // Subscribes to publisher
         // Debug.Log(myState);
         myState.Enter();
+    }
+
+    private void SpawnHealth(bool sender)
+    {
+    
+        for (int i = Random.Range(1, 4); i <= 2; i++) // Previously starts with 1 and ended with 2
+        {
+            var randomPos = (Random.insideUnitSphere * collectableSpawnRange);
+            randomPos.z = 0;
+            Instantiate(healthCollectable, transform.position + randomPos, Quaternion.identity);
+        }
+        enemyDeadListener.OnEnemyDead -= SpawnHealth;
     }
 
     private void SpawnExperience(bool sender)
     {
         //Debug.Log("Spawn Experience!");
-        Instantiate(experienceCollectable, transform.position, Quaternion.identity);
+        Instantiate(currencyCollectable, transform.position, Quaternion.identity);
 
         
         for (int i = 1 ; i <= 3; i++)
         {
             var randomPos = (Random.insideUnitSphere * collectableSpawnRange);
             randomPos.z = 0;
-            Instantiate(currencyCollectable, transform.position + randomPos, Quaternion.identity);
+            Instantiate(experienceCollectable, transform.position + randomPos, Quaternion.identity);
         }
         enemyDeadListener.OnEnemyDead -= SpawnExperience;
         //Debug.Break();

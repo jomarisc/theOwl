@@ -15,7 +15,7 @@ public class ExperienceCollectable : Collectable
             // Refers to the levelSystem of the collider passed into this function.
             // Then uses AddExperience of this levelSystem.
             col.gameObject.GetComponent<playerControl>().levelSystem.AddExperience(50);
-            
+
         }
     }
 }
