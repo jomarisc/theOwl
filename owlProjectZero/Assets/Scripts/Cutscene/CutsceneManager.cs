@@ -40,7 +40,7 @@ public class CutsceneManager : MonoBehaviour
     private Character[] characters;
     private Canvas gameplayCanvas;
     private Canvas cutsceneCanvas;
-    private DialogueManager txtManager = null;
+    [SerializeField] private DialogueManager txtManager = null;
     public PlayerInputs input;
     public GameObject dialogue;
     public CutsceneSequence[] stageDirections; // The cutscene manager will iterate through this
@@ -173,6 +173,7 @@ public class CutsceneManager : MonoBehaviour
     public void BeginDialogue(TextAsset dialogueScript)
     {
         string startArgument = "start";
+        txtManager.OnNextMessage += NextSequence;
         txtManager.LoadNewDialogueText(dialogueScript, startArgument);
         txtManager.SetMessageIndex(0);
         txtManager.StartDialogue();
