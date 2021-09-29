@@ -40,8 +40,9 @@ public class CutsceneManager : MonoBehaviour
     private Character[] characters;
     private Canvas gameplayCanvas;
     private Canvas cutsceneCanvas;
+    private DialogueManager txtManager = null;
     public PlayerInputs input;
-    [SerializeField] private DialogueManager txtManager = null;
+    public GameObject dialogue;
     public CutsceneSequence[] stageDirections; // The cutscene manager will iterate through this
                                                // array as the player progresses through the text
 
@@ -56,13 +57,14 @@ public class CutsceneManager : MonoBehaviour
     {
         input.Enable();
         // input.Cutscene.Proceed.started += NextSequence;
-        txtManager.OnNextMessage += NextSequence;
+        // txtManager.OnNextMessage += NextSequence; // Moved to BeginDialogue()
     }
 
     void OnDisable()
     {
         // input.Cutscene.Proceed.started -= NextSequence;
-        txtManager.OnNextMessage -= NextSequence;
+        if(txtManager != null)    
+            txtManager.OnNextMessage -= NextSequence;
         input.Disable();
         ToggleCharacterBehaviors(true);
         UseGameplayCanvas();
@@ -166,5 +168,24 @@ public class CutsceneManager : MonoBehaviour
             cutsceneCanvas.enabled = false;
         if(gameplayCanvas != null)
             gameplayCanvas.enabled = true;
+    }
+
+    public void BeginDialogue(TextAsset dialogueScript)
+    {
+        string startArgument = "start";
+        txtManager.LoadNewDialogueText(dialogueScript, startArgument);
+        txtManager.SetMessageIndex(0);
+        txtManager.StartDialogue();
+    }
+
+    public void SpawnNewDialogue()
+    {
+        GameObject newDialogue = Instantiate(dialogue);
+        newDialogue.transform.SetParent(GameObject.Find("DialogueCanvas").transform);
+        newDialogue.name = "Dialogue (" + dialogue.name + ")";
+        DialogueManager dialogueManager = newDialogue.GetComponentInChildren<DialogueManager>();
+        txtManager = dialogueManager;
+        txtManager.OnNextMessage += NextSequence;
+        newDialogue.SetActive(true);
     }
 }
