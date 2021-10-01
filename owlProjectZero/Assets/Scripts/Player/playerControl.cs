@@ -165,7 +165,7 @@ public class playerControl : Character
         stamanaMeter.fillAmount = data.remainingStamana / MAX_STAMANA;
 
         // Check for input when interacting with NPC
-        if (input.Gameplay.Interact.triggered)
+        if (temp != null && input.Gameplay.Interact.triggered)
         {
             playerInteract(temp);
         }
