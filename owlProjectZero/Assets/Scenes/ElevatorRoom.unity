@@ -6757,6 +6757,11 @@ PrefabInstance:
       propertyPath: data.isFacingRight
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2529497728352103112, guid: 8b768704a9719d3408f4b19946d302e4,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2529497728352103115, guid: 8b768704a9719d3408f4b19946d302e4,
         type: 3}
       propertyPath: m_Name
