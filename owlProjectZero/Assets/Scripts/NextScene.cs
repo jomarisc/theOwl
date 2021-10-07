@@ -49,16 +49,14 @@ public class NextScene : MonoBehaviour
         if(col.TryGetComponent(out playerControl p))
         {
             Debug.Log("this is scene index " + sceneIndex);
-            previousSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            myDirector.playableAsset = endTransition;
-            myDirector.Play();
+            PlayEndTransition();
             player.Freeze();
             player.enabled = false;
             myDirector.stopped += LoadNextScene;
         }
     }
 
-    void LoadNextScene(PlayableDirector director)
+    public void LoadNextScene(PlayableDirector director)
     {
         // Debug.Log("Before deleting scenetriggers");
         // for(int n = 0; n < sceneTriggers.Count; n++)
@@ -96,6 +94,13 @@ public class NextScene : MonoBehaviour
         // Finally, destroy this one
         sceneTriggers.Remove(this);
         Destroy(this.gameObject);
+    }
+
+    public void PlayEndTransition()
+    {
+        previousSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        myDirector.playableAsset = endTransition;
+        myDirector.Play();
     }
 
     public static void ClearSceneTriggers()

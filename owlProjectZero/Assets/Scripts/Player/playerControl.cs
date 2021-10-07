@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -164,7 +165,7 @@ public class playerControl : Character
         stamanaMeter.fillAmount = data.remainingStamana / MAX_STAMANA;
 
         // Check for input when interacting with NPC
-        if (input.Gameplay.Interact.triggered)
+        if (temp != null && input.Gameplay.Interact.triggered)
         {
             playerInteract(temp);
         }
@@ -191,17 +192,37 @@ public class playerControl : Character
             Debug.Log(message:$"<color=green> <size=16> Entered playerInteract! </size> </color>");
             CharacterObject npcTouched = temp.GetComponent<NPCBehavior>().character;
             //lastNPCTouched = npcTouched;
-            TextAsset dialogue = npcTouched.dialogueFile; // Fixed dialogue file at the moment
+            
+            // OLD METHOD OF LOADING TEXT
+            //TextAsset dialogue = npcTouched.dialogueFile; // Fixed dialogue file at the moment
+            
+            // Testing with List<TextAsset>
+            // (npcTouched.arcProgression)-1
+            //Debug.Log(message:$"<color=purple> <size=16> npcTouched.arcProgression: {npcTouched.arcProgression} </size> </color>");
+            TextAsset currentDialogue = npcTouched.dialogues.ElementAt(npcTouched.arcProgression); // This function requires using System.Linq; npcTouched.arcProgression
+            
             string startArgument = "start";
 
             GameObject newDialogue = Instantiate(Dialogue);
             newDialogue.transform.SetParent(GameObject.Find("DialogueCanvas").transform);
-            newDialogue.name = "Dialogue (" + dialogue.name + ")";
+            newDialogue.name = "Dialogue (" + currentDialogue.name + ")"; // dialogue
             DialogueManager dialogueManager = newDialogue.GetComponentInChildren<DialogueManager>();
             newDialogue.SetActive(true);
-            dialogueManager.LoadNewDialogueText(dialogue, startArgument);
+
+            // OLD METHOD OF LOADING TEXT
+            // dialogueManager.LoadNewDialogueText(dialogue, startArgument);
+            
+            dialogueManager.LoadNewDialogueText(currentDialogue, startArgument);
             dialogueManager.SetMessageIndex(0);
             dialogueManager.StartDialogue();
+
+            // Incrementing arcProgression of a character to later play a new CSV
+            // *** This is is removable and the incrementing can happen somewhere else
+            npcTouched.arcProgression++;
+            if (npcTouched.arcProgression > npcTouched.arcEndPoint)
+            {
+                npcTouched.arcProgression = npcTouched.arcProgressionStart;
+            }
         }
     }
 

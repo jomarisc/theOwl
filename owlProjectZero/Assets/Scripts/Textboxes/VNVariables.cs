@@ -15,7 +15,7 @@ public class VNVariables : ScriptableObject
     public Dictionary<string, string> stringVariables;
 
     private void Awake(){
-        Setup();
+        // Setup();
         
     }  
 

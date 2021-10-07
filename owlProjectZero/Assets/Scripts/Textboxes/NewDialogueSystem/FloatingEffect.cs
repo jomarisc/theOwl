@@ -7,7 +7,7 @@ using DG.Tweening;
 public class FloatingEffect : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] GameObject target;
+    [SerializeField] GameObject target = null;
     [SerializeField] float floatingRange= 20f;
     [SerializeField] float waitTime = 1.2f;
     private IEnumerator floatCoroutine;

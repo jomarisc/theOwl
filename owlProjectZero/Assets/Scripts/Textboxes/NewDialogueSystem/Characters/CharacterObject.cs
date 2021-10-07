@@ -29,14 +29,16 @@ public class CharacterObject : ScriptableObject
 
     [Header("Arc Progression")]
     //[SerializeField] public Dictionary<string, TextAsset> filesForDay; // Until you can find a more sustainable way to store multiple TextAssets, for now just use one TextAsset
-    public TextAsset dialogueFile; 
+    public TextAsset dialogueFile;                                     // For testing a single CSV into LoadNewDialogueTest(); 
+    [SerializeField] public List<TextAsset> dialogues;
+
     public int RandomSceneCount = 3;
 
     //[HorizontalGroup("Active Days", 300)]
     //[LabelWidth(300)]
     public int arcProgressionStart = 1;
 
-    [HideInInspector] public int arcProgression;
+    public int arcProgression; // This was originally not initialized to anything. // [HideInInspector]
     //[HorizontalGroup("Active Days", 300)]
     //[LabelWidth(300)]
     public int arcEndPoint = 4;
