@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
 public class PersistentAudioSource : MonoBehaviour
@@ -35,5 +36,13 @@ public class PersistentAudioSource : MonoBehaviour
         // Overwrite the current instance of the persistent audio source
         instance = this;
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    void Update()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
