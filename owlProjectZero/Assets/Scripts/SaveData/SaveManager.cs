@@ -6,18 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
-
-    public string filePath;
-    public string newGameScene;
-    public int newGameSceneIndex;
+    [SerializeField]
+    private string filePath;
+    private int alleyScene;
 
     // Start is called before the first frame update
     void Start()
     {
         filePath = Application.persistentDataPath + "/saveFile.owl";
-        newGameScene = "Alley";
-        newGameSceneIndex = CheckpointsHandler.checkpointScene;
-        // Debug.Log("GlobalVars.hasPressMainMenu is " + GlobalVars.hasPressMainMenu);
+        alleyScene = 2;
     }
 
     public void saveGame()
@@ -45,8 +42,14 @@ public class SaveManager : MonoBehaviour
         {
             CheckpointsHandler.playerPosition[i] = 0f;
         }
-        CheckpointsHandler.isDead = false;
 
+        Vector3 playerPos = new Vector3(-20, 1, 0);
+        CheckpointsHandler.playerPosition[0] = playerPos.x;
+        CheckpointsHandler.playerPosition[1] = playerPos.y;
+        CheckpointsHandler.playerPosition[2] = playerPos.z;
+
+        CheckpointsHandler.isDead = false;
+        startGame(alleyScene);
     }
 
     // If there's a file, load it. Otherwise, start a new game.
@@ -56,7 +59,6 @@ public class SaveManager : MonoBehaviour
         {
             Debug.Log("LOADING DATA...");
             SaveClass newData = SaveSystem.loadData();
-            // Debug.Log("newData.hasPressMainMenu is " + newData.hasPressMainMenu);
             GlobalVars.unlockedSkills = newData.unlockedSkills;
             for(int i = 0; i < GlobalVars.unlockedSkills.Length; i++)
             {
@@ -73,7 +75,17 @@ public class SaveManager : MonoBehaviour
                 CheckpointsHandler.playerPosition = newData.playerPosition;
             }
             CheckpointsHandler.isDead = newData.isDead;
-            SceneManager.LoadScene(CheckpointsHandler.checkpointScene);
         }
+        startGame(CheckpointsHandler.checkpointScene);
     }
+
+    public void startGame(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void quitGame()
+    {
+        Application.Quit();
+    }    
 }
