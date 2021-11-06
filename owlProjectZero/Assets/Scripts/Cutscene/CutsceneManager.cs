@@ -119,7 +119,7 @@ public class CutsceneManager : MonoBehaviour
     private void NextSequence()
     {
         if(currentStageDirection == stageDirections.Length)
-            this.enabled = false;
+            this.gameObject.SetActive(false); // this.enabled = false;
         else
         {
             PlaySequence(currentStageDirection);

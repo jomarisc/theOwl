@@ -469,10 +469,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4285950549684389386, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4433203049339731816, guid: fb030aaad8d879b47b3ab0d608bb220c,
         type: 3}
       propertyPath: m_Name
       value: BackGuard2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: data.isFacingRight
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6705881637403975994, guid: fb030aaad8d879b47b3ab0d608bb220c, type: 3}
@@ -2478,7 +2488,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 575892458}
-  m_LocalRotation: {x: 0.032910936, y: -0.00000002115231, z: 6.965197e-10, w: 0.9994583}
+  m_LocalRotation: {x: 0.032910902, y: 0.0000000180505, z: -5.943802e-10, w: 0.9994583}
   m_LocalPosition: {x: -7.08, y: -5.21, z: -21.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4404,10 +4414,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4285950549684389386, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4433203049339731816, guid: fb030aaad8d879b47b3ab0d608bb220c,
         type: 3}
       propertyPath: m_Name
       value: BackGuard1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: data.isFacingRight
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6705881637403975994, guid: fb030aaad8d879b47b3ab0d608bb220c, type: 3}
@@ -8719,10 +8739,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4285950549684389386, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4433203049339731816, guid: fb030aaad8d879b47b3ab0d608bb220c,
         type: 3}
       propertyPath: m_Name
       value: BackGuard3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901430569754552183, guid: fb030aaad8d879b47b3ab0d608bb220c,
+        type: 3}
+      propertyPath: data.isFacingRight
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6705881637403975994, guid: fb030aaad8d879b47b3ab0d608bb220c, type: 3}
@@ -9548,6 +9578,51 @@ PrefabInstance:
       propertyPath: m_Name
       value: CutsceneManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2443252061619450789, guid: 95bef40cf37e89f468d11574b37d802b,
+        type: 3}
+      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 684510007}
+    - target: {fileID: 2443252061619450789, guid: 95bef40cf37e89f468d11574b37d802b,
+        type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2043362082}
+    - target: {fileID: 2443252061619450789, guid: 95bef40cf37e89f468d11574b37d802b,
+        type: 3}
+      propertyPath: m_Events.m_Events.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2043362080}
+    - target: {fileID: 2443252061619450789, guid: 95bef40cf37e89f468d11574b37d802b,
+        type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2043362082}
+    - target: {fileID: 2443252061619450789, guid: 95bef40cf37e89f468d11574b37d802b,
+        type: 3}
+      propertyPath: m_Events.m_Events.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2043362082}
+    - target: {fileID: 2443252061619450789, guid: 95bef40cf37e89f468d11574b37d802b,
+        type: 3}
+      propertyPath: m_Events.m_Events.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 817268767}
+    - target: {fileID: 2443252061619450789, guid: 95bef40cf37e89f468d11574b37d802b,
+        type: 3}
+      propertyPath: m_Events.m_Events.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1817031025}
+    - target: {fileID: 2443252061619450789, guid: 95bef40cf37e89f468d11574b37d802b,
+        type: 3}
+      propertyPath: m_Events.m_Events.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1817031025}
+    - target: {fileID: 2443252061619450789, guid: 95bef40cf37e89f468d11574b37d802b,
+        type: 3}
+      propertyPath: m_Events.m_Events.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 494716724}
     - target: {fileID: 8997878310252238893, guid: 95bef40cf37e89f468d11574b37d802b,
         type: 3}
       propertyPath: m_SceneBindings.Array.size
@@ -10267,11 +10342,11 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2106066655}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2106066657
+--- !u!114 &2106066657 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2443252061619450789, guid: 95bef40cf37e89f468d11574b37d802b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2106066655}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2106066656}
   m_Enabled: 1
@@ -10279,142 +10354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: b9309fa085491284fb37ab530a770892, type: 2}
-    - {fileID: 11400000, guid: 93af44bbc8fa950448590d2a20377634, type: 2}
-    - {fileID: 11400000, guid: 19e3fb596a98be64a8e41184f7720445, type: 2}
-    - {fileID: 11400000, guid: 5bc5b3c4d0568e542ba08b1cc05f1b90, type: 2}
-    - {fileID: 11400000, guid: 9b15f5609cd281547a77ec781c1f927e, type: 2}
-    - {fileID: 11400000, guid: e67940b2e76cae645ba5aedfc83e396c, type: 2}
-    - {fileID: 11400000, guid: 519cce318b5831d4a971fcc4118d584e, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 684510007}
-          m_TargetAssemblyTypeName: UnityEngine.Playables.PlayableDirector, UnityEngine
-          m_MethodName: Play
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 4c5ab8ef422392447a0bef30eda80f95,
-              type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableAsset,
-              UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2043362082}
-          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-          m_MethodName: RestoreTextbox
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 2043362080}
-          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2043362082}
-          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-          m_MethodName: HideTextbox
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2043362082}
-          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-          m_MethodName: ProgressStory
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 856619907}
-          m_TargetAssemblyTypeName: CutsceneManager, Assembly-CSharp
-          m_MethodName: BeginDialogue
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 4900000, guid: def55e94a275eb246914f28226e046d9,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.TextAsset, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 817268767}
-          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-          m_MethodName: Play
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1817031025}
-          m_TargetAssemblyTypeName: NextScene, Assembly-CSharp
-          m_MethodName: PlayEndTransition
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1817031025}
-          m_TargetAssemblyTypeName: NextScene, Assembly-CSharp
-          m_MethodName: LoadNextScene
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 494716724}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
-              UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!82 &2106066659
 AudioSource:
   m_ObjectHideFlags: 0

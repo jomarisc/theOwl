@@ -24,16 +24,16 @@ public class NextScene : MonoBehaviour
         player = GameObject.Find("player").GetComponent<playerControl>();
         // player.enabled = false;
 
+        myDirector = GetComponent<PlayableDirector>();
+        myDirector.playableAsset = startTransition;
         Debug.Log("previousSceneIndex is " + previousSceneIndex);
 
         if(previousSceneIndex == sceneIndex)
         {
             SpawnAtMyPointInstead();
+            myDirector.Play();
         }
 
-        myDirector = GetComponent<PlayableDirector>();
-        myDirector.playableAsset = startTransition;
-        myDirector.Play();
         myDirector.stopped += ReenablePlayer;
 
         DontDestroyOnLoad(this.gameObject);
