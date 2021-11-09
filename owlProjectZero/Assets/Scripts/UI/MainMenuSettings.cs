@@ -12,6 +12,10 @@ public class MainMenuSettings : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject musicSlider;
 
+    public Slider mSlider;
+    public Slider sSlider;
+    public float defaultVolume;
+
     public TMP_Text Title;
     [SerializeField] private string menuTitle;
     [SerializeField] private string settingsTitle;
@@ -26,6 +30,41 @@ public class MainMenuSettings : MonoBehaviour
     {
         navButtonsActive = true;
         settingsMenuActive =  false;
+
+        // Debug.Log("IN MAIN MENU: ");
+        // Debug.Log("music volume is " + PlayerPrefs.GetFloat("musicVolume"));
+        // Debug.Log("music volume is " + PlayerPrefs.GetFloat("musicVolume"));
+        // Debug.Log("sfx volume is " + PlayerPrefs.GetFloat("sfxVolume"));
+        // Debug.Log("sfx volume is " + PlayerPrefs.GetFloat("sfxVolume"));
+
+        if(PlayerPrefs.HasKey("musicVolume"))
+        {
+            // Debug.Log("PlayerPrefs musicVolume does exist");
+            float getVolume = PlayerPrefs.GetFloat("musicVolume");
+            // Debug.Log("music volume is " + PlayerPrefs.GetFloat("musicVolume"));
+            mSlider.value = Mathf.Pow(10, getVolume / 20);
+            // Debug.Log("getVolume is " + getVolume);
+            // Debug.Log("music slider value is " + mSlider.value);
+        }
+        else
+        {
+            // Debug.Log("PlayerPrefs musicVolume does not exist");
+            PlayerPrefs.SetFloat("musicVolume", defaultVolume);
+            PlayerPrefs.Save();
+        }
+
+        if(PlayerPrefs.HasKey("sfxVolume"))
+        {
+            float getVolume = PlayerPrefs.GetFloat("sfxVolume");
+            // Debug.Log("sfx volume is " + PlayerPrefs.GetFloat("sfxVolume"));
+            sSlider.value = Mathf.Pow(10, getVolume / 20);
+            // Debug.Log("sfx slider value is " + sSlider.value);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("sfxVolume", defaultVolume);
+            PlayerPrefs.Save();
+        }
     }
 
     void Start()

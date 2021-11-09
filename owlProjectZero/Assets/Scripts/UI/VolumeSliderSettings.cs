@@ -15,12 +15,31 @@ public class VolumeSliderSettings : MonoBehaviour
     }
 
     public void setmusicVolume(float volume)
-    {
-        volumeMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
+    {   
+        float logVolume = Mathf.Log10(volume) * 20;
+        volumeMixer.SetFloat("musicVolume", logVolume);
+        saveMusicVolume(logVolume);
+
     }
 
     public void setsfxVolume(float volume)
+    {   
+        float logVolume = Mathf.Log10(volume) * 20;
+        volumeMixer.SetFloat("sfxVolume", logVolume);
+        saveSFXVolume(logVolume);
+    }
+
+    private void saveMusicVolume(float savedVolume)
     {
-        volumeMixer.SetFloat("sfxVolume", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("musicVolume", savedVolume);
+        Debug.Log("music volume is " + PlayerPrefs.GetFloat("musicVolume"));
+        PlayerPrefs.Save();
+    }
+
+    private void saveSFXVolume(float savedVolume)
+    {
+        PlayerPrefs.SetFloat("sfxVolume", savedVolume);
+        Debug.Log("sfx volume is " + PlayerPrefs.GetFloat("sfxVolume"));
+        PlayerPrefs.Save();
     }
 }
