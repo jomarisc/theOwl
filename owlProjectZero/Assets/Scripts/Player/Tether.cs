@@ -17,6 +17,13 @@ public class Tether : MonoBehaviour
     [Min(0)] [SerializeField] private float verticalTetherSpeed = 1.2f;
     [Range(0, 100)] [SerializeField] private float stamanaCost = 0f;
 
+    public SpriteRenderer[] chainLinks;
+
+    void Awake()
+    {
+        chainLinks = GetComponentsInChildren<SpriteRenderer>();
+    }
+
     void OnEnable()
     {
         player.input.Gameplay.Tether.Enable();

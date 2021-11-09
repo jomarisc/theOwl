@@ -32,7 +32,11 @@ public class PlayerTether : IState
         int animationLayer = (GlobalVars.playerHasUnlockedSuit) ? 1 : 0;
         animator.Play("PlayerTether", animationLayer);
 
-        player.tetherAbility.GetComponent<Renderer>().enabled = true;
+        // player.tetherAbility.GetComponent<Renderer>().enabled = true;
+        foreach (SpriteRenderer link in player.tetherAbility.chainLinks)
+        {
+            link.enabled = true;
+        }
         player.tetherAbility.GetComponent<Collider>().enabled = true;
         playerRB.velocity = Vector3.zero;
         playerRB.drag = 0f;
@@ -44,7 +48,11 @@ public class PlayerTether : IState
     public void Exit()
     {
         playerRB.drag = 1f;
-        player.tetherAbility.GetComponent<Renderer>().enabled = false;
+        // player.tetherAbility.GetComponent<Renderer>().enabled = false;
+        foreach (SpriteRenderer link in player.tetherAbility.chainLinks)
+        {
+            link.enabled = false;
+        }
         player.tetherAbility.GetComponent<Collider>().enabled = false;
 
         input.Gameplay.Tether.started -= player.tetherAbility.Untether;
@@ -102,8 +110,8 @@ public class PlayerTether : IState
         // Update tether position, size, and rotation
         if(player.tetherAbility.activeTetherPoint != null)
         {
-            Vector3 tetherPos = tetherDirection / 2;
-            player.tetherAbility.transform.localPosition = tetherPos;
+            Vector3 tetherPos = tetherDirection;
+            // player.tetherAbility.transform.localPosition = tetherPos;
 
             Quaternion tetherRotation = new Quaternion();
             float tetherAngle = -angle * Mathf.Rad2Deg;
@@ -112,7 +120,19 @@ public class PlayerTether : IState
 
             Vector3 tetherScale = player.tetherAbility.transform.localScale;
             tetherScale[1] = tetherDirection.magnitude / 2;
-            player.tetherAbility.transform.localScale = tetherScale;
+            // player.tetherAbility.transform.localScale = tetherScale;
+
+            for(int i = 0; i < player.tetherAbility.chainLinks.Length; i++)
+            {
+                // Debug.Log("(" + (i + 1) + ") / " + player.tetherAbility.chainLinks.Length + " * " + tetherPos);
+                float fractionOfLength = (float)((i + 1) / (float)(player.tetherAbility.chainLinks.Length + 1));
+                Vector3 linkPos = new Vector3(0f, fractionOfLength * tetherDirection.magnitude, 0f);
+                // Debug.Log("fraction of length: " + fractionOfLength);
+                player.tetherAbility.chainLinks[i].transform.localPosition = linkPos;
+                // Debug.Log("= " + player.tetherAbility.chainLinks[i].transform.localPosition);
+                // player.tetherAbility.chainLinks[i].transform.rotation = tetherRotation;
+            }
+            // Debug.Break();
         }
 
         return null;
