@@ -38,6 +38,12 @@ public class StopFlashing : MonoBehaviour
         StartCoroutine(FlashFinish(menuButtons[3], 3));
     }
 
+    public void FlashBack()
+    {
+        menuButtons[0].Stop();
+        menuButtons[0].Play();
+    }
+
     IEnumerator FlashFinish(Animation FlashButton, int menuButton)
     {
         while(FlashButton.isPlaying)
