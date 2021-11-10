@@ -43,7 +43,7 @@ public class SaveManager : MonoBehaviour
             CheckpointsHandler.playerPosition[i] = 0f;
         }
 
-        Vector3 playerPos = new Vector3(-20, 1, 0);
+        Vector3 playerPos = new Vector3(-6.12f, 1, 0);
         CheckpointsHandler.playerPosition[0] = playerPos.x;
         CheckpointsHandler.playerPosition[1] = playerPos.y;
         CheckpointsHandler.playerPosition[2] = playerPos.z;
