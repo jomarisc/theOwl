@@ -47,6 +47,7 @@ public class HealthbarController : MonoBehaviour
 
             //GameObject player = GameObject.Find("player");
             //playerControl playerScript = player.GetComponent<playerControl>();
+            // Disabling Go To Death State temporarily
             playerScript.GoToDeadState();
             //Debug.Log("Got rekt2");
             //return new PlayerDeath(player);

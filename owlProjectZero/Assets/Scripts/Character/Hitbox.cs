@@ -155,6 +155,7 @@ public class Hitbox : MonoBehaviour
                     col.attachedRigidbody.AddForce(currentKnockback, ForceMode.Impulse);
                     
                     // Go to damaged state
+                    Debug.Log(message: $"<color=orange><size=16> Applying Damaged State </size> </color>");
                     col.gameObject.GetComponent<Character>().GoToDamagedState(data.damage, data.currentKnockback);
                 }
                 else
@@ -165,9 +166,13 @@ public class Hitbox : MonoBehaviour
             }
             if(col.gameObject.TryGetComponent(out playerControl player))
             {
-                // Debug.Log("Player Damaged by Hitbox!");
+                Debug.Log("Player Damaged by Hitbox!");
                 // col.gameObject.GetComponent<playerControl>().healthbar.Damage(data.damage);
-                player.healthbar.Redraw();
+                // player.healthbar.Redraw();
+
+                // Attempting to update heart bar
+                player.heartbar.heartsHealthSystem.Damage((int) data.damage); // heartsHealthSystem GetHeartsHealthSystem(), data.damage
+
                 player.equippedSkills.currentSkill.isActive = false;
                 if(activeDuration != Mathf.Infinity) // Exclude enemy hurtboxes from flipping the player
                 {

@@ -1247,7 +1247,7 @@ MonoBehaviour:
   data:
     numJumps: 3
     numDodges: 1
-    deadDuration: 0
+    deadDuration: 3
     health: 10
     maxSpeed: 0
     groundSpeed: 6
@@ -1277,11 +1277,12 @@ MonoBehaviour:
   canInteract: 0
   projectile: {fileID: 377738018264958676}
   healthbar: {fileID: 0}
+  heartbar: {fileID: 0}
   stamanaMeter: {fileID: 0}
   levelWindow: {fileID: 0}
   skillTreeWindow: {fileID: 0}
   numCurrency: 0
-  isAlive: 1
+  isAlive: 0
 --- !u!212 &1050675499
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3216,7 +3217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alpha: 0.5
   fullDuration: 1
-  dodgeDuration: 1
+  dodgeDuration: 3
   <USING_GRAVITY>k__BackingField: 0
   <PUSH_FORCE>k__BackingField: 10
   <DRAG>k__BackingField: 1
