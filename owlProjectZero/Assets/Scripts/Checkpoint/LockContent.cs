@@ -44,6 +44,5 @@ public class LockContent : MonoBehaviour
         // Lock certain content
         foreach (GameObject content in contentToLock)
             content.SetActive(false);
-        Debug.LogError("Locked Content");
     }
 }
