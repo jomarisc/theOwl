@@ -1656,6 +1656,12 @@ PrefabInstance:
       propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7490309103823035160, guid: 95bef40cf37e89f468d11574b37d802b,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+        type: 2}
     - target: {fileID: 8997878310252238893, guid: 95bef40cf37e89f468d11574b37d802b,
         type: 3}
       propertyPath: m_SceneBindings.Array.size
@@ -2385,6 +2391,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3285549833221900999, guid: 4af50e64c9ce11d4ead6586d18bb8663,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: f569ff9c5878f924a9db7d9d2ec031e5,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4af50e64c9ce11d4ead6586d18bb8663, type: 3}
 --- !u!1 &751446968
@@ -2722,6 +2734,18 @@ PrefabInstance:
       propertyPath: m_text
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5234773381737301387, guid: bfac09ed325c30342ac8ae84eab0526d,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+        type: 2}
+    - target: {fileID: 8795573524491496810, guid: bfac09ed325c30342ac8ae84eab0526d,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+        type: 2}
     - target: {fileID: 8795573524767028969, guid: bfac09ed325c30342ac8ae84eab0526d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2889,17 +2913,17 @@ PrefabInstance:
     - target: {fileID: 576550468778511880, guid: 8ed5cc0ebcda37244be8214333b9aa23,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.039904423
+      value: 0.039904397
       objectReference: {fileID: 0}
     - target: {fileID: 576550468778511880, guid: 8ed5cc0ebcda37244be8214333b9aa23,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000001726559
+      value: 0.000000017411885
       objectReference: {fileID: 0}
     - target: {fileID: 576550468778511880, guid: 8ed5cc0ebcda37244be8214333b9aa23,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -6.8952277e-10
+      value: -6.953648e-10
       objectReference: {fileID: 0}
     - target: {fileID: 576550468778511880, guid: 8ed5cc0ebcda37244be8214333b9aa23,
         type: 3}
@@ -4181,17 +4205,17 @@ PrefabInstance:
     - target: {fileID: 1072018054752160773, guid: 96d840a85523a2a4c806952c01b0f469,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.039904423
+      value: 0.039904397
       objectReference: {fileID: 0}
     - target: {fileID: 1072018054752160773, guid: 96d840a85523a2a4c806952c01b0f469,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000001726559
+      value: 0.000000017411885
       objectReference: {fileID: 0}
     - target: {fileID: 1072018054752160773, guid: 96d840a85523a2a4c806952c01b0f469,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -6.8952277e-10
+      value: -6.953648e-10
       objectReference: {fileID: 0}
     - target: {fileID: 1072018054752160773, guid: 96d840a85523a2a4c806952c01b0f469,
         type: 3}
@@ -5767,10 +5791,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 864365415, guid: 8b768704a9719d3408f4b19946d302e4, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+        type: 2}
     - target: {fileID: 1050675499, guid: 8b768704a9719d3408f4b19946d302e4, type: 3}
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1041482719160789296, guid: 8b768704a9719d3408f4b19946d302e4,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+        type: 2}
     - target: {fileID: 2529497728352103108, guid: 8b768704a9719d3408f4b19946d302e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5892,11 +5927,47 @@ PrefabInstance:
       propertyPath: skills.Array.data[1]
       value: 
       objectReference: {fileID: 1732550046}
+    - target: {fileID: 3967800517014249763, guid: 8b768704a9719d3408f4b19946d302e4,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+        type: 2}
     - target: {fileID: 4538674539265694219, guid: 8b768704a9719d3408f4b19946d302e4,
         type: 3}
       propertyPath: guntimeMeter
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4935613855480808710, guid: 8b768704a9719d3408f4b19946d302e4,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+        type: 2}
+    - target: {fileID: 5055821379980162570, guid: 8b768704a9719d3408f4b19946d302e4,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+        type: 2}
+    - target: {fileID: 7266456132269884767, guid: 8b768704a9719d3408f4b19946d302e4,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+        type: 2}
+    - target: {fileID: 7667496188572339682, guid: 8b768704a9719d3408f4b19946d302e4,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+        type: 2}
+    - target: {fileID: 8219641611721027624, guid: 8b768704a9719d3408f4b19946d302e4,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b768704a9719d3408f4b19946d302e4, type: 3}
 --- !u!114 &1732550046 stripped

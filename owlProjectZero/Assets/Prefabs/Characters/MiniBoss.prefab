@@ -300,7 +300,8 @@ AudioSource:
   m_GameObject: {fileID: 5538300404059844994}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -603,7 +604,8 @@ AudioSource:
   m_GameObject: {fileID: 7120305416205613097}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -811,7 +813,8 @@ AudioSource:
   m_GameObject: {fileID: 7567785760310723136}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -943,8 +946,10 @@ MonoBehaviour:
     remainingStamana: 0
   basicAttack: {fileID: 2816189262244782668}
   animator: {fileID: 2428942722287046108}
+  sRenderer: {fileID: 0}
   experienceCollectable: {fileID: 198094913682120957, guid: 3f2a4850f14f43347a2bee6ba7577ca1,
     type: 3}
+  healthCollectable: {fileID: 0}
   currencyCollectable: {fileID: 5746714417445567809, guid: 85e4f296b8750dc439593c06c751a528,
     type: 3}
   enemyCounter: {fileID: 0}
@@ -1081,7 +1086,8 @@ AudioSource:
   m_GameObject: {fileID: 8321648172540441926}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1175,6 +1181,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 186534142042667578, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+        type: 2}
     - target: {fileID: 1087469117397529104, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: m_Mass
@@ -1340,6 +1352,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Punch
       objectReference: {fileID: 0}
+    - target: {fileID: 7685348055905033410, guid: a94cdbb1a371e434da94986eea1d80d4,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c06177f3576dca944849803fe7f8698e,
+        type: 2}
     - target: {fileID: 8027395720447553460, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: m_Enabled

@@ -26,7 +26,10 @@ public class MainMenuSettings : MonoBehaviour
     private bool navButtonsActive;
     private bool settingsMenuActive;
 
-    void Awake()
+    public AudioMixer musicMixer;
+    public AudioMixer sfxMixer;
+
+    void Start()
     {
         navButtonsActive = true;
         settingsMenuActive =  false;
@@ -39,16 +42,17 @@ public class MainMenuSettings : MonoBehaviour
 
         if(PlayerPrefs.HasKey("musicVolume"))
         {
-            // Debug.Log("PlayerPrefs musicVolume does exist");
+            Debug.Log("PlayerPrefs musicVolume does exist");
             float getVolume = PlayerPrefs.GetFloat("musicVolume");
             // Debug.Log("music volume is " + PlayerPrefs.GetFloat("musicVolume"));
             mSlider.value = Mathf.Pow(10, getVolume / 20);
+            musicMixer.SetFloat("musicVolume", getVolume);
             // Debug.Log("getVolume is " + getVolume);
             // Debug.Log("music slider value is " + mSlider.value);
         }
         else
         {
-            // Debug.Log("PlayerPrefs musicVolume does not exist");
+            Debug.Log("PlayerPrefs musicVolume does not exist");
             PlayerPrefs.SetFloat("musicVolume", defaultVolume);
             PlayerPrefs.Save();
         }
@@ -58,6 +62,7 @@ public class MainMenuSettings : MonoBehaviour
             float getVolume = PlayerPrefs.GetFloat("sfxVolume");
             // Debug.Log("sfx volume is " + PlayerPrefs.GetFloat("sfxVolume"));
             sSlider.value = Mathf.Pow(10, getVolume / 20);
+            sfxMixer.SetFloat("sfxVolume", getVolume);
             // Debug.Log("sfx slider value is " + sSlider.value);
         }
         else
@@ -65,10 +70,7 @@ public class MainMenuSettings : MonoBehaviour
             PlayerPrefs.SetFloat("sfxVolume", defaultVolume);
             PlayerPrefs.Save();
         }
-    }
 
-    void Start()
-    {
         // navButtons.SetActive(navButtonsActive);
         for(int i = 0; i < navButtons.transform.childCount; i++)
         {
@@ -77,6 +79,17 @@ public class MainMenuSettings : MonoBehaviour
 
         settingsMenu.SetActive(settingsMenuActive);
     }
+
+    // void Start()
+    // {
+    //     // navButtons.SetActive(navButtonsActive);
+    //     for(int i = 0; i < navButtons.transform.childCount; i++)
+    //     {
+    //         navButtons.transform.GetChild(i).gameObject.SetActive(navButtonsActive);
+    //     }
+
+    //     settingsMenu.SetActive(settingsMenuActive);
+    // }
 
     void Update()
     {
