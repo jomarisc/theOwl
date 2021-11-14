@@ -37,19 +37,20 @@ public class SaveManager : MonoBehaviour
         GlobalVars.currentSkill = 0;
         GlobalVars.playerHasUnlockedSuit = false;
 
-        CheckpointsHandler.checkpointScene = 2;
+        CheckpointsHandler.checkpointScene = alleyScene;
         for(int i = 0; i < CheckpointsHandler.playerPosition.Length; i++)
         {
             CheckpointsHandler.playerPosition[i] = 0f;
         }
 
-        Vector3 playerPos = new Vector3(-6.12f, 1, 0);
+        Vector3 playerPos = new Vector3(0, -7, 0);
         CheckpointsHandler.playerPosition[0] = playerPos.x;
         CheckpointsHandler.playerPosition[1] = playerPos.y;
         CheckpointsHandler.playerPosition[2] = playerPos.z;
 
         CheckpointsHandler.isDead = false;
-        startGame(alleyScene);
+        int openingScene = 6;
+        startGame(openingScene);
     }
 
     // If there's a file, load it. Otherwise, start a new game.

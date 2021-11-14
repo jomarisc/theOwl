@@ -37,13 +37,15 @@ public class PlayerJump : IState
     	}
         player.Jump();
 
-        input.Gameplay.Tether.started += player.tetherAbility.ActivateTether;
+        if(GlobalVars.playerHasUnlockedSuit)
+            input.Gameplay.Tether.started += player.tetherAbility.ActivateTether;
         input.Gameplay.Glide.started += player.FastFall;
     }
 
     public void Exit()
     {
-        input.Gameplay.Tether.started -= player.tetherAbility.ActivateTether;
+        if(GlobalVars.playerHasUnlockedSuit)
+            input.Gameplay.Tether.started -= player.tetherAbility.ActivateTether;
         input.Gameplay.Glide.started -= player.FastFall;
     }
 

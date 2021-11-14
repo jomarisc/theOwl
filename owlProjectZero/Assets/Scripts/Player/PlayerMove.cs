@@ -67,7 +67,8 @@ public class PlayerMove : IState
             if(player.data.maxSpeed == 0f)
                 player.data.maxSpeed = player.data.airSpeed;
 
-            input.Gameplay.Tether.started += player.tetherAbility.ActivateTether;
+            if(GlobalVars.playerHasUnlockedSuit)
+                input.Gameplay.Tether.started += player.tetherAbility.ActivateTether;
             input.Gameplay.Glide.started += player.FastFall;
             input.Gameplay.Glide.started += Glide;
         }
@@ -82,7 +83,8 @@ public class PlayerMove : IState
     {
         animator.SetBool("fastfalling", false);
 
-        input.Gameplay.Tether.started -= player.tetherAbility.ActivateTether;
+        if(GlobalVars.playerHasUnlockedSuit)
+            input.Gameplay.Tether.started -= player.tetherAbility.ActivateTether;
         input.Gameplay.Glide.started -= player.FastFall;
         input.Gameplay.Glide.started -= Glide;
 
