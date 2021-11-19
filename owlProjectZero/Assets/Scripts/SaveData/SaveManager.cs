@@ -49,7 +49,7 @@ public class SaveManager : MonoBehaviour
         CheckpointsHandler.playerPosition[2] = playerPos.z;
 
         CheckpointsHandler.isDead = false;
-        int openingScene = 6;
+        int openingScene = 10;
         startGame(openingScene);
     }
 
