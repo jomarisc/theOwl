@@ -1305,8 +1305,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340841305}
-  m_LocalRotation: {x: 0.6587246, y: 0.0000000010919702, z: -9.560572e-10, w: 0.7523841}
-  m_LocalPosition: {x: 4.1799994, y: 91.53819, z: -10}
+  m_LocalRotation: {x: 0.55909604, y: -0.34977466, z: 0.28038445, w: 0.69746244}
+  m_LocalPosition: {x: 17.579998, y: 98.020004, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1953751673}
@@ -3079,8 +3079,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 793589048}
-  m_LocalRotation: {x: 0.68763125, y: -0.000000010571323, z: 0.000000010011794, w: 0.72606015}
-  m_LocalPosition: {x: 4.1799994, y: 108.438194, z: -5}
+  m_LocalRotation: {x: 0.5448931, y: -0.42810974, z: 0.38118193, w: 0.6119755}
+  m_LocalPosition: {x: 17.88, y: 135.50726, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1642749942}
@@ -3516,17 +3516,17 @@ PrefabInstance:
     - target: {fileID: 576550468778511880, guid: 8ed5cc0ebcda37244be8214333b9aa23,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.09898119
+      value: 0.7140341
       objectReference: {fileID: 0}
     - target: {fileID: 576550468778511880, guid: 8ed5cc0ebcda37244be8214333b9aa23,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000003978868
+      value: -0.00000042388183
       objectReference: {fileID: 0}
     - target: {fileID: 576550468778511880, guid: 8ed5cc0ebcda37244be8214333b9aa23,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000015890089
+      value: 0.00000001582623
       objectReference: {fileID: 0}
     - target: {fileID: 576550468778511880, guid: 8ed5cc0ebcda37244be8214333b9aa23,
         type: 3}
@@ -4991,17 +4991,17 @@ PrefabInstance:
     - target: {fileID: 1072018054752160773, guid: 96d840a85523a2a4c806952c01b0f469,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.09189282
+      value: 0.09189281
       objectReference: {fileID: 0}
     - target: {fileID: 1072018054752160773, guid: 96d840a85523a2a4c806952c01b0f469,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.053291705
+      value: -0.053291697
       objectReference: {fileID: 0}
     - target: {fileID: 1072018054752160773, guid: 96d840a85523a2a4c806952c01b0f469,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0049250517
+      value: 0.004925051
       objectReference: {fileID: 0}
     - target: {fileID: 1072018054752160773, guid: 96d840a85523a2a4c806952c01b0f469,
         type: 3}
@@ -5016,7 +5016,7 @@ PrefabInstance:
     - target: {fileID: 1072018054752160773, guid: 96d840a85523a2a4c806952c01b0f469,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 24.038193
+      value: 30.52
       objectReference: {fileID: 0}
     - target: {fileID: 1072018054752160773, guid: 96d840a85523a2a4c806952c01b0f469,
         type: 3}
@@ -5056,12 +5056,12 @@ PrefabInstance:
     - target: {fileID: 1072018055080777161, guid: 96d840a85523a2a4c806952c01b0f469,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000001733547
+      value: -0.000000017334791
       objectReference: {fileID: 0}
     - target: {fileID: 1072018055080777161, guid: 96d840a85523a2a4c806952c01b0f469,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -4.3670398e-10
+      value: 4.0899162e-10
       objectReference: {fileID: 0}
     - target: {fileID: 1072018055080777161, guid: 96d840a85523a2a4c806952c01b0f469,
         type: 3}
@@ -5826,7 +5826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 91.9, z: -5}
+  m_FollowOffset: {x: 13.7, y: 125, z: -5}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -7364,7 +7364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 75, z: -10}
+  m_FollowOffset: {x: 13.4, y: 75, z: -10}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
