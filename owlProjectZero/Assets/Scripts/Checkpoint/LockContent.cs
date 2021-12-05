@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum StoryFlags {hasReachedTheElevator, playerHasUnlockedSuit, hasKamehameha}
+public enum StoryFlags {hasReachedTheElevator, hasNotReachedTheElevator, playerHasUnlockedSuit, hasKamehameha}
 public class LockContent : MonoBehaviour
 {
     [SerializeField] private StoryFlags flag;
@@ -25,6 +25,13 @@ public class LockContent : MonoBehaviour
                     // Set default scene to Alley scene
                     CheckpointsHandler.checkpointScene = 2;
                     LockThemContent();
+                }
+                break;
+            case StoryFlags.hasNotReachedTheElevator:
+                if(!GlobalVars.hasReachedTheElevator)
+                {
+                    LockThemContent();
+                    // Debug.LogError("player hasn't reached the elevator");
                 }
                 break;
             case StoryFlags.playerHasUnlockedSuit:
