@@ -7,7 +7,7 @@ public class MiniBossChase : IState
     private readonly MiniBoss character;
     private const float TIME_BETWEEN_STEPS = 0.5f;
     private float stepTime;
-    private const float MAX_CHASE_DURATION = 3f;
+    private const float MAX_CHASE_DURATION = 2f;
     private float horizontalMovement;
     private float chaseDuration;
     private bool playerIsInSight;
@@ -48,24 +48,24 @@ public class MiniBossChase : IState
 
     public void FixedUpdate()
     {
-        // character.MoveCharacter(horizontalMovement);
-        if(stepTime <= 0f)
-        {
-            character.MoveCharacter(horizontalMovement);
-            stepTime = TIME_BETWEEN_STEPS;
-        }
+        ((Character)character).MoveCharacter(horizontalMovement);
+        // if(stepTime <= 0f)
+        // {
+        //     character.MoveCharacter(horizontalMovement);
+        //     stepTime = TIME_BETWEEN_STEPS;
+        // }
 
         playerIsInSight = character.SeesPlayer();
 
         if(playerIsInSight)
         {
-            playerIsInAttackRange = character.PlayerInAttackRange(character.basicAttack.transform.localPosition.x + character.basicAttack.transform.localScale.x / 2); // 2f comes from scaleY from hitbox's transform component
+            playerIsInAttackRange = character.PlayerInAttackRange(character.basicAttack.transform.localPosition.x + character.basicAttack.transform.localScale.x * 10); // 2f comes from scaleY from hitbox's transform component
         }
     }
     
     public IState Update()
     {
-        if(playerIsInAttackRange)
+        if(playerIsInAttackRange || (playerIsInSight && chaseDuration <= 0f))
         {
             return atkState;
         }

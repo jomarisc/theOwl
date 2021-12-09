@@ -39,7 +39,7 @@ public class MiniBossPunch : IState
     public void FixedUpdate()
     {
         if(hitbox.enabled)
-            characterBody.AddForce(new Vector3(horizontalMovement, 0f, 0f), ForceMode.VelocityChange);
+            characterBody.AddForce(new Vector3(horizontalMovement * 1.5f, 0f, 0f), ForceMode.VelocityChange);
     }
     
     public IState Update()
