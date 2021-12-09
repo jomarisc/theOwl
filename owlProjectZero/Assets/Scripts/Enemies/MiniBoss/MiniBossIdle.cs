@@ -53,6 +53,7 @@ public class MiniBossIdle : IState
         {
             // Turn around and walk
             character.data.isFacingRight = !character.data.isFacingRight;
+            character.TurnAround();
             return new MiniBossIdle(character);
         }
     }

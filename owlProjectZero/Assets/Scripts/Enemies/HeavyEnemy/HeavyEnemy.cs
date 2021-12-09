@@ -40,11 +40,16 @@ public class HeavyEnemy : Enemy
     {
         base.Update();
         if(sRenderer != null) // This is here bc Mini Boss dun have this component
-            sRenderer.flipX = data.isFacingRight;
+            FlipSprite();
     }
 
     public override void MoveCharacter(float direction)
     {
         rb.AddForce(new Vector3(direction * data.maxSpeed, 0f, 0f), ForceMode.VelocityChange);
+    }
+
+    public virtual void FlipSprite()
+    {
+        sRenderer.flipX = data.isFacingRight;
     }
 }
