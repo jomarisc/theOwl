@@ -5,6 +5,8 @@ using UnityEngine;
 public class MiniBossChase : IState
 {
     private readonly MiniBoss character;
+    private Animator animator;
+    private string myAnimationState;
     private const float TIME_BETWEEN_STEPS = 0.5f;
     private float stepTime;
     private const float MAX_CHASE_DURATION = 2f;
@@ -18,11 +20,14 @@ public class MiniBossChase : IState
     public MiniBossChase(Enemy myself)
     {
         character = (MiniBoss)myself;
+        animator = myself.GetComponent<Animator>();
     }
 
     public void Enter()
     {
         // Enter grounded enemy chase animation here:
+        myAnimationState = "MiniBossCruise";
+        animator.Play(myAnimationState);
         
         horizontalMovement = (character.data.isFacingRight) ? 1f : -1f;
         stepTime = TIME_BETWEEN_STEPS;
