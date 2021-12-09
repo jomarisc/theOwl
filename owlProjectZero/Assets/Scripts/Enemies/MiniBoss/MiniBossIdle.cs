@@ -5,6 +5,8 @@ using UnityEngine;
 public class MiniBossIdle : IState
 {
     private readonly MiniBoss character;
+    private Animator animator;
+    private string myAnimationState;
     private const float IDLE_TIME = 3f;
     private float waitTime;
     private bool playerFound;
@@ -12,11 +14,14 @@ public class MiniBossIdle : IState
     public MiniBossIdle(MiniBoss myself)
     {
         character = myself;
+        animator = myself.GetComponent<Animator>();
     }
 
     public void Enter()
     {
         // Enter Grounded enemy idle animation here:
+        myAnimationState = "MiniBossIdle";
+        animator.Play(myAnimationState);
 
         waitTime = IDLE_TIME;
         playerFound = false;
