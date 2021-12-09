@@ -975,9 +975,9 @@ MonoBehaviour:
     startup: 90
     timeActive: 30
     recovery: 10
-    gKnockback: 15
-    gKnockbackAngle: 30
-    aKnockback: 15
+    gKnockback: 20
+    gKnockbackAngle: 45
+    aKnockback: 23
     aKnockbackAngle: 30
     currentKnockback: 0
     currentKnockbackAngle: 0
@@ -1507,7 +1507,7 @@ PrefabInstance:
     - target: {fileID: 1087469117397529104, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: m_Drag
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1635083202522667732, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
@@ -1637,7 +1637,7 @@ PrefabInstance:
     - target: {fileID: 4939920216119016103, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4939920216119016103, guid: a94cdbb1a371e434da94986eea1d80d4,
         type: 3}
