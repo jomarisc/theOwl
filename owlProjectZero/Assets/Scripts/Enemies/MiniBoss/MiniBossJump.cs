@@ -5,6 +5,8 @@ using UnityEngine;
 public class MiniBossJump : IState
 {
     private readonly MiniBoss character;
+    private Animator animator;
+    private string myAnimationState;
     private Rigidbody characterBody;
     private GameObject meleeAttack;
     private bool hasLeftTheGround;
@@ -12,12 +14,15 @@ public class MiniBossJump : IState
     public MiniBossJump(Enemy myself)
     {
         character = (MiniBoss)myself;
+        animator = myself.GetComponent<Animator>();
         characterBody = myself.GetComponent<Rigidbody>();
     }
 
     public void Enter()
     {
         // Enter grounded enemy walk animation here:
+        myAnimationState = "MiniBossJumpUp";
+        animator.Play(myAnimationState);
         
         characterBody.velocity = Vector3.zero;
         // characterBody.AddForce(Vector3.up * 5, ForceMode.VelocityChange);
@@ -27,12 +32,13 @@ public class MiniBossJump : IState
 
     public void Exit()
     {
-        
+
     }
 
     public void FixedUpdate()
     {
-        
+        if(!hasLeftTheGround && characterBody.velocity.y > 0f)
+            hasLeftTheGround = true;
     }
     
     public IState Update()
@@ -44,8 +50,6 @@ public class MiniBossJump : IState
         {
             return new MiniBossSlam(character);
         }
-        else if(characterBody.velocity.y > 0f)
-            hasLeftTheGround = true;
         
         return null;
     }
