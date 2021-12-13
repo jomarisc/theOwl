@@ -34,7 +34,7 @@ public class MiniBossChase : IState
         chaseDuration = MAX_CHASE_DURATION;
         playerIsInSight = true;
         playerIsInAttackRange = false;
-        atkPattern = 1; // Random.Range(0, 2);
+        atkPattern = 0; // Random.Range(0, 2);
         switch(atkPattern)
         {
             case 0:
