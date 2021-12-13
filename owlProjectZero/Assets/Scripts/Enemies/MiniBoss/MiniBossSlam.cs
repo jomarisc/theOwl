@@ -61,14 +61,13 @@ public class MiniBossSlam : IState
 
     public void FixedUpdate()
     {
-        
+        if(hitbox.enabled && !atkVFXAnimator.enabled)
+            atkVFXAnimator.enabled = true;
+
     }
     
     public IState Update()
     {
-        if(hitbox.enabled && !atkVFXAnimator.enabled)
-            atkVFXAnimator.enabled = true;
-
         if(!meleeAttack.activeInHierarchy)
         {
             Debug.Log("Returning to idle");
