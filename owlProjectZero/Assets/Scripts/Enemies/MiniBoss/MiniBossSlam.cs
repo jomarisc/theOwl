@@ -9,6 +9,8 @@ public class MiniBossSlam : IState
     private string myAnimationState;
     private Rigidbody characterBody;
     private GameObject meleeAttack;
+    private Collider hitbox;
+    private Animator atkVFXAnimator;
     
     public MiniBossSlam(MiniBoss myself)
     {
@@ -16,11 +18,22 @@ public class MiniBossSlam : IState
         animator = myself.GetComponent<Animator>();
         characterBody = myself.GetComponent<Rigidbody>();
         meleeAttack = myself.slamHitbox;
+        hitbox = character.slamHitbox.GetComponentInChildren<Collider>();
+        atkVFXAnimator = character.atkVFXSprite.GetComponent<Animator>();
     }
 
     public void Enter()
     {
         // Enter grounded enemy walk animation here:
+        character.atkVFXSprite.flipX = character.data.isFacingRight;
+        // Mirror the sprite position
+        if(!character.data.isFacingRight)
+        {
+            Vector3 newAtkVFXPos = character.atkVFXSprite.transform.localPosition;
+            newAtkVFXPos.x *= -1;
+            character.atkVFXSprite.transform.localPosition = newAtkVFXPos;
+        }
+        atkVFXAnimator.enabled = false;
         myAnimationState = "MiniBossCrash"; // Temporary
         animator.Play(myAnimationState);
         
@@ -30,6 +43,15 @@ public class MiniBossSlam : IState
 
     public void Exit()
     {
+        // Set the sprite position back to normal
+        if(!character.data.isFacingRight)
+        {
+            Vector3 newAtkVFXPos = character.atkVFXSprite.transform.localPosition;
+            newAtkVFXPos.x *= -1;
+            character.atkVFXSprite.transform.localPosition = newAtkVFXPos;
+        }
+        atkVFXAnimator.enabled = false;
+        
         if(meleeAttack.activeInHierarchy)
         {
             meleeAttack.SetActive(false);
@@ -43,6 +65,9 @@ public class MiniBossSlam : IState
     
     public IState Update()
     {
+        if(hitbox.enabled && !atkVFXAnimator.enabled)
+            atkVFXAnimator.enabled = true;
+
         if(!meleeAttack.activeInHierarchy)
         {
             Debug.Log("Returning to idle");
