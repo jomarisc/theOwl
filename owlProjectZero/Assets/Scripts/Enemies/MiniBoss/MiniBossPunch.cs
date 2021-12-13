@@ -10,6 +10,7 @@ public class MiniBossPunch : IState
     private Rigidbody characterBody;
     private GameObject meleeAttack;
     private Collider hitbox;
+    private AudioSource meleeAudio;
     private float horizontalMovement;
     private bool playerIsInSight;
     private bool playerIsInAttackRange;
@@ -21,6 +22,7 @@ public class MiniBossPunch : IState
         characterBody = myself.GetComponent<Rigidbody>();
         meleeAttack = myself.basicAttack.gameObject;
         hitbox = meleeAttack.GetComponentInChildren<Collider>();
+        meleeAudio = meleeAttack.GetComponentInChildren<Hitbox>().startupSFX;
         horizontalMovement = hm;
     }
 
@@ -38,6 +40,9 @@ public class MiniBossPunch : IState
 
     public void Exit()
     {
+        if(meleeAudio.isPlaying)
+            meleeAudio.Stop();
+
         if(animator.GetBool("windingUp"))
             animator.SetBool("windingUp", false);
 

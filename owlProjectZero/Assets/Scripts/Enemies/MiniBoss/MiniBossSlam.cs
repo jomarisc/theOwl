@@ -36,6 +36,7 @@ public class MiniBossSlam : IState
         atkVFXAnimator.enabled = false;
         myAnimationState = "MiniBossCrash"; // Temporary
         animator.Play(myAnimationState);
+        character.heavyMelee.Play();
         
         meleeAttack.SetActive(true);
         character.Attack(meleeAttack);

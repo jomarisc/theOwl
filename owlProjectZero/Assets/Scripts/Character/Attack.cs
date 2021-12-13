@@ -154,7 +154,7 @@ public abstract class Attack : MonoBehaviour
         hitboxes = new List<Hitbox>(atkData);
     }
 
-    private void PlayOnHitSFX(Collider col)
+    public void PlayOnHitSFX(Collider col)
     {
         if(col.TryGetComponent(out Character c))
             onCharacterHitSFX.Play();

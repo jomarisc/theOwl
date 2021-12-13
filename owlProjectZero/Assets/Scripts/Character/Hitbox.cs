@@ -31,6 +31,7 @@ public struct HitboxData
 }
 public class Hitbox : MonoBehaviour
 {
+    private Attack attackParent;
     public HitboxData data;
     protected float startupDuration;
     protected float activeDuration;
@@ -43,6 +44,10 @@ public class Hitbox : MonoBehaviour
     public AudioSource recoverySFX;
     public delegate void EventDelegate();
     public event EventDelegate OnHitboxFinished;
+    void Awake()
+    {
+        attackParent = GetComponentInParent<Attack>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -125,6 +130,7 @@ public class Hitbox : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         ApplyHitboxInteraction(col);
+        PlayOnHitSFX(col);
     }
 
     protected void ApplyHitboxInteraction(Collider col)
@@ -198,6 +204,11 @@ public class Hitbox : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void PlayOnHitSFX(Collider col)
+    {
+        attackParent.PlayOnHitSFX(col);
     }
 
     // Convert a magnitude and direction into a force in the form of a Vector3

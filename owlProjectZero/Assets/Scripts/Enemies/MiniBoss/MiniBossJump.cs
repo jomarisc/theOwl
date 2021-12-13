@@ -23,6 +23,9 @@ public class MiniBossJump : IState
         // Enter grounded enemy walk animation here:
         myAnimationState = "MiniBossJumpUp";
         animator.Play(myAnimationState);
+        if(character.heavyJump.mute)
+            character.heavyJump.mute = false;
+        character.heavyJump.Play();
         
         characterBody.velocity = Vector3.zero;
         // characterBody.AddForce(Vector3.up * 5, ForceMode.VelocityChange);
@@ -32,7 +35,8 @@ public class MiniBossJump : IState
 
     public void Exit()
     {
-
+        if(!character.heavyJump.mute)
+            character.heavyJump.mute = true;
     }
 
     public void FixedUpdate()
