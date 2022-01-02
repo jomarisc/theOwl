@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfcb5652d072e0f49bc984909012405e, type: 3}
+  m_Name: Developers
+  m_EditorClassIdentifier: 
+  charName: Developers
+  displayName: Developers
+  dialogueFile: {fileID: 4900000, guid: 3a8c763aca165dd45b5b32d2303bdbc2, type: 3}
+  dialogues: []
+  RandomSceneCount: 3
+  arcProgressionStart: 1
+  arcProgression: 0
+  arcEndPoint: 4
+  arcLength: 0
+  spriteKeys:
+  - Neutral
+  spriteValues:
+  - {fileID: 21300000, guid: d93bbda959be75a4ab8bc1c1c84bf9dc, type: 3}
+  blinkOverlaySprite: {fileID: 0}
+  characterVoice:
+    voiceClipString: ProjectileShootSFX
+    interval: 0
+  characterColor: {r: 0, g: 0, b: 0, a: 1}
+  spritesOverworld: []
+  lockedPositions: []
+  characterDatabase: {fileID: 0}
