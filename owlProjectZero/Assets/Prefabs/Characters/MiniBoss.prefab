@@ -2130,7 +2130,7 @@ MonoBehaviour:
     groundSpeed: 0.5
     airSpeed: 0.25
     jumpDistance: 10
-    isFacingRight: 1
+    isFacingRight: 0
     hasSuperArmor: 1
     remainingStamana: 0
   basicAttack: {fileID: 2816189262244782668}
@@ -2138,7 +2138,8 @@ MonoBehaviour:
   sRenderer: {fileID: 0}
   experienceCollectable: {fileID: 198094913682120957, guid: 3f2a4850f14f43347a2bee6ba7577ca1,
     type: 3}
-  healthCollectable: {fileID: 0}
+  healthCollectable: {fileID: 198094913682120957, guid: 6b9969508a953f94b9402b48e16263f9,
+    type: 3}
   currencyCollectable: {fileID: 5746714417445567809, guid: 85e4f296b8750dc439593c06c751a528,
     type: 3}
   enemyCounter: {fileID: 0}

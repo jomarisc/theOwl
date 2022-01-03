@@ -21,7 +21,7 @@ public class PopUpPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player.input.UI.Cancel.triggered)
+        if(player.input.UI.Cancel.triggered || player.input.UI.Activate.triggered)
             gameObject.SetActive(false);
     }
 }

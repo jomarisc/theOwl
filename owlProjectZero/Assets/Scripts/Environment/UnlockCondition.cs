@@ -15,17 +15,20 @@ public class UnlockCondition : MonoBehaviour
         SetUpRoom(type);
     }
 
+    void OnEnable()
+    {
+        EnemyDead.OnEnemyDeath += CheckUnlockCondition;
+    }
+
+    void OnDisable()
+    {
+        EnemyDead.OnEnemyDeath -= CheckUnlockCondition;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         myRoom = GetComponent<Room>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(myRoom.isLocked && ConditionIsSatisfied(type))
-            myRoom.Deactivate();
     }
 
     // Given the type of unlock condition, set up the room accordingly
@@ -71,5 +74,13 @@ public class UnlockCondition : MonoBehaviour
         // }
         // noMoreEnemies = true;
         return myRoom.enemyColliders.Count <= 0; // || noMoreEnemies;
+    }
+
+    void CheckUnlockCondition()
+    {
+        if(myRoom.isLocked && ConditionIsSatisfied(type))
+            myRoom.Deactivate();
+        else
+            Debug.Log("Room unlock condition not yet satisfied");
     }
 }

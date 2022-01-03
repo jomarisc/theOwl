@@ -44,7 +44,9 @@ public class CutsceneManager : MonoBehaviour
     public PlayerInputs input;
     public GameObject dialogue;
     public CutsceneSequence[] stageDirections; // The cutscene manager will iterate through this
-                                               // array as the player progresses through the text
+                                               // array as the player progresses through the text     
+    public static event AudioFadeOut OnAudioFadeOut;
+    public delegate void AudioFadeOut(float duration);
 
     void Awake()
     {
@@ -188,5 +190,10 @@ public class CutsceneManager : MonoBehaviour
         txtManager = dialogueManager;
         txtManager.OnNextMessage += NextSequence;
         newDialogue.SetActive(true);
+    }
+
+    public void SignalAudioFadeOut(float duration)
+    {
+        OnAudioFadeOut?.Invoke(duration);
     }
 }
