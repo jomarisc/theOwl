@@ -54,6 +54,8 @@ public class DialogueManager : MonoBehaviour
     private bool endMessageTimerActive = false;
 
     // OWL LONG DAY EXCLUSIVE CODE
+    InstantDialogue localDialogue;
+    //public bool finishedDialogue;
     public bool manualActivation;
     public event EventDelegate OnNextMessage;
     public delegate void EventDelegate();
@@ -150,6 +152,11 @@ public class DialogueManager : MonoBehaviour
 
     void Awake()
     {
+        // Flag for signalling that the dialogue is finished
+        // Upon awake, it will be assumed that finished dialogue is false
+        localDialogue = FindObjectOfType<InstantDialogue>();
+        //finishedDialogue = false;
+
         //Debug.Log(message: $"<color=blue><size=16>From DIALOGUE MANAGER.CS souncClip1 name: {soundClip1.name} </size></color>");
         
         //textbox.SetActive(false);
@@ -468,6 +475,8 @@ public class DialogueManager : MonoBehaviour
         //make the exit condition up here
         if(messageIndex > (messageArraySeg.Length-1)){
             messageIndex = 0;                                           // Reset the message index
+            localDialogue.hasFinishedDialogueTutorial = true;
+            //finishedDialogue = true;
             // This destroys the DialogueObject upon completing CSV
             // Watch this carefully to determine if dialogue arc progression is maintained
             StartCoroutine(DestroyDialogueObject());                                                              
