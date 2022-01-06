@@ -58,6 +58,7 @@ public class DialogueManager : MonoBehaviour
     public event EventDelegate OnNextMessage;
     public delegate void EventDelegate();
     [SerializeField] private bool canFireNextMessageEvent = true;
+    InstantDialogue localTutorialDialogue;
 
     [Header("UI Objects")]
     //changed  textbox, message text and message name to public to avoid null error exceptions 
@@ -167,6 +168,7 @@ public class DialogueManager : MonoBehaviour
         //backlogView = transform.Find("backlogHolder/MainPanel").GetComponent<BacklogView>();
         
         messageIndex = 0;
+        localTutorialDialogue = FindObjectOfType<InstantDialogue>();
 
         // OLD CODE:
         // Testing out CreateInstance with a ScriptableObject
@@ -468,6 +470,13 @@ public class DialogueManager : MonoBehaviour
         //make the exit condition up here
         if(messageIndex > (messageArraySeg.Length-1)){
             messageIndex = 0;                                           // Reset the message index
+
+            // Tutorial textbox collider will be disabled when a specific dialogue exists, change so that it disables any tutorial collider
+            if (GameObject.Find("Dialogue (Tutorial)"))
+            {
+                localTutorialDialogue.hasFinishedDialogueTutorial = true;   // Sets the flag for the tutorial text box to true, signifying that it's finished.
+            }
+
             // This destroys the DialogueObject upon completing CSV
             // Watch this carefully to determine if dialogue arc progression is maintained
             StartCoroutine(DestroyDialogueObject());                                                              

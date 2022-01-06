@@ -163,6 +163,7 @@ public class TextWriter : MonoBehaviour
                 charsToPrint = 6;
                 intervalModifier = 3f;
             }
+            // Remember the camera needs an audio source!
             //starting pitch
             Camera.main.GetComponent<AudioSource>().pitch = 1.03f;
 
