@@ -353,6 +353,7 @@ public class playerControl : Character
     void SuitUp()
     {
         input.Gameplay.Guntime.Enable();
+        guntimeAbility.gameObject.SetActive(true);
         guntimeAbility.OnInGuntimeChanged += UpdateInGuntime;
         unlockedSkills.gameObject.SetActive(true);
         equippedSkills.gameObject.SetActive(true);
