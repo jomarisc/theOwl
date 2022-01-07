@@ -32,12 +32,10 @@ public class MiniBoss : HeavyEnemy
     {
         if(data.hasSuperArmor && myCharacterColor != null)
         {
-            // sRenderer.color = Color.red;
             SpriteRenderer[] sRenderers = spritesParent.GetComponentsInChildren<SpriteRenderer>();
             foreach(SpriteRenderer sr in sRenderers)
                 sr.color = Color.red;
             yield return new WaitForSeconds(duration);
-            // sRenderer.color = myCharacterColor;
             foreach(SpriteRenderer sr in sRenderers)
                 sr.color = myCharacterColor;
         }
