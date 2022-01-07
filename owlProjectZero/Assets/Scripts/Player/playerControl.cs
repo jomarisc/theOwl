@@ -226,6 +226,13 @@ public class playerControl : Character
                 npcTouched.arcProgression = npcTouched.arcProgressionStart;
             }
         }
+
+        // Button trigger for Tutorial
+        //if (temp.tag == "Tutorial")
+        //{
+        //    DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
+        //    dialogueManager.localTutorialDialogue.CreateDialogue();
+        //}
     }
 
     public void OnTriggerEnter(Collider collisionObject)
@@ -233,6 +240,7 @@ public class playerControl : Character
         Debug.Log(message:$"<color=green> <size=16> Entered trigger </size> </color>");
         isBeingCollidedWith = true;
         GameObject temp = GameObject.Find(collisionObject.name);
+        //Debug.Log(message: $"<color=green> <size=16> collisionObject.name: {collisionObject.name} </size> </color>");
     }
     public void OnTriggerExit(Collider collisionObject)
     {

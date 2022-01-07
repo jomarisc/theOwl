@@ -58,7 +58,7 @@ public class DialogueManager : MonoBehaviour
     public event EventDelegate OnNextMessage;
     public delegate void EventDelegate();
     [SerializeField] private bool canFireNextMessageEvent = true;
-    InstantDialogue localTutorialDialogue;
+    public InstantDialogue localTutorialDialogue;
 
     [Header("UI Objects")]
     //changed  textbox, message text and message name to public to avoid null error exceptions 
@@ -474,7 +474,10 @@ public class DialogueManager : MonoBehaviour
             // Tutorial textbox collider will be disabled when a specific dialogue exists, change so that it disables any tutorial collider
             if (GameObject.Find("Dialogue (Tutorial)"))
             {
-                localTutorialDialogue.hasFinishedDialogueTutorial = true;   // Sets the flag for the tutorial text box to true, signifying that it's finished.
+                //localTutorialDialogue.hasFinishedDialogueTutorial = true;   // Sets the flag for the tutorial text box to true, signifying that it's finished.
+
+                localTutorialDialogue.UnfreezePlayerForFinishingTutorial();   // Unfreezes the player utilizing the function from InstantDialogue.cs
+                
             }
 
             // This destroys the DialogueObject upon completing CSV

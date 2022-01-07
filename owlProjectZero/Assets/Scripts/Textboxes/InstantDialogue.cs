@@ -28,18 +28,19 @@ public class InstantDialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Not Unfreezing every frame, only unfreezing once dialogue ends
         // Within DialogueManager.cs hasFinishedDialogueTutorial will be set to true
-        if (hasFinishedDialogueTutorial)
-        {
-            // Player controller is unfrozen and respective controls are restored
-            UnfreezePlayerForFinishingTutorial();
+        //if (hasFinishedDialogueTutorial)
+        //{
+        //    // Player controller is unfrozen and respective controls are restored
+        //    UnfreezePlayerForFinishingTutorial();
 
-        }
+        //}
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.TryGetComponent(out playerControl p) && !hasFinishedDialogueTutorial) // Will enter if colliding and has not entered before
+        if (collision.TryGetComponent(out playerControl p)) //&& !hasFinishedDialogueTutorial) // Will enter if colliding and has not entered before
         {
             // Set this to true when the dialogue manager finishes the last piece of text so that the player controls and input may be restored
             // hasFinishedDialogueTutorial = true;
@@ -51,7 +52,6 @@ public class InstantDialogue : MonoBehaviour
             // Setup and start specific dialogue file that is labeled for tutorials
             //Debug.Log("Entered into InstantDialogue OnTriggerEnter2D");
             CreateDialogue();
-
 
         }
     }
