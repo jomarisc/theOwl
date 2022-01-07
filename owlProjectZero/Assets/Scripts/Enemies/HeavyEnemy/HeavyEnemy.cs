@@ -9,6 +9,7 @@ public class HeavyEnemy : Enemy
     // protected fields
 
     // public fields
+    public bool hasCollidedWithHitbox = false;
     public SpriteRenderer atkVFXSprite;
     public AudioSource heavyJump;
     public AudioSource heavyMelee;
@@ -32,7 +33,10 @@ public class HeavyEnemy : Enemy
         base.Start();
         rb = GetComponent<Rigidbody>();
         if(GetComponentInChildren<SpriteRenderer>()) // This is here bc Mini Boss dun have this component
+        {
             sRenderer = GetComponentInChildren<SpriteRenderer>();
+            myCharacterColor = sRenderer.color;
+        }
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -51,5 +55,17 @@ public class HeavyEnemy : Enemy
     public virtual void FlipSprite()
     {
         sRenderer.flipX = data.isFacingRight;
+    }
+
+    public override IEnumerator ShowSuperArmorFeedback(float duration)
+    {
+        if(data.hasSuperArmor && myCharacterColor != null)
+        {
+            sRenderer.color = Color.red;
+            yield return new WaitForSeconds(duration);
+            sRenderer.color = myCharacterColor;
+        }
+        else
+            yield return base.ShowSuperArmorFeedback(duration);
     }
 }
