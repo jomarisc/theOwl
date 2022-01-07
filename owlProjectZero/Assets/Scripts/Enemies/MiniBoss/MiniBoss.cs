@@ -27,4 +27,19 @@ public class MiniBoss : HeavyEnemy
         newLocalScale.x = (data.isFacingRight) ? -1 : 1;
         spritesParent.localScale = newLocalScale;
     }
+
+    public override IEnumerator ShowSuperArmorFeedback(float duration)
+    {
+        if(data.hasSuperArmor && myCharacterColor != null)
+        {
+            SpriteRenderer[] sRenderers = spritesParent.GetComponentsInChildren<SpriteRenderer>();
+            foreach(SpriteRenderer sr in sRenderers)
+                sr.color = Color.red;
+            yield return new WaitForSeconds(duration);
+            foreach(SpriteRenderer sr in sRenderers)
+                sr.color = myCharacterColor;
+        }
+        else
+            yield return base.ShowSuperArmorFeedback(duration);
+    }
 }

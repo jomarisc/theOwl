@@ -168,6 +168,8 @@ public class Hitbox : MonoBehaviour
                 {
                     // Just get damaged
                     col.gameObject.GetComponent<Character>().data.health -= data.damage;
+                    float duration = (data.timeActive - (activeDuration / Time.fixedDeltaTime)) / 50;
+                    character.BeginSuperArmorFeedback(duration);
                 }
             }
             if(col.gameObject.TryGetComponent(out playerControl player))

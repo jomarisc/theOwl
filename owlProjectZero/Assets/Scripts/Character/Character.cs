@@ -38,6 +38,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     // private attributes
 
     // protected attributes
+    protected Color myCharacterColor;
     protected Rigidbody rb;
     protected IState myState;
 
@@ -189,5 +190,15 @@ public abstract class Character : MonoBehaviour, ICharacter
             animator.SetBool("grounded", false);
         }
             
+    }
+
+    public void BeginSuperArmorFeedback(float duration)
+    {
+        StartCoroutine(ShowSuperArmorFeedback(duration));
+    }
+    public virtual IEnumerator ShowSuperArmorFeedback(float duration)
+    {
+        Debug.LogError("Cannot show super armor feedback");
+        return null;
     }
 }
