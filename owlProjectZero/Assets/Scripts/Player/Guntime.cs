@@ -23,6 +23,8 @@ public class Guntime : MonoBehaviour
     void Awake()
     {
         guntimeDuration = MAX_GUNTIME_DURATION;
+        if(Time.timeScale != 1f)
+            SetTimeScale(1f);
     }
 
     void OnEnable()
@@ -91,8 +93,7 @@ public class Guntime : MonoBehaviour
         ProjectileAttack projAtk = player.projectile.GetComponent<ProjectileAttack>();
         projAtk.properSpeed /= GUNTIME_SLOWDOWN_FACTOR;
         
-        Time.timeScale = 1f;
-        Time.fixedDeltaTime = 0.016f * Time.timeScale;
+        SetTimeScale(1f);
 
         inGuntime = false;
         OnInGuntimeChanged?.Invoke();
@@ -107,8 +108,7 @@ public class Guntime : MonoBehaviour
         {
 
             // Magic Numbers Ahead...
-            Time.timeScale = 0.5f;
-            Time.fixedDeltaTime = 0.016f * Time.timeScale;
+            SetTimeScale(0.5f);
 
             player.GetComponent<Rigidbody>().useGravity = false;
 
@@ -135,5 +135,11 @@ public class Guntime : MonoBehaviour
         {
             TurnOffGuntime();
         }
+    }
+
+    public void SetTimeScale(float timeScale)
+    {
+        Time.timeScale = timeScale;
+        Time.fixedDeltaTime = 0.016f * Time.timeScale;
     }
 }
