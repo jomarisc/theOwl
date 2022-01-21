@@ -67,9 +67,9 @@ public class CutsceneManager : MonoBehaviour
         // input.Cutscene.Proceed.started -= NextSequence;
         if(txtManager != null)    
             txtManager.OnNextMessage -= NextSequence;
-        input.Disable();
-        ToggleCharacterBehaviors(true);
+        // input.Disable();
         UseGameplayCanvas();
+        ToggleCharacterBehaviors(true);
     }
 
     // Start is called before the first frame update
@@ -149,17 +149,17 @@ public class CutsceneManager : MonoBehaviour
     {
         // The two canvases should never be active at the same time,
         // so toggling both canvases should funciton the same as a swap
-        gameplayCanvas.enabled = !gameplayCanvas.enabled;
-        cutsceneCanvas.enabled = !cutsceneCanvas.enabled;
+        gameplayCanvas.gameObject.SetActive(!gameplayCanvas.gameObject.activeInHierarchy);
+        cutsceneCanvas.gameObject.SetActive(!cutsceneCanvas.gameObject.activeInHierarchy);
     }
 
     // This enables the CutsceneCanvas and disables the GameplayCanvas
     public void UseCutsceneCanvas()
     {
         if(gameplayCanvas != null)
-            gameplayCanvas.enabled = false;
+            gameplayCanvas.gameObject.SetActive(false);
         if(cutsceneCanvas != null)
-            cutsceneCanvas.enabled = true;
+            cutsceneCanvas.gameObject.SetActive(true);
         NextSequence();
     }
     
@@ -167,9 +167,9 @@ public class CutsceneManager : MonoBehaviour
     public void UseGameplayCanvas()
     {
         if(cutsceneCanvas != null)
-            cutsceneCanvas.enabled = false;
+            cutsceneCanvas.gameObject.SetActive(false);
         if(gameplayCanvas != null)
-            gameplayCanvas.enabled = true;
+            gameplayCanvas.gameObject.SetActive(true);
     }
 
     public void BeginDialogue(TextAsset dialogueScript)
