@@ -9,6 +9,8 @@ using UnityEngine.InputSystem.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    private bool pcWasEnabled = true;
+    private GameObject previouslySelectedGameObject = null;
     public GameObject pausemenu = null;
     public GameObject resumebutton;
     public playerControl pc;
@@ -57,10 +59,12 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         pausemenu.SetActive(true);
+        pcWasEnabled = pc.enabled;
         pc.enabled = false;
         Time.timeScale = 0f;
         isPaused = true;
 
+        previouslySelectedGameObject = EventSystem.current.currentSelectedGameObject;
         EventSystem.current.SetSelectedGameObject(resumebutton);
         ((InputSystemUIInputModule)EventSystem.current.currentInputModule).move = InputActionReference.Create(input.UI.Navigate);
     }
@@ -68,11 +72,11 @@ public class PauseMenu : MonoBehaviour
     public void ResumeGame()
     {
         pausemenu.SetActive(false);
-        pc.enabled = true;
+        pc.enabled = pcWasEnabled;
         Time.timeScale = 1f;
         isPaused = false;
 
-        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(previouslySelectedGameObject);
 
     }
 
