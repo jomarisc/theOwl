@@ -38,6 +38,14 @@ public abstract class Enemy : Character
         lookingDirection = Vector3.zero;
     }
 
+    void Awake()
+    {
+        if(totalEnemies != 0)
+            totalEnemies = 0;
+        if(numDefeatedEnemies != 0)
+            numDefeatedEnemies = 0;
+    }
+
     void OnEnable()
     {
         enemyCounter = GameObject.Find("GameplayCanvas/EnemyCounter").GetComponent<Text>();
@@ -46,7 +54,6 @@ public abstract class Enemy : Character
     protected new void Start()
     {
         base.Start();
-        totalEnemies++;
         myCollider = GetComponent<Collider>();
         enemyCounter = GameObject.Find("GameplayCanvas/EnemyCounter").GetComponent<Text>();
     }
@@ -70,6 +77,7 @@ public abstract class Enemy : Character
             myRoom = col.GetComponent<Room>();
             myRoom.enemyColliders.Add(myCollider);
             Debug.Log("Adding me self into va enemy list ye");
+            totalEnemies++;
             // Debug.Break();
         }
     }
