@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
@@ -41,6 +42,9 @@ public class CutsceneManager : MonoBehaviour
     private Canvas gameplayCanvas;
     private Canvas cutsceneCanvas;
     [SerializeField] private DialogueManager txtManager = null;
+    public float defaultVolume = 0f;
+    public AudioMixer musicMixer;
+    public AudioMixer sfxMixer;
     public PlayerInputs input;
     public GameObject dialogue;
     public CutsceneSequence[] stageDirections; // The cutscene manager will iterate through this
@@ -80,6 +84,37 @@ public class CutsceneManager : MonoBehaviour
         gameplayCanvas = GameObject.Find("GameplayCanvas").GetComponent<Canvas>();
         cutsceneCanvas = GameObject.Find("CutsceneCanvas").GetComponent<Canvas>();
         // this.enabled = false;
+
+        if(PlayerPrefs.HasKey("musicVolume"))
+        {
+            Debug.Log("PlayerPrefs musicVolume does exist");
+            float getVolume = PlayerPrefs.GetFloat("musicVolume");
+            // Debug.Log("music volume is " + PlayerPrefs.GetFloat("musicVolume"));
+            musicMixer.SetFloat("musicVolume", getVolume);
+            // Debug.Log("getVolume is " + getVolume);
+            // Debug.Log("music slider value is " + mSlider.value);
+            Debug.Log("music volume is " + PlayerPrefs.GetFloat("musicVolume"));
+        }
+        else
+        {
+            Debug.Log("PlayerPrefs musicVolume does not exist");
+            PlayerPrefs.SetFloat("musicVolume", defaultVolume);
+            PlayerPrefs.Save();
+        }
+
+        if(PlayerPrefs.HasKey("sfxVolume"))
+        {
+            float getVolume = PlayerPrefs.GetFloat("sfxVolume");
+            // Debug.Log("sfx volume is " + PlayerPrefs.GetFloat("sfxVolume"));
+            sfxMixer.SetFloat("sfxVolume", getVolume);
+            // Debug.Log("sfx slider value is " + sSlider.value);
+            Debug.Log("sfx volume is " + PlayerPrefs.GetFloat("sfxVolume"));
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("sfxVolume", defaultVolume);
+            PlayerPrefs.Save();
+        }
     }
 
     // Update is called once per frame

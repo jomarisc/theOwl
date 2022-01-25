@@ -173,6 +173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txtManager: {fileID: 0}
+  defaultVolume: 0.7
+  musicMixer: {fileID: 24100000, guid: f569ff9c5878f924a9db7d9d2ec031e5, type: 2}
+  sfxMixer: {fileID: 24100000, guid: c06177f3576dca944849803fe7f8698e, type: 2}
   dialogue: {fileID: 0}
   stageDirections: []
 --- !u!82 &7490309103823035160
