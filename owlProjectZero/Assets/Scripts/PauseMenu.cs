@@ -49,10 +49,14 @@ public class PauseMenu : MonoBehaviour
     private void OnEnable()
     {
         input.Enable();
+        input.Gameplay.OpenSkillWheel.Disable();
+        input.Gameplay.OpenSkillWheel2.Disable();
     }
 
     private void OnDisable()
     {
+        input.Gameplay.OpenSkillWheel.Enable();
+        input.Gameplay.OpenSkillWheel2.Enable();
         input.Disable();
     }
 
