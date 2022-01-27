@@ -72,8 +72,6 @@ public class CutsceneManager : MonoBehaviour
         if(txtManager != null)    
             txtManager.OnNextMessage -= NextSequence;
         // input.Disable();
-        UseGameplayCanvas();
-        ToggleCharacterBehaviors(true);
     }
 
     // Start is called before the first frame update
@@ -156,7 +154,11 @@ public class CutsceneManager : MonoBehaviour
     private void NextSequence()
     {
         if(currentStageDirection == stageDirections.Length)
+        {
             this.gameObject.SetActive(false); // this.enabled = false;
+            UseGameplayCanvas();
+            ToggleCharacterBehaviors(true);
+        }
         else
         {
             PlaySequence(currentStageDirection);
@@ -191,7 +193,7 @@ public class CutsceneManager : MonoBehaviour
     // This enables the CutsceneCanvas and disables the GameplayCanvas
     public void UseCutsceneCanvas()
     {
-        if(gameplayCanvas != null)
+        if(gameplayCanvas != null && gameplayCanvas.gameObject.activeInHierarchy)
             gameplayCanvas.gameObject.SetActive(false);
         if(cutsceneCanvas != null)
             cutsceneCanvas.gameObject.SetActive(true);
@@ -201,7 +203,7 @@ public class CutsceneManager : MonoBehaviour
     // This enables the GameplayCanvas and disables the CutsceneCanvas
     public void UseGameplayCanvas()
     {
-        if(cutsceneCanvas != null)
+        if(cutsceneCanvas != null && cutsceneCanvas.gameObject.activeInHierarchy)
             cutsceneCanvas.gameObject.SetActive(false);
         if(gameplayCanvas != null)
             gameplayCanvas.gameObject.SetActive(true);

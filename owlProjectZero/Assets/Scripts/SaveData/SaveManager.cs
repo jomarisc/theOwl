@@ -35,6 +35,7 @@ public class SaveManager : MonoBehaviour
             GlobalVars.unlockedSkills[i] = false;
         }
         GlobalVars.currentSkill = 0;
+        GlobalVars.hasReachedTheElevator = false;
         GlobalVars.playerHasUnlockedSuit = false;
 
         CheckpointsHandler.checkpointScene = alleyScene;

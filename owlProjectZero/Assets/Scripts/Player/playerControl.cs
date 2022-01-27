@@ -79,23 +79,6 @@ public class playerControl : Character
     {
         // Subscribe to any events
         input.Enable();
-        // if(guntimeAbility.enabled)
-        //     guntimeAbility.OnInGuntimeChanged += UpdateInGuntime;
-        // else
-        //     input.Gameplay.Guntime.Disable();
-
-        // // The tether object (not the script) must be enabled at the start of a scene
-        // // in order to use the tether ability. This is so that we can simply enable
-        // // the gameobject to show that the suit and its capabilities have been unlocked
-        // if(!tetherAbility.gameObject.activeInHierarchy)
-        //     input.Gameplay.Tether.Disable();
-
-        // if(!unlockedSkills.gameObject.activeInHierarchy)
-        // {
-        //     input.Gameplay.OpenSkillWheel.Disable();
-        //     input.Gameplay.OpenSkillWheel2.Disable();
-        //     input.Gameplay.UseActiveSkill.Disable();
-        // }
 
         if(GlobalVars.playerHasUnlockedSuit)
         {
@@ -104,7 +87,7 @@ public class playerControl : Character
         }
         else
         {
-            UnlockSuit.OnSuitUnlocked += SuitUp;
+            UnlockSuit.OnSuitUnlocked += GetSuit;
             input.Gameplay.Guntime.Disable();
             input.Gameplay.OpenSkillWheel.Disable();
             input.Gameplay.OpenSkillWheel2.Disable();
@@ -124,7 +107,7 @@ public class playerControl : Character
         }
         else
         {
-            UnlockSuit.OnSuitUnlocked -= SuitUp;
+            UnlockSuit.OnSuitUnlocked -= GetSuit;
         }
     }
 
@@ -365,5 +348,11 @@ public class playerControl : Character
         tetherAbility.gameObject.SetActive(true);
         input.Gameplay.Tether.Enable();
         animator.SetLayerWeight(1, 1f);
+    }
+
+    void GetSuit()
+    {
+        SuitUp();
+        UnlockSuit.OnSuitUnlocked -= GetSuit;
     }
 }
